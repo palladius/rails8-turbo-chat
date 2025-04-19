@@ -27,6 +27,11 @@ class ChatStreamJob < ApplicationJob
     # Determine the model to use
     model_to_use = chat.model_id.presence || DEFAULT_MODEL
     Rails.logger.info "🧠 Using model: #{model_to_use}"
+    Rails.logger.info "🧠 user_content: #{user_content}"
+    if user_content.to_s == ''
+      Rails.logger.info "🧠 EMPTY user_content: #{user_content} => exiting"
+      return
+    end
 
     # Use a temporary assistant message record for streaming updates
     # `acts_as_chat` handles creating the user message automatically when `ask` is called.
@@ -45,7 +50,8 @@ class ChatStreamJob < ApplicationJob
     chat.ask(user_content) do |chunk|
         # The assistant message record is created by `acts_as_chat` before this block runs.
       # Fetch it reliably (it should be the last message in the chat).
-      assistant_message ||= chat.messages.assistant.last
+      #assistant_message ||= chat.messages.assistant.last
+      assistant_message ||= chat.messages.where(role: 'assistant').last
       raise ChatError, "Could not find assistant message to stream into for Chat ##{chat.id}" unless assistant_message
 
       if chunk&.content.present?

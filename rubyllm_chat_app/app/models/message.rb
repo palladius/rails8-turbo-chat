@@ -53,7 +53,12 @@ class Message < ApplicationRecord
   # end
 
   # After a message is created (esp. user messages), ensure it's visible
-  after_create_commit -> { broadcast_append_to [chat, "messages"], target: "messages", partial: "messages/message", locals: { message: self } }
+
+  ####### TODO RICC RESTORE when the rest works!!!
+
+
+  #after_create_commit -> { broadcast_append_to [chat, "messages"], target: "messages", partial: "messages/message", locals: { message: self } }
+
   # When streaming is done, the final update might need a broadcast replace to clean up
   # Let's rely on the initial render and streaming appends for now.
 end
