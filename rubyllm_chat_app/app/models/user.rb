@@ -9,5 +9,5 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
 
   # Validations (Devise handles email/password, add one for name)
-  validates :name, presence: true, length: { minimum: 2 }
+  #validates :name, presence: true, length: { minimum: 2 }
 end

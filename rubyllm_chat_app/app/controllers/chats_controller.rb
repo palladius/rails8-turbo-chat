@@ -30,7 +30,7 @@ class ChatsController < ApplicationController
   # Creates a new chat session
   def create
     # Use a default model from config or allow selection via params later
-    default_model = RubyLLM.config.default_model_id || 'gpt-4o-mini' # Fallback needed
+    default_model = RubyLLM.config.default_model # _id || 'gpt-4o-mini' # Fallback needed
     @chat = current_user.chats.build(
       title: params.dig(:chat, :title) || "New Chat #{Time.now.to_i}", # Simple default title
       description: params.dig(:chat, :description),

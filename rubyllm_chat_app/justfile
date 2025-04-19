@@ -1,0 +1,11 @@
+
+
+list:
+    just -l
+
+
+db-destroy:
+    rails db:drop db:create db:migrate
+
+run:
+    bin/dev

@@ -18,7 +18,7 @@ class Message < ApplicationRecord
   # validates :content, presence: true # Might interfere with streaming
 
   # Enum for role for cleaner handling (Rails 7+)
-  enum role: { system: "system", user: "user", assistant: "assistant", tool: "tool" }
+  #enum role: { system: "system", user: "user", assistant: "assistant", tool: "tool" }
 
   # --- Streaming Support ---
 
