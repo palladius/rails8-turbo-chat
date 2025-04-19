@@ -3,7 +3,8 @@
 Dotenv.load('.env') if defined?(Dotenv) && (Rails.env.development? || Rails.env.test?)
 
 GEMINI_API_KEY = ENV.fetch('GEMINI_API_KEY', nil)
-DEFAULT_LLM_MODEL = ENV.fetch('DEFAULT_LLM_MODEL', 'gemini-1.5-pro')
+#DEFAULT_LLM_MODEL = ENV.fetch('DEFAULT_LLM_MODEL', 'gemini-1.5-pro')
+DEFAULT_LLM_MODEL = ENV.fetch('DEFAULT_LLM_MODEL', 'gemini-2.0-flash')
 
 raise "no gemini key sorry" if GEMINI_API_KEY.nil?
 
@@ -21,7 +22,7 @@ RubyLLM.configure do |config|
   # config.google_region = ENV.fetch('GOOGLE_REGION', nil)       # Optional but recommended for Vertex
 
   # Set a default model (optional, but nice!)
-  config.default_model = 'gemini-1.5-flash-latest'
+  config.default_model = DEFAULT_LLM_MODEL # 'gemini-1.5-flash-latest'
   # config.default_model_id = ENV.fetch('DEFAULT_LLM_MODEL', 'gpt-4o-mini')
   # config.default_embedding_model = 'text-embedding-3-small'  # Default: 'text-embedding-3-small'
   # config.default_image_model = 'dall-e-3'            # Default: 'dall-e-3'

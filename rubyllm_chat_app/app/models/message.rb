@@ -36,6 +36,22 @@ class Message < ApplicationRecord
     )
   end
 
+  def system?
+    role == 'system'
+  end
+
+  # def user?
+  #   role == :user
+  # end
+
+  # def assistant?
+  #   role == :assistant
+  # end
+
+  # def tool?
+  #   role == :tool
+  # end
+
   # After a message is created (esp. user messages), ensure it's visible
   after_create_commit -> { broadcast_append_to [chat, "messages"], target: "messages", partial: "messages/message", locals: { message: self } }
   # When streaming is done, the final update might need a broadcast replace to clean up

@@ -3,7 +3,7 @@ class ChatStreamJob < ApplicationJob
   queue_as :default
 
   # Set default model if not provided by chat (fallback)
-  DEFAULT_MODEL = ENV.fetch('DEFAULT_LLM_MODEL', 'gpt-4o-mini') # Or your preferred default
+  DEFAULT_MODEL = DEFAULT_LLM_MODEL # ENV.fetch('DEFAULT_LLM_MODEL', 'gpt-4o-mini') # Or your preferred default
 
   # Define a simple error class for chat issues
   class ChatError < StandardError; end
@@ -40,8 +40,10 @@ class ChatStreamJob < ApplicationJob
     # 4. Making the API call with streaming enabled (due to the block).
     # 5. Yielding chunks to the block.
     # 6. Persisting the final assistant message content and token counts on completion.
-    chat.ask(user_content, model: model_to_use) do |chunk|
-      # The assistant message record is created by `acts_as_chat` before this block runs.
+    print("👀👀👀 Riccardo qui fallisce  chat.ask(user_content='#{user_content}', model: #{model_to_use})  👀👀👀")
+    #chat.ask(user_content, model: model_to_use) do |chunk|
+    chat.ask(user_content) do |chunk|
+        # The assistant message record is created by `acts_as_chat` before this block runs.
       # Fetch it reliably (it should be the last message in the chat).
       assistant_message ||= chat.messages.assistant.last
       raise ChatError, "Could not find assistant message to stream into for Chat ##{chat.id}" unless assistant_message

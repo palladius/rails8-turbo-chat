@@ -9,3 +9,11 @@ db-destroy:
 
 run:
     bin/dev
+
+
+migrate-gone-wrong:
+    # For CreateMessages (basic column types)
+    rails generate migration CreateMessages chat:references role:string content:text model_id:string input_tokens:integer output_tokens:integer tool_call:references
+
+    # For CreateToolCalls (basic column types)
+    rails generate migration CreateToolCalls message:references tool_call_id:string name:string arguments:jsonb

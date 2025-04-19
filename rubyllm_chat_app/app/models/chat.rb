@@ -13,6 +13,7 @@ class Chat < ApplicationRecord
 
   # Set a default title if none provided before validation
   before_validation :set_default_title, on: :create
+  before_validation :set_gemini_model, on: :create
 
   # Turbo Stream Broadcasting for the chat list (when a chat is created/deleted)
   # broadcasts_to ->(chat) { [chat.user, "chats"] } # Broadcast to the user's chat stream
@@ -27,6 +28,10 @@ class Chat < ApplicationRecord
   def set_default_title
     self.title ||= "New Chat #{Time.now.strftime('%Y-%m-%d %H:%M')}"
     # A better default might be set after the first message.
+  end
+
+  def set_gemini_model
+    self.model_id ||= DEFAULT_LLM_MODEL
   end
 
   # Convenience method to get the system prompt, if any
