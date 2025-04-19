@@ -1,1 +1,4 @@
 .echodo_history
+#rubyllm_chat_app/
+.env
+.ondir.was.here.touch

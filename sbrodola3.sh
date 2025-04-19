@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # sbrodola.sh - Generates the initial Rails 8 RubyLLM Chat App structure
+# (v3 - Fixed cd logic, removed inline comments, removed colors lib)
 
 PROJECT_NAME="rubyllm_chat_app"
 
@@ -8,12 +9,16 @@ echo "🚀 Creating Rails 8 project: $PROJECT_NAME"
 echo "🔧 Using PostgreSQL and Tailwind CSS"
 
 # Ensure Rails 8+ is installed (you might need to 'gem install rails' first)
-# rails _8.x.x_ new ... if you need a specific version
 rails new "$PROJECT_NAME" -d postgresql -c tailwind
-cd "$PROJECT_NAME" || exit 1
+
+# --- FIX: More robust cd into the project directory ---
+echo "📂 Changing into project directory: $PROJECT_NAME"
+cd "$PROJECT_NAME" || { echo "❌ ERROR: Failed to cd into project directory '$PROJECT_NAME'. Aborting."; exit 1; }
+echo "✅ Successfully entered directory: $(pwd)"
 
 echo "📦 Adding required gems..."
-bundle add devise ruby_llm dotenv-rails # dotenv for API keys
+# --- FIX: Removed inline comment ---
+bundle add devise ruby_llm dotenv-rails
 
 echo "⚙️ Installing Devise..."
 bundle exec rails generate devise:install
@@ -30,11 +35,30 @@ bundle exec rails generate migration CreateToolCalls message:references{null:fal
 
 echo "🛠️ Modifying migrations..."
 # Add default: {} to arguments in CreateToolCalls migration
-# Add null constraints maybe? Let's keep it simple for now, but add the default.
-TOOL_CALL_MIGRATION=$(ls db/migrate/*_create_tool_calls.rb)
-sed -i.bak '/t.jsonb :arguments/ s/$/, default: {}/' "$TOOL_CALL_MIGRATION" && rm "${TOOL_CALL_MIGRATION}.bak"
-# Add title/desc to chats migration if needed (already done in generate command)
-# Add name to users migration if needed (already done in generate command)
+# Use a loop to handle potential timing issues with file availability
+TOOL_CALL_MIGRATION=""
+for i in {1..5}; do
+  TOOL_CALL_MIGRATION=$(ls db/migrate/*_create_tool_calls.rb 2>/dev/null)
+  if [[ -n "$TOOL_CALL_MIGRATION" ]]; then
+    echo "   Found migration: $TOOL_CALL_MIGRATION"
+    break
+  fi
+  echo "   Waiting for migration file... ($i/5)"
+  sleep 0.5
+done
+
+if [[ -z "$TOOL_CALL_MIGRATION" || ! -f "$TOOL_CALL_MIGRATION" ]]; then
+   echo "⚠️ WARNING: Could not find CreateToolCalls migration file to modify."
+else
+   # Using simpler sed, hoping it works across platforms. Keep backup file (.bak) for safety.
+   sed -i.bak '/t.jsonb :arguments/ s/$/, default: {}/' "$TOOL_CALL_MIGRATION"
+   if [[ $? -eq 0 ]]; then
+      echo "   Added default: {} to arguments:jsonb in $TOOL_CALL_MIGRATION"
+      rm -f "${TOOL_CALL_MIGRATION}.bak" # Remove backup if sed succeeded
+   else
+      echo "⚠️ WARNING: Failed to automatically add default: {} to migration. Please check manually: $TOOL_CALL_MIGRATION"
+   fi
+fi
 
 
 echo "🗄️ Setting up initial database..."
@@ -48,7 +72,8 @@ bundle exec rails generate devise:views
 
 echo "✨ Creating RubyLLM Initializer..."
 mkdir -p config/initializers
-cat <<EOF > config/initializers/ruby_llm.rb
+# Use 'EOF' to prevent shell interpretation
+cat <<'EOF' > config/initializers/ruby_llm.rb
 # config/initializers/ruby_llm.rb
 # Load ENV variables from .env file in development/test
 Dotenv.load('.env') if defined?(Dotenv) && (Rails.env.development? || Rails.env.test?)
@@ -80,7 +105,8 @@ end
 EOF
 
 echo "🔑 Creating .env file for API keys (add your keys here!)..."
-cat <<EOF > .env
+# Use 'EOF'
+cat <<'EOF' > .env
 # .env - Environment variables for development
 # Add your actual API keys here!
 # DO NOT COMMIT THIS FILE TO GIT! Add it to .gitignore
@@ -98,11 +124,17 @@ OPENAI_API_KEY=your_openai_api_key_goes_here
 EOF
 
 echo "🔒 Adding .env to .gitignore..."
-echo ".env" >> .gitignore
+# Check if .gitignore exists, create if not, then append
+if [[ ! -f .gitignore ]]; then
+  touch .gitignore
+fi
+# Append only if not already present
+grep -qxF '.env' .gitignore || echo ".env" >> .gitignore
 
 echo "✍️ Configuring Models..."
 # --- User Model ---
-cat <<EOF > app/models/user.rb
+# Use 'EOF'
+cat <<'EOF' > app/models/user.rb
 # typed: false - Sorbet, if you use it later
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -119,7 +151,8 @@ end
 EOF
 
 # --- Chat Model ---
-cat <<EOF > app/models/chat.rb
+# Use 'EOF'
+cat <<'EOF' > app/models/chat.rb
 # typed: false
 class Chat < ApplicationRecord
   # RubyLLM Integration
@@ -159,7 +192,8 @@ end
 EOF
 
 # --- Message Model ---
-cat <<EOF > app/models/message.rb
+# Use 'EOF'
+cat <<'EOF' > app/models/message.rb
 # typed: false
 class Message < ApplicationRecord
   # For dom_id helper
@@ -206,7 +240,8 @@ end
 EOF
 
 # --- ToolCall Model ---
-cat <<EOF > app/models/tool_call.rb
+# Use 'EOF'
+cat <<'EOF' > app/models/tool_call.rb
 # typed: false
 class ToolCall < ApplicationRecord
   # RubyLLM Integration
@@ -226,7 +261,8 @@ EOF
 
 echo "🛠️ Generating Chat Stream Job..."
 mkdir -p app/jobs
-cat <<EOF > app/jobs/chat_stream_job.rb
+# Use 'EOF'
+cat <<'EOF' > app/jobs/chat_stream_job.rb
 # typed: false
 class ChatStreamJob < ApplicationJob
   queue_as :default
@@ -314,8 +350,8 @@ end
 EOF
 
 echo "🧭 Defining Routes..."
-# Overwrite existing routes.rb, keeping Devise routes
-cat <<EOF > config/routes.rb
+# Use 'EOF'
+cat <<'EOF' > config/routes.rb
 # typed: false
 Rails.application.routes.draw do
   # Devise routes for authentication
@@ -343,7 +379,8 @@ EOF
 echo "🕹️ Creating Controllers..."
 mkdir -p app/controllers
 # --- Application Controller ---
-cat <<EOF > app/controllers/application_controller.rb
+# Use 'EOF'
+cat <<'EOF' > app/controllers/application_controller.rb
 # typed: false
 class ApplicationController < ActionController::Base
   # Ensure user is logged in for all actions (except Devise controllers)
@@ -362,7 +399,8 @@ end
 EOF
 
 # --- Chats Controller ---
-cat <<EOF > app/controllers/chats_controller.rb
+# Use 'EOF'
+cat <<'EOF' > app/controllers/chats_controller.rb
 # typed: false
 class ChatsController < ApplicationController
   before_action :set_chats, only: [:index, :show] # Load chats list for sidebar
@@ -448,7 +486,8 @@ end
 EOF
 
 # --- Messages Controller ---
-cat <<EOF > app/controllers/messages_controller.rb
+# Use 'EOF'
+cat <<'EOF' > app/controllers/messages_controller.rb
 # typed: false
 class MessagesController < ApplicationController
   before_action :set_chat
@@ -510,7 +549,8 @@ echo "🖼️ Creating Views..."
 mkdir -p app/views/chats app/views/messages app/views/layouts
 
 # --- Layout: application.html.erb ---
-cat <<EOF > app/views/layouts/application.html.erb
+# Use 'EOF'
+cat <<'EOF' > app/views/layouts/application.html.erb
 <!DOCTYPE html>
 <html>
 <head>
@@ -558,8 +598,8 @@ cat <<EOF > app/views/layouts/application.html.erb
 EOF
 
 # --- View: chats/show.html.erb (Main Interface) ---
-# This view will render the sidebar and the chat window
-cat <<EOF > app/views/chats/show.html.erb
+# Use 'EOF'
+cat <<'EOF' > app/views/chats/show.html.erb
 <%# Main container using Flexbox for two columns %>
 <div class="flex h-[calc(100vh-150px)] border border-gray-300 rounded-lg bg-white shadow-md overflow-hidden">
 
@@ -638,7 +678,8 @@ cat <<EOF > app/views/chats/show.html.erb
 EOF
 
 # --- Partial: chats/_chat_link.html.erb (for sidebar) ---
-cat <<EOF > app/views/chats/_chat_link.html.erb
+# Use 'EOF'
+cat <<'EOF' > app/views/chats/_chat_link.html.erb
 <%# Link to a chat in the sidebar list %>
 <%# Use chat_item for the chat in the loop, current_chat for the currently displayed chat %>
 <% is_current = current_chat && chat_item.id == current_chat.id %>
@@ -654,7 +695,8 @@ EOF
 
 
 # --- Partial: messages/_message.html.erb ---
-cat <<EOF > app/views/messages/_message.html.erb
+# Use 'EOF'
+cat <<'EOF' > app/views/messages/_message.html.erb
 <%# Renders a single message, used for both initial load and Turbo Streams %>
 <%# Use Turbo Frame for potential targeted updates later, and required by streaming approach %>
 <%= turbo_frame_tag message do %>
@@ -695,7 +737,8 @@ echo "💅 Adding basic CSS for messages layout..."
 # Add some CSS to application.tailwind.css if needed, though Tailwind classes handle most of it.
 # Let's ensure the messages div allows flex layout for alignment.
 mkdir -p app/assets/stylesheets
-cat <<EOF >> app/assets/stylesheets/application.tailwind.css
+# Use 'EOF'
+cat <<'EOF' >> app/assets/stylesheets/application.tailwind.css
 
 /* Add custom styles or Tailwind @apply directives here */
 #messages {
@@ -710,95 +753,23 @@ cat <<EOF >> app/assets/stylesheets/application.tailwind.css
 }
 EOF
 
-
-echo "🎨 Creating Color Library..."
-mkdir -p lib
-cat <<'EOF' > lib/colors.rb
-# lib/colors.rb
-# A fun little module for adding ANSI color codes to console output! 🌈
-
-module TerminalColors
-  COLORS = {
-    reset: 0,
-    black: 30,
-    red: 31,
-    green: 32,
-    yellow: 33,
-    blue: 34,
-    magenta: 35,
-    cyan: 36,
-    white: 37,
-    bright_black: 90,
-    bright_red: 91,
-    bright_green: 92,
-    bright_yellow: 93,
-    bright_blue: 94,
-    bright_magenta: 95,
-    bright_cyan: 96,
-    bright_white: 97
-  }.freeze
-
-  MODES = {
-    bold: 1,
-    underline: 4,
-    blink: 5, # Use sparingly! 😉
-    reverse: 7
-  }.freeze
-
-  def self.colorize(text, color: nil, mode: nil)
-    color_code = COLORS[color.to_sym] if color && COLORS.key?(color.to_sym)
-    mode_code = MODES[mode.to_sym] if mode && MODES.key?(mode.to_sym)
-
-    codes = [mode_code, color_code].compact.join(';')
-    return text if codes.empty?
-
-    "\e[#{codes}m#{text}\e[#{COLORS[:reset]}m"
-  end
-
-  # Define methods for each color and mode for convenience
-  COLORS.each_key do |color_name|
-    next if color_name == :reset
-    define_singleton_method(color_name) do |text|
-      colorize(text, color: color_name)
-    end
-  end
-
-  MODES.each_key do |mode_name|
-    define_singleton_method(mode_name) do |text|
-      colorize(text, mode: mode_name)
-    end
-  end
-
-  # Example usage:
-  # require_relative 'lib/colors' # Or setup autoloading
-  # puts TerminalColors.red("This is an error!")
-  # puts TerminalColors.bold(TerminalColors.yellow("This is important!"))
-  # puts TerminalColors.underline(TerminalColors.cyan("Look here!"))
-end
-
-# You might want to autoload this in config/application.rb:
-# config.autoload_paths += %W(#{config.root}/lib)
-EOF
-
-echo "🚀 Autoloading lib directory..."
-# Add lib to autoload paths in application.rb
-APPLICATION_RB="config/application.rb"
-sed -i.bak '/class Application < Rails::Application/a \ \ \ \ config.autoload_paths += %W(#{config.root}/lib)' "$APPLICATION_RB" && rm "${APPLICATION_RB}.bak"
-
+# --- REMOVED Color Library and Autoloading ---
 
 echo "✅ All files created successfully inside '$PROJECT_NAME'!"
 echo "➡️ Next Steps:"
-echo "1.  cd $PROJECT_NAME"
+echo "1.  Ensure you are inside the '$PROJECT_NAME' directory. If not: cd $PROJECT_NAME"
 echo "2.  Review the generated files, especially:"
 echo "    - '.env' (Add your ACTUAL API keys!)"
 echo "    - 'config/initializers/ruby_llm.rb' (Verify provider/key loading)"
-echo "    - 'app/models/*' (Check associations, `acts_as` helpers)"
+echo "    - 'app/models/*' (Check associations, acts_as helpers)"
 echo "    - 'app/jobs/chat_stream_job.rb' (Review the streaming logic)"
 echo "    - 'app/views/' (Check Tailwind classes and Turbo setup)"
 echo "3.  Ensure PostgreSQL is running."
-echo "4.  Run 'bundle install' again just in case."
+echo "4.  Run 'bundle install' (maybe not needed if 'bundle add' succeeded, but good practice)."
 echo "5.  Run 'rails db:migrate' (if you haven't already or made changes)."
-echo "6.  Start your background job processor (e.g., 'bundle exec sidekiq' or 'bundle exec good_job start' if you add one, default is inline for dev)."
+echo "6.  Start your background job processor (Rails default is async inline, ok for dev. For production use Sidekiq/GoodJob etc.)."
+echo "    If using async (default): Just run the rails server."
+echo "    If using Sidekiq (example): bundle exec sidekiq -q default"
 echo "7.  Start the Rails server: 'bin/rails server'"
 echo "8.  Open your browser to http://localhost:3000"
 echo "9.  Sign up for a new user account."

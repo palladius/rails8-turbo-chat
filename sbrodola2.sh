@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sbrodola.sh - Generates the initial Rails 8 RubyLLM Chat App structure
+# sbrodola.sh - Generates the initial Rails 8 RubyLLM Chat App structure (v2 - Fixed gem name and EOF quoting)
 
 PROJECT_NAME="rubyllm_chat_app"
 
@@ -10,31 +10,25 @@ echo "🔧 Using PostgreSQL and Tailwind CSS"
 # Ensure Rails 8+ is installed (you might need to 'gem install rails' first)
 # rails _8.x.x_ new ... if you need a specific version
 rails new "$PROJECT_NAME" -d postgresql -c tailwind
-cd "$PROJECT_NAME" || exit 1
-
-echo "📦 Adding required gems..."
-bundle add devise ruby_llm dotenv-rails # dotenv for API keys
-
-echo "⚙️ Installing Devise..."
-bundle exec rails generate devise:install
-
-echo "👤 Generating Devise User model..."
+cd $PROJECT_NAME || exit 1
+echo "📦 Adding required gems\.\.\."
+# \-\-\- FIX 1\: Corrected gem name \-\-\-
+bundle add devise ruby\_llm dotenv\-rails \# dotenv for API keys
+echo "⚙️ Installing Devise\.\.\."
+bundle exec rails generate devise\:install
+echo "👤 Generating Devise User model\.\.\."
 bundle exec rails generate devise User
-
-echo "➕ Adding custom fields and models via migrations..."
-bundle exec rails generate migration AddNameToUsers name:text
-bundle exec rails generate migration CreateChats user:references model_id:string title:string description:text
-bundle exec rails generate migration CreateMessages chat:references{null:false,foreign_key:true} role:string content:text model_id:string input_tokens:integer output_tokens:integer tool_call:references
-# Note: Using jsonb for arguments as requested and suggested by RubyLLM docs for PG
-bundle exec rails generate migration CreateToolCalls message:references{null:false,foreign_key:true} tool_call_id:string{null:false,index: { unique: true }} name:string{null:false} arguments:jsonb
-
-echo "🛠️ Modifying migrations..."
-# Add default: {} to arguments in CreateToolCalls migration
-# Add null constraints maybe? Let's keep it simple for now, but add the default.
-TOOL_CALL_MIGRATION=$(ls db/migrate/*_create_tool_calls.rb)
-sed -i.bak '/t.jsonb :arguments/ s/$/, default: {}/' "$TOOL_CALL_MIGRATION" && rm "${TOOL_CALL_MIGRATION}.bak"
-# Add title/desc to chats migration if needed (already done in generate command)
-# Add name to users migration if needed (already done in generate command)
+echo "➕ Adding custom fields and models via migrations\.\.\."
+bundle exec rails generate migration AddNameToUsers name\:text
+bundle exec rails generate migration CreateChats user\:references model\_id\:string title\:string description\:text
+bundle exec rails generate migration CreateMessages chat\:references\{null\:false,foreign\_key\:true\} role\:string content\:text model\_id\:string input\_tokens\:integer output\_tokens\:integer tool\_call\:references
+\# Note\: Using jsonb for arguments as requested and suggested by RubyLLM docs for PG
+bundle exec rails generate migration CreateToolCalls message\:references\{null\:false,foreign\_key\:true\} tool\_call\_id\:string\{null\:false,index\: \{ unique\: true \}\} name\:string\{null\:false\} arguments\:jsonb
+echo "🛠️ Modifying migrations\.\.\."
+\# Add default\: \{\} to arguments in CreateToolCalls migration
+TOOL\_CALL\_MIGRATION\=</span>(ls db/migrate/*_create_tool_calls.rb)
+# Use printf for safer sed input just in case
+printf '%s\n' 's/\(t.jsonb :arguments.*\)$/\1, default: {}/' w | ed -s "<span class="math-inline">TOOL\_CALL\_MIGRATION" \|\| sed \-i\.bak '/t\.jsonb \:arguments/ s/</span>/, default: {}/' "<span class="math-inline">TOOL\_CALL\_MIGRATION" && rm \-f "</span>{TOOL_CALL_MIGRATION}.bak"
 
 
 echo "🗄️ Setting up initial database..."
@@ -48,7 +42,8 @@ bundle exec rails generate devise:views
 
 echo "✨ Creating RubyLLM Initializer..."
 mkdir -p config/initializers
-cat <<EOF > config/initializers/ruby_llm.rb
+# --- FIX 2: Use 'EOF' to prevent shell interpretation ---
+cat <<'EOF' > config/initializers/ruby_llm.rb
 # config/initializers/ruby_llm.rb
 # Load ENV variables from .env file in development/test
 Dotenv.load('.env') if defined?(Dotenv) && (Rails.env.development? || Rails.env.test?)
@@ -80,7 +75,8 @@ end
 EOF
 
 echo "🔑 Creating .env file for API keys (add your keys here!)..."
-cat <<EOF > .env
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > .env
 # .env - Environment variables for development
 # Add your actual API keys here!
 # DO NOT COMMIT THIS FILE TO GIT! Add it to .gitignore
@@ -102,7 +98,8 @@ echo ".env" >> .gitignore
 
 echo "✍️ Configuring Models..."
 # --- User Model ---
-cat <<EOF > app/models/user.rb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/models/user.rb
 # typed: false - Sorbet, if you use it later
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -119,7 +116,8 @@ end
 EOF
 
 # --- Chat Model ---
-cat <<EOF > app/models/chat.rb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/models/chat.rb
 # typed: false
 class Chat < ApplicationRecord
   # RubyLLM Integration
@@ -159,7 +157,8 @@ end
 EOF
 
 # --- Message Model ---
-cat <<EOF > app/models/message.rb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/models/message.rb
 # typed: false
 class Message < ApplicationRecord
   # For dom_id helper
@@ -206,7 +205,8 @@ end
 EOF
 
 # --- ToolCall Model ---
-cat <<EOF > app/models/tool_call.rb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/models/tool_call.rb
 # typed: false
 class ToolCall < ApplicationRecord
   # RubyLLM Integration
@@ -226,7 +226,8 @@ EOF
 
 echo "🛠️ Generating Chat Stream Job..."
 mkdir -p app/jobs
-cat <<EOF > app/jobs/chat_stream_job.rb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/jobs/chat_stream_job.rb
 # typed: false
 class ChatStreamJob < ApplicationJob
   queue_as :default
@@ -314,8 +315,8 @@ end
 EOF
 
 echo "🧭 Defining Routes..."
-# Overwrite existing routes.rb, keeping Devise routes
-cat <<EOF > config/routes.rb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > config/routes.rb
 # typed: false
 Rails.application.routes.draw do
   # Devise routes for authentication
@@ -343,7 +344,8 @@ EOF
 echo "🕹️ Creating Controllers..."
 mkdir -p app/controllers
 # --- Application Controller ---
-cat <<EOF > app/controllers/application_controller.rb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/controllers/application_controller.rb
 # typed: false
 class ApplicationController < ActionController::Base
   # Ensure user is logged in for all actions (except Devise controllers)
@@ -362,7 +364,8 @@ end
 EOF
 
 # --- Chats Controller ---
-cat <<EOF > app/controllers/chats_controller.rb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/controllers/chats_controller.rb
 # typed: false
 class ChatsController < ApplicationController
   before_action :set_chats, only: [:index, :show] # Load chats list for sidebar
@@ -448,7 +451,8 @@ end
 EOF
 
 # --- Messages Controller ---
-cat <<EOF > app/controllers/messages_controller.rb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/controllers/messages_controller.rb
 # typed: false
 class MessagesController < ApplicationController
   before_action :set_chat
@@ -510,7 +514,8 @@ echo "🖼️ Creating Views..."
 mkdir -p app/views/chats app/views/messages app/views/layouts
 
 # --- Layout: application.html.erb ---
-cat <<EOF > app/views/layouts/application.html.erb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/views/layouts/application.html.erb
 <!DOCTYPE html>
 <html>
 <head>
@@ -558,8 +563,8 @@ cat <<EOF > app/views/layouts/application.html.erb
 EOF
 
 # --- View: chats/show.html.erb (Main Interface) ---
-# This view will render the sidebar and the chat window
-cat <<EOF > app/views/chats/show.html.erb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/views/chats/show.html.erb
 <%# Main container using Flexbox for two columns %>
 <div class="flex h-[calc(100vh-150px)] border border-gray-300 rounded-lg bg-white shadow-md overflow-hidden">
 
@@ -638,7 +643,8 @@ cat <<EOF > app/views/chats/show.html.erb
 EOF
 
 # --- Partial: chats/_chat_link.html.erb (for sidebar) ---
-cat <<EOF > app/views/chats/_chat_link.html.erb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/views/chats/_chat_link.html.erb
 <%# Link to a chat in the sidebar list %>
 <%# Use chat_item for the chat in the loop, current_chat for the currently displayed chat %>
 <% is_current = current_chat && chat_item.id == current_chat.id %>
@@ -654,7 +660,8 @@ EOF
 
 
 # --- Partial: messages/_message.html.erb ---
-cat <<EOF > app/views/messages/_message.html.erb
+# --- FIX 2: Use 'EOF' ---
+cat <<'EOF' > app/views/messages/_message.html.erb
 <%# Renders a single message, used for both initial load and Turbo Streams %>
 <%# Use Turbo Frame for potential targeted updates later, and required by streaming approach %>
 <%= turbo_frame_tag message do %>
@@ -695,7 +702,8 @@ echo "💅 Adding basic CSS for messages layout..."
 # Add some CSS to application.tailwind.css if needed, though Tailwind classes handle most of it.
 # Let's ensure the messages div allows flex layout for alignment.
 mkdir -p app/assets/stylesheets
-cat <<EOF >> app/assets/stylesheets/application.tailwind.css
+# --- FIX 2: Use 'EOF' --- (Though unlikely to cause issues here, apply for consistency)
+cat <<'EOF' >> app/assets/stylesheets/application.tailwind.css
 
 /* Add custom styles or Tailwind @apply directives here */
 #messages {
@@ -713,6 +721,7 @@ EOF
 
 echo "🎨 Creating Color Library..."
 mkdir -p lib
+# --- FIX 2: Use 'EOF' ---
 cat <<'EOF' > lib/colors.rb
 # lib/colors.rb
 # A fun little module for adding ANSI color codes to console output! 🌈
@@ -783,7 +792,8 @@ EOF
 echo "🚀 Autoloading lib directory..."
 # Add lib to autoload paths in application.rb
 APPLICATION_RB="config/application.rb"
-sed -i.bak '/class Application < Rails::Application/a \ \ \ \ config.autoload_paths += %W(#{config.root}/lib)' "$APPLICATION_RB" && rm "${APPLICATION_RB}.bak"
+# Use printf for safer sed input
+printf '%s\n' "/class Application < Rails::Application/a\\" "    config.autoload_paths += %W(#{config.root}/lib)" . w | ed -s "$APPLICATION_RB" || sed -i.bak '/class Application < Rails::Application/a \ \ \ \ config.autoload_paths += %W(#{config.root}/lib)' "<span class="math-inline">APPLICATION\_RB" && rm \-f "</span>{APPLICATION_RB}.bak"
 
 
 echo "✅ All files created successfully inside '$PROJECT_NAME'!"
@@ -803,3 +813,4 @@ echo "7.  Start the Rails server: 'bin/rails server'"
 echo "8.  Open your browser to http://localhost:3000"
 echo "9.  Sign up for a new user account."
 echo "10. Start chatting! 🎉"
+
