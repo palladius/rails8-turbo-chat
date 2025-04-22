@@ -17,3 +17,6 @@ migrate-gone-wrong:
 
     # For CreateToolCalls (basic column types)
     rails generate migration CreateToolCalls message:references tool_call_id:string name:string arguments:jsonb
+
+test-chat-creation:
+    echo 'chat = Chat.last ; chat.ask2("testing monkeypatch")' | rails c

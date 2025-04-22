@@ -7,6 +7,7 @@ class Message < ApplicationRecord
 
   # RubyLLM Integration
   acts_as_message # Assumes Chat and ToolCall model names
+  validates :content, presence: true
 
   # Standard Rails Model Logic
   belongs_to :chat
