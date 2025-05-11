@@ -66,6 +66,10 @@ group :test do
   gem "selenium-webdriver"
 end
 
+
+################################
+# Riccardo START
+################################
 gem "devise", "~> 4.9"
 
 # As per https://github.com/crmne/ruby_llm/issues/118 comment:
@@ -73,5 +77,15 @@ gem "devise", "~> 4.9"
 gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git"
 gem "dotenv-rails", "~> 3.1"
 #gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git", ref: '2bdc4229643888da053c76dfe9ef837b8e3a91f7'
+
+# Official
 gem 'pry', '~> 0.15.0'
+# from GH issue - a guy was using this too.
 gem 'pry-rails'
+# Sihhested by rails
+gem "kramdown"
+gem "kramdown-parser-gfm" # For GitHub Flavored Markdown support
+
+################################
+# /Riccardo END
+################################

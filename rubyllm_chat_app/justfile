@@ -27,3 +27,5 @@ test-chat-creation-ask2:
 test-gemini:
     echo 'chat = RubyLLM.chat ; chat.ask "Are you an LLM? Who built you? Whats your cutoff time?"' | rails c
 
+autorename:
+    echo Chat.autotitle_if_needed | rails c
