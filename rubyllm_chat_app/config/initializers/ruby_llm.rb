@@ -20,7 +20,6 @@ RubyLLM.configure do |config|
 
   # Example for Google GenAI (Vertex AI or AI Platform):
   # config.provider = :google_genai
-  # config.api_key = ENV.fetch('GOOGLE_API_KEY', 'YOUR_API_KEY_HERE')
   # config.google_project_id = ENV.fetch('GOOGLE_PROJECT_ID', nil) # Optional but recommended for Vertex
   # config.google_region = ENV.fetch('GOOGLE_REGION', nil)       # Optional but recommended for Vertex
 
