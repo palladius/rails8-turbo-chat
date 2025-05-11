@@ -1,7 +1,7 @@
 # copiato il 18mar25 da ~/git/rails8-turbo-chat/cloudbuild.yaml su Mac
 
 # cambiato solo:
-# * da europe-west1 a europe-west8
+# * da europe-west1 a europe-west10
 # * da gemini-chat a /rails8-turbo-chat (sia docker repo che docker appname..)
 # CB trigger to bitbucket: copied from gemini-chat
 
@@ -31,19 +31,24 @@ options:
   # supported machine types: https://cloud.google.com/build/docs/api/reference/rest/v1/projects.builds#machinetype
   machineType: 'E2_HIGHCPU_32'
   substitution_option: 'ALLOW_LOOSE'
+  # Solves new error https://stackoverflow.com/questions/68779751/error-publishing-source-code-from-cloud-build-to-a-bucket-using-triggers
+  logging: CLOUD_LOGGING_ONLY
+  # This is the custom SA I created for CloudBuild
+  #serviceAccount: 'projects/${_PROJECT_ID}/serviceAccounts/ricc-cb-sa@${_PROJECT_ID}.iam.gserviceaccount.com'
+
 substitutions:
-  _REGION: europe-west8 # for Cloud Build.
-  _GCLOUD_REGION: europe-west8 # for Cloud Run. Cambiato da eu-west1
+  _REGION: europe-west10 # for Cloud Build.
+  _GCLOUD_REGION: europe-west10 # for Cloud Run. Cambiato da eu-west1
   _PROJECT_ID: palladius-genai
   _APP_NAME: rails8-turbo-chat
   _DATABASE_URL_DEV: 'sqlite3:storage/development.sqlite3'
   _DATABASE_URL_PROD: 'sqlite3:storage/production.sqlite3'
-  _SKAFFOLD_DEFAULT_REPO: 'europe-west8-docker.pkg.dev/palladius-genai/rails8-turbo-chat'
+  _SKAFFOLD_DEFAULT_REPO: 'europe-west10-docker.pkg.dev/palladius-genai/berliner-docker-repo'
   _MESSAGGIO_OCCASIONALE: >-
     Scopiazzato da rails8-turbo-chat il chge mi sembra simile e infine qui in rails8-turbo-chat
 images:
-- "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:latest"
-- "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:sha-$SHORT_SHA"
+- "${_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/rails8-turbo-chat:latest"
+- "${_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/rails8-turbo-chat:sha-$SHORT_SHA"
 
 ################################################################################
 # TODO(ricc): enable availableSecrets as below once Cloud build is able to push again
@@ -65,7 +70,7 @@ steps:
 # - name: 'gcr.io/cloud-builders/docker'
 #   #id: 1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
 #   id:  'step0 echo ENV vars di prova docker build' ##1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
-#   args: ['echo', '-t', "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:latest", '.']
+#   args: ['echo', '-t', "${_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/rails8-turbo-chat:latest", '.']
 #   dir: rubyllm_chat_app/
 #   env:
 #   - 'PROJECT_ID=$PROJECT_ID'
@@ -77,7 +82,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   #id: 1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
   id:  'step1 docker build' ##1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
-  args: ['build', '-t', "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:latest", '.']
+  args: ['build', '-t', "${_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/rails8-turbo-chat:latest", '.']
   dir: rubyllm_chat_app/
   env:
   - 'PROJECT_ID=$PROJECT_ID'
@@ -91,8 +96,8 @@ steps:
   id:  'step2 docker tag'
   args:
     - 'tag'
-    - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:latest"
-    - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:sha-$SHORT_SHA"
+    - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/rails8-turbo-chat:latest"
+    - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/rails8-turbo-chat:sha-$SHORT_SHA"
   dir: rubyllm_chat_app/
 
 - name: 'gcr.io/cloud-builders/docker'
