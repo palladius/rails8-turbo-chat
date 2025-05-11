@@ -11,3 +11,9 @@ redo:
 
 clone-carmine:
     git clone https://github.com/crmne/ruby_llm ruby_llm-copy/
+
+
+# CB_SUBSTITUTIONS=_RAILS_MASTER_KEY="YOUR_RAILS_MASTER_KEY_HERE",_GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"
+# [Cloud Build] submit local target
+cloudbuild-submit:
+    gcloud builds submit .   --config cloudbuild.yaml   --substitutions="$CB_SUBSTITUTIONS"

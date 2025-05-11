@@ -3,3 +3,5 @@
 .env
 .ondir.was.here.touch
 ruby_llm-copy/
+.git-privatize
+bin/

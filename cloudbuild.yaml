@@ -1,0 +1,149 @@
+# copiato il 18mar25 da ~/git/rails8-turbo-chat/cloudbuild.yaml su Mac
+
+# cambiato solo:
+# * da europe-west1 a europe-west8
+# * da gemini-chat a /rails8-turbo-chat (sia docker repo che docker appname..)
+# CB trigger to bitbucket: copied from gemini-chat
+
+###############################################################################
+# Build ENV needed:
+# Self link: https://console.cloud.google.com/cloud-build/triggers?hl=IT&project=palladius-genai
+# Self link: https://console.cloud.google.com/cloud-build/triggers;region=global?e=-13802955&mods=logs_tg_staging&project=palladius-genai
+#
+# Loosely inspired by ror7-tailwind-rails8-turbo-chat
+# Securing builds: https://cloud.google.com/build/docs/securing-builds/use-secrets
+#
+# TODO(ricc): 1. make this work with Skaffold using _SKAFFOLD_DEPLOY_UNIT.
+# TODO(ricc): 2. enable skaffold cache when all the rest works (makes it faster but need
+#             to set up GCS, and permissions, SA, ..)
+#
+# Note: to enable CB access to SecretManager, you need to click on SA permissions. Note
+#       that enablibng Cloud Run required some magical additional access which Im not sure
+#       how to reproduce in IAC. See https://screenshot.googleplex.com/4wEvj93LprtUdgU
+#
+# Step order: https://cloud.google.com/build/docs/configuring-builds/configure-build-step-order
+# * We do steps 1,2,3
+# * Then all the other steps are executed immediately and in parallel.
+###############################################################################
+
+timeout: 1800s # 20min
+options:
+  # supported machine types: https://cloud.google.com/build/docs/api/reference/rest/v1/projects.builds#machinetype
+  machineType: 'E2_HIGHCPU_32'
+  substitution_option: 'ALLOW_LOOSE'
+substitutions:
+  _REGION: europe-west8 # for Cloud Build.
+  _GCLOUD_REGION: europe-west8 # for Cloud Run. Cambiato da eu-west1
+  _PROJECT_ID: palladius-genai
+  _APP_NAME: rails8-turbo-chat
+  _DATABASE_URL_DEV: 'sqlite3:storage/development.sqlite3'
+  _DATABASE_URL_PROD: 'sqlite3:storage/production.sqlite3'
+  _SKAFFOLD_DEFAULT_REPO: 'europe-west8-docker.pkg.dev/palladius-genai/rails8-turbo-chat'
+  _MESSAGGIO_OCCASIONALE: >-
+    Scopiazzato da rails8-turbo-chat il chge mi sembra simile e infine qui in rails8-turbo-chat
+images:
+- "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:latest"
+- "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:sha-$SHORT_SHA"
+
+################################################################################
+# TODO(ricc): enable availableSecrets as below once Cloud build is able to push again
+#             (small iterations).
+################################################################################
+# availableSecrets:
+#   secretManager:
+#   #- versionName: projects/${PROJECT_ID}/secrets/myapp_REGION/versions/latest
+#   - versionName: projects/myapp-staging-379211/secrets/myapp_REGION/versions/latest
+#     env: myapp_REGION
+################################################################################
+
+
+#############################################################
+# MAIN phase: all Build steps
+#############################################################
+steps:
+
+# - name: 'gcr.io/cloud-builders/docker'
+#   #id: 1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
+#   id:  'step0 echo ENV vars di prova docker build' ##1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
+#   args: ['echo', '-t', "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:latest", '.']
+#   dir: rubyllm_chat_app/
+#   env:
+#   - 'PROJECT_ID=$PROJECT_ID'
+#   - 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY'
+#   - 'DATABASE_URL_PROD=$_DATABASE_URL_PROD'
+#   - 'GEMINI_API_KEY=$_GEMINI_API_KEY'
+
+# First I build a docker latest version..
+- name: 'gcr.io/cloud-builders/docker'
+  #id: 1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
+  id:  'step1 docker build' ##1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
+  args: ['build', '-t', "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:latest", '.']
+  dir: rubyllm_chat_app/
+  env:
+  - 'PROJECT_ID=$PROJECT_ID'
+  - 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY'
+  - 'DATABASE_URL_PROD=$_DATABASE_URL_PROD'
+  - 'GEMINI_API_KEY=$_GEMINI_API_KEY'
+
+# Then I tag it with another so it survives multiple builds..
+- name: 'gcr.io/cloud-builders/docker'
+#  id: 2. Tag latest to vVERSION
+  id:  'step2 docker tag'
+  args:
+    - 'tag'
+    - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:latest"
+    - "${_REGION}-docker.pkg.dev/${PROJECT_ID}/rails8-turbo-chat/rails8-turbo-chat:sha-$SHORT_SHA"
+  dir: rubyllm_chat_app/
+
+- name: 'gcr.io/cloud-builders/docker'
+  #name: 3. Tag from SHA to VERSION - proviamo con Docker
+  id: 'step3 tag SHA and VERSION' # The last we need before parallelizing everything
+  entrypoint: bash
+  args:
+  - bin/ricc-autotag.sh
+  env:
+  - 'PROJECT_ID=$PROJECT_ID'
+  - 'APP_NAME=$_APP_NAME'
+  - 'GCLOUD_REGION=$_GCLOUD_REGION'
+  dir: rubyllm_chat_app/
+
+
+# Questo finalmente funge!
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 4. Push DEV to Cloud Run via Amazing new script which doesnt need mounting anymore
+  entrypoint: bash
+  args:
+  - bin/ricc-cb-push-to-cloudrun-magic.sh
+  - dev
+  dir: rubyllm_chat_app/
+  env:
+  - 'PROJECT_ID=$PROJECT_ID'
+  - 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY'
+  - 'GEMINI_API_KEY=$_GEMINI_API_KEY'
+  - 'OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES'
+  - 'RAILS_ENV=development'
+  - 'DATABASE_URL_DEV=$_DATABASE_URL_DEV'
+  - 'DATABASE_URL=$_DATABASE_URL_DEV'
+  - 'APP_NAME=$_APP_NAME'
+  - 'GCLOUD_REGION=$_GCLOUD_REGION'
+
+# Questo finalmente funge!
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 5. Push PROD to Cloud Run via new MAGIC script # which doesnt need mounting anymore
+  entrypoint: bash
+  args:
+  - bin/ricc-cb-push-to-cloudrun-magic.sh
+  - prod
+  allowFailure: true
+  dir: rubyllm_chat_app/
+  env:
+  - 'PROJECT_ID=$PROJECT_ID'
+  - 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY'
+  - 'OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES'
+  - 'RAILS_ENV=production'
+#  - 'DATABASE_URL_PROD=$_DATABASE_URL_PROD'
+  - 'DATABASE_URL=$_DATABASE_URL_PROD'
+  - 'GEMINI_REPLY_JOB_VERBOSE=true'
+  - 'APP_NAME=$_APP_NAME'
+  - 'GCLOUD_REGION=$_GCLOUD_REGION'
+  - 'GEMINI_API_KEY=$_GEMINI_API_KEY'
