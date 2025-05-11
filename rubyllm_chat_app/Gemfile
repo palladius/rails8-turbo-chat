@@ -88,6 +88,7 @@ gem 'pry-rails'
 # Sihhested by rails
 gem "kramdown"
 gem "kramdown-parser-gfm" # For GitHub Flavored Markdown support
+gem 'rainbow'
 
 ################################
 # /Riccardo END

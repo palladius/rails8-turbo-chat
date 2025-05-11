@@ -24,9 +24,11 @@
 
     <%# The crucial div for streaming content. ID MUST match the broadcast target %>
     <%# Use simple_format for basic line breaks, or consider a Markdown renderer gem %>
+    <!--
       <div id="<%= dom_id(message, :content) %>" class="message-content prose lg:prose-xl prose-sm max-w-none">
         [lg:prose-xl] <%= markdown_to_html(message.content) %>
       </div>
+    -->
 
     <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-none break-words">
       <%# Render initial content. Streaming will append here. %>

@@ -1,6 +1,7 @@
 ## CHANGELOG
 
 ```bash
+2025-05-11 v0.1.6 boh
 2025-05-11 v0.1.5 markdown WORKS!!!
 2025-05-11 v0.1.4 autonaming of chat titles.
 2025-05-11 v0.1.3 added chat edit

@@ -28,22 +28,20 @@ class Chat < ApplicationRecord
   # This is used by the chat view to append new messages.
   broadcasts_to ->(chat) { [chat, "messages"] }, inserts_by: :append, target: "messages"
 
-  def short_model_id
-    model_id.sub(/\Agemini-/, '')
-  end
 
+  def short_model_id = model_id.sub(/\Agemini-/, '')
+  #end
 
   # Text persistence of them.
-  def fancy_chat_messages
-    messages.map{|m| "#{created_at} [#{m.role}]: #{m.content.chomp}"}.join("\n")
-  end
+  def fancy_chat_messages =  messages.map{|m| "#{created_at} [#{m.role}]: #{m.content.chomp}"}.join("\n")
+  #end
 
   # Generates a title for the chat using an LLM if the current title is a default one
   # and the chat has more than 3 messages.
   def autotitle_if_needed
     # Condition 1: Title is still the default one (e.g., "New Chat ...")
     # Condition 2: Chat has enough history (more than 3 messages implies at least two turns)
-    return unless title.start_with?(DEFAULT_TITLE_PREFIX) && messages.count > 3
+    return unless title.start_with?(DEFAULT_TITLE_PREFIX) && messages.count >= 2
 
     Rails.logger.info "Attempting to auto-title chat #{id} (current title: '#{title}')..."
 

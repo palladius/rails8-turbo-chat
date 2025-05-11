@@ -443,6 +443,7 @@ DEPENDENCIES
   pry-rails
   puma (>= 5.0)
   rails (~> 8.0.2)
+  rainbow
   rubocop-rails-omakase
   ruby_llm!
   selenium-webdriver
