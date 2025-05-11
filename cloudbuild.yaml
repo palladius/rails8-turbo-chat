@@ -33,9 +33,6 @@ options:
   substitution_option: 'ALLOW_LOOSE'
   # Solves new error https://stackoverflow.com/questions/68779751/error-publishing-source-code-from-cloud-build-to-a-bucket-using-triggers
   logging: CLOUD_LOGGING_ONLY
-  # This is the custom SA I created for CloudBuild
-  #serviceAccount: 'projects/${_PROJECT_ID}/serviceAccounts/ricc-cb-sa@${_PROJECT_ID}.iam.gserviceaccount.com'
-  serviceAccount: 'projects/${_PROJECT_ID}/serviceAccounts/272932496670@cloudbuild.gserviceaccount.com'
 
 substitutions:
   _REGION: europe-west10 # for Cloud Build.
@@ -67,17 +64,6 @@ images:
 # MAIN phase: all Build steps
 #############################################################
 steps:
-
-# - name: 'gcr.io/cloud-builders/docker'
-#   #id: 1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
-#   id:  'step0 echo ENV vars di prova docker build' ##1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
-#   args: ['echo', '-t', "${_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/rails8-turbo-chat:latest", '.']
-#   dir: rubyllm_chat_app/
-#   env:
-#   - 'PROJECT_ID=$PROJECT_ID'
-#   - 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY'
-#   - 'DATABASE_URL_PROD=$_DATABASE_URL_PROD'
-#   - 'GEMINI_API_KEY=$_GEMINI_API_KEY'
 
 # First I build a docker latest version..
 - name: 'gcr.io/cloud-builders/docker'
