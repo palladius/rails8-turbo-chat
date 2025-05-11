@@ -20,3 +20,7 @@ migrate-gone-wrong:
 
 test-chat-creation:
     echo 'chat = Chat.last ; chat.ask2("testing monkeypatch")' | rails c
+# lets just test that Gemini works..
+test-gemini:
+    echo 'chat = RubyLLM.chat ; chat.ask "Are you an LLM? Who built you? Whats your cutoff time?"' | rails c
+
