@@ -1,11 +1,34 @@
-<%# app/views/messages/_message.html.erb %>
+<%# Renders a single message, used for both initial load and Turbo Streams %>
+<%# Use Turbo Frame for potential targeted updates later, and required by streaming approach %>
 <%= turbo_frame_tag message do %>
-  <div class="message <%= message.role %>">
-    <strong><%= message.role.capitalize %>:</strong>
-    <%# Target div for streaming content %>
-    <div id="<%= dom_id(message, "content") %>" style="display: inline;">
-      <%# Render initial content if not streaming, otherwise job appends here %>
-      <%= simple_format(message.content) %>
+  <%# Basic styling based on role %>
+  <% role_class = case message.role
+                  when "user"
+                    "bg-blue-100 text-blue-900 self-end ml-10" # User messages on the right
+                  when "assistant"
+                    "bg-green-100 text-green-900 self-start mr-10" # Assistant messages on the left
+                  when "system"
+                    "bg-gray-200 text-gray-600 text-xs italic mx-auto my-2" # System messages centered/subtle
+                  when "tool"
+                     "bg-yellow-100 text-yellow-800 text-xs italic self-start mr-10" # Tool results distinct
+                  else
+                    "bg-gray-100 text-gray-800 self-start mr-10"
+                  end
+  %>
+  <div class="message <%= message.role %> <%= role_class %> rounded-lg p-3 shadow-sm max-w-xl">
+    <% unless message.system? %> <%# Don't show role label for system messages %>
+       <strong class="block text-sm capitalize mb-1">
+        <%= message.role == 'assistant' ? '🤖 Assistant' : (message.role == 'user' ? '👤 You' : message.role.capitalize) %>:
+      </strong>
+    <% end %>
+
+    <%# The crucial div for streaming content. ID MUST match the broadcast target %>
+    <%# Use simple_format for basic line breaks, or consider a Markdown renderer gem %>
+    <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-none break-words">
+       <%# Render initial content. Streaming will append here. %>
+       <%= simple_format(message.content) %>
     </div>
   </div>
 <% end %>
+
+<%# Ensure the message partial itself doesn't add extra outer divs if already inside #messages container %>

@@ -1,5 +1,8 @@
 # typed: false
 class Chat < ApplicationRecord
+  # Constant for the default title prefix
+  DEFAULT_TITLE_PREFIX = "New Chat ".freeze
+
   # RubyLLM Integration
   acts_as_chat # Assumes Message and ToolCall model names
 
@@ -7,7 +10,7 @@ class Chat < ApplicationRecord
   has_many :messages, -> { order(created_at: :asc) }, dependent: :destroy # Ensure messages are ordered
 
   # Riccaredo this WONT work as its in PostgreS vincolo.
-  #  belongs_to :user, optional: true # Example
+  #belongs_to :user, optional: true # Example
 
   # Validations
   validates :model_id, presence: true # Ensure a model is selected
@@ -25,78 +28,80 @@ class Chat < ApplicationRecord
   # This is used by the chat view to append new messages.
   broadcasts_to ->(chat) { [chat, "messages"] }, inserts_by: :append, target: "messages"
 
-  # fix this code
-  # def ask(message, &)
-  #   puts("🐒🔧 Riccardo monkeypatching ask() - TODO for now its the same code")
-  #   message = { role: :user, content: message }
-  #   messages.create!(**message)
-  #   to_llm.complete(&)
-  # end
-
-  #   def ask_ricc_substitute(message, &)
-  #     message = {
-  #       role: :user,
-  #       content: message + " [Riccardo remove this from Chat::ask_ricc_substitute]",
-  #       model_id: DEFAULT_LLM_MODEL,
-  #       # intpu 1048576
-  #       # output 8192
-  #     }
-  #     ret = messages.create!(**message)
-  #     puts("🐒🔧🐒🔧🐒🔧 poer ora rurro bene. ret (messages) = #{ret}")
-  #     complete(&) rescue "[ask_ricc_substitute] Errore che becco qui: #{$!}"
-  #   end
-
-
-  #   def ask2(message='How are you, Douglas?', &)
-  #   puts("🐒🔧 Riccardo monkeypatching Chat.. TODO ask2(msg='#{message}')")
-  #   begin
-  #     #pry
-  #     binding.pry
-  #     ask_ricc_substitute(message, &)
-  #     # def ask(message, &)
-  #     #   message = { role: :user, content: message }
-  #     #   messages.create!(**message)
-  #     #   complete(&)
-  #     # end
-
-  #   rescue  RubyLLM::BadRequestError => e
-  #     if e.to_s =~ /Unable to submit request because it has an empty text parameter. Add a value to the parameter and try again/
-  #       puts("🐒🔧 [pre pry]")
-  #       pry
-  #       puts("🐒🔧 Smells like Gemini error.")
-  #     else
-  #       puts("🐒🔧 RubyLLM::BadRequestError but not my Gemini known error..")
-  #     end
-  #   rescue Exception => e
-  #     puts("🐒🔧 [ask2] Some error (#{e}) (class = #{e.class}) with ask: #{$!}")
-
-  #   ensure
-  #     puts('🐒🔧ricc:ask2() [ensure] Qui magari faccio pulizia..')
-  #   end
-  # end
-
-  # CITIN propoosal: https://github.com/crmne/ruby_llm/issues/118
-  # on_new_message { build_new_message }
-
-  # def build_new_message
-  #   @message = messages.build(
-  #     role: :assistant,
-  #     content: String.new
-  #   )
-  # end
-  # /CITIN propoosal: https://github.com/crmne/ruby_llm/issues/118
-
-
   def short_model_id
     model_id.sub(/\Agemini-/, '')
   end
 
 
+  # Text persistence of them.
+  def fancy_chat_messages
+    messages.map{|m| "#{created_at} [#{m.role}]: #{m.content.chomp}"}.join("\n")
+  end
+
+  # Generates a title for the chat using an LLM if the current title is a default one
+  # and the chat has more than 3 messages.
+  def autotitle_if_needed
+    # Condition 1: Title is still the default one (e.g., "New Chat ...")
+    # Condition 2: Chat has enough history (more than 3 messages implies at least two turns)
+    return unless title.start_with?(DEFAULT_TITLE_PREFIX) && messages.count > 3
+
+    Rails.logger.info "Attempting to auto-title chat #{id} (current title: '#{title}')..."
+
+    # `chat_messages` (from acts_as_chat) provides the history in LLM-ready format
+    current_chat_history = self.fancy_chat_messages
+
+    title_generation_prompt = <<~PROMPT.strip
+      Based on our conversation so far (the preceding messages), please suggest a concise and descriptive title for this chat.
+      The title should be brief, ideally 5-7 words long.
+      Output ONLY the title itself. Do not include any prefixes like "Title:", quotation marks, or any other explanatory text.
+    PROMPT
+
+
+
+    # Append the title generation request as a new "user" message
+    #messages_for_llm = current_chat_history + [{ role: "user", content: title_generation_prompt }]
+
+    begin
+      #llm_client = self.to_llm # Get the LLM client configured for this chat's model
+      #response = llm_client.chat(messages: messages_for_llm)
+
+      titling_chat = RubyLLM.chat
+      response = titling_chat.ask(title_generation_prompt + "\n\n" + current_chat_history)
+      # DEBUG
+      puts response.content
+      suggested_title = response.content&.strip
+
+      if suggested_title.present? && suggested_title.length > 2 && suggested_title.length <= 150 # Basic validation
+        # Clean the title: remove potential "Title: " prefix and surrounding quotes
+        cleaned_title = suggested_title.gsub(/^Title:\s*/i, '').gsub(/^["']+|["']+$/, '').strip
+
+        if cleaned_title.present? && cleaned_title != self.title
+          self.update(title: cleaned_title)
+          Rails.logger.info "Chat #{self.id} successfully auto-titled to: '#{cleaned_title}'"
+        else
+          Rails.logger.info "Chat #{self.id} auto-titling: new title is blank, same as old, or invalid after cleaning. Original: '#{suggested_title}', Cleaned: '#{cleaned_title}'"
+        end
+      else
+        Rails.logger.warn "Chat #{self.id} auto-titling: LLM returned empty, too short, or too long title. Raw response: '#{suggested_title}'"
+      end
+    rescue StandardError => e
+      Rails.logger.error "Chat #{self.id} auto-titling failed due to LLM error: #{e.class.name} - #{e.message}"
+      # Depending on your application's needs, you might want to re-raise or notify an error service.
+    end
+  end
+
+
+  def self.autotitle_if_needed
+    self.all.each do |chat|
+      chat.autotitle_if_needed
+    end
+  end
+
   private
 
   def set_default_title
-    self.title ||= "New Chat #{Time.now.strftime('%Y-%m-%d %H:%M')}"
-    # A better default might be set after the first message.
+    # Use the constant for consistency
+    self.title ||= "#{DEFAULT_TITLE_PREFIX}#{Time.now.strftime('%Y-%m-%d %H:%M')}"
   end
 
   def set_gemini_model
