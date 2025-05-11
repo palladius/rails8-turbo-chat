@@ -16,6 +16,8 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem "tailwindcss-rails"
+# If you're not ready to upgrade yet, please pin to version 3 in your Gemfile:
+#   gem "tailwindcss-rails", "~> 3.3.1"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -65,5 +67,9 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-gem "ruby_llm", "~> 1.2"
+
+# As per https://github.com/crmne/ruby_llm/issues/118 comment:
+#gem "ruby_llm", "~> 1.2"
+#gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git"
+gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git", ref: '2bdc4229643888da053c76dfe9ef837b8e3a91f7'
 gem "dotenv-rails", "~> 3.1"
