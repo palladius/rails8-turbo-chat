@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/crmne/ruby_llm.git
-  revision: 9e3ba3dfbc60960ae53ce48638d7c330212aa5fe
+  revision: 8412d51e869f1ee8e5229831a9a0bb5e9b8f3847
   specs:
     ruby_llm (1.2.0)
       base64
@@ -451,6 +451,7 @@ DEPENDENCIES
   solid_queue
   stimulus-rails
   tailwindcss-rails
+  tailwindcss-ruby (~> 4.1)
   thruster
   turbo-rails
   tzinfo-data
