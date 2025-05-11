@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   root "chats#index"
 
   # Chat resources - index shows list, show displays a chat, create starts a new one
-  resources :chats, only: [:index, :show, :create, :destroy] do
+#  resources :chats, only: [:index, :show, :create, :destroy] do
+  resources :chats, only: [:index, :show, :create, :edit, :update, :destroy] do
+
     # Nested resource for messages within a specific chat
     # Only need 'create' as messages are added to an existing chat context
     resources :messages, only: [:create], shallow: true # shallow makes message paths like /messages/:id instead of /chats/:chat_id/messages/:id

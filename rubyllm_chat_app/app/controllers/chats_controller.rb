@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   # include ActionView::RecordIdentifier
 
   before_action :set_chats, only: [:index, :show] # Load chats list for sidebar
-  before_action :set_chat, only: [:show, :destroy] # Load specific chat for actions
+  before_action :set_chat, only: [:show, :edit, :update, :destroy] # Load specific chat for actions
 
   # GET /chats or root_path
   # Displays the list of chats and potentially the first/last active chat
@@ -55,6 +55,25 @@ class ChatsController < ApplicationController
     end
   end
 
+  # GET /chats/:id/edit
+  # Displays the form to edit an existing chat
+  def edit
+    # @chat is set by before_action
+    # @chats is not strictly needed here unless your edit form also shows the sidebar
+    # If you want the sidebar on the edit page, uncomment the next line:
+    # set_chats
+  end
+
+  # PATCH/PUT /chats/:id
+  # Updates an existing chat
+  def update
+    # @chat is set by before_action
+    if @chat.update(chat_params)
+      redirect_to @chat, notice: "✏️ Chat was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
   # DELETE /chats/:id
   # Deletes a chat session
   def destroy
@@ -79,7 +98,7 @@ class ChatsController < ApplicationController
   end
 
   # Strong parameters for creating/updating chats (if needed later)
-  # def chat_params
-  #   params.require(:chat).permit(:title, :description, :model_id)
-  # end
+  def chat_params
+    params.require(:chat).permit(:title, :description, :model_id)
+  end
 end

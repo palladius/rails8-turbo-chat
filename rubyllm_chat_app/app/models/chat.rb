@@ -33,47 +33,47 @@ class Chat < ApplicationRecord
   #   to_llm.complete(&)
   # end
 
-    def ask_ricc_substitute(message, &)
-      message = {
-        role: :user,
-        content: message + " [Riccardo remove this from Chat::ask_ricc_substitute]",
-        model_id: DEFAULT_LLM_MODEL,
-        # intpu 1048576
-        # output 8192
-      }
-      ret = messages.create!(**message)
-      puts("🐒🔧🐒🔧🐒🔧 poer ora rurro bene. ret (messages) = #{ret}")
-      complete(&) rescue "[ask_ricc_substitute] Errore che becco qui: #{$!}"
-    end
+  #   def ask_ricc_substitute(message, &)
+  #     message = {
+  #       role: :user,
+  #       content: message + " [Riccardo remove this from Chat::ask_ricc_substitute]",
+  #       model_id: DEFAULT_LLM_MODEL,
+  #       # intpu 1048576
+  #       # output 8192
+  #     }
+  #     ret = messages.create!(**message)
+  #     puts("🐒🔧🐒🔧🐒🔧 poer ora rurro bene. ret (messages) = #{ret}")
+  #     complete(&) rescue "[ask_ricc_substitute] Errore che becco qui: #{$!}"
+  #   end
 
 
-    def ask2(message='How are you, Douglas?', &)
-    puts("🐒🔧 Riccardo monkeypatching Chat.. TODO ask2(msg='#{message}')")
-    begin
-      #pry
-      binding.pry
-      ask_ricc_substitute(message, &)
-      # def ask(message, &)
-      #   message = { role: :user, content: message }
-      #   messages.create!(**message)
-      #   complete(&)
-      # end
+  #   def ask2(message='How are you, Douglas?', &)
+  #   puts("🐒🔧 Riccardo monkeypatching Chat.. TODO ask2(msg='#{message}')")
+  #   begin
+  #     #pry
+  #     binding.pry
+  #     ask_ricc_substitute(message, &)
+  #     # def ask(message, &)
+  #     #   message = { role: :user, content: message }
+  #     #   messages.create!(**message)
+  #     #   complete(&)
+  #     # end
 
-    rescue  RubyLLM::BadRequestError => e
-      if e.to_s =~ /Unable to submit request because it has an empty text parameter. Add a value to the parameter and try again/
-        puts("🐒🔧 [pre pry]")
-        pry
-        puts("🐒🔧 Smells like Gemini error.")
-      else
-        puts("🐒🔧 RubyLLM::BadRequestError but not my Gemini known error..")
-      end
-    rescue Exception => e
-      puts("🐒🔧 [ask2] Some error (#{e}) (class = #{e.class}) with ask: #{$!}")
+  #   rescue  RubyLLM::BadRequestError => e
+  #     if e.to_s =~ /Unable to submit request because it has an empty text parameter. Add a value to the parameter and try again/
+  #       puts("🐒🔧 [pre pry]")
+  #       pry
+  #       puts("🐒🔧 Smells like Gemini error.")
+  #     else
+  #       puts("🐒🔧 RubyLLM::BadRequestError but not my Gemini known error..")
+  #     end
+  #   rescue Exception => e
+  #     puts("🐒🔧 [ask2] Some error (#{e}) (class = #{e.class}) with ask: #{$!}")
 
-    ensure
-      puts('🐒🔧ricc:ask2() [ensure] Qui magari faccio pulizia..')
-    end
-  end
+  #   ensure
+  #     puts('🐒🔧ricc:ask2() [ensure] Qui magari faccio pulizia..')
+  #   end
+  # end
 
   # CITIN propoosal: https://github.com/crmne/ruby_llm/issues/118
   # on_new_message { build_new_message }
