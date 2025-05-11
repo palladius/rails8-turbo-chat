@@ -19,7 +19,10 @@ migrate-gone-wrong:
     rails generate migration CreateToolCalls message:references tool_call_id:string name:string arguments:jsonb
 
 test-chat-creation:
-    echo 'chat = Chat.last ; chat.ask2("testing monkeypatch")' | rails c
+    echo 'chat = Chat.last ;  chat.ask("testing monkeypatch with normal ask()")' | rails c
+test-chat-creation-ask2:
+    echo 'chat = Chat.last ; chat.ask2("testing monkeypatch with Riccardo ask2. Note for PRY you need to call manually from rails c.")' | rails c
+
 # lets just test that Gemini works..
 test-gemini:
     echo 'chat = RubyLLM.chat ; chat.ask "Are you an LLM? Who built you? Whats your cutoff time?"' | rails c

@@ -4,7 +4,10 @@ Dotenv.load('.env') if defined?(Dotenv) && (Rails.env.development? || Rails.env.
 
 GEMINI_API_KEY = ENV.fetch('GEMINI_API_KEY', nil)
 #DEFAULT_LLM_MODEL = ENV.fetch('DEFAULT_LLM_MODEL', 'gemini-1.5-pro')
-DEFAULT_LLM_MODEL = ENV.fetch('DEFAULT_LLM_MODEL', 'gemini-2.0-flash')
+# See below for some Gemini models
+RICCARDOS_FAVOURITE_DEV_MODEL =  'gemini-2.0-flash'
+#RICCARDOS_FAVOURITE_DEV_MODEL =  'gemini-2.0-flash-lite'
+DEFAULT_LLM_MODEL = ENV.fetch('DEFAULT_LLM_MODEL', RICCARDOS_FAVOURITE_DEV_MODEL)
 
 raise "no gemini key sorry" if GEMINI_API_KEY.nil?
 
@@ -35,3 +38,64 @@ end
 if RubyLLM.config.gemini_api_key.nil? # || RubyLLM.config.api_key == 'YOUR_API_KEY_HERE'
   Rails.logger.warn "⚠️ RubyLLM Warning: API Key is not set properly in ENV variables. Please check your .env file or environment configuration."
 end
+
+=begin
+
+RubyLLM.models.chat_models.each do |model|
+  puts "- #{model.id} (#{model.provider})" if model.provider =~ /gemini/
+end ; nil
+
+=>
+
+
+- aqa (gemini)
+- chat-bison-001 (gemini)
+- embedding-gecko-001 (gemini)
+- gemini-1.0-pro-vision-latest (gemini)
+- gemini-1.5-flash (gemini)
+- gemini-1.5-flash-001 (gemini)
+- gemini-1.5-flash-001-tuning (gemini)
+- gemini-1.5-flash-002 (gemini)
+- gemini-1.5-flash-8b (gemini)
+- gemini-1.5-flash-8b-001 (gemini)
+- gemini-1.5-flash-8b-exp-0827 (gemini)
+- gemini-1.5-flash-8b-exp-0924 (gemini)
+- gemini-1.5-flash-8b-latest (gemini)
+- gemini-1.5-flash-latest (gemini)
+- gemini-1.5-pro (gemini)
+- gemini-1.5-pro-001 (gemini)
+- gemini-1.5-pro-002 (gemini)
+- gemini-1.5-pro-latest (gemini)
+- gemini-2.0-flash (gemini)
+- gemini-2.0-flash-001 (gemini)
+- gemini-2.0-flash-exp (gemini)
+- gemini-2.0-flash-exp-image-generation (gemini)
+- gemini-2.0-flash-lite (gemini)
+- gemini-2.0-flash-lite-001 (gemini)
+- gemini-2.0-flash-lite-preview (gemini)
+- gemini-2.0-flash-lite-preview-02-05 (gemini)
+- gemini-2.0-flash-live-001 (gemini)
+- gemini-2.0-flash-preview-image-generation (gemini)
+- gemini-2.0-flash-thinking-exp (gemini)
+- gemini-2.0-flash-thinking-exp-01-21 (gemini)
+- gemini-2.0-flash-thinking-exp-1219 (gemini)
+- gemini-2.0-pro-exp (gemini)
+- gemini-2.0-pro-exp-02-05 (gemini)
+- gemini-2.5-flash-preview-04-17 (gemini)
+- gemini-2.5-flash-preview-04-17-thinking (gemini)
+- gemini-2.5-pro-exp-03-25 (gemini)
+- gemini-2.5-pro-preview-03-25 (gemini)
+- gemini-2.5-pro-preview-05-06 (gemini)
+- gemini-embedding-exp (gemini)
+- gemini-exp-1206 (gemini)
+- gemini-pro-vision (gemini)
+- gemma-3-12b-it (gemini)
+- gemma-3-1b-it (gemini)
+- gemma-3-27b-it (gemini)
+- gemma-3-4b-it (gemini)
+- learnlm-1.5-pro-experimental (gemini)
+- learnlm-2.0-flash-experimental (gemini)
+- text-bison-001 (gemini)
+- veo-2.0-generate-001 (gemini)
+
+=end

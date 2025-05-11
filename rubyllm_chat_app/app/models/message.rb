@@ -1,65 +1,28 @@
-# typed: false
+
+# app/models/message.rb
 class Message < ApplicationRecord
-  # For dom_id helper
+  acts_as_message
+
   include ActionView::RecordIdentifier
-  # For broadcasting
-  include Turbo::Streams::Broadcasts
 
-  # RubyLLM Integration
-  acts_as_message # Assumes Chat and ToolCall model names
-  validates :content, presence: true
+  # Content can be blank for assistant messages initially, e.g., during streaming.
+  validates :content, presence: true, unless: -> { role == 'assistant' }
 
-  # Standard Rails Model Logic
-  belongs_to :chat
-  belongs_to :tool_call, optional: true # Link tool result back to call
+  # Broadcast updates to self (for streaming into the message frame)
+  broadcasts_to ->(message) { [message.chat, "messages"] }
 
-  # Validations
-  validates :role, presence: true, inclusion: { in: %w[system user assistant tool] }
-  # Content can be nil for assistant messages initially during streaming
-  # validates :content, presence: true # Might interfere with streaming
-
-  # Enum for role for cleaner handling (Rails 7+)
-  #enum role: { system: "system", user: "user", assistant: "assistant", tool: "tool" }
-
-  # --- Streaming Support ---
-
-  # Broadcast updates to self (specifically for streaming content into the message frame)
-  # broadcasts_to ->(message) { [message.chat, "messages"] } # Covered by Chat's broadcast
-
-  # Manually broadcast chunks during streaming to update the content div
-  # Uses ActionCable's broadcast_append_to
+  # Helper to broadcast chunks during streaming
   def broadcast_append_chunk(chunk_content)
-    # Ensure we target the specific message's content area within the chat's stream
-    broadcast_append_to(
-      [chat, "messages"], # The stream name derived from the chat
-      target: dom_id(self, :content), # Target the content div: "message_123_content"
-      html: chunk_content # Append the raw chunk (consider sanitization/markdown later)
-    )
+    broadcast_append_to [ chat, "messages" ], # Target the stream
+      target: dom_id(self, "content"), # Target the content div inside the message frame
+      html: chunk_content # Append the raw chunk
   end
 
   def system?
     role == 'system'
   end
 
-  # def user?
-  #   role == :user
-  # end
-
-  # def assistant?
-  #   role == :assistant
-  # end
-
-  # def tool?
-  #   role == :tool
-  # end
-
-  # After a message is created (esp. user messages), ensure it's visible
-
-  ####### TODO RICC RESTORE when the rest works!!!
-
-
-  #after_create_commit -> { broadcast_append_to [chat, "messages"], target: "messages", partial: "messages/message", locals: { message: self } }
-
-  # When streaming is done, the final update might need a broadcast replace to clean up
-  # Let's rely on the initial render and streaming appends for now.
+  def to_s
+    self.inspect
+  end
 end

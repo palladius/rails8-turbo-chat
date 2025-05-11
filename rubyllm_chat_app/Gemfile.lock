@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/crmne/ruby_llm.git
-  revision: 2bdc4229643888da053c76dfe9ef837b8e3a91f7
-  ref: 2bdc4229643888da053c76dfe9ef837b8e3a91f7
+  revision: 9e3ba3dfbc60960ae53ce48638d7c330212aa5fe
   specs:
     ruby_llm (1.2.0)
       base64
@@ -111,6 +110,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    coderay (1.1.3)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
     crass (1.0.6)
@@ -188,6 +188,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.5)
     msgpack (1.8.0)
@@ -241,6 +242,11 @@ GEM
       activesupport (>= 7.0.0)
       rack
       railties (>= 7.0.0)
+    pry (0.15.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-rails (0.3.11)
+      pry (>= 0.13.0)
     psych (5.2.5)
       date
       stringio
@@ -427,6 +433,8 @@ DEPENDENCIES
   kamal
   pg (~> 1.1)
   propshaft
+  pry (~> 0.15.0)
+  pry-rails
   puma (>= 5.0)
   rails (~> 8.0.2)
   rubocop-rails-omakase

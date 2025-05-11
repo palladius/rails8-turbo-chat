@@ -1,5 +1,8 @@
 # typed: false
 class ChatsController < ApplicationController
+  # https://stackoverflow.com/questions/40979186/using-dom-idobj-within-controller-to-set-variable
+  # include ActionView::RecordIdentifier
+
   before_action :set_chats, only: [:index, :show] # Load chats list for sidebar
   before_action :set_chat, only: [:show, :destroy] # Load specific chat for actions
 

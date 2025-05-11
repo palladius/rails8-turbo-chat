@@ -1,5 +1,8 @@
 # typed: false
 class MessagesController < ApplicationController
+  # https://stackoverflow.com/questions/40979186/using-dom-idobj-within-controller-to-set-variable
+  include ActionView::RecordIdentifier
+
   before_action :set_chat
 
   # POST /chats/:chat_id/messages

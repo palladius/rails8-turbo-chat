@@ -8,3 +8,6 @@ doit:
 redo:
     rm -rf rubyllm_chat_app/
     just doit
+
+clone-carmine:
+    git clone https://github.com/crmne/ruby_llm ruby_llm-copy/
