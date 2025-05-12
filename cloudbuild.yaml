@@ -93,7 +93,7 @@ steps:
   id: 'step3 tag SHA and VERSION' # The last we need before parallelizing everything
   entrypoint: bash
   args:
-  - bin/ricc-autotag.sh
+  - bin/ricc-autotag-and-push.sh
   env:
   - 'PROJECT_ID=$PROJECT_ID'
   - 'APP_NAME=$_APP_NAME'

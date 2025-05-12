@@ -58,7 +58,7 @@ export GIT_SHORT_SHA="${GIT_COMMIT_SHA:0:7}" # first 7 chars: Riccardo reproduci
 export GIT_LAST_COMMENT="$(git log -1 --pretty=%B)"
 export MY_APP_VERSION="$(cat VERSION)"
 # Can be overridden by $2..
-export APP_VERSION="${2:-MY_APP_VERSION}"
+export APP_VERSION="${2:-$MY_APP_VERSION}"
 #export APP_VERSION_LATEST="latest"
 export MESSAGGIO_OCCASIONALE="MsgOcc Non datur in MAGIC"
 export RAILS_MASTER_KEY="${RAILS_MASTER_KEY:-foobarbaz}"
