@@ -51,7 +51,7 @@ echo "CBPUSH| This should be valid: GCLOUD_REGION=$GCLOUD_REGION"
 echo "------------------------------------------------------------------------"
 
 
-export GCLOUD_REGION="${GCLOUD_REGION:-europe-west42}"
+export GCLOUD_REGION="${GCLOUD_REGION:-europe-west10}"
 export GIT_STATE="$(git rev-list -1 HEAD --abbrev-commit)"
 export GIT_COMMIT_SHA="$(git rev-parse HEAD)" # big commit
 export GIT_SHORT_SHA="${GIT_COMMIT_SHA:0:7}" # first 7 chars: Riccardo reproducing what CB does for me.
@@ -102,15 +102,15 @@ set -euo pipefail
 # Derived info
 CLOUDRUN_PROJECT_ID="$PROJECT_ID"
 # VER non lo posso calcolare da CB vanilla, serve un shell script :/
-           UPLOADED_IMAGE_WITH_VER="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_NAME}/${AR_NAME}:v$APP_VERSION"
-UPLOADED_IMAGE_WITH_LATEST_VERSION="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_NAME}/${AR_NAME}:latest"
-           UPLOADED_IMAGE_WITH_SHA="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_NAME}/${AR_NAME}:sha-$GIT_SHORT_SHA"
+           UPLOADED_IMAGE_WITH_VER="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/${AR_NAME}:v$APP_VERSION"
+UPLOADED_IMAGE_WITH_LATEST_VERSION="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/${AR_NAME}:latest"
+           UPLOADED_IMAGE_WITH_SHA="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/${AR_NAME}:sha-$GIT_SHORT_SHA"
 
 # $1 can be unbound
 if [ latest = "${2:-sthElse}" ]; then
   echo '🗞️ Overriding both SHA/VER to LATEST (or whatever DOLL1 says) since you gave me DOLL1:'
-  export UPLOADED_IMAGE_WITH_SHA="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_NAME}/${AR_NAME}:latest"
-  export UPLOADED_IMAGE_WITH_VER="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/${AR_NAME}/${AR_NAME}:latest"
+  export UPLOADED_IMAGE_WITH_SHA="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/${AR_NAME}:latest"
+  export UPLOADED_IMAGE_WITH_VER="${GCLOUD_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/${AR_NAME}:latest"
 else
   echo You didnt give me any DOLL_2.. continuing
 fi
