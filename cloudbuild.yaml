@@ -101,24 +101,24 @@ steps:
   dir: rubyllm_chat_app/
 
 
-# # Questo finalmente funge!
-# - name: 'gcr.io/cloud-builders/gcloud'
-#   id: 4. Push DEV to Cloud Run via Amazing new script which doesnt need mounting anymore
-#   entrypoint: bash
-#   args:
-#   - bin/ricc-cb-push-to-cloudrun-magic.sh
-#   - dev
-#   dir: rubyllm_chat_app/
-#   env:
-#   - 'PROJECT_ID=$PROJECT_ID'
-#   - 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY'
-#   - 'GEMINI_API_KEY=$_GEMINI_API_KEY'
-#   - 'OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES'
-#   - 'RAILS_ENV=development'
-#   - 'DATABASE_URL_DEV=$_DATABASE_URL_DEV'
-#   - 'DATABASE_URL=$_DATABASE_URL_DEV'
-#   - 'APP_NAME=$_APP_NAME'
-#   - 'GCLOUD_REGION=$_GCLOUD_REGION'
+# Lets try this
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: 4. Push DEV to Cloud Run via Amazing new script which doesnt need mounting anymore
+  entrypoint: bash
+  args:
+  - bin/ricc-cb-push-to-cloudrun-magic.sh
+  - dev
+  dir: rubyllm_chat_app/
+  env:
+  - 'PROJECT_ID=$PROJECT_ID'
+  - 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY'
+  - 'GEMINI_API_KEY=$_GEMINI_API_KEY'
+  - 'OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES'
+  - 'RAILS_ENV=development'
+  - 'DATABASE_URL_DEV=$_DATABASE_URL_DEV'
+  - 'DATABASE_URL=$_DATABASE_URL_DEV'
+  - 'APP_NAME=$_APP_NAME'
+  - 'GCLOUD_REGION=$_GCLOUD_REGION'
 
 # # Questo finalmente funge!
 # - name: 'gcr.io/cloud-builders/gcloud'

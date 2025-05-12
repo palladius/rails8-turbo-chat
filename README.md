@@ -1,12 +1,17 @@
 # rails8-turbo-chat
 
+A responsive Rails chat with  `ruby_llm` Carmine's gem.
+
 * 📆 Created: `19apr2025`. Written by Google with a `sbrodola.sh` script.
 * 🪞 Self: **PUBLIC** - github 🐙🐱 `palladius/rails8-turbo-chat.git`
 * 🟦 GDoc: go/ricc-rails8 - go/pbt-rails8
 * 💎 Gems:
-    * ♦️ ruby_llm
-
-Non ricordo bene l'intenzione dentro a questo repo.
+    * ♦️ `ruby_llm` (from git) 🤖 - The core engine for all the cool Large Language Model magic!
+    * ♦️ `devise` 🔑 - Handles all the user sign-up and login stuff, a real timesaver.
+    * ♦️ `dotenv-rails` 🤫 - Manages environment variables, keeping secrets out of the code.
+    * ♦️ `pry` & `pry-rails` 🕵️‍♂️ - My trusty debugging combo, lets me dive into the Rails console and poke around.
+    * ♦️ `kramdown` & `kramdown-parser-gfm` 📝 - For making Markdown look pretty, especially with GitHub flavors.
+    * ♦️ `rainbow` 🌈 - Adds a splash of color to terminal output, makes things easier to read!
 
 ## RUN
 
