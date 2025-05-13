@@ -39,8 +39,8 @@ substitutions:
   _GCLOUD_REGION: europe-west10 # for Cloud Run. Cambiato da eu-west1
   _PROJECT_ID: palladius-genai
   _APP_NAME: rails8-turbo-chat
-  _DATABASE_URL_DEV: 'sqlite3:storage/development.sqlite3'
-  _DATABASE_URL_PROD: 'sqlite3:storage/production.sqlite3'
+  #_DATABASE_URL_DEV: 'sqlite3:storage/development.sqlite3'
+  #_DATABASE_URL_PROD: 'sqlite3:storage/production.sqlite3'
   _SKAFFOLD_DEFAULT_REPO: 'europe-west10-docker.pkg.dev/palladius-genai/berliner-docker-repo'
   _MESSAGGIO_OCCASIONALE: >-
     Scopiazzato da rails8-turbo-chat il chge mi sembra simile e infine qui in rails8-turbo-chat

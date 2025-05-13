@@ -65,3 +65,12 @@ test-gemini:
 
 autorename:
     echo Chat.autotitle_if_needed | rails c
+
+
+# docker build
+docker-build:
+    time docker build -t r8tc .
+    echo done. Look at the time it took.
+
+docker-run:
+    docker run -it -p 8080:8080 r8tc .

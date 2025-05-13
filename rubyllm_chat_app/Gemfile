@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+# riccardo: fixing ruby to 3.3.4 in .ruby-version
+# but should be 3.4.3 (latest stable)
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
