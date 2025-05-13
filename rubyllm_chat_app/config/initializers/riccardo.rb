@@ -16,8 +16,8 @@ CLOUD_RUN_ENDPOINT_FROM_ENV = ENV.fetch('CLOUD_RUN_ENDPOINT', nil)
 
 CLOUD_RUN_ENDPOINTS = {
   # Todo chwnge with rails8-turbo-chat something..
-  dev: "https://#{SHORT_APP_NAME}-dev-272932496670.europe-west8.run.app/", # done
-  prod: "https://#{SHORT_APP_NAME}-prod-272932496670.europe-west8.run.app/", # not done yet
+  dev: "https://#{SHORT_APP_NAME}-dev-272932496670.europe-west10.run.app/", # done
+  prod: "https://#{SHORT_APP_NAME}-prod-272932496670.europe-west10.run.app/", # not done yet
 }
 
 #def print_env_variable(key:, value:, emoji: '🌱', limit: nil)
@@ -72,19 +72,20 @@ AppUrlProd = "https://#{SHORT_APP_NAME}-prod-x42ijqglgq-ew.a.run.app/"
 # Accepted hosts
 #####################
 # https://guides.rubyonrails.org/configuring.html#actiondispatch-hostauthorization
-# Blocked hosts: rails8-gemini20-chat-manhouse-manhouse-272932496670.europe-west8.run.app, rails8-gemini20-chat-manhouse-manhouse-272932496670.europe-west8.run.app
+# Blocked hosts: rails8-gemini20-chat-manhouse-manhouse-272932496670.europe-west10.run.app, rails8-gemini20-chat-manhouse-manhouse-272932496670.europe-west10.run.app
 # tutto dal proj number
 
-module Blog
+module RubyllmChatApp
   class Application < Rails::Application
 
     #  Rails.application.config.hosts ...
-    config.hosts << /.*\-272932496670.europe-west8.run.app/
-    config.hosts << "#{SHORT_APP_NAME}-272932496670.europe-west8.run.app"
-    config.hosts << "#{SHORT_APP_NAME}-272932496670.europe-west8.run.app"
+    config.hosts << /.*\-272932496670.europe-west10.run.app/
+    config.hosts << "#{SHORT_APP_NAME}-272932496670.europe-west10.run.app"
+    config.hosts << "#{SHORT_APP_NAME}-272932496670.europe-west10.run.app"
     # TODO(ricc): cleanup
     config.hosts << "rails8-turbo-chat-dev-272932496670.europe-west10.run.app"
     config.hosts << "rails8-turbo-chat-prod-272932496670.europe-west10.run.app"
+
     config.hosts << CLOUD_RUN_ENDPOINTS[:dev]
     config.hosts << CLOUD_RUN_ENDPOINTS[:prod]
     config.hosts << CLOUD_RUN_ENDPOINT_FROM_ENV unless CLOUD_RUN_ENDPOINT_FROM_ENV.nil?
