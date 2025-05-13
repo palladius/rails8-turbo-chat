@@ -1,6 +1,7 @@
 ## CHANGELOG
 
 ```bash
+2025-05-13 v0.1.8 exposing port 8080 explicitly in Dockerfile.
 2025-05-12 v0.1.7 Finally fixed CloudBuild! It builds the repo on AR for now. No pushing on CRun yet.
 2025-05-11 v0.1.6 lots of small Ops tests
 2025-05-11 v0.1.5 markdown WORKS!!!
