@@ -1,5 +1,14 @@
 ## CHANGELOG
 
+## v0.1.9
+
+feat: Add application header
+
+- Displays "Rails8 Turbo Chat 💬" in a new site-wide header.
+- Updates changelog and version.
+
+## v0.1.8 and before
+
 ```bash
 2025-05-13 v0.1.8 exposing port 8080 explicitly in Dockerfile.
 2025-05-12 v0.1.7 Finally fixed CloudBuild! It builds the repo on AR for now. No pushing on CRun yet.

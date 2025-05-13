@@ -1,4 +1,5 @@
 
+set dotenv-load
 
 list:
     just -l
@@ -7,8 +8,10 @@ list:
 db-destroy:
     rails db:drop db:create db:migrate
 
+# runs in dev, using ENV variable for DB.
 run:
-    bin/dev
+    echo Make sure you set up DATABASE_URL_DEV in .env...
+    DATABASE_URL=$DATABASE_URL_DEV bin/dev
 
 # [PROD] runs rails in prod
 run-prod:

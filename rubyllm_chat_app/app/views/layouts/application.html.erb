@@ -6,14 +6,13 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= action_cable_meta_tag %> <%# Required for Turbo Streams over Action Cable %>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-
-  <%= stylesheet_link_tag "tailwind",  "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
 <body class="bg-gray-100 font-sans">
+  <%= render 'layouts/header' %>
+
   <main class="container mx-auto mt-4 px-4">
     <%# Flash Messages - Tailored for Tailwind %>
     <% if notice %>
