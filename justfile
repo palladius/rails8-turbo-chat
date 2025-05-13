@@ -17,3 +17,18 @@ clone-carmine:
 # [Cloud Build] submit local target
 # cloudbuild-submit:
 #     gcloud builds submit .   --config cloudbuild.yaml   --substitutions="$CB_SUBSTITUTIONS"
+
+
+derek-fix-gems:
+    echo sic ait Gemini Gloria Gaynor mundi:
+
+    gem cleanup stringio
+    # => works fast
+
+    gem pristine --all
+    # => works SLOWWWW
+
+    # step 3.
+    gem install foreman # If not already handled by bundle install
+    rbenv rehash
+
