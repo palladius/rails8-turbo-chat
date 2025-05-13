@@ -1,5 +1,14 @@
 ## CHANGELOG
 
+## v0.1.10
+
+feat: Add CRun dev to known hosts.
+
+```ruby
+config.hosts << "rails8-turbo-chat-dev-272932496670.europe-west10.run.app"
+```
+
+
 ## v0.1.9
 
 feat: Add application header

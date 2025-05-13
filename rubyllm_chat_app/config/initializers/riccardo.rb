@@ -79,7 +79,11 @@ module Blog
     config.hosts << /.*\-272932496670.europe-west8.run.app/
     config.hosts << "#{SHORT_APP_NAME}-272932496670.europe-west8.run.app"
     config.hosts << "#{SHORT_APP_NAME}-272932496670.europe-west8.run.app"
+    # TODO(ricc): cleanup
+    config.hosts << "rails8-turbo-chat-dev-272932496670.europe-west10.run.app"
+    config.hosts << "rails8-turbo-chat-prod-272932496670.europe-west10.run.app"
     config.hosts << CLOUD_RUN_ENDPOINTS[:dev]
     config.hosts << CLOUD_RUN_ENDPOINTS[:prod]
+
   end
 end
