@@ -119,6 +119,8 @@ steps:
   - 'DATABASE_URL=$_DATABASE_URL_DEV'
   - 'APP_NAME=$_APP_NAME'
   - 'GCLOUD_REGION=$_GCLOUD_REGION'
+  # dev only for now
+  - 'CLOUD_RUN_ENDPOINT=$_CLOUD_RUN_ENDPOINT'
 
 # Questo finalmente funge!
 - name: 'gcr.io/cloud-builders/gcloud'
@@ -140,3 +142,5 @@ steps:
   - 'APP_NAME=$_APP_NAME'
   - 'GCLOUD_REGION=$_GCLOUD_REGION'
   - 'GEMINI_API_KEY=$_GEMINI_API_KEY'
+  # dev only for now TODO add prod too.
+  - 'CLOUD_RUN_ENDPOINT=$_CLOUD_RUN_ENDPOINT'

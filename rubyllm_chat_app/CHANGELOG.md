@@ -1,5 +1,15 @@
 ## CHANGELOG
 
+##  v0.1.12
+
+* adding version to header
+* CLOUD_RUN_ENDPOINT (dev) to cloud build, so Im feeding it to dev/prod.
+* when it works for dev, i'll do the work also for prod.
+
+##  v0.1.11
+
+* adding `CLOUD_RUN_ENDPOINT` env support
+
 ## v0.1.10
 
 feat: Add CRun dev to known hosts.

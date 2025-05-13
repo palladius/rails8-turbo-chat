@@ -11,6 +11,9 @@ DEBUG = ENV.fetch('DEBUG', 'false').to_s.downcase == 'true'
 RAILS_MASTER_KEY =  ENV.fetch('RAILS_MASTER_KEY', nil) # .to_s.downcase == 'true'
 GIT_LAST_COMMENT = ENV.fetch('GIT_LAST_COMMENT', '[Last comment not available - likely this is running locally and not in the Cloud]')
 
+
+CLOUD_RUN_ENDPOINT_FROM_ENV = ENV.fetch('CLOUD_RUN_ENDPOINT', nil)
+
 CLOUD_RUN_ENDPOINTS = {
   # Todo chwnge with rails8-turbo-chat something..
   dev: "https://#{SHORT_APP_NAME}-dev-272932496670.europe-west8.run.app/", # done
@@ -84,6 +87,8 @@ module Blog
     config.hosts << "rails8-turbo-chat-prod-272932496670.europe-west10.run.app"
     config.hosts << CLOUD_RUN_ENDPOINTS[:dev]
     config.hosts << CLOUD_RUN_ENDPOINTS[:prod]
+    config.hosts << CLOUD_RUN_ENDPOINT_FROM_ENV unless CLOUD_RUN_ENDPOINT_FROM_ENV.nil?
+
 
   end
 end
