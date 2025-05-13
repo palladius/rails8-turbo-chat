@@ -23,13 +23,6 @@ export DEPLOY_VERSION='2.0.9b'
 # 17may24  2.0.3       Added project_id
 #####################################################################################################
 
-# if [ -f .envrc ] ; then
-#   echo Looks like youre local since I see your envrc.
-#   . .envrc
-# else
-#   echo 'Riccardo NOT LOCAL probably in the Cloud'
-# fi
-
 function _usage() {
   echo "Usage: $0 [dev|prod] [latest]"
   exit 142
@@ -40,7 +33,9 @@ function _usage() {
 # ENV set
 ################################################
 export DOLL1=${1:-NONE}
+
 set -euo pipefail
+
 #export APP_NAME='gemini-chat'
 export AR_NAME="$APP_NAME"
 export APP_NAME_TO_DEPLOY="$APP_NAME"
@@ -50,7 +45,7 @@ echo "CBPUSH| This should be valid: APP_NAME=$APP_NAME"
 echo "CBPUSH| This should be valid: GCLOUD_REGION=$GCLOUD_REGION"
 echo "------------------------------------------------------------------------"
 
-
+export PORT=8080
 export GCLOUD_REGION="${GCLOUD_REGION:-europe-west10}"
 export GIT_STATE="$(git rev-list -1 HEAD --abbrev-commit)"
 export GIT_COMMIT_SHA="$(git rev-parse HEAD)" # big commit
@@ -123,7 +118,6 @@ echo "+ GIT_SHORT_SHA:  $GIT_SHORT_SHA"
 echo "+ UPL_IMG_W/_SHA: $UPLOADED_IMAGE_WITH_SHA"
 echo "+ UPLOADED_IMAGE_WITH_VER: $UPLOADED_IMAGE_WITH_VER"
 echo "+ APP_TO_DEPLOY: $APP_TO_DEPLOY"
-echo "+ DATABASE_URL: $DATABASE_URL"
 echo "+ DATABASE_URL: ${DATABASE_URL}"
 echo "+ DATABASE_URL_DEV: ${DATABASE_URL_DEV:-NonDatur}"
 echo "✅ GEMINI_API_KEY (new): $GEMINI_API_KEY"
