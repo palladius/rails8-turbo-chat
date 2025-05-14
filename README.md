@@ -1,12 +1,12 @@
 Self: https://github.com/palladius/rails8-turbo-chat
 
-# rails8-turbo-chat
+# Rails8 turbo Chat
 
-A responsive Rails chat with  `ruby_llm` Carmine's gem. With all bells and whistles to make it work on Google cloud.
-Just bring your own gemini API KEY!
+A responsive Rails chat with  `ruby_llm` Carmine's gem. With all bells and whistles to make it work on Google cloud. Just bring your own gemini API KEY!
 
 ![A red train with "rails8" writing in front. To guide it, a cute AI bot called "Gemini". The railways are detached frm ground and heading towards the sky in a big colorful Cloud, called "Google Cloud"](docs/rails8-gemini-cute.png)
 
+Chats are saved in Activerecord (needs to be PostgreSQL for now). Conversation is rendered at chunk level, and supports **Turbo**!
 
 * 📆 Created: `19apr2025`. Written by Google with a `sbrodola.sh` script.
 * 🪞 Self: **PUBLIC** - github 🐙🐱 `palladius/rails8-turbo-chat.git`
