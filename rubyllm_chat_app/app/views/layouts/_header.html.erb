@@ -1,7 +1,17 @@
 <header class="py-3 px-4 sm:px-6 lg:px-8 border-b border-gray-700 bg-gray-800">
-  <div class="container mx-auto">
+  <div class="container mx-auto flex justify-between items-center">
     <h1 class="text-xl font-semibold text-gray-100">
       Rails8 Turbo Chat <span role="img" aria-label="speech bubble"> v<%= APP_VERSION %> 💬 (<%= Rails.env%>)</span>
     </h1>
+    <div class="flex items-center space-x-4">
+      <% if user_signed_in? %>
+        <span class="text-gray-400">👋 Hello, <%= current_user.name %>!</span>
+        <%= link_to "Edit Profile", edit_user_registration_path, class: "text-blue-400 hover:underline text-sm" %>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm" %>
+      <% else %>
+        <%= link_to "Sign Up", new_user_registration_path, class: "text-blue-400 hover:underline text-sm" %>
+        <%= link_to "Sign In", new_user_session_path, class: "text-blue-400 hover:underline text-sm" %>
+      <% end %>
+    </div>
   </div>
 </header>

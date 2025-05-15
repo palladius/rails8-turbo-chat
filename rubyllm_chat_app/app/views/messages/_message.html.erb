@@ -4,7 +4,7 @@
   <%# Basic styling based on role %>
   <% role_class = case message.role
                   when "user"
-                    "bg-blue-700 text-blue-100 self-end ml-10" # User messages on the right
+                    "bg-blue-700 text-blue-100 self-end ml-10 max-w-3xl" # User messages on the right
                   when "assistant"
                     "bg-gray-700 text-gray-100 self-start mr-10" # Assistant messages on the left
                   when "system"
@@ -17,24 +17,21 @@
   %>
   <div class="message <%= message.role %> <%= role_class %> rounded-lg p-3 shadow-sm max-w-xl">
     <% unless message.system? %> <%# Don't show role label for system messages %>
-       <strong class="block text-sm capitalize mb-1 text-gray-300">
-        <%= message.role == 'assistant' ? '🤖 Assistant' : (message.role == 'user' ? '👤 You' : message.role.capitalize) %>:
-      </strong>
-    <% end %>
-
-    <%# The crucial div for streaming content. ID MUST match the broadcast target %>
-    <%# Use simple_format for basic line breaks, or consider a Markdown renderer gem %>
-    <!--
-      <div id="<%= dom_id(message, :content) %>" class="message-content prose lg:prose-xl prose-sm max-w-none">
-        [lg:prose-xl] <%= markdown_to_html(message.content) %>
+      <div class="flex items-start <%= message.role == 'user' ? 'font-bold' : '' %>">
+        <strong class="text-sm capitalize text-gray-300 mr-2">
+          <%= message.role == 'assistant' ? '🤖 Bot' : (message.role == 'user' ? '👤 You' : message.role.capitalize) %>
+        </strong>
+        <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-full break-words <%= message.role == 'user' ? 'text-gray-200' : 'text-gray-100' %>">
+          <%# Render initial content. Streaming will append here. %>
+          <%= markdown_to_html(message.content) %>
+        </div>
       </div>
-    -->
-
-    <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-none break-words text-gray-100">
-      <%# Render initial content. Streaming will append here. %>
-      <%#= simple_format(message.content) %>
-      <%= markdown_to_html(message.content) %>
-    </div>
+    <% else %>
+      <%# System messages are centered and italic %>
+      <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-none break-words text-gray-300 text-xs italic mx-auto my-2">
+        <%= markdown_to_html(message.content) %>
+      </div>
+    <% end %>
   </div>
 <% end %>
 

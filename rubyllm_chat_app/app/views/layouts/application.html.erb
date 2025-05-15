@@ -26,18 +26,6 @@
       </div>
     <% end %>
 
-    <%# Render Devise links if needed %>
-    <div class="flex justify-end space-x-4 mb-4">
-      <% if user_signed_in? %>
-        <span class="text-gray-700">👋 Hello, <%= current_user.name %>!</span>
-        <%= link_to "Edit Profile", edit_user_registration_path, class: "text-blue-600 hover:underline" %>
-        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-sm" %>
-      <% else %>
-        <%= link_to "Sign Up", new_user_registration_path, class: "text-blue-600 hover:underline" %>
-        <%= link_to "Sign In", new_user_session_path, class: "text-blue-600 hover:underline" %>
-      <% end %>
-    </div>
-
     <%# Main content yield %>
     <%= yield %>
   </main>
