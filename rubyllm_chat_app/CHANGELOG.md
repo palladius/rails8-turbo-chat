@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+## v0.1.14
+
+* Further UI refinements for dark theme, including message bubble colors, bold text, and code block styling.
+* Added an About page with a link in the header and included the Gemini-inspired image and GitHub repo link.
+
 ## v0.1.13
 
 * Refactored UI to a dark theme with a Gemini-inspired gradient.

@@ -1,5 +1,6 @@
 # typed: false
 Rails.application.routes.draw do
+  get "/about", to: "pages#about"
   # Devise routes for authentication
   devise_for :users
 
