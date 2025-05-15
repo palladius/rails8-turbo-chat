@@ -13,6 +13,11 @@ run:
     echo Make sure you set up DATABASE_URL_DEV in .env...
     DATABASE_URL=$DATABASE_URL_DEV bin/dev
 
+dev: run
+
+rails-c:
+    DATABASE_URL=$DATABASE_URL_DEV rails c
+
 # [PROD] runs rails in prod
 run-prod:
     #    rails s -e production -p 8080 -b 0.0.0.0

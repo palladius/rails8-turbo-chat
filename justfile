@@ -32,3 +32,7 @@ derek-fix-gems:
     gem install foreman # If not already handled by bundle install
     rbenv rehash
 
+
+
+dev:
+    cd app && just dev
