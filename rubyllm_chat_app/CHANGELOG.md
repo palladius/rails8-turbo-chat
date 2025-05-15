@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+## v0.1.15
+
+* Added a footer partial with app version, links to GitHub and Cloud Run environments (Dev/Prod), and a "Made with love" attribution.
+
 ## v0.1.14
 
 * Further UI refinements for dark theme, including message bubble colors, bold text, and code block styling.

@@ -1,0 +1,13 @@
+<footer class="bg-gray-900 text-gray-600 text-xs text-center p-4 mt-8 opacity-75">
+  <div class="container mx-auto">
+    <%= APP_NAME %> v<span class="font-bold"><%= APP_VERSION %></span>
+    | 🐙 <%= link_to "GitHub", "https://github.com/palladius/rails8-turbo-chat", class: "text-blue-400 hover:underline" %>
+    <% if defined?(CLOUD_RUN_ENDPOINTS) && CLOUD_RUN_ENDPOINTS[:dev].present? %>
+      | 🚀 <%= link_to "Dev", CLOUD_RUN_ENDPOINTS[:dev], class: "text-blue-400 hover:underline" %>
+    <% end %>
+    <% if defined?(CLOUD_RUN_ENDPOINTS) && CLOUD_RUN_ENDPOINTS[:prod].present? %>
+      | 🚀 <%= link_to "Prod", CLOUD_RUN_ENDPOINTS[:prod], class: "text-blue-400 hover:underline" %>
+    <% end %>
+    | Made with <%= raw '💛' %> by <%= link_to "Riccardo", "https://www.linkedin.com/in/riccardocarlesso/", class: "text-blue-400 hover:underline" %>
+  </div>
+</footer>
