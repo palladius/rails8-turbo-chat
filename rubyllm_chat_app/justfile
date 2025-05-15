@@ -73,7 +73,7 @@ test-gemini:
 
 # Autorenames chats with Gemini..
 chat-autorename:
-    echo Chat.autotitle_if_needed | rails c
+    echo Chat.autotitle_if_needed | DATABASE_URL=$DATABASE_URL_DEV  rails c
 
 
 # docker build
