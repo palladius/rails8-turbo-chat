@@ -1,15 +1,15 @@
 <%# Main container using Flexbox for two columns %>
-<div class="flex h-[calc(100vh-150px)] border border-gray-300 rounded-lg bg-white shadow-md overflow-hidden">
+<div class="flex h-[calc(100vh-150px)] border border-gray-700 rounded-lg bg-gray-800 shadow-md overflow-hidden">
 
   <%# Left Pane: Chat List Sidebar %>
-  <div id="chats-list" class="w-1/4 border-r border-gray-300 overflow-y-auto p-4 bg-gray-50">
-    <h2 class="text-lg font-semibold mb-4 text-gray-700">My Chats 💬</h2>
+  <div id="chats-list" class="w-1/4 border-r border-gray-700 overflow-y-auto p-4 bg-gray-800">
+    <h2 class="text-lg font-semibold mb-4 text-gray-200">My Chats 💬</h2>
 
     <%# Button/Form to create a new chat %>
     <%= form_with(model: Chat.new, url: chats_path, method: :post, class: "mb-4") do |f| %>
       <%# You could add fields for title/description/model here if desired %>
       <%# Example: f.text_field :title, placeholder: "Optional Title", class: "..." %>
-      <%= f.submit "✨ Start New Chat", class: "w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+      <%= f.submit "✨ Start New Chat", class: "w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
     <% end %>
 
 
@@ -20,7 +20,7 @@
           <%= render partial: "chats/chat_link", locals: { chat_item: chat_item, current_chat: @chat } %>
         <% end %>
       <% else %>
-        <p class="text-gray-500 italic">No chats yet. Start a new one!</p>
+        <p class="text-gray-400 italic">No chats yet. Start a new one!</p>
       <% end %>
     </div>
   </div>
@@ -32,42 +32,42 @@
       <%= turbo_stream_from [@chat, "messages"] %>
 
       <%# Chat Header (Title/Description/Actions) %>
-      <div class="p-4 border-b border-gray-300 bg-white flex justify-between items-center">
+      <div class="p-4 border-b border-gray-700 bg-gray-800 flex justify-between items-center">
         <div>
-          <h1 class="text-xl font-semibold text-gray-800"><%= @chat.title %></h1>
+          <h1 class="text-xl font-semibold text-gray-100"><%= @chat.title %></h1>
           <% if @chat.description.present? %>
-            <p class="text-sm text-gray-500"><%= @chat.description %></p>
+            <p class="text-sm text-gray-400"><%= @chat.description %></p>
           <% end %>
-           <p class="text-xs text-gray-400">Model: <%= @chat.model_id %></p>
+           <p class="text-xs text-gray-500">Model: <%= @chat.model_id %></p>
         </div>
         <div class="flex space-x-2">
-            <%= link_to "Edit Chat", edit_chat_path(@chat), class: "text-blue-500 hover:text-blue-700 text-sm font-medium" %>
-            <%= button_to "Delete Chat", chat_path(@chat), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this chat?" } }, class: "text-red-500 hover:text-red-700 text-sm font-medium" %>
+            <%= link_to "Edit Chat", edit_chat_path(@chat), class: "text-blue-400 hover:text-blue-300 text-sm font-medium" %>
+            <%= button_to "Delete Chat", chat_path(@chat), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this chat?" } }, class: "text-red-400 hover:text-red-300 text-sm font-medium" %>
         </div>
       </div>
 
       <%# Messages Area - Use flex-grow to take available space, overflow-y-auto for scrolling %>
-      <div id="messages" class="flex-grow overflow-y-auto p-4 space-y-4 bg-gray-50">
+      <div id="messages" class="flex-grow overflow-y-auto p-4 space-y-4 bg-transparent">
         <%# Render existing messages using the message partial %>
         <%= render @messages %>
         <%# New messages will be appended here by Turbo Streams %>
       </div>
 
       <%# Input Area Form %>
-      <div class="p-4 border-t border-gray-300 bg-white">
+      <div class="p-4 border-t border-gray-700 bg-gray-800">
         <%= form_with(model: [@chat, Message.new], url: chat_messages_path(@chat), method: :post, class: "flex items-center space-x-2") do |f| %>
           <%= f.text_area :content,
                 placeholder: "Ask anything...",
-                class: "flex-grow border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none",
+                class: "flex-grow border border-gray-700 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none text-gray-100 placeholder-gray-400",
                 rows: 2,
                 data: { controller: 'textarea-autogrow' } %> <%# Optional: Stimulus for auto-resizing %>
-          <%= f.submit "Send 🚀", class: "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+          <%= f.submit "Send 🚀", class: "bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
         <% end %>
       </div>
 
     <% else %>
       <%# Placeholder when no chat is selected %>
-      <div class="flex-grow flex items-center justify-center p-4 text-gray-500">
+      <div class="flex-grow flex items-center justify-center p-4 text-gray-400">
         <p>Select a chat from the left or start a new one! 🎉</p>
       </div>
     <% end %>

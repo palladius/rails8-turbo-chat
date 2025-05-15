@@ -4,20 +4,20 @@
   <%# Basic styling based on role %>
   <% role_class = case message.role
                   when "user"
-                    "bg-blue-100 text-blue-900 self-end ml-10" # User messages on the right
+                    "bg-blue-700 text-blue-100 self-end ml-10" # User messages on the right
                   when "assistant"
-                    "bg-green-100 text-green-900 self-start mr-10" # Assistant messages on the left
+                    "bg-gray-700 text-gray-100 self-start mr-10" # Assistant messages on the left
                   when "system"
-                    "bg-gray-200 text-gray-600 text-xs italic mx-auto my-2" # System messages centered/subtle
+                    "bg-gray-700 text-gray-300 text-xs italic mx-auto my-2" # System messages centered/subtle
                   when "tool"
-                     "bg-yellow-100 text-yellow-800 text-xs italic self-start mr-10" # Tool results distinct
+                     "bg-yellow-700 text-yellow-100 text-xs italic self-start mr-10" # Tool results distinct
                   else
-                    "bg-gray-100 text-gray-800 self-start mr-10"
+                    "bg-gray-700 text-gray-200 self-start mr-10"
                   end
   %>
   <div class="message <%= message.role %> <%= role_class %> rounded-lg p-3 shadow-sm max-w-xl">
     <% unless message.system? %> <%# Don't show role label for system messages %>
-       <strong class="block text-sm capitalize mb-1">
+       <strong class="block text-sm capitalize mb-1 text-gray-300">
         <%= message.role == 'assistant' ? '🤖 Assistant' : (message.role == 'user' ? '👤 You' : message.role.capitalize) %>:
       </strong>
     <% end %>
@@ -30,7 +30,7 @@
       </div>
     -->
 
-    <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-none break-words">
+    <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-none break-words text-gray-100">
       <%# Render initial content. Streaming will append here. %>
       <%#= simple_format(message.content) %>
       <%= markdown_to_html(message.content) %>

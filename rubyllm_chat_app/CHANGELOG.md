@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+## v0.1.13
+
+* Refactored UI to a dark theme with a Gemini-inspired gradient.
+
 ##  v0.1.12
 
 * adding version to header

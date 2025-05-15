@@ -1,11 +1,11 @@
 <%# Link to a chat in the sidebar list %>
 <%# Use chat_item for the chat in the loop, current_chat for the currently displayed chat %>
 <% is_current = current_chat && chat_item.id == current_chat.id %>
-<%= link_to chat_path(chat_item), class: "block p-3 rounded-md hover:bg-gray-200 #{is_current ? 'bg-blue-100 font-semibold text-blue-800' : 'text-gray-700'}", data: { turbo_frame: "_top" } do %>
+<%= link_to chat_path(chat_item), class: "block p-3 rounded-md hover:bg-gray-700 #{is_current ? 'bg-blue-800 font-semibold text-blue-100' : 'text-gray-300'}", data: { turbo_frame: "_top" } do %>
   <div class="truncate font-medium"><%= chat_item.title %></div>
-  <div class="text-xs text-gray-500 truncate">♊️ <%= chat_item.short_model_id %></div>
-  <div class="text-xs text-gray-500 truncate"><%= chat_item.description.presence || "-" %></div>
-  <div class="text-xs text-gray-400">⌚️ Upd: <%= time_ago_in_words(chat_item.updated_at) %> ago</div>
+  <div class="text-xs text-gray-400 truncate">♊️ <%= chat_item.short_model_id %></div>
+  <div class="text-xs text-gray-400 truncate"><%= chat_item.description.presence || "-" %></div>
+  <div class="text-xs text-gray-500">⌚️ Upd: <%= time_ago_in_words(chat_item.updated_at) %> ago</div>
 <% end %>
 
 <%# We can wrap this in a turbo_frame_tag if we want to update links individually %>
