@@ -1,8 +1,8 @@
 <%# Main container using Flexbox for two columns %>
-<div class="flex h-[calc(100vh-150px)] border border-gray-700 rounded-lg bg-gray-800 shadow-md overflow-hidden">
+<div class="flex h-[calc(100vh-150px)] border border-gray-700 rounded-lg bg-gray-800 shadow-md overflow-hidden" data-controller="chat-sidebar">
 
   <%# Left Pane: Chat List Sidebar %>
-  <div id="chats-list" class="w-1/4 border-r border-gray-700 overflow-y-auto p-4 bg-gray-800">
+  <div id="chats-list" class="hidden md:block w-1/4 border-r border-gray-700 overflow-y-auto p-4 bg-gray-800" data-chat-sidebar-target="sidebar">
     <h2 class="text-lg font-semibold mb-4 text-gray-200">My Chats 💬</h2>
 
     <%# Button/Form to create a new chat %>
@@ -26,8 +26,13 @@
   </div>
 
   <%# Right Pane: Chat Window %>
-  <div class="w-3/4 flex flex-col">
+  <div class="w-full md:w-3/4 flex flex-col">
     <% if @chat %>
+      <%# Mobile button to show chat list %>
+      <div class="md:hidden p-2 bg-gray-800 border-b border-gray-700">
+        <button id="toggle-chats-list" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded cursor-pointer" data-action="click->chat-sidebar#toggle">Change Chat</button>
+      </div>
+
       <%# Connect to Turbo Stream for this specific chat's messages %>
       <%= turbo_stream_from [@chat, "messages"] %>
 

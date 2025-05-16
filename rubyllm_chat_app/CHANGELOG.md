@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+## v0.2.1
+
+* on small screens (eg, mobile), folds the left chat.
+
 ## v0.2.0
 
 * app is SO GOOD I'm gonna promote it to 0.2.0 and create a tag for it.
