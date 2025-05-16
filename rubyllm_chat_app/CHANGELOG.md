@@ -1,10 +1,20 @@
 ## CHANGELOG
 
+## v0.2.7
+
+*   cleaner header.
 
 ## v0.2.6
 
 *   Implemented background job (`AutotitleChatsJob`) and secure endpoint (`/jobs/autotitle_chats`) for scheduled chat auto-titling via Cloud Scheduler.
-* This change requierd a change in Riccardo's `.env` -> so i need to add a `.env.dist` ASAP
+*   Implemented background job (`AutotitleChatsJob`) for chat auto-titling.
+*   Created a secure endpoint (`/jobs/autotitle_chats`) in `JobsController` to trigger the job, protected by a shared secret.
+*   Added a GET route for `/jobs/autotitle_chats` for local testing.
+*   Skipped CSRF verification for `JobsController`.
+*   Skipped Devise authentication for `JobsController`.
+*   Removed Sorbet annotations from `JobsController` and `AutotitleChatsJob` to resolve local testing issues.
+*   This change required setting a `CLOUD_SCHEDULER_SECRET` environment variable.
+* added `.env.dist`
 
 ## v0.2.5
 
