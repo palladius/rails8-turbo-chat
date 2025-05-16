@@ -1,6 +1,19 @@
 ## CHANGELOG
 
-## v0.2.1
+
+## v0.2.3 (UI/UX)
+
+* Now chat also autoscrolls!
+
+## v0.2.2 (UI/UX)
+
+* chat TextArea has now ENTER -> send message.
+* chat TextArea has now SHIFT ENTER -> continue adding stuff to message.
+* => I start loving javascript, when someone else writes it for me!
+
+**Note** this was committed as 0.2.1 -> gemini-code was editing for me so i did a rogue git commit before updating V/C. So this msg is committed wihth 0.2.2/0.2.3 altogether.
+
+## v0.2.1  (UI/UX)
 
 * on small screens (eg, mobile), folds the left chat.
 
