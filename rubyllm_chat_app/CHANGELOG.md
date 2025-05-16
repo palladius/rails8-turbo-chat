@@ -1,11 +1,15 @@
 ## CHANGELOG
 
 
-## v0.2.3 (UI/UX)
+## v0.2.4 (UI)
+
+* Added environment indicator (DEV/PROD/TEST) to the footer.
+
+## v0.2.3 (UX)
 
 * Now chat also autoscrolls!
 
-## v0.2.2 (UI/UX)
+## v0.2.2 (UX)
 
 * chat TextArea has now ENTER -> send message.
 * chat TextArea has now SHIFT ENTER -> continue adding stuff to message.
