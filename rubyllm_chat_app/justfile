@@ -17,23 +17,28 @@ dev: run
 
 rails-c:
     DATABASE_URL=$DATABASE_URL_DEV rails c
+rails-c-prod:
+    DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails c
 
+prod-setup:
+    # DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails db:setup
+    DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails db:migrate
+    ./bin/rails assets:precompile
+
+# Looks like LOCAL_PROD=true helps
 # [PROD] runs rails in prod
 run-prod:
-    #    rails s -e production -p 8080 -b 0.0.0.0
     # RAILS_ENV=production rails db:create
-    # > Error, no user
-    # $ psql -U ricc postgres
-    # >> CREATE USER rubyllm_chat_app WITH PASSWORD 'your-very-strong-and-secret-password' CREATEDB;
-    # DONE! Great Gemini!
-    # RUBYLLM_CHAT_APP_DATABASE_PASSWORD='your-very-strong-and-secret-password' RAILS_ENV=production rails db:create
 
     #SECRET_KEY_BASE_DUMMY=1
-    ./bin/rails assets:precompile
-    #RAILS_ENV=production rails db:setup
-    RAILS_ENV=production rails db:migrate
-    PORT=8080 RAILS_ENV=production bin/docker-entrypoint rails s -e production
+    #./bin/rails assets:precompile
+    LOCAL_PROD=true \
+    DATABASE_URL=$DATABASE_URL_PROD \
+    PORT=8080 \
+    RAILS_ENV=production \
+    bin/docker-entrypoint rails s
     # -->  http://127.0.0.1:8080 (wont work with HTTPS)
+    # =>   http://localhost:8080/ (also works)
 
 # PostgreSQL: show local DBs
 db-show-local-databases:

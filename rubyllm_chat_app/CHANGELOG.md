@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+## v0.2.8
+
+*   fixing productions, disabling some HTTPS requirements... the usual.
+
 ## v0.2.7
 
 *   cleaner header.

@@ -79,18 +79,18 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   primary: &primary_production
     <<: *default
-    database: rubyllm_chat_app_production
-    username: rubyllm_chat_app
-    password: <%= ENV["RUBYLLM_CHAT_APP_DATABASE_PASSWORD"] %>
+    url: <%= ENV["DATABASE_URL"] %>
   cache:
     <<: *primary_production
     database: rubyllm_chat_app_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: rubyllm_chat_app_production_queue
+    url: <%= ENV["DATABASE_URL"] %>
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
