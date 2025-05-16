@@ -1,6 +1,11 @@
 ## CHANGELOG
 
 
+## v0.2.6
+
+*   Implemented background job (`AutotitleChatsJob`) and secure endpoint (`/jobs/autotitle_chats`) for scheduled chat auto-titling via Cloud Scheduler.
+* This change requierd a change in Riccardo's `.env` -> so i need to add a `.env.dist` ASAP
+
 ## v0.2.5
 
 *   Removed "You" and "Bot" labels from messages, using emojis instead.

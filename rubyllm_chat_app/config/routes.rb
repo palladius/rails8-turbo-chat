@@ -22,4 +22,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # Route for Cloud Scheduler to trigger the autotitle job
+  post '/jobs/autotitle_chats', to: 'jobs#autotitle_chats'
+  # GET route for local testing purposes only
+  get '/jobs/autotitle_chats', to: 'jobs#autotitle_chats'
 end
