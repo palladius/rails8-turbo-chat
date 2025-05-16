@@ -19,7 +19,7 @@
     <% unless message.system? %> <%# Don't show role label for system messages %>
       <div class="flex items-start <%= message.role == 'user' ? 'font-bold' : '' %>">
         <strong class="text-sm capitalize text-gray-300 mr-2">
-          <%= message.role == 'assistant' ? '🤖 Bot' : (message.role == 'user' ? '👤 You' : message.role.capitalize) %>
+          <%= message.role == 'assistant' ? '🤖' : (message.role == 'user' ? '👤' : message.role.capitalize) %>
         </strong>
         <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-full break-words <%= message.role == 'user' ? 'text-gray-200' : 'text-gray-100' %> text-sm md:text-base">
           <%# Render initial content. Streaming will append here. %>

@@ -10,3 +10,11 @@
 .message .prose {
   /* Customize prose styles if needed, e.g., smaller font */
 }
+
+.chat-sidebar-container {
+  transition: transform 0.3s ease-in-out;
+}
+
+.chat-sidebar-container.sidebar-open .w-full.md\:w-3\/4 {
+  display: none;
+}

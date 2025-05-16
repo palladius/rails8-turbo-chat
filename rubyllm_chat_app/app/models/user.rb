@@ -10,4 +10,13 @@ class User < ApplicationRecord
 
   # Validations (Devise handles email/password, add one for name)
   #validates :name, presence: true, length: { minimum: 2 }
+
+
+  # if name given, good. If not, use email before domain instead.
+  def name_or_email
+    name.present? ?
+      name :
+      email.split('@')[0]
+  end
+
 end

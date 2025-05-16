@@ -1,6 +1,15 @@
 ## CHANGELOG
 
 
+## v0.2.5
+
+*   Removed "You" and "Bot" labels from messages, using emojis instead.
+*   Updated mobile chat sidebar to hide the current chat when the sidebar is open.
+*   Improved user name/email display in header: bold, title-cased, and prepended with a human emoji.
+*   Made the main header title a link to the home page.
+*   Added a separate "Home" link to the header.
+*   Abbreviated environment indicator in header to "(dev)" or "(prod)".
+
 ## v0.2.4 (UI)
 
 * Added environment indicator (DEV/PROD/TEST) to the footer.
