@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+## v0.3.0
+
+*   Added support for Gemini API key per user, including database migration, permitting the parameter in Devise, and displaying a key emoji in the header if a valid key is present.
+*   Note API isnt used anywhere yet. We're just configuring the DB for BYO Gemini Key.
+
 ## v0.2.8
 
 *   fixing productions, disabling some HTTPS requirements... the usual.

@@ -19,4 +19,7 @@ class User < ApplicationRecord
       email.split('@')[0]
   end
 
+  def has_valid_gemini_key?
+    gemini_api_key.present? && gemini_api_key.start_with?('AIza')
+  end
 end

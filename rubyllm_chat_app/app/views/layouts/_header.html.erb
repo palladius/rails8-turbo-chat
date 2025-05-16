@@ -9,7 +9,7 @@
       <%= link_to "🏠", root_path, class: "text-blue-400 hover:underline text-sm" %>
       <%= link_to "About", about_path, class: "text-blue-400 hover:underline text-sm" %>
       <% if user_signed_in? %>
-        <span class="text-gray-400">👋 <strong class="font-bold"><%= current_user.name_or_email.titleize %></strong></span>
+        <span class="text-gray-400">👋 <strong class="font-bold"><%= current_user.name_or_email.titleize %> <% if current_user.has_valid_gemini_key? %>🔑<% end %></strong></span>
         <%= link_to "Edit Profile", edit_user_registration_path, class: "text-blue-400 hover:underline text-sm" %>
         <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm" %>
       <% else %>
