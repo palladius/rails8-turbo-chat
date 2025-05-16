@@ -21,14 +21,14 @@
         <strong class="text-sm capitalize text-gray-300 mr-2">
           <%= message.role == 'assistant' ? '🤖 Bot' : (message.role == 'user' ? '👤 You' : message.role.capitalize) %>
         </strong>
-        <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-full break-words <%= message.role == 'user' ? 'text-gray-200' : 'text-gray-100' %>">
+        <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-full break-words <%= message.role == 'user' ? 'text-gray-200' : 'text-gray-100' %> text-sm md:text-base">
           <%# Render initial content. Streaming will append here. %>
           <%= markdown_to_html(message.content) %>
         </div>
       </div>
     <% else %>
       <%# System messages are centered and italic %>
-      <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-none break-words text-gray-300 text-xs italic mx-auto my-2">
+      <div id="<%= dom_id(message, :content) %>" class="prose prose-sm max-w-none break-words text-gray-300 text-xs italic mx-auto my-2 text-sm md:text-base">
         <%= markdown_to_html(message.content) %>
       </div>
     <% end %>
