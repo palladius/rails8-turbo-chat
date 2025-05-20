@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+## v0.3.3
+
+* Adding Riccardo Zurich server to allowed hosts to test MCP from `MCP Inspector v0.12.0`. I know, should be parsed from `ENV`...
+* Added chat title auto-refinement. Works like a charm!
+
 ## v0.3.2
 
 * Adding useful functionalties.
