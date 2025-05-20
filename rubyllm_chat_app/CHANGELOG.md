@@ -1,5 +1,11 @@
 ## CHANGELOG
 
+
+## v0.3.8 - on 20250520
+
+* Added favicon.
+* changing Procfile to not need the Facebook File Watcher since i cant install on derek.
+
 ## v0.3.7
 
 * Added a '/config' page.

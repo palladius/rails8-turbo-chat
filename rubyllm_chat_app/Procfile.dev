@@ -1,2 +1,2 @@
 web: bin/rails server
-css: bin/rails tailwindcss:watch
+css: CHOKIDAR_USEPOLLING=true bin/rails tailwindcss:watch
