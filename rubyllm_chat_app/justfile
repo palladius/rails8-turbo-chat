@@ -88,3 +88,8 @@ docker-build:
 
 docker-run:
     docker run -it -p 8080:8080 r8tc
+
+
+# MCP
+mcp-test:
+    curl http://localhost:8080/mcp/sse

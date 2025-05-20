@@ -96,6 +96,8 @@ gem 'pry-rails'
 gem "kramdown"
 gem "kramdown-parser-gfm" # For GitHub Flavored Markdown support
 gem 'rainbow'
+# MCP
+gem "fast-mcp", "~> 1.4"
 
 ################################
 # /Riccardo END

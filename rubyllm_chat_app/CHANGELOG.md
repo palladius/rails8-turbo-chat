@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+## v0.3.1
+
+* adding `fast_mcp` MCP support as per https://learnitnow.medium.com/bridging-the-gap-connecting-python-ai-agents-to-ruby-apps-with-mcp-614977012399
+
 ## v0.3.0
 
 *   Added support for Gemini API key per user, including database migration, permitting the parameter in Devise, and displaying a key emoji in the header if a valid key is present.
