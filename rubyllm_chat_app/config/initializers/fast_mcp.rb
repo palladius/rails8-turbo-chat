@@ -19,10 +19,6 @@
 # You can customize the options below to fit your needs.
 require 'fast_mcp'
 
-  #   # MCP server responds otherwise with
-  #   # {"jsonrpc":"2.0","error":{"code":-32600,"message":"Forbidden: Remote IP not allowed"},"id":null}
-Rails.application.config.hosts <<  '104.135.186.22'  # Riccardo's work server IPv4
-Rails.application.config.hosts << '[2001:4860:7:162f::fa]' # Riccardo's work server IPv6
 
 FastMcp.mount_in_rails(
   Rails.application,
@@ -30,7 +26,7 @@ FastMcp.mount_in_rails(
   version: '1.0.2',
   path_prefix: '/mcp', # This is the default path prefix
   messages_route: 'messages', # This is the default route for the messages endpoint
-  sse_route: 'sse' # This is the default route for the SSE endpoint
+  sse_route: 'sse', # This is the default route for the SSE endpoint
   # Add allowed origins below, it defaults to Rails.application.config.hosts
   # allowed_origins: [
   #   'localhost', '127.0.0.1', '[::1]',
@@ -38,8 +34,10 @@ FastMcp.mount_in_rails(
   # ]
 
   # localhost_only: true, # Set to false to allow connections from other hosts
+  localhost_only: false,
   # whitelist specific ips to if you want to run on localhost and allow connections from other IPs
-  # allowed_ips: ['127.0.0.1', '::1']
+  allowed_ips: [    '127.0.0.1', '::1'] + RICC_ALLOWED_HOSTS,
+
   # authenticate: true,       # Uncomment to enable authentication
   # auth_token: 'your-token', # Required if authenticate: true
 ) do |server|

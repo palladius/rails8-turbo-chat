@@ -1,9 +1,15 @@
 ## CHANGELOG
 
+## v0.3.4
+
+* Fixing the remote IPs and trying again to allow Derek to connect to MCP remote server..
+    * Next step would be to parse an array of IPs from ENV to make this viable.
+
 ## v0.3.3
 
 * Adding Riccardo Zurich server to allowed hosts to test MCP from `MCP Inspector v0.12.0`. I know, should be parsed from `ENV`...
 * Added chat title auto-refinement. Works like a charm!
+* Devise::Models::Authenticatable::BLACKLIST_FOR_SERIALIZATION << :gemini_api_key
 
 ## v0.3.2
 
