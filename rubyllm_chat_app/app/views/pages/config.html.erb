@@ -1,28 +1,12 @@
 <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 py-8 bg-gray-800 rounded-lg shadow-xl max-w-3xl text-gray-100">
   <h1 class="text-3xl font-bold mb-8 text-center text-sky-400">⚙️ Application Configuration</h1>
 
-  <div class="space-y-6">
-    <%# --- RICCARDOS_FAVOURITE_DEV_MODEL --- %>
-    <div class="flex items-center">
-      <div class="text-sm font-medium text-gray-400 mr-2">RICCARDOS_FAVOURITE_DEV_MODEL:</div>
-      <% fav_model = RICCARDOS_FAVOURITE_DEV_MODEL %>
-      <% if fav_model.present? %>
-        <span class="font-semibold text-teal-300"><%= fav_model %></span>
-      <% else %>
-        <span class="text-gray-500 italic">Not set</span>
-      <% end %>
-    </div>
-
-    <%# --- DEFAULT_LLM_MODEL --- %>
-    <div class="flex items-center">
-      <div class="text-sm font-medium text-gray-400 mr-2">DEFAULT_LLM_MODEL:</div>
-      <% default_model = DEFAULT_LLM_MODEL %>
-      <% if default_model.present? %>
-        <span class="font-semibold text-teal-300"><%= default_model %></span>
-      <% else %>
-        <span class="text-gray-500 italic">Not set</span>
-      <% end %>
-    </div>
+  <div class="space-y-3">
+    <%= display_env_variable("RICCARDOS_FAVOURITE_DEV_MODEL", RICCARDOS_FAVOURITE_DEV_MODEL) %>
+    <%= display_env_variable("DEFAULT_LLM_MODEL", DEFAULT_LLM_MODEL) %>
+    <%= display_env_variable("PROJECT_ID", ENV["PROJECT_ID"]) %>
+    <%= display_env_variable("GCLOUD_REGION", ENV["GCLOUD_REGION"]) %>
+    <%= display_env_variable("PORT", ENV["PORT"]) %>
 
     <%# --- RICC_ALLOWED_HOSTS --- %>
     <div class="flex items-center">
