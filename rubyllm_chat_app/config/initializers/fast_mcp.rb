@@ -27,7 +27,11 @@ FastMcp.mount_in_rails(
   messages_route: 'messages', # This is the default route for the messages endpoint
   sse_route: 'sse' # This is the default route for the SSE endpoint
   # Add allowed origins below, it defaults to Rails.application.config.hosts
-  # allowed_origins: ['localhost', '127.0.0.1', '[::1]', 'example.com', /.*\.example\.com/],
+  allowed_origins: [
+    'localhost', '127.0.0.1', '[::1]',
+    #'example.com', /.*\.example\.com/,
+    '104.135.186.22', '[2001:4860:7:162f::fa]' # Riccardo's work server
+  ],
   # localhost_only: true, # Set to false to allow connections from other hosts
   # whitelist specific ips to if you want to run on localhost and allow connections from other IPs
   # allowed_ips: ['127.0.0.1', '::1']
