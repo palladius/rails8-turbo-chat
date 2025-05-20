@@ -159,6 +159,7 @@ gcloud --project "$CLOUDRUN_PROJECT_ID" \
       --set-env-vars="RUBY_YJIT_ENABLE=true" \
       --set-env-vars="GEMINI_API_KEY=$GEMINI_API_KEY" \
       --set-env-vars="GIT_LAST_COMMENT=$GIT_LAST_COMMENT" \
+      --set-env-vars="ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
       --set-env-vars=ENABLE_GCP='true' \
       --set-env-vars=APP_NAME="$APP_NAME" \
       --allow-unauthenticated

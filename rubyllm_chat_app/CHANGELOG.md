@@ -4,6 +4,7 @@
 
 * Added a '/config' page.
 * (a) adding some ENV to cloud build for dev..
+* (b) adding to also deploy script or wont be used
 
 ## v0.3.6
 

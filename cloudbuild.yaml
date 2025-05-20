@@ -146,3 +146,5 @@ steps:
   - 'GEMINI_API_KEY=$_GEMINI_API_KEY'
   # dev only for now TODO add prod too.
   - 'CLOUD_RUN_ENDPOINT=$_CLOUD_RUN_ENDPOINT'
+  # todo refactor in common place. EMPTY for prod - more secure.
+  - 'ALLOWED_ORIGINS='
