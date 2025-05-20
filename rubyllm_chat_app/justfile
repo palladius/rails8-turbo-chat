@@ -93,3 +93,6 @@ docker-run:
 # MCP
 mcp-test:
     curl http://localhost:8080/mcp/sse
+# MCP procy on port 6277, 6274, ..
+mcp-proxy:
+    npx @modelcontextprotocol/inspector

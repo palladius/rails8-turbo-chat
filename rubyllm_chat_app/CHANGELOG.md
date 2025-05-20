@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+## v0.3.10 - on 20250520
+
+* footer on bottom of page.
+* Added `<% console %>` in dev.
+* add a tool: `AppMetadata` super cool
 
 ## v0.3.9 - on 20250520
 
@@ -7,6 +12,7 @@
 
 Error: ERROR: (gcloud.beta.run.deploy) argument --set-env-vars: Bad syntax for dict arg: [2a00:79e0:2846:6:7dec:ea52:c63a:50f9]. Please see `gcloud topic flags-file` or `gcloud topic escaping` for information on providing list or dictionary flag values with special characters.
 
+* and now MCP finally works ! Yay! https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/mcp/sse
 
 ## v0.3.8 - on 20250520
 

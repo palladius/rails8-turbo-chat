@@ -20,3 +20,7 @@
     <% end %>
   </div>
 </footer>
+
+<% if Rails.env.development? && request.local? %>
+  <%= console %>
+<% end %>
