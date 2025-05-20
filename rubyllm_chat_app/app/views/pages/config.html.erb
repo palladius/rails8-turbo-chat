@@ -1,0 +1,79 @@
+<div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 py-8 bg-gray-800 rounded-lg shadow-xl max-w-3xl text-gray-100">
+  <h1 class="text-3xl font-bold mb-8 text-center text-sky-400">⚙️ Application Configuration</h1>
+
+  <div class="space-y-6">
+    <%# --- RICCARDOS_FAVOURITE_DEV_MODEL --- %>
+    <div>
+      <dt class="text-sm font-medium text-gray-400">RICCARDOS_FAVOURITE_DEV_MODEL:</dt>
+      <dd class="mt-1 text-lg">
+        <% fav_model = RICCARDOS_FAVOURITE_DEV_MODEL %>
+        <% if fav_model.present? %>
+          <span class="font-semibold text-teal-300"><%= fav_model %></span>
+        <% else %>
+          <span class="text-gray-500 italic">Not set</span>
+        <% end %>
+      </dd>
+    </div>
+
+    <%# --- DEFAULT_LLM_MODEL --- %>
+    <div>
+      <dt class="text-sm font-medium text-gray-400">DEFAULT_LLM_MODEL:</dt>
+      <dd class="mt-1 text-lg">
+        <% default_model = DEFAULT_LLM_MODEL %>
+        <% if default_model.present? %>
+          <span class="font-semibold text-teal-300"><%= default_model %></span>
+        <% else %>
+          <span class="text-gray-500 italic">Not set</span>
+        <% end %>
+      </dd>
+    </div>
+
+    <%# --- RICC_ALLOWED_HOSTS --- %>
+    <div>
+      <dt class="text-sm font-medium text-gray-400">RICC_ALLOWED_HOSTS:</dt>
+      <dd class="mt-1">
+        <% hosts_value = RICC_ALLOWED_HOSTS %>
+        <% hosts_array = [] %>
+        <% if hosts_value.is_a?(String) %>
+          <% hosts_array = hosts_value.split(',').map(&:strip).reject(&:empty?) %>
+        <% elsif hosts_value.respond_to?(:to_a) %>
+          <% hosts_array = hosts_value.to_a.map(&:to_s).map(&:strip).reject(&:empty?) %>
+        <% end %>
+
+        <% if hosts_array.any? %>
+          <div class="flex flex-wrap gap-2">
+            <% hosts_array.each do |host| %>
+              <tt class="font-bold bg-gray-700 px-3 py-1 rounded-md text-sky-300 shadow break-words"><%= host %></tt>
+            <% end %>
+          </div>
+        <% else %>
+          <span class="text-gray-500 italic">Not set or empty</span>
+        <% end %>
+      </dd>
+    </div>
+
+    <%# --- ALLOWED_ORIGINS --- %>
+    <div>
+      <dt class="text-sm font-medium text-gray-400">ALLOWED_ORIGINS:</dt>
+      <dd class="mt-1">
+        <% origins_value = ALLOWED_ORIGINS %>
+        <% origins_array = [] %>
+        <% if origins_value.is_a?(String) %>
+          <% origins_array = origins_value.split(',').map(&:strip).reject(&:empty?) %>
+        <% elsif origins_value.respond_to?(:to_a) %>
+          <% origins_array = origins_value.to_a.map(&:to_s).map(&:strip).reject(&:empty?) %>
+        <% end %>
+
+        <% if origins_array.any? %>
+          <div class="flex flex-wrap gap-2">
+            <% origins_array.each do |origin| %>
+              <tt class="font-bold bg-gray-700 px-3 py-1 rounded-md text-sky-300 shadow break-words"><%= origin %></tt>
+            <% end %>
+          </div>
+        <% else %>
+          <span class="text-gray-500 italic">Not set or empty</span>
+        <% end %>
+      </dd>
+    </div>
+  </div>
+</div>

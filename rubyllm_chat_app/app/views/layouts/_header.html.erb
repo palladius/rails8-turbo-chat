@@ -8,6 +8,7 @@
     <div class="flex items-center space-x-4">
       <%= link_to "🏠", root_path, class: "text-blue-400 hover:underline text-sm" %>
       <%= link_to "About", about_path, class: "text-blue-400 hover:underline text-sm" %>
+      <%= link_to "⚙️Config", config_path, class: "text-blue-400 hover:underline text-sm" %>
       <%= link_to "🔌MCP", '/mcp/sse', class: "text-blue-400 hover:underline text-sm" %>
 
       <% if user_signed_in? %>

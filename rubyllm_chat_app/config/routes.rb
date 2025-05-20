@@ -1,6 +1,7 @@
 # typed: false
 Rails.application.routes.draw do
   get "/about", to: "pages#about"
+  get "/config", to: "pages#config"
   # Devise routes for authentication
   devise_for :users
 

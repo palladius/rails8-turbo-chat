@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+## v0.3.7
+
+* Added a '/config' page.
+
 ## v0.3.6
 
 * ALLOW HOSTS refactoring, maybe its better now.
