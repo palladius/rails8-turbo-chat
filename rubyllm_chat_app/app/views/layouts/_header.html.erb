@@ -8,6 +8,8 @@
     <div class="flex items-center space-x-4">
       <%= link_to "🏠", root_path, class: "text-blue-400 hover:underline text-sm" %>
       <%= link_to "About", about_path, class: "text-blue-400 hover:underline text-sm" %>
+      <%= link_to "🔌MCP", '/mcp/sse', class: "text-blue-400 hover:underline text-sm" %>
+
       <% if user_signed_in? %>
         <span class="text-gray-400">👋 <strong class="font-bold"><%= current_user.name_or_email.titleize %> <% if current_user.has_valid_gemini_key? %>🔑<% end %></strong></span>
         <%= link_to "Edit Profile", edit_user_registration_path, class: "text-blue-400 hover:underline text-sm" %>

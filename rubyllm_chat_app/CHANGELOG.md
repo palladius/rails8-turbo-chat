@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+## v0.3.5
+
+* added silly yet convenient MCP link on top
+
 ## v0.3.4
 
 * Fixing the remote IPs and trying again to allow Derek to connect to MCP remote server..

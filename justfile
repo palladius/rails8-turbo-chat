@@ -36,3 +36,8 @@ derek-fix-gems:
 
 dev:
     cd app && just dev
+
+# tests the forbidden origin MCP error oneliner.
+test-mcp-remote:
+    curl https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/mcp/sse
+    @echo
