@@ -23,21 +23,17 @@ require 'fast_mcp'
 FastMcp.mount_in_rails(
   Rails.application,
   name: Rails.application.class.module_parent_name.underscore.dasherize,
-  version: '1.0.2',
+  version: '1.0.3',
   path_prefix: '/mcp', # This is the default path prefix
   messages_route: 'messages', # This is the default route for the messages endpoint
   sse_route: 'sse', # This is the default route for the SSE endpoint
   # Add allowed origins below, it defaults to Rails.application.config.hosts
-  allowed_origins: [
-    'localhost', '127.0.0.1', '[::1]',
-  #   #'example.com', /.*\.example\.com/,
-  ] + RICC_ALLOWED_HOSTS,
-
+  allowed_origins: RICC_ALLOWED_HOSTS,
   # localhost_only: true, # Set to false to allow connections from other hosts
   localhost_only: false,
   # whitelist specific ips to if you want to run on localhost and allow connections from other IPs
-  allowed_ips: [    '127.0.0.1', '::1'] + RICC_ALLOWED_HOSTS,
-
+  #allowed_ips: ['127.0.0.1', '::1'] + RICC_ALLOWED_HOSTS,
+  allowed_ips: RICC_ALLOWED_HOSTS,
   # authenticate: true,       # Uncomment to enable authentication
   # auth_token: 'your-token', # Required if authenticate: true
 ) do |server|

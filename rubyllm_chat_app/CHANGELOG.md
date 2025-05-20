@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+## v0.3.6
+
+* ALLOW HOSTS refactoring, maybe its better now.
+* also removed auth for /mcp/ paths..
+
 ## v0.3.5
 
 * added silly yet convenient MCP link on top
