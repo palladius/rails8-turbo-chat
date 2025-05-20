@@ -11,9 +11,11 @@ RICC_ALLOWED_HOSTS = [
   '127.0.0.1',
   '::1',
   '104.135.186.22' , # Riccardo's work server IPv4
-  '[2001:4860:7:162f::fa]', # Riccardo's work server IPv6
-  '[2001:4860:7:152f::fe]', # Riccardo's work server IPv6 at 15:05
+  '2001:4860:7:162f::fa', # Riccardo's work server IPv6
+  '2001:4860:7:152f::fe', # Riccardo's work server IPv6 at 15:05
   '[2a00:79e0:2846:6:8068:8006:f319:4a7]',
+  '[2a00:79e0:2846:6:8068:8006:f319:4a7]',
+  '2a00:79e0:2846:6:8068:8006:f319:4a7',
   # https://guides.rubyonrails.org/configuring.html
   IPAddr.new("::/0"),             # All IPv6 addresses.
   /.*\.google\.com/, # google.com and all subdomains
