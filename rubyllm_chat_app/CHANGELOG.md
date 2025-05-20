@@ -4,12 +4,15 @@
 
 * Fixing the remote IPs and trying again to allow Derek to connect to MCP remote server..
     * Next step would be to parse an array of IPs from ENV to make this viable.
+* Ok now it fails differently:
+    *  `{"jsonrpc":"2.0","error":{"code":-32600,"message":"Forbidden: Origin validation failed"},"id":null}`
 
 ## v0.3.3
 
 * Adding Riccardo Zurich server to allowed hosts to test MCP from `MCP Inspector v0.12.0`. I know, should be parsed from `ENV`...
 * Added chat title auto-refinement. Works like a charm!
-* Devise::Models::Authenticatable::BLACKLIST_FOR_SERIALIZATION << :gemini_api_key
+* Fixing the Gemini API Key in `User.all.to_json` thanks to this:
+    * `Devise::Models::Authenticatable::BLACKLIST_FOR_SERIALIZATION << :gemini_api_key`
 
 ## v0.3.2
 
