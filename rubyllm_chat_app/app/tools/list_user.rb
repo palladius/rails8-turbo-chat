@@ -6,7 +6,7 @@ class ListUser < ApplicationTool
 
   def call
       User.all.map do |user|
-          { name: user.name, email: user.email }
+          { id: user.id, name: user.name, email: user.email }
       end.to_json
   end
 end

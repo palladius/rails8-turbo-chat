@@ -1,5 +1,11 @@
 ## CHANGELOG
 
+## v0.3.2
+
+* Adding useful functionalties.
+* `list_user.rb` / `create_user` allows to list/create users. Creation failed due to missing (mandatory) password in input.
+* `chat_list.rb` gives a list of chats. This is coming so well from my python client!
+
 ## v0.3.1
 
 * adding `fast_mcp` MCP support as per https://learnitnow.medium.com/bridging-the-gap-connecting-python-ai-agents-to-ruby-apps-with-mcp-614977012399

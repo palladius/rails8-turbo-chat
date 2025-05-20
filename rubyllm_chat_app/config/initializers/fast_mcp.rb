@@ -22,7 +22,7 @@ require 'fast_mcp'
 FastMcp.mount_in_rails(
   Rails.application,
   name: Rails.application.class.module_parent_name.underscore.dasherize,
-  version: '1.0.0',
+  version: '1.0.2',
   path_prefix: '/mcp', # This is the default path prefix
   messages_route: 'messages', # This is the default route for the messages endpoint
   sse_route: 'sse' # This is the default route for the SSE endpoint
@@ -43,5 +43,7 @@ FastMcp.mount_in_rails(
     # alternatively, you can register tools and resources manually:
     # server.register_tool(MyTool)
     # server.register_resource(MyResource)
+    #server.register_tool(CreateUser)
+    #server.register_tool(ListUser)
   end
 end

@@ -19,6 +19,11 @@ Chats are saved in Activerecord (needs to be PostgreSQL for now). Conversation i
     * ♦️ `kramdown` & `kramdown-parser-gfm` 📝 - For making Markdown look pretty, especially with GitHub flavors.
     * ♦️ `rainbow` 🌈 - Adds a splash of color to terminal output, makes things easier to read!
 
+Features:
+
+* Since `v0.3.1`, ability to provide SSE-transport MCP functionality. Sample URL: http://localhost:8080/mcp/sse
+
+
 ## RUN
 
 ```bash
