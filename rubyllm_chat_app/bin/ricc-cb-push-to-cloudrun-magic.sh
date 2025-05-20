@@ -140,6 +140,9 @@ echo 'WARNING: For this to work you need to 1. upload your ENVRC to Secret MAnag
 # Riccardo in europe-west1 - TODO move to ENV stuff
 # Redis: 10.103.87.131:6379
 
+# Removed  --set-env-vars="ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
+# See 0.3.9 error in CHANGELOG.md
+
 gcloud --project "$CLOUDRUN_PROJECT_ID" \
     beta run deploy "$APP_TO_DEPLOY" \
       --image  "$UPLOADED_IMAGE_WITH_VER" \
@@ -159,7 +162,6 @@ gcloud --project "$CLOUDRUN_PROJECT_ID" \
       --set-env-vars="RUBY_YJIT_ENABLE=true" \
       --set-env-vars="GEMINI_API_KEY=$GEMINI_API_KEY" \
       --set-env-vars="GIT_LAST_COMMENT=$GIT_LAST_COMMENT" \
-      --set-env-vars="ALLOWED_ORIGINS=$ALLOWED_ORIGINS" \
       --set-env-vars=ENABLE_GCP='true' \
       --set-env-vars=APP_NAME="$APP_NAME" \
       --allow-unauthenticated

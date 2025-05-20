@@ -1,6 +1,13 @@
 ## CHANGELOG
 
 
+## v0.3.9 - on 20250520
+
+* reverting the ALLOWED_ORIGINS part
+
+Error: ERROR: (gcloud.beta.run.deploy) argument --set-env-vars: Bad syntax for dict arg: [2a00:79e0:2846:6:7dec:ea52:c63a:50f9]. Please see `gcloud topic flags-file` or `gcloud topic escaping` for information on providing list or dictionary flag values with special characters.
+
+
 ## v0.3.8 - on 20250520
 
 * Added favicon.
