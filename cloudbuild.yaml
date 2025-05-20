@@ -121,6 +121,8 @@ steps:
   - 'GCLOUD_REGION=$_GCLOUD_REGION'
   # dev only for now
   - 'CLOUD_RUN_ENDPOINT=$_CLOUD_RUN_ENDPOINT'
+  # got from derek ifconfig!
+  - 'ALLOWED_ORIGINS=2a00:79e0:2846:6:8068:8006:f319:4a7,2a00:79e0:2846:6:7dec:ea52:c63a:50f9,2a00:79e0:2846:6:f6b4:dcc:ead9:441f'
 
 # Questo finalmente funge!
 - name: 'gcr.io/cloud-builders/gcloud'

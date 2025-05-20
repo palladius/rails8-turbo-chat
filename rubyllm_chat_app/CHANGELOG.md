@@ -3,6 +3,7 @@
 ## v0.3.7
 
 * Added a '/config' page.
+* (a) adding some ENV to cloud build for dev..
 
 ## v0.3.6
 
