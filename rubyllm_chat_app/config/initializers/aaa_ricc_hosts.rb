@@ -18,6 +18,7 @@ base_hosts =  [
   IPAddr.new("::/0"),             # All IPv6 addresses.
   #/.*\.google\.com/, # google.com and all subdomains
   'rails8-turbo-chat-dev-272932496670.europe-west10.run.app',
+  '178.197.218.28', # Riccardo's mobile IPv4
 ].uniq
 
 COMMA_SEPARATED_ALLOWED_ORIGINS = ENV.fetch('COMMA_SEPARATED_ALLOWED_ORIGINS', nil)

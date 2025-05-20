@@ -7,7 +7,7 @@
 * changing Procfile to not need the Facebook File Watcher since i cant install on derek.
 * (B) trying Cloud Run in origin (who knows maybe its on th other side?!?)
 * (c) better config
-
+* (d) ricc mobile
 
 ## v0.3.7
 
