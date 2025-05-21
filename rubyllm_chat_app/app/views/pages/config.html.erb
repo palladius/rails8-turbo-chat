@@ -71,10 +71,12 @@
     You can call it with the `AppMetadata` tool. Here's a nice view of it.</p>
     <div class="flex flex-col space-y-2">
       <% app_metadata.each do |key, value| %>
-        <!-- NON VA <div class="grid grid-cols-[auto,1fr] gap-4 items-start"> -->
+        <!-- NON VA <div class="grid grid-cols-[auto,1fr] gap-4 items-start">
+          Also consider using key.to_s.humanize instead of key. but i want the REAL thing.
+        -->
         <div class="grid grid-cols-[25%_75%] gap-4 items-start">
 
-          <span class="text-sky-300 font-mono text-left"><%= key.to_s.humanize %>:</span>
+          <span class="text-sky-300 font-mono text-left"><%= key %>:</span>
           <tt class="font-bold bg-gray-700 px-3 py-1 rounded-md text-sky-300 shadow text-left"><%= value %></tt>
         </div>
       <% end %>

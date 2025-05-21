@@ -1,7 +1,11 @@
 module ApplicationHelper
   def app_metadata
     {
-      app_name: 'RubyLLM Chat App',
+      APP_NAME: APP_NAME, # 'RubyLLM Chat App',
+      APP_EMOJI: APP_EMOJI,
+      SHORT_APP_NAME: SHORT_APP_NAME,
+      DEBUG: DEBUG,
+      GIT_LAST_COMMENT: GIT_LAST_COMMENT,
       #version: defined?(APP_VERSION) ? APP_VERSION : 'N/A',
       version: APP_VERSION,
       source: 'app/helpers/application_helper.rb',
@@ -11,6 +15,8 @@ module ApplicationHelper
       # TODO(ricc): add more metadata
       dev_mcp_url: CLOUD_RUN_ENDPOINTS[:dev] + "mcp/sse", # has trailing / so this is correct
       prod_mcp_url: CLOUD_RUN_ENDPOINTS[:prod] + "/mcp/sse",
+
+      occasional_message: ENV.fetch('OCCASIONAL_MESSAGE', '😕 Sorry, ENV[OCCASIONAL_MESSAGE] not set.'),
 
     }
   end
