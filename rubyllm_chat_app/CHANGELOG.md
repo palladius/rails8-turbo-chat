@@ -1,5 +1,10 @@
 ## CHANGELOG
 
+## v0.3.11 - on 20250521
+
+* Improved styling and layout of the /config page for better readability of app metadata.
+* Added MCP links to `app_metadata()`.
+
 ## v0.3.10 - on 20250520
 
 * footer on bottom of page.

@@ -10,7 +10,7 @@ module ApplicationHelper
       prod_url: CLOUD_RUN_ENDPOINTS[:prod],
       # TODO(ricc): add more metadata
       dev_mcp_url: CLOUD_RUN_ENDPOINTS[:dev] + "mcp/sse", # has trailing / so this is correct
-      #prod_mcp_url: CLOUD_RUN_ENDPOINTS[:prod] + "/mcp/sse",
+      prod_mcp_url: CLOUD_RUN_ENDPOINTS[:prod] + "/mcp/sse",
 
     }
   end

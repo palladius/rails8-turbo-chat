@@ -25,6 +25,11 @@ prod-setup:
     DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails db:migrate
     ./bin/rails assets:precompile
 
+dev-with-assets-precompile:
+    ./bin/rails assets:precompile
+    just dev
+
+
 # Looks like LOCAL_PROD=true helps
 # [PROD] runs rails in prod
 run-prod:

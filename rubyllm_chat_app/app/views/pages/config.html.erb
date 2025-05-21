@@ -1,13 +1,22 @@
-<div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 py-8 bg-gray-800 rounded-lg shadow-xl max-w-3xl text-gray-100">
-  <h1 class="text-3xl font-bold mb-8 text-center text-sky-400">⚙️ Application Configuration</h1>
+<div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8 py-8 bg-gray-800 rounded-lg shadow-xl max-w-5xl text-gray-100">
+  <h1 class="text-3xl font-bold mb-4 text-center text-sky-400">⚙️ Application Configuration</h1>
 
   <div class="space-y-3">
+    <p> APP variables from config/:</p>
+
     <%= display_env_variable("APP_VERSION", APP_VERSION) %>
     <%= display_env_variable("RICCARDOS_FAVOURITE_DEV_MODEL", RICCARDOS_FAVOURITE_DEV_MODEL) %>
     <%= display_env_variable("DEFAULT_LLM_MODEL", DEFAULT_LLM_MODEL) %>
+
+    <p> ENV variables: </p>
+
     <%= display_env_variable("PROJECT_ID", ENV["PROJECT_ID"]) %>
     <%= display_env_variable("GCLOUD_REGION", ENV["GCLOUD_REGION"]) %>
+    <%= display_env_variable("OCCASIONAL_MESSAGE", ENV["OCCASIONAL_MESSAGE"]) %>
     <%= display_env_variable("PORT", ENV["PORT"]) %>
+    <%= display_env_variable("CLOUD_RUN_ENDPOINT_DEV", ENV["CLOUD_RUN_ENDPOINT_DEV"]) %>
+    <%= display_env_variable("CLOUD_RUN_ENDPOINT_PROD", ENV["CLOUD_RUN_ENDPOINT_PROD"]) %>
+
 
     <%# --- RICC_ALLOWED_HOSTS --- %>
     <div class="flex items-center">
@@ -57,10 +66,18 @@
 
     <%# --- RICC_ALLOWED_HOSTS --- %>
     <h2 class="text-xl font-bold mb-4 text-sky-400">App Metadata:</h2>
-    <div class="flex items-center">
 
-      <div class="text-sm font-medium text-gray-400 mr-2">App Metadata:</div>
-           <pre><%= app_metadata.to_json %></pre>
+    <p class="text-gray-400 text-center mb-8"> <tt>app_metadata()</tt> produces a JSON file provided to MCP clients with a summary of important (and public) metadata.
+    You can call it with the `AppMetadata` tool. Here's a nice view of it.</p>
+    <div class="flex flex-col space-y-2">
+      <% app_metadata.each do |key, value| %>
+        <!-- NON VA <div class="grid grid-cols-[auto,1fr] gap-4 items-start"> -->
+        <div class="grid grid-cols-[25%_75%] gap-4 items-start">
 
-  </div>
+          <span class="text-sky-300 font-mono text-left"><%= key.to_s.humanize %>:</span>
+          <tt class="font-bold bg-gray-700 px-3 py-1 rounded-md text-sky-300 shadow text-left"><%= value %></tt>
+        </div>
+      <% end %>
+    </div>
+
 </div>
