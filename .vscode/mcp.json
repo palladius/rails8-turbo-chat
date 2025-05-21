@@ -14,6 +14,13 @@
             "type": "sse",
             "url": "http://localhost:8080/mcp/sse"
 
-        }
+        },
+        // not sure this works.
+        {
+            "cloud-run-from-my-friend-steren": {
+              "command": "npx",
+              "args": ["-y", "https://github.com/GoogleCloudPlatform/cloud-run-mcp"]
+            }
+          }
     }
 }

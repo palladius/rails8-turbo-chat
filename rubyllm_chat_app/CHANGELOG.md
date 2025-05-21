@@ -1,8 +1,9 @@
 ## CHANGELOG
 
-## v0.3.11 - on 20250521
+## v0.3.12 - on 20250521
 
 * Added commit hash and more vars to metadata.
+* (b) adding 2 cloud-run only ENVs.
 
 ## v0.3.11 - on 20250521
 

@@ -15,6 +15,12 @@ module ApplicationHelper
       #description: 'This is a Ruby on Rails application that uses the RubyLLM gem to provide a chat interface for interacting with large language models.',
       dev_url: CLOUD_RUN_ENDPOINTS[:dev],
       prod_url: CLOUD_RUN_ENDPOINTS[:prod],
+
+      # Cloud Run ENV: https://cloud.google.com/run/docs/configuring/services/overview-environment-variables
+      K_SERVICE: ENV['K_SERVICE'],
+      K_REVISION: ENV['K_REVISION'],
+      FUNCTION_TARGET: ENV['FUNCTION_TARGET'],
+
       # TODO(ricc): add more metadata
       dev_mcp_url: CLOUD_RUN_ENDPOINTS[:dev] + "mcp/sse", # has trailing / so this is correct
       prod_mcp_url: CLOUD_RUN_ENDPOINTS[:prod] + "/mcp/sse",
