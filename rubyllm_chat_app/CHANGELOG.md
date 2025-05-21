@@ -2,6 +2,10 @@
 
 ## v0.3.11 - on 20250521
 
+* Added commit hash and more vars to metadata.
+
+## v0.3.11 - on 20250521
+
 * Improved styling and layout of the /config page for better readability of app metadata.
 * Added MCP links to `app_metadata()`.
 

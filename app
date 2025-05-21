@@ -1,1 +1,0 @@
-rubyllm_chat_app/

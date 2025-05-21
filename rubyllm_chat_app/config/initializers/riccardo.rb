@@ -3,6 +3,7 @@ APP_NAME = 'Rails8 Gemini2.0 rubyllm Responsive App v2'
 APP_VERSION = File.read('VERSION').chomp
 APP_EMOJI = '🥨🍻'
 SHORT_APP_NAME = 'rails8-turbo-chat'
+GITHUB_REPO = 'https://github.com/palladius/rails8-turbo-chat'
 
 #RICC_CONFIG = {}
 #  auto_rename
@@ -10,6 +11,7 @@ CONFIG_AUTORENAME_TITLES = ENV.fetch('CONFIG_AUTORENAME_TITLES', 'false').to_s.d
 DEBUG = ENV.fetch('DEBUG', 'false').to_s.downcase == 'true'
 RAILS_MASTER_KEY =  ENV.fetch('RAILS_MASTER_KEY', nil) # .to_s.downcase == 'true'
 GIT_LAST_COMMENT = ENV.fetch('GIT_LAST_COMMENT', '[Last comment not available - likely this is running locally and not in the Cloud]')
+GIT_COMMIT_HASH = `git rev-parse --short HEAD`.strip rescue 'git rev-parse error'
 
 
 CLOUD_RUN_ENDPOINT_FROM_ENV = ENV.fetch('CLOUD_RUN_ENDPOINT', nil)
