@@ -5,9 +5,11 @@ class ChatList < ApplicationTool
 
   def call
       Chat.all.map do |chat|
-          { id: chat.id,
-          title: chat.title,
-          model_id: chat.model_id }
+          {
+            id: chat.id,
+            title: chat.title,
+            model_id: chat.model_id
+          }
       end.to_json
   end
 end

@@ -40,4 +40,7 @@ dev:
 # tests the forbidden origin MCP error oneliner.
 test-mcp-remote:
     curl https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/mcp/sse
-    @echo
+
+mcp-server-local:
+    echo "Try giving this: SEE // http://localhost:8080/mcp/sse"
+

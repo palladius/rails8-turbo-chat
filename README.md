@@ -21,7 +21,7 @@ Chats are saved in Activerecord (needs to be PostgreSQL for now). Conversation i
 
 Features:
 
-* Since `v0.3.1`, ability to provide SSE-transport MCP functionality. Sample URL: http://localhost:8080/mcp/sse
+* Since `v0.3.1`, ability to provide SSE-transport MCP functionality. Sample URL: http://localhost:8080/mcp/sse . You can test with `npx @modelcontextprotocol/inspector`
 
 
 ## RUN
