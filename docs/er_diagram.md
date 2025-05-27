@@ -13,10 +13,6 @@ This document explains the main models in the application and visualizes their r
 
 ```mermaid
 erDiagram
-    User ||--o{ Chat : has
-    Chat ||--o{ Message : contains
-    Message ||--o| ToolCall : initiates
-
     User {
         string email
         string encrypted_password
@@ -50,6 +46,10 @@ erDiagram
         datetime updated_at
         int message_id FK
     }
+
+    User ||--o{ Chat : has
+    Chat ||--o{ Message : contains
+    Message ||--o| ToolCall : initiates
 ```
 
 
@@ -57,4 +57,8 @@ erDiagram
 
 I've used this to create this page:
 
-*“Create a doc/er_diagram.md file which contains an explanation of what each model in app/models/ does, and fill it with a mermaid.js E/R diagram so it visualizes beautifully on github while also be easy to maintain as text”.*
+* “Create a doc/er_diagram.md file which contains an explanation of what each model in app/models/ does, and fill it with a mermaid.js E/R diagram so it visualizes beautifully on github while also be easy to maintain as text”.*
+
+Prompt2:
+
+* Silly question. the diagram has a huge verticality so it renders horribly on a picture (factor of shape is like 5 to 1). Can you force the 4 entities to be in some sort of square, like in a 2x2 square? I dont care where they are just theyf it in a square-ish.
