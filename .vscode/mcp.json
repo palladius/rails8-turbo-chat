@@ -1,16 +1,16 @@
 {
     "servers": {
-        "ricc-docker-time": {
-            "command": "docker",
-            "args": [
-                "run",
-                "-i",
-                "--rm",
-                "mcp/time"
-            ],
-            "env": {}
-        },
-        "riccardo-turborails8-mcp-server": {
+        // "ricc-docker-time": {
+        //     "command": "docker",
+        //     "args": [
+        //         "run",
+        //         "-i",
+        //         "--rm",
+        //         "mcp/time"
+        //     ],
+        //     "env": {}
+        // },
+        "riccardo-turborails8-mcp-server-localhost": {
             "type": "sse",
             "url": "http://localhost:8080/mcp/sse"
 
