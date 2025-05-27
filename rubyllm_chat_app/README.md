@@ -1,7 +1,7 @@
 
 # Rails8 Turbo Chat
 
-Version: 0.2.5
+A simple chat application built with Rails 8 and Turbo.
 
 ## riccardo flow
 
