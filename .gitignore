@@ -6,3 +6,4 @@ ruby_llm-copy/
 .git-privatize
 bin/
 rubyllm_chat_app/app/assets/images/favicon_io.zip
+.gemini/

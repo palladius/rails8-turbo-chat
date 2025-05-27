@@ -1,3 +1,7 @@
+## v0.3.13 - on 20250527
+
+* Added `doc/er_diagram.md` explaining the database models and including a Mermaid ER diagram.
+
 ## CHANGELOG
 
 ## v0.3.12 - on 20250521
