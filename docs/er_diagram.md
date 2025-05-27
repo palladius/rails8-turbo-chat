@@ -12,7 +12,6 @@ This document explains the main models in the application and visualizes their r
 ## ER Diagram
 
 ```mermaid
-graph LR;
 erDiagram
     User {
         string email
