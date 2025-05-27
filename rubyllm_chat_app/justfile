@@ -101,3 +101,8 @@ mcp-test:
 # MCP procy on port 6277, 6274, ..
 mcp-proxy:
     npx @modelcontextprotocol/inspector
+
+
+diagrams:
+    DATABASE_URL=$DATABASE_URL_DEV bundle exec erd
+    mv erd.pdf ../docs/erd.pdf

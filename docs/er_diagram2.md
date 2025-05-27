@@ -13,9 +13,9 @@ This document explains the main models in the application and visualizes their r
 
 ```mermaid
 graph LR;
-    User --> Chat: user_id;
-    Chat --> Message: chat_id;
-    ToolCall --> Message: message_id;
+    User --> Chat: user_id
+    Chat --> Message: chat_id
+    ToolCall --> Message: message_id
 ```
 
 

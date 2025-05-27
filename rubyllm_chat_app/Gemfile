@@ -98,7 +98,10 @@ gem "kramdown-parser-gfm" # For GitHub Flavored Markdown support
 gem 'rainbow'
 # MCP
 gem "fast-mcp", "~> 1.4"
-
+# Generate ER diagrams from models
+#gem 'erd', group: :development
+gem 'rails-erd', group: :development
+# => bundle exec erd
 ################################
 # /Riccardo END
 ################################
