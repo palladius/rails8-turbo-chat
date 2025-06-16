@@ -27,10 +27,8 @@ Features:
 ## RUN
 
 ```bash
-# enter dir
-cd  rubyllm_chat_app/
-# run locally
-bin/dev
+# enter dir and run locally
+cd  rubyllm_chat_app/ ; bin/dev
 ```
 
 # BUGS
