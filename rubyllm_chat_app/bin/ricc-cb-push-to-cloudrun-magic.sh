@@ -12,7 +12,8 @@
 RICC_CBPUSH_SCRIPT_VER="1.3"
 RICC_CBPUSH_LAST_BUILT="2025-03-18"
 
-export DEPLOY_VERSION='2.0.9b'
+export DEPLOY_VERSION='2.0.10'
+# 16jun25  2.0.10      added GCLOUD_REGION and OCCASIONAL_MESSAGE
 # 19mar25  2.0.9       added GEMINI_API_KEY - (b) anche GIT_LADST_COMMIT
 # 18mar25  2.0.8       refactored everything..
 # 02jun24  2.0.7       Removed bunch of vars, since im moving 99% of them to RAC (for DRY reasons)
@@ -157,6 +158,8 @@ gcloud --project "$CLOUDRUN_PROJECT_ID" \
       --set-env-vars="RAILS_ENV=$RAILS_ENV" \
       --set-env-vars="RAILS_SERVE_STATIC_FILES=true" \
       --set-env-vars="MESSAGGIO_OCCASIONALE=$MESSAGGIO_OCCASIONALE" \
+      --set-env-vars="OCCASIONAL_MESSAGE=$OCCASIONAL_MESSAGE" \
+      --set-env-vars="GCLOUD_REGION=$GCLOUD_REGION" \
       --set-env-vars="RAILS_LOG_TO_STDOUT=yesplease" \
       --set-env-vars="PROJECT_ID=$PROJECT_ID" \
       --set-env-vars="RUBY_YJIT_ENABLE=true" \

@@ -16,6 +16,7 @@ It also uses MCP (https://modelcontextprotocol.io/introduction)
  Added a new tool `ChatListWithUglyTitles` to get a list of chats with default titles.
  "
 ```
+* Do not git push before asking. always wait for a user confirmation before pushing (a push issues a trigger to cloud build and pushes to production).
 
 ## Ruby / Rails
 
