@@ -8,7 +8,14 @@ It also uses MCP (https://modelcontextprotocol.io/introduction)
 
 * do NOT touch .env. its a private file created by me and its NOT under git. Read it, but do NOT edit it!
 * do not run long running commands (like `rails server`) unless ecplicitly required to do so. Rather trust user to do so and ensure fresh logs are available somewhere for you to read (eg `log/development.log`).
+* do not commit with backticks! This commit you just did can be dangerous, imagine what can happen if ChatListWithUglyTitles was a valid and potentially destructive script like dd or similar:
 
+```bash
+ git commit -am "feat: Add tool to list chats with ugly
+ [...]
+ Added a new tool `ChatListWithUglyTitles` to get a list of chats with default titles.
+ "
+```
 
 ## Ruby / Rails
 
