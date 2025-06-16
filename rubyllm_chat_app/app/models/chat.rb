@@ -36,6 +36,11 @@ class Chat < ApplicationRecord
   def fancy_chat_messages =  messages.map{|m| "#{created_at} [#{m.role}]: #{m.content.chomp}"}.join("\n")
   #end
 
+  def ugly_title?
+    title.start_with?(DEFAULT_TITLE_PREFIX)
+  end
+
+
   # Generates a title for the chat using an LLM if the current title is a default one
   # and the chat has more than 3 messages.
   def autotitle_if_needed

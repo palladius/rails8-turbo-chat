@@ -1,3 +1,10 @@
+
+## v0.3.15 - on 20250616
+
+* Added a new tool `ChatListWithUglyTitles` to get a list of chats with default titles.
+* Added `ugly_title?` method to the `Chat` model.
+* Added `mcp-inspector` alias to `justfile`.
+
 ## v0.3.14 - on 20250616
 
 * Added `DATABASE_URL` to `/config` page, with password and IP obfuscation.
