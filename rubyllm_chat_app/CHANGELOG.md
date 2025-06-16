@@ -1,3 +1,6 @@
+## v0.3.16 - on 20250616
+
+* UI: Footer is not sticky anymore.
 
 ## v0.3.15 - on 20250616
 
