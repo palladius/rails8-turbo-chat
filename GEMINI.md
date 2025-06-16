@@ -7,6 +7,12 @@ It also uses MCP (https://modelcontextprotocol.io/introduction)
 ## Dos and DONTs
 
 * do NOT touch .env. its a private file created by me and its NOT under git. Read it, but do NOT edit it!
+* do not run long running commands (like `rails server`) unless ecplicitly required to do so. Rather trust user to do so and ensure fresh logs are available somewhere for you to read (eg `log/development.log`).
+
+
+## Ruby / Rails
+
+You need to run Ruby as rbenv (`eval "$(/usr/bin/rbenv  init - bash)"`) rather than natively. Expecially in my work computers (like `derek`) i cant do gem installs ain the system, so im forced to use rbenv. I dont like rvm!
 
 ## Code enhancements
 

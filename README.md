@@ -26,10 +26,9 @@ Features:
 
 ## RUN
 
-```bash
-# enter dir and run locally
-cd  rubyllm_chat_app/ ; bin/dev
-```
+* First Ensure ruby is running as **rbenv**: `eval "$(/usr/bin/rbenv  init - bash)"` or similar.
+*  Then enter dir and run locally: `cd  rubyllm_chat_app/ ; bin/dev`
+*  This will start a service in port 8080.
 
 # BUGS
 

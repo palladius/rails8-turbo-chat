@@ -29,4 +29,12 @@ module ApplicationHelper
 
     }
   end
+
+  def obfuscate_database_url(url)
+    return "Not set" if url.blank?
+    uri = URI.parse(url)
+    uri.password = "********" if uri.password
+    uri.host = uri.host.gsub(/\d/, 'N')
+    uri.to_s
+  end
 end
