@@ -1,4 +1,8 @@
-## v0.3.16 - on 20250616
+## v0.3.17 - on 20250704
+
+* Updating models and versions on Mac
+
+* ## v0.3.16 - on 20250616
 
 * UI: Footer is not sticky anymore.
 
