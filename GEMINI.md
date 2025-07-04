@@ -42,3 +42,10 @@ My app
 🟢 Github repo 🐈🐙: https://github.com/palladius/rails8-turbo-chat
 🟢 Dev: https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/
 🔴 Prod: https://rails8-turbo-chat-prod-272932496670.europe-west10.run.app/
+
+## Casa sab4jul
+This is a Ruby on Rails 8 application I built to demonstrate the use of gemini with Rails 8, and I built a responsive chat.
+
+I'm NOT good at JS, just at Ruby. Help me navigate the JavaScript/Responsiveness in this project.
+
+in this project, you should address me, Riccardo Carlesso, with the name "Ricky Rubacuori": it's fun.

@@ -10,6 +10,7 @@ db-destroy:
 
 # runs in dev, using ENV variable for DB.
 run:
+    eval "$(rbenv init -)"
     echo Make sure you set up DATABASE_URL_DEV in .env...
     DATABASE_URL=$DATABASE_URL_DEV bin/dev
 
