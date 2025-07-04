@@ -44,3 +44,12 @@ test-mcp-remote:
 mcp-server-local:
     echo "Try giving this: SEE // http://localhost:8080/mcp/sse"
 
+ruby-check:
+    @echo "♦️  Checking Ruby version... This is only meaningful in dev environment."
+    @echo ♦️♦️  1. Ruby without rbenv magic:
+    ruby --version
+    @echo ♦️♦️  2. Ruby with rbenv magic:
+    eval "$(rbenv init -)" && ruby --version
+
+llm-check:
+    cd app && echo "RubyLLM.chat.ask 'ciao'" | rails c

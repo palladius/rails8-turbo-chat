@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/crmne/ruby_llm.git
-  revision: 87a86f70cb64e23d5b76994edf8080618f07e071
+  revision: a35aa111a0bb36b7f0363b1f1f2a25e3d5378fd3
   specs:
-    ruby_llm (1.3.0rc1)
+    ruby_llm (1.3.1)
       base64
       event_stream_parser (~> 1)
       faraday (>= 1.10.0)
@@ -89,13 +89,13 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
-    base64 (0.2.0)
+    base64 (0.3.0)
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
     bcrypt_pbkdf (1.1.1-arm64-darwin)
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
-    benchmark (0.4.0)
-    bigdecimal (3.1.9)
+    benchmark (0.4.1)
+    bigdecimal (3.2.2)
     bindex (0.8.1)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
@@ -117,7 +117,7 @@ GEM
     connection_pool (2.5.3)
     crass (1.0.6)
     date (3.4.1)
-    debug (1.10.0)
+    debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
     devise (4.9.4)
@@ -153,7 +153,7 @@ GEM
       dry-logic (~> 1.5)
       dry-types (~> 1.8)
       zeitwerk (~> 2.6)
-    dry-types (1.8.2)
+    dry-types (1.8.3)
       bigdecimal (~> 3.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.0)
@@ -170,13 +170,14 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-multipart (1.1.0)
+    faraday-multipart (1.1.1)
       multipart-post (~> 2.0)
-    faraday-net_http (3.4.0)
+    faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
-    faraday-retry (2.3.1)
+    faraday-retry (2.3.2)
       faraday (~> 2.0)
-    fast-mcp (1.4.0)
+    fast-mcp (1.5.0)
+      addressable (~> 2.8)
       base64
       dry-schema (~> 1.14)
       json (~> 2.0)
@@ -203,7 +204,11 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.12.2)
+<<<<<<< HEAD
     kamal (2.6.1)
+=======
+    kamal (2.7.0)
+>>>>>>> fdd6862 (feat: Implement application fixes and LLM model configuration.)
       activesupport (>= 7.0)
       base64 (~> 0.2)
       bcrypt_pbkdf (~> 1.0)
@@ -230,19 +235,23 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
-    matrix (0.4.2)
+    matrix (0.4.3)
     method_source (1.1.0)
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
+<<<<<<< HEAD
     mime-types-data (3.2025.0520)
+=======
+    mime-types-data (3.2025.0701)
+>>>>>>> fdd6862 (feat: Implement application fixes and LLM model configuration.)
     mini_mime (1.1.5)
     minitest (5.25.5)
     msgpack (1.8.0)
     multipart-post (2.4.1)
     net-http (0.6.0)
       uri
-    net-imap (0.5.8)
+    net-imap (0.5.9)
       date
       net-protocol
     net-pop (0.1.2)
@@ -274,7 +283,7 @@ GEM
     nokogiri (1.18.8-x86_64-linux-musl)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    ostruct (0.6.1)
+    ostruct (0.6.2)
     parallel (1.27.0)
     parser (3.3.8.0)
       ast (~> 2.4.1)
@@ -302,7 +311,11 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.8.1)
+<<<<<<< HEAD
     rack (3.1.15)
+=======
+    rack (3.1.16)
+>>>>>>> fdd6862 (feat: Implement application fixes and LLM model configuration.)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -345,8 +358,13 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
+<<<<<<< HEAD
     rake (13.2.1)
     rdoc (6.14.0)
+=======
+    rake (13.3.0)
+    rdoc (6.14.2)
+>>>>>>> fdd6862 (feat: Implement application fixes and LLM model configuration.)
       erb
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
@@ -356,7 +374,11 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.4.1)
+<<<<<<< HEAD
     rubocop (1.75.7)
+=======
+    rubocop (1.77.0)
+>>>>>>> fdd6862 (feat: Implement application fixes and LLM model configuration.)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -364,10 +386,10 @@ GEM
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.44.0, < 2.0)
+      rubocop-ast (>= 1.45.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.44.1)
+    rubocop-ast (1.45.1)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
     rubocop-performance (1.25.0)
@@ -389,13 +411,17 @@ GEM
     ruby-progressbar (1.13.0)
     rubyzip (2.4.1)
     securerandom (0.4.1)
+<<<<<<< HEAD
     selenium-webdriver (4.33.0)
+=======
+    selenium-webdriver (4.34.0)
+>>>>>>> fdd6862 (feat: Implement application fixes and LLM model configuration.)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    solid_cable (3.0.8)
+    solid_cable (3.0.11)
       actioncable (>= 7.2)
       activejob (>= 7.2)
       activerecord (>= 7.2)
@@ -424,6 +450,7 @@ GEM
     tailwindcss-rails (4.2.3)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
+<<<<<<< HEAD
     tailwindcss-ruby (4.1.7)
     tailwindcss-ruby (4.1.7-aarch64-linux-gnu)
     tailwindcss-ruby (4.1.7-aarch64-linux-musl)
@@ -431,14 +458,23 @@ GEM
     tailwindcss-ruby (4.1.7-x86_64-darwin)
     tailwindcss-ruby (4.1.7-x86_64-linux-gnu)
     tailwindcss-ruby (4.1.7-x86_64-linux-musl)
+=======
+    tailwindcss-ruby (4.1.11)
+    tailwindcss-ruby (4.1.11-aarch64-linux-gnu)
+    tailwindcss-ruby (4.1.11-aarch64-linux-musl)
+    tailwindcss-ruby (4.1.11-arm64-darwin)
+    tailwindcss-ruby (4.1.11-x86_64-darwin)
+    tailwindcss-ruby (4.1.11-x86_64-linux-gnu)
+    tailwindcss-ruby (4.1.11-x86_64-linux-musl)
+>>>>>>> fdd6862 (feat: Implement application fixes and LLM model configuration.)
     thor (1.3.2)
-    thruster (0.1.13)
-    thruster (0.1.13-aarch64-linux)
-    thruster (0.1.13-arm64-darwin)
-    thruster (0.1.13-x86_64-darwin)
-    thruster (0.1.13-x86_64-linux)
+    thruster (0.1.14)
+    thruster (0.1.14-aarch64-linux)
+    thruster (0.1.14-arm64-darwin)
+    thruster (0.1.14-x86_64-darwin)
+    thruster (0.1.14-x86_64-linux)
     timeout (0.4.3)
-    turbo-rails (2.0.13)
+    turbo-rails (2.0.16)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
     tzinfo (2.0.6)
@@ -513,4 +549,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   2.6.2
+   2.5.17

@@ -3,10 +3,8 @@
 Dotenv.load('.env') if defined?(Dotenv) && (Rails.env.development? || Rails.env.test?)
 
 GEMINI_API_KEY = ENV.fetch('GEMINI_API_KEY', nil)
-#DEFAULT_LLM_MODEL = ENV.fetch('DEFAULT_LLM_MODEL', 'gemini-1.5-pro')
-# See below for some Gemini models
 RICCARDOS_FAVOURITE_DEV_MODEL =  'gemini-2.0-flash'
-#RICCARDOS_FAVOURITE_DEV_MODEL =  'gemini-2.0-flash-lite'
+#DEFAULT_LLM_MODEL = 'gemini-2.0-flash'
 DEFAULT_LLM_MODEL = ENV.fetch('DEFAULT_LLM_MODEL', RICCARDOS_FAVOURITE_DEV_MODEL)
 
 #raise "no gemini key sorry (GEMINI_API_KEY not set)" if GEMINI_API_KEY.nil?
@@ -26,8 +24,7 @@ RubyLLM.configure do |config|
   # config.google_region = ENV.fetch('GOOGLE_REGION', nil)       # Optional but recommended for Vertex
 
   # Set a default model (optional, but nice!)
-  config.default_model = DEFAULT_LLM_MODEL # 'gemini-1.5-flash-latest'
-  # config.default_model_id = ENV.fetch('DEFAULT_LLM_MODEL', 'gpt-4o-mini')
+  config.default_model = DEFAULT_LLM_MODEL
   # config.default_embedding_model = 'text-embedding-3-small'  # Default: 'text-embedding-3-small'
   # config.default_image_model = 'dall-e-3'            # Default: 'dall-e-3'
 
@@ -100,3 +97,17 @@ end ; nil
 - veo-2.0-generate-001 (gemini)
 
 =end
+
+# Usage example:
+# RubyLLM.chat.ask 'ciao'
+# => #<RubyLLM::Message:0x000000012607d128
+#  @content=#<RubyLLM::Content:0x0000000127ff73a0 @attachments=[], @text="Ciao! Come posso aiutarti oggi?\n">,
+#  @input_tokens=1,
+#  @model_id="gemini-2.0-flash",
+#  @output_tokens=9,
+#  @role=:assistant,
+#  @tool_call_id=nil,
+#  @tool_calls=nil>
+# r = RubyLLM.chat.ask "What's in this image?", with: { image: "app/assets/images/rails8-gemini-cute.png" }
+# puts r.content
+# => The image features a red train with "RAILS 8" written on the front, traveling on a track through the sky. There's a robot with a yellow face and the word "AI" on its chest, standing on a cloud next to the train and pointing towards it. Above the train, there's a cloud with the words "Google Cloud" written on it, and a rainbow arching over the cloud. Another cloud below the robot has rainbow-colored streams coming out of it. The background is a light blue sky with other clouds scattered around. The robot has a speech bubble with "Gemini" written inside.
