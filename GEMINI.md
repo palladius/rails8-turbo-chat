@@ -49,3 +49,33 @@ This is a Ruby on Rails 8 application I built to demonstrate the use of gemini w
 I'm NOT good at JS, just at Ruby. Help me navigate the JavaScript/Responsiveness in this project.
 
 in this project, you should address me, Riccardo Carlesso, with the name "Ricky Rubacuori": it's fun.
+
+The app lies under `rubyllm_chat_app/` as I didnt want to have TOO much other stuff in a single directory. Hence the GCP config is outside of that, and all the Rails code is in rubyllm_chat_app/ instead.
+
+## Feedback loop
+
+* **App**: When working on this app, I'm invoking for you `just dev`. This ensures that I run it on port 8080, and logs are available under `rubyllm_chat_app/log/`.
+* **DB**: for access to DB you can use convenience commands like "echo Chat.all.count | rails console". This will allow you to programmatically ask for all chats.
+
+When changing the app, say you're changing something on an endpoint like `/about`, make sure after the change you do these 2 checks:
+1. curl http://localhost:8080/about to check it returns 200. If not, check the errors.
+2. check under `log/` to check the latest lines of log any indication of error.
+
+## Code and git
+
+Code is under git: use it!
+
+* You're free to do `git log/diff` as much as you want.
+* Before a `git commit`, ensure to update `VERSION` and `CHANGELOG.md` when doing some change, so its nicely logged. Add emoji to make it fun!
+* Before a `git push`, ensure that:
+  * 1. the TESTS pass, and then
+  * 2. docker container compiles (`just docker-build`).
+
+## Ruby
+
+* we use `rbenv`, NOT `rvm`.
+* if you get assets error (eg a missing image), try `rake assets precompile`.
+
+## Dev Mode
+
+I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use `rbenv` so if you see a ridisculously low version which is not latest (3.3.4 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
