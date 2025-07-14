@@ -95,6 +95,8 @@ docker-build:
 docker-run:
     docker run -it -p 8080:8080 r8tc
 
+test:
+    rake test
 
 # MCP
 mcp-test:

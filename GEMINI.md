@@ -17,7 +17,7 @@ It also uses MCP (https://modelcontextprotocol.io/introduction)
  "
 ```
 * Do not git push before asking. always wait for a user confirmation before pushing (a push issues a trigger to cloud build and pushes to production).
-
+* Databases: do NOT use DEV Database for PROD or TEST, or viceversa. We should have THREE databases, one for test, dev and prod. Note that Im doing demos with DEV, so DEV is currently the most important ones.
 ## Ruby / Rails
 
 You need to run Ruby as rbenv (`eval "$(/usr/bin/rbenv  init - bash)"`) rather than natively. Expecially in my work computers (like `derek`) i cant do gem installs ain the system, so im forced to use rbenv. I dont like rvm!
@@ -35,7 +35,7 @@ This is a demo app, so it's not important that it's fast and production ready. I
 
 # URLs
 
-* more on MCP: https://modelcontextprotocol.io/introduction
+* more on MCP: https://modelcontextprotocol.io/introduction (use context7 if available)
 
 My app
 
@@ -43,6 +43,7 @@ My app
 🟢 Dev: https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/
 🔴 Prod: https://rails8-turbo-chat-prod-272932496670.europe-west10.run.app/
 
+<<<<<<< HEAD
 ## Casa sab4jul
 This is a Ruby on Rails 8 application I built to demonstrate the use of gemini with Rails 8, and I built a responsive chat.
 
@@ -79,3 +80,8 @@ Code is under git: use it!
 ## Dev Mode
 
 I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use `rbenv` so if you see a ridisculously low version which is not latest (3.3.4 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
+=======
+## TODOs
+
+Read `TODOs.md` in more details
+>>>>>>> 7804720 ( adding more ideas)
