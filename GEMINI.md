@@ -43,8 +43,9 @@ My app
 🟢 Dev: https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/
 🔴 Prod: https://rails8-turbo-chat-prod-272932496670.europe-west10.run.app/
 
-<<<<<<< HEAD
+
 ## Casa sab4jul
+
 This is a Ruby on Rails 8 application I built to demonstrate the use of gemini with Rails 8, and I built a responsive chat.
 
 I'm NOT good at JS, just at Ruby. Help me navigate the JavaScript/Responsiveness in this project.
@@ -80,8 +81,7 @@ Code is under git: use it!
 ## Dev Mode
 
 I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use `rbenv` so if you see a ridisculously low version which is not latest (3.3.4 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
-=======
+
 ## TODOs
 
 Read `TODOs.md` in more details
->>>>>>> 7804720 ( adding more ideas)
