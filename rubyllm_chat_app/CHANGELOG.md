@@ -1,3 +1,8 @@
+## v0.3.18 - on 20250819
+
+* Switched `ruby_llm` gem from git to a stable version from RubyGems.
+* Updated `Gemfile.lock` to reflect the change.
+
 ## v0.3.17 - on 20250704
 
 * Updating models and versions on Mac
