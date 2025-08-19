@@ -1,14 +1,14 @@
 ## The app
 
-The Rails8 app is under `rubyllm_chat_app/` (symlinked by `app/`)
+The Rails 8 app is under `rubyllm_chat_app/` (symlinked by `app/`)
 
 It also uses MCP (https://modelcontextprotocol.io/introduction)
 
-## Dos and DONTs
+## Dos and DON'Ts
 
-* do NOT touch .env. its a private file created by me and its NOT under git. Read it, but do NOT edit it!
-* do not run long running commands (like `rails server`) unless ecplicitly required to do so. Rather trust user to do so and ensure fresh logs are available somewhere for you to read (eg `log/development.log`).
-* do not commit with backticks! This commit you just did can be dangerous, imagine what can happen if ChatListWithUglyTitles was a valid and potentially destructive script like dd or similar:
+* Do NOT touch `.env`. It's a private file created by me and it's NOT under git. Read it, but do NOT edit it!
+* Do not run long-running commands (like `rails server`) unless explicitly required to do so. Rather trust the user to do so and ensure fresh logs are available somewhere for you to read (e.g., `rubyllm_chat_app/log/development.log`).
+* Do not commit with backticks! This commit you just did can be dangerous, imagine what can happen if ChatListWithUglyTitles was a valid and potentially destructive script like dd or similar:
 
 ```bash
  git commit -am "feat: Add tool to list chats with ugly
@@ -16,11 +16,15 @@ It also uses MCP (https://modelcontextprotocol.io/introduction)
  Added a new tool `ChatListWithUglyTitles` to get a list of chats with default titles.
  "
 ```
-* Do not git push before asking. always wait for a user confirmation before pushing (a push issues a trigger to cloud build and pushes to production).
-* Databases: do NOT use DEV Database for PROD or TEST, or viceversa. We should have THREE databases, one for test, dev and prod. Note that Im doing demos with DEV, so DEV is currently the most important ones.
+* Do not git push before asking. Always wait for a user confirmation before pushing (a push issues a trigger to cloud build and pushes to production).
+* Databases: do NOT use DEV Database for PROD or TEST, or vice-versa. We should have THREE databases, one for test, dev and prod. Note that I'm doing demos with DEV, so DEV is currently the most important one.
+* Do NOT run `just dev`!! I run it for you and you just read logs in `rubyllm_chat_app/log/`. If you find the app is not running, ask me (the user) to run it for you.
+    * Check if the APP is running by curling `localhost` on port `8080`.
+
+
 ## Ruby / Rails
 
-You need to run Ruby as rbenv (`eval "$(/usr/bin/rbenv  init - bash)"`) rather than natively. Expecially in my work computers (like `derek`) i cant do gem installs ain the system, so im forced to use rbenv. I dont like rvm!
+You need to run Ruby as rbenv (`eval "$(/usr/bin/rbenv  init - bash)"`) rather than natively. Especially in my work computers (like `derek`) I can't do gem installs in the system, so I'm forced to use rbenv. I don't like rvm!
 
 ## Code enhancements
 
@@ -31,7 +35,7 @@ Please ensure these tasks are done:
 
 ## My style
 
-This is a demo app, so it's not important that it's fast and production ready. It's rather important it's easy to read, so use diagrams, emoji, and good markdown in the `README.md`. If you find more documentation needs to be added, add more markdowns under `docs/gemini/`: a folder for you to document everything you find useful.
+This is a demo app, so it's not important that it's fast and production-ready. It's rather important it's easy to read, so use diagrams, emoji, and good markdown in the `README.md`. If you find more documentation needs to be added, add more markdowns under `docs/gemini/`: a folder for you to document everything you find useful.
 
 # URLs
 
@@ -52,7 +56,7 @@ I'm NOT good at JS, just at Ruby. Help me navigate the JavaScript/Responsiveness
 
 in this project, you should address me, Riccardo Carlesso, with the name "Ricky Rubacuori": it's fun.
 
-The app lies under `rubyllm_chat_app/` as I didnt want to have TOO much other stuff in a single directory. Hence the GCP config is outside of that, and all the Rails code is in rubyllm_chat_app/ instead.
+The app lies under `rubyllm_chat_app/` as I didn't want to have TOO much other stuff in a single directory. Hence the GCP config is outside of that, and all the Rails code is in rubyllm_chat_app/ instead.
 
 ## Feedback loop
 
@@ -80,7 +84,7 @@ Code is under git: use it!
 
 ## Dev Mode
 
-I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use `rbenv` so if you see a ridisculously low version which is not latest (3.3.4 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
+I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use `rbenv` so if you see a ridiculously low version which is not latest (3.3.4 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
 
 ## TODOs
 
