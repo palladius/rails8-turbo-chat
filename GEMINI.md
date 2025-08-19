@@ -67,7 +67,7 @@ When changing the app, say you're changing something on an endpoint like `/about
 1. curl http://localhost:8080/about to check it returns 200. If not, check the errors.
 2. check under `log/` to check the latest lines of log any indication of error.
 
-## Code and git
+## Code and `git`
 
 Code is under git: use it!
 
@@ -76,6 +76,8 @@ Code is under git: use it!
 * Before a `git push`, ensure that:
   * 1. the TESTS pass, and then
   * 2. docker container compiles (`just docker-build`).
+* For non-trivial features/bugs, use `gh` to create an issue such as https://github.com/palladius/rails8-turbo-chat/issues/4.
+  * Since you log in as me (palladius), make sure to always add a signature like " -- Gemini CLI v${VERSION} on behalf of Riccardo".
 
 ## Ruby
 

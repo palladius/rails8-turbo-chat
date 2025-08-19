@@ -13,7 +13,6 @@
 # Loosely inspired by ror7-tailwind-rails8-turbo-chat
 # Securing builds: https://cloud.google.com/build/docs/securing-builds/use-secrets
 #
-# TODO(ricc): 1. make this work with Skaffold using _SKAFFOLD_DEPLOY_UNIT.
 # TODO(ricc): 2. enable skaffold cache when all the rest works (makes it faster but need
 #             to set up GCS, and permissions, SA, ..)
 #
