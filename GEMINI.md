@@ -1,6 +1,6 @@
 ## The app
 
-The app is under `rubyllm_chat_app/`
+The Rails8 app is under `rubyllm_chat_app/` (symlinked by `app/`)
 
 It also uses MCP (https://modelcontextprotocol.io/introduction)
 
