@@ -82,9 +82,7 @@ end
 ################################
 gem "devise", "~> 4.9"
 
-# As per https://github.com/crmne/ruby_llm/issues/118 comment:
-#gem "ruby_llm", "~> 1.2"
-gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git"
+gem 'ruby_llm', '~> 1.6', '>= 1.6.3'
 gem "dotenv-rails", "~> 3.1"
 #gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git", ref: '2bdc4229643888da053c76dfe9ef837b8e3a91f7'
 
