@@ -1,3 +1,10 @@
+## v0.5.12 - on 20250820
+
+*   feat(ui): Add chat cards view at root path.
+*   feat(ui): Filter chat cards by default to only show chats with images.
+*   feat(ui): Add a button to show all chats.
+*   fix(ui): Scope chat cards to the current user.
+
 ## v0.5.11 - on 20250820
 
 * Removed `ENABLE_GCP` added twice by mistake
