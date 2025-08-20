@@ -29,7 +29,7 @@ def print_env_variable(key, value=:auto_detect, limit: nil, emoji: '🌱')
   if value == :auto_detect
     value = ENV.fetch(key, "❌ ENV[#{key}] not given")
   end
-  printable_value = (limit ?  (value[0..limit] + "..") : value) rescue "print_env_variableErr: #{$!}"
+  printable_value = (limit ?  (value[0..limit] + ".. [L=#{value.to_s.length}]") : value) rescue "print_env_variableErr: #{$!}"
   puts("#{APP_EMOJI} #{emoji} #{Rainbow(key).white}:#{spacing}#{Rainbow(printable_value).yellow }")
 end
 
@@ -43,6 +43,7 @@ print_env_variable('GIT_LAST_COMMENT', GIT_LAST_COMMENT)
 #print_env_variable('CLOUD_REGION')
 print_env_variable('RAILS_MASTER_KEY', limit: 4)
 print_env_variable('GEMINI_API_KEY', limit: 4)
+print_env_variable('GCS_CREDENTIALS_JSON', limit: 10)
 #print_env_variable('CLOUD_RUN_ENDPOINTS', CLOUD_RUN_ENDPOINTS )
 print_env_variable('CLOUD_RUN_ENDPOINTS[:dev]', CLOUD_RUN_ENDPOINTS[:dev] )
 print_env_variable('CLOUD_RUN_ENDPOINTS[:prod]', CLOUD_RUN_ENDPOINTS[:prod] )
