@@ -1,6 +1,7 @@
 ## Prerequisites:
 
 * Call `date +%Y%m%d-%H%M%S` to get YYYYMMDD-HHMMSS, you'll need it later.
+* call `cat VERSION` or `cat app/VERSION` to get latest app version.
 
 **IMPORTANT** Note this is a non-interactive chat. Do what you can, do NOT ask questions since nobody will answer. You're on your own.
 
@@ -29,6 +30,7 @@ Execute:
 * write a `test/ui-tests/01-ensure-chat-functional/${YYYYMMDD-HHMMSS}-dev-OK.json`
 * This should contain a JSON with
   * "ret" (INTEGER): Should be 0
+  * "app_version" (STRING): app version
   * "chat_id" (INTEGER): Chat Id used for the test
   * "message (STRING): Here you add something about your overall experience, like "everything worked fine".
 
@@ -40,6 +42,7 @@ please write it down.
 * write a `test/ui-tests/01-ensure-chat-functional/${YYYYMMDD-HHMMSS}-dev-ERR.json`
 * This should contain a JSON with
   * "ret" (INTEGER): "1"
+  * "app_version" (STRING): app version
   * "chat_id" (INTEGER): Chat Id used for the test
   * "error_topic" (STRING): This should be where the error was found, could be "latency" "functionality" "UX" ...
   * "detailed_error" (STRING): This should describe where the error was found

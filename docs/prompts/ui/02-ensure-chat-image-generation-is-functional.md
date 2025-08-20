@@ -1,6 +1,7 @@
 ## Prerequisites:
 
 * Call `date +%Y%m%d-%H%M%S` to get YYYYMMDD-HHMMSS, you'll need it later.
+* call `cat VERSION` or `cat app/VERSION` to get latest app version.
 
 **IMPORTANT** Note this is a non-interactive chat. Do what you can, do NOT ask questions since nobody will answer. You're on your own.
 
@@ -56,6 +57,7 @@ Execute:
 * This should contain a JSON with
   * "ret" (INTEGER): Should be 0
   * "chat_id" (INTEGER): Chat Id used for the test
+  * "app_version" (STRING): app version
   * "message (STRING): Here you add something about your overall experience, like "everything worked fine".
   * "log" (STRING): Add a log of all the stdout conversation you -as Gemini CLI - have had with user.
 
@@ -68,6 +70,7 @@ please write it down.
 * This should contain a JSON with
   * "ret" (INTEGER): "1"
   * "chat_id" (INTEGER): Chat Id used for the test
+  * "app_version" (STRING): app version
   * "error_topic" (STRING): This should be where the error was found, could be "latency" "functionality" "UX" ...
   * "detailed_error" (STRING): This should describe where the error was found
   * "repro" (ARRAY): If you believe a human can reproduce this error, please add an array of bullet points which a user could reproduce, something like:
