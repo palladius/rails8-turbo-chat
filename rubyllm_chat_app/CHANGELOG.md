@@ -1,3 +1,8 @@
+## v0.4.3 - on 20250820
+
+*   feat: Add `run_ui_tests.sh` to automate UI testing and log output.
+*   refactor: Update `justfile` to use the new UI test script.
+
 ## v0.4.2 - on 20250820
 
 *   feat: Implement working image generation with `imagen-3.0-generate-002`.

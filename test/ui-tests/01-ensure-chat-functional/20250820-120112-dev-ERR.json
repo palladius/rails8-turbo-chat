@@ -1,0 +1,12 @@
+{
+  "ret": 1,
+  "app_version": "0.4.2b",
+  "chat_id": 0,
+  "error_topic": "environment",
+  "detailed_error": "Failed to navigate to http://localhost:8080/chats/. The browser is already in use. This could mean the development server is not running or is unresponsive.",
+  "repro": [
+    "Ensure the dev server is running with `just dev`.",
+    "Attempt to navigate to http://localhost:8080/chats/.",
+    "Observe the browser fails to connect."
+  ]
+}

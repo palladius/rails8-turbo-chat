@@ -56,7 +56,7 @@ Execute:
 * write a `test/ui-tests/02-ensure-chat-imagegen-functional/OK-${YYYYMMDD-HHMMSS}-dev-OK.json`
 * This should contain a JSON with
   * "ret" (INTEGER): Should be 0
-  * "chat_id" (INTEGER): Chat Id used for the test
+  * "chat_id" (INTEGER): Chat Id used for the test (null if unavailable)
   * "app_version" (STRING): app version
   * "message (STRING): Here you add something about your overall experience, like "everything worked fine".
   * "log" (STRING): Add a log of all the stdout conversation you -as Gemini CLI - have had with user.
@@ -69,7 +69,7 @@ please write it down.
 * write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-dev-ERR.json`
 * This should contain a JSON with
   * "ret" (INTEGER): "1"
-  * "chat_id" (INTEGER): Chat Id used for the test
+  * "chat_id" (INTEGER): Chat Id used for the test (null if unavailable)
   * "app_version" (STRING): app version
   * "error_topic" (STRING): This should be where the error was found, could be "latency" "functionality" "UX" ...
   * "detailed_error" (STRING): This should describe where the error was found

@@ -54,7 +54,6 @@ ruby-check:
 llm-check:
     cd app && echo "RubyLLM.chat.ask 'ciao'" | rails c
 
-
+# [magic] Test UI from main dir (maybe should be from sub dir?)
 test-ui:
-    cat docs/prompts/ui/01-ensure-chat-is-functional.md  | gemini --yolo --prompt
-    cat docs/prompts/ui/02-ensure-chat-image-generation-is-functional.md  | gemini --yolo --prompt
+    ./run_ui_tests.sh

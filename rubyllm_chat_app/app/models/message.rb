@@ -1,6 +1,7 @@
 
 # app/models/message.rb
 class Message < ApplicationRecord
+  include Turbo::Broadcastable
   acts_as_message
 
   include ActionView::RecordIdentifier
