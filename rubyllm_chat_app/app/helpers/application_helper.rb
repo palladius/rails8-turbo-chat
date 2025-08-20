@@ -26,6 +26,7 @@ module ApplicationHelper
       prod_mcp_url: CLOUD_RUN_ENDPOINTS[:prod] + "/mcp/sse",
 
       occasional_message: ENV.fetch('OCCASIONAL_MESSAGE', '😕 Sorry, ENV[OCCASIONAL_MESSAGE] not set.'),
+      GCS_BUCKET: ENV['GCS_BUCKET'],
 
     }
   end
@@ -36,5 +37,21 @@ module ApplicationHelper
     uri.password = "********" if uri.password
     uri.host = uri.host.gsub(/\d/, 'N')
     uri.to_s
+  end
+
+  def display_secret_env_variable(name, value)
+    content_tag(:div, class: "flex items-center") do
+      concat(content_tag(:div, "🔑 #{name}:", class: "text-sm font-medium text-gray-400 mr-2"))
+      if value.present?
+        begin
+          JSON.parse(value)
+          concat(content_tag(:tt, "(valid JSON) #{value.first(10)}...", class: "font-bold bg-gray-700 px-3 py-1 rounded-md text-sky-300 shadow"))
+        rescue JSON::ParserError
+          concat(content_tag(:tt, "(invalid JSON) #{value.first(10)}...", class: "font-bold bg-red-700 px-3 py-1 rounded-md text-red-300 shadow"))
+        end
+      else
+        concat(content_tag(:span, "Not set", class: "text-gray-500 italic"))
+      end
+    end
   end
 end

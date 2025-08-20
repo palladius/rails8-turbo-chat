@@ -1,3 +1,7 @@
+## v0.5.9 - on 20250820
+
+*   feat(ui): Display GCS_BUCKET and GCS_CREDENTIALS_JSON on the /config page.
+
 ## v0.5.8 - on 20250820
 
 *   fix(cloudbuild): Pass GCS_CREDENTIALS_JSON to Cloud Run.

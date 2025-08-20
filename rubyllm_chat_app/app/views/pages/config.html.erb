@@ -20,6 +20,8 @@
     <%= display_env_variable("CLOUD_RUN_ENDPOINT_DEV", ENV["CLOUD_RUN_ENDPOINT_DEV"]) %>
     <%= display_env_variable("CLOUD_RUN_ENDPOINT_PROD", ENV["CLOUD_RUN_ENDPOINT_PROD"]) %>
     <%= display_env_variable("DATABASE_URL", obfuscate_database_url(ENV["DATABASE_URL"])) %>
+    <%= display_env_variable("GCS_BUCKET", ENV["GCS_BUCKET"]) %>
+    <%= display_secret_env_variable("GCS_CREDENTIALS_JSON", ENV["GCS_CREDENTIALS_JSON"]) %>
 
 
     <%# --- RICC_ALLOWED_HOSTS --- %>
