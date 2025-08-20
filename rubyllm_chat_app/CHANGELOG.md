@@ -1,3 +1,8 @@
+## v0.5.10 - on 20250820
+
+*   ricc: Added `NO_COLOR` to stop having colorful rails logs inside Cloud Run logs. I love them locally, but not in Cloud Logs.
+*   ricc: Removed `GCS_CREDENTIALS_JSON` from the very same script `app/bin/ricc-cb-push-to-cloudrun-magic.sh`
+*
 ## v0.5.9 - on 20250820
 
 *   feat(ui): Display GCS_BUCKET and GCS_CREDENTIALS_JSON on the /config page.

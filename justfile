@@ -1,5 +1,11 @@
+
+set dotenv-load := true
+
+
 list:
     just -l
+    @echo "🌱 PROJECT_ID: ${PROJECT_ID}"
+    @echo "🌱 GCS_BUCKET: ${GCS_BUCKET}"
 
 doit:
     ./sbrodola3.sh 1>t.out 2>t.err

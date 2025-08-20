@@ -170,10 +170,13 @@ gcloud --project "$CLOUDRUN_PROJECT_ID" \
       --set-env-vars="GEMINI_API_KEY=$GEMINI_API_KEY" \
       --set-env-vars="GIT_LAST_COMMENT=$GIT_LAST_COMMENT" \
       --set-env-vars="GCS_BUCKET=$GCS_BUCKET" \
-      --set-env-vars="GCS_CREDENTIALS_JSON=$GCS_CREDENTIALS_JSON" \
       --set-env-vars=ENABLE_GCP='true' \
+      --set-env-vars=ENABLE_GCP='true' \
+      --set-env-vars=NO_COLOR='true' \
       --set-env-vars=APP_NAME="$APP_NAME" \
       --allow-unauthenticated
+
+# THIS GIVES ERROR      --set-env-vars="GCS_CREDENTIALS_JSON=$GCS_CREDENTIALS_JSON"
 
 
 #       --set-env-vars="DATABASE_URL_PROD=$DATABASE_URL_PROD" \
