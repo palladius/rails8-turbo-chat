@@ -4,6 +4,8 @@
 *   feat(ui): Filter chat cards by default to only show chats with images.
 *   feat(ui): Add a button to show all chats.
 *   fix(ui): Scope chat cards to the current user.
+*   refactor(ui): Improve chat cards layout.
+*   refactor(prompt): Update the prompt for image generation.
 
 ## v0.5.11 - on 20250820
 

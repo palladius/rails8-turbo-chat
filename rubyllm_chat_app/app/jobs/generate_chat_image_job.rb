@@ -9,12 +9,12 @@ class GenerateChatImageJob < ApplicationJob
 
     # 1. Generate a prompt for the image generation model
     image_prompt_prompt = <<~PROMPT
-      Based on the following chat conversation, please generate a concise, descriptive prompt for an image generation model.
-      The prompt should capture the essence of the conversation.
-      The prompt should be in English.
-      The prompt should be a single sentence.
-      The prompt should be no more than 20 words.
-      Also, ensure there's a ruby gem on the bottom right and a yellow heart emoji on the bottom left.
+      Based on the following chat conversation, please generate a concise, descriptive prompt for an image generation LLM model such as Google Imagen, or Midjourney.
+      - The prompt should capture the essence of the conversation.
+      - The prompt should be in English.
+      - The prompt should be a single sentence (<300 chars).
+      - The prompt should be no more than 40 words.
+      - Also, ensure there's a ruby gem on the bottom right and a stylized yellow heart on the bottom left.
 
       Here is the chat conversation:
       #{chat.fancy_chat_messages}

@@ -2,6 +2,11 @@
   <h1 class="text-2xl font-bold text-center my-8">Chat Cards</h1>
   <div class="text-center mb-8">
     <%= link_to "Go to Chats", chats_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <% if params[:show_all] %>
+      <%= link_to "Show Only Chats with Images", root_path, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
+    <% else %>
+      <%= link_to "Show ALL chats", root_path(show_all: true), class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
+    <% end %>
   </div>
   <div class="flex justify-center">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
