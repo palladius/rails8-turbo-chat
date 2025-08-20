@@ -30,14 +30,16 @@ class GenerateChatImageJob < ApplicationJob
     image = RubyLLM.paint(image_prompt, model: "imagen-3.0-generate-002")
 
     # 4. Save the image to a temporary file
-    temp_file = Tempfile.new(['generated-image', '.png'])
-    image.save(temp_file.path)
-    Rails.logger.debug "We only do this until we are able to attach directly from rubyLLM image"
+    image_path = Rails.root.join('tmp', 'generated-image.png')
+    image.save(image_path)
+    Rails.logger.debug "Image saved to #{image_path}"
 
     # 5. Attach the image to the chat
-    chat.generated_image.attach(io: File.open(temp_file.path), filename: 'generated_image.png', content_type: 'image/png')
+    key = "#{Rails.env}/#{chat.id}/#{SecureRandom.uuid}.png"
+    attachment = chat.generated_image.attach(io: File.open(image_path), filename: 'generated_image.png', content_type: 'image/png', key: key)
+    Rails.logger.info "Attachment result: #{attachment.inspect}"
+    Rails.logger.info "Blob inspect: #{chat.generated_image.blob.inspect}"
   ensure
-    temp_file.close
-    temp_file.unlink
+    File.delete(image_path) if image_path && File.exist?(image_path)
   end
 end

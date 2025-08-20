@@ -1,0 +1,18 @@
+{
+  "timestamp": "20250820-150152",
+  "status": "ERR",
+  "versions": {
+    "local": "0.5.0",
+    "dev": "0.4.3",
+    "prod": "0.4.3"
+  },
+  "cloud_build_error": {
+    "build_id": "32006799-c529-490d-b8f0-e04395b4d69e",
+    "log_summary": [
+      "Step #0 - \"step1 docker build\": Step 9/21 : COPY Gemfile Gemfile.lock ./",
+      "Step #0 - \"step1 docker build\": COPY failed: file not found in build context or excluded by .dockerignore: stat Gemfile: file does not exist"
+    ]
+  },
+  "investigation": "The Cloud Build is failing because the Dockerfile is not correctly copying the application files from the 'rubyllm_chat_app/' subdirectory. The COPY commands in the Dockerfile need to be updated to include the subdirectory path.",
+  "github_issue_url": "https://github.com/palladius/rails8-turbo-chat/issues/13"
+}

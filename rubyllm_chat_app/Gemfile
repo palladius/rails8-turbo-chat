@@ -68,6 +68,11 @@ group :development do
   gem "web-console"
   # RICCARDO - suiggested by gemini to fix foreman issue on derek.
   gem "foreman" # Add this line
+  # Gems for rubyllm_scripts
+  gem 'async'
+  gem 'pry', '~> 0.15.0'
+  gem 'rainbow'
+  gem "fast-mcp", "~> 1.4"
 end
 
 group :test do
@@ -80,6 +85,11 @@ end
 ################################
 # Riccardo START
 ################################
+# 1. Gemini
+#gem 'google-cloud-storage', '~> 1.45', require: 'google/cloud/storage'
+# 2. Public docs: https://guides.rubyonrails.org/active_storage_overview.html#google-cloud-storage-service
+gem "google-cloud-storage", "~> 1.11", require: false
+
 gem "devise", "~> 4.9"
 
 gem 'ruby_llm', '~> 1.6', '>= 1.6.3'
