@@ -1,3 +1,7 @@
+## v0.5.4 - on 20250820
+
+*   fix(gcs): Conditionally load GCS credentials to support both local and Cloud Run environments.
+
 ## v0.5.2 - on 20250820
 
 *   feat(ui): Add emojis to "Edit Chat", "Delete Chat", and "Generate Image" buttons.
