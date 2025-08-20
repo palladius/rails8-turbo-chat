@@ -74,3 +74,7 @@ generate-image-for-chat:
     cd rubyllm_chat_app/
     DATABASE_URL=$DATABASE_URL_DEV rails runner "script/generate_image_for_chat.rb" 40
     echo "Generation script finished."
+
+test-builds:
+    cat 'docs/prompts/ui/03-ensure-dev-prod-versions-aligned.md' | \
+        time gemini --yolo --prompt

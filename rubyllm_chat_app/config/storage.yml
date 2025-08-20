@@ -22,6 +22,7 @@ google:
   credentials: <%= (ENV["GCS_CREDENTIALS_JSON"]) %>
   bucket: <%= ENV["GCS_BUCKET"] %>
   public: true
+  #folder: <%= Rails.env %> # not needed, happens in code.
   # if you want one per ENV -> bucket: your_own_bucket-<%= Rails.env %>
 
 
