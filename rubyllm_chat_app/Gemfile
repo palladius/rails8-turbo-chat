@@ -68,6 +68,11 @@ group :development do
   gem "web-console"
   # RICCARDO - suiggested by gemini to fix foreman issue on derek.
   gem "foreman" # Add this line
+  # Gems for rubyllm_scripts
+  gem 'async'
+  gem 'pry', '~> 0.15.0'
+  gem 'rainbow'
+  gem "fast-mcp", "~> 1.4"
 end
 
 group :test do
