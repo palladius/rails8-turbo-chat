@@ -28,8 +28,8 @@ class ChatStreamJob < ApplicationJob
     model_to_use = chat.model_id.presence || DEFAULT_MODEL
     Rails.logger.info "🧠 Using model: #{model_to_use}"
     Rails.logger.info "🧠 user_content: #{user_content}"
-    if user_content.to_s == ''
-      Rails.logger.info "🧠 EMPTY user_content: #{user_content} => exiting"
+    if user_content.blank?
+      Rails.logger.info "🧠 BLANK user_content: '#{user_content}' => exiting"
       return
     end
 
