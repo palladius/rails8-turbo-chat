@@ -1,3 +1,11 @@
+## v0.4.2 - on 20250820
+
+*   feat: Implement working image generation with `imagen-3.0-generate-002`.
+*   feat: Add `just` command to generate images for a specific chat.
+*   feat: Add idempotency check to `GenerateChatImageJob`.
+*   fix: Correctly handle image data from `ruby_llm` gem.
+*   fix: Resolve `manpages` gem `LoadError`.
+
 ## v0.4.1 - on 20250820
 
 *   fix(ui): Correctly align chat image to be 33% on the right and chat details to be 66% on the left.

@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   # include ActionView::RecordIdentifier
 
   before_action :set_chats, only: [:index, :show] # Load chats list for sidebar
-  before_action :set_chat, only: [:show, :edit, :update, :destroy, :generate_image] # Load specific chat for actions
+  before_action :set_chat, only: [:show, :edit, :update, :destroy, :generate_image, :delete_image] # Load specific chat for actions
 
   # GET /chats or root_path
   # Displays the list of chats and potentially the first/last active chat
@@ -88,6 +88,11 @@ class ChatsController < ApplicationController
     # For simplicity, we'll call the service directly
     GenerateChatImageJob.perform_later(@chat)
     redirect_to @chat, notice: "🖼️ Image generation started. It will appear shortly."
+  end
+
+  def delete_image
+    @chat.generated_image.purge
+    redirect_to @chat, notice: "🗑️ Image deleted."
   end
 
   private

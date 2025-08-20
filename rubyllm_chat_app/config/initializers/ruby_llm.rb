@@ -27,7 +27,7 @@ RubyLLM.configure do |config|
   config.default_model = DEFAULT_LLM_MODEL
   # config.default_embedding_model = 'text-embedding-3-small'  # Default: 'text-embedding-3-small'
   # config.default_image_model = 'dall-e-3'            # Default: 'dall-e-3'
-
+  config.default_image_model = 'gemini-2.5-flash'
   # Add other configurations as needed
   Rails.logger.info "✅ RubyLLM Initialized with model: #{config.default_model}"
 end

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :chats, only: [:index, :show, :create, :edit, :update, :destroy] do
     member do
       post 'generate_image'
+      delete 'delete_image'
     end
 
     # Nested resource for messages within a specific chat

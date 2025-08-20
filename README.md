@@ -37,3 +37,10 @@ Features:
 Currently the Gemini part doesnt work for bug with Gemini. Links:
 * https://github.com/crmne/ruby_llm/issues/118
 * https://github.com/crmne/ruby_llm/pull/125
+
+## Additional info
+
+```ruby
+pry(main)> RubyLLM.models.map{|x| x.name}.select{|x| x =~ /Gemini/i}.select{|x| x =~ /image/i}
+=> ["Gemini 2.0 Flash Preview Image Generation"]
+```
