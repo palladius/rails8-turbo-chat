@@ -18,8 +18,8 @@ local:
 google:
   service: GCS
   project: <%= ENV["GCS_PROJECT"] %>
-  #credentials: <%= JSON.parse(ENV["GCS_CREDENTIALS_JSON"]) %>
-  credentials: <%= (ENV["GCS_CREDENTIALS_JSON"]) %>
+  # Credentials which work in localhost but FAIL in Cloud Run
+  credentials: <%= ENV["GCS_CREDENTIALS_JSON", '' ] %>
   bucket: <%= ENV["GCS_BUCKET"] %>
   public: true
   #folder: <%= Rails.env %> # not needed, happens in code.
