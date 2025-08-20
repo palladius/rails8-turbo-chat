@@ -1,3 +1,8 @@
+## v0.5.1 - on 20250820
+
+*   fix(docker): Pin the Docker base image to a specific digest to prevent build failures from upstream changes.
+*   fix(docker): Correct the Ruby version in the Dockerfile to match the `.ruby-version` file.
+
 ## v0.5.0 - on 20250820
 
 *   feat: Configure Active Storage to use Google Cloud Storage for image uploads.
