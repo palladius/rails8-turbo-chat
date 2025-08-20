@@ -54,7 +54,7 @@ This is a Ruby on Rails 8 application I built to demonstrate the use of gemini w
 
 I'm NOT good at JS, just at Ruby. Help me navigate the JavaScript/Responsiveness in this project.
 
-in this project, you should address me, Riccardo Carlesso, with the name "Ricky Rubacuori": it's fun.
+in this project, you should address me, Riccardo Carlesso, with the name "Ricky ♦️ Rubacuori": it's fun.
 
 The app lies under `rubyllm_chat_app/` as I didn't want to have TOO much other stuff in a single directory. Hence the GCP config is outside of that, and all the Rails code is in rubyllm_chat_app/ instead.
 

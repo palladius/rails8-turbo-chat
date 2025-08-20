@@ -1,3 +1,7 @@
+## v0.5.11 - on 20250820
+
+* Removed `ENABLE_GCP` added twice by mistake
+
 ## v0.5.10 - on 20250820
 
 *   ricc: Added `NO_COLOR` to stop having colorful rails logs inside Cloud Run logs. I love them locally, but not in Cloud Logs.

@@ -1,12 +1,10 @@
 # typed: false
 Rails.application.routes.draw do
+  root "chat_cards#index"
   get "/about", to: "pages#about"
   get "/config", to: "pages#config"
   # Devise routes for authentication
   devise_for :users
-
-  # Root path - directs to the main chat interface
-  root "chats#index"
 
   # Chat resources - index shows list, show displays a chat, create starts a new one
 #  resources :chats, only: [:index, :show, :create, :destroy] do
