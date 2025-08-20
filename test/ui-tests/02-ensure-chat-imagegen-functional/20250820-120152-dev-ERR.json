@@ -3,7 +3,7 @@
   "chat_id": null,
   "app_version": "0.4.2b",
   "error_topic": "environment",
-  "detailed_error": "Browser is already in use for /usr/local/google/home/ricc/.cache/ms-playwright/mcp-chrome-96bd499, use --isolated to run multiple instances of the same browser",
+"detailed_error": "Browser is already in use for <USER_HOME>/.cache/ms-playwright/mcp-chrome-96bd499, use --isolated to run multiple instances of the same browser",
   "repro": [
     "Run the UI test script."
   ],
