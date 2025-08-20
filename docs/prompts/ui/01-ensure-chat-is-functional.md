@@ -1,8 +1,14 @@
+## Prerequisites:
+
+* Call `date +%Y%m%d-%H%M%S` to get YYYYMMDD-HHMMSS, you'll need it later.
+
+**IMPORTANT** Note this is a non-interactive chat. Do what you can, do NOT ask questions since nobody will answer. You're on your own.
+
 ## Create a chat in DEV
 
 We want to test App functionality via MCP Playwright.
 
-* Navigate to http://localhost:8080/chats/
+* Navigate to http://localhost:8080/chats/ - allow for a 10sec timeout then exit with error
 * Click Start New chat
 * Create a random question regarding Italy which the LLM can respond.
 * wait 5 seconds for the LLM to respond.
@@ -49,3 +55,16 @@ Now repeat everything so far, but use:
 * write files with PROD instead of DEV:
   * write a `test/ui-tests/01-ensure-chat-functional/${YYYYMMDD-HHMMSS}-prod-OK.json`
   * write a `test/ui-tests/01-ensure-chat-functional/${YYYYMMDD-HHMMSS}-prod-ERR.json`
+
+
+## FINAL Actions
+
+* If everything is right, no problem.
+* If you found an error, please file a `gh` issue with https://github.com/palladius/rails8-turbo-chat/ . Bug should contain/start with "[01-chat]".
+* If you found an error, please also file a PR to https://github.com/palladius/rails8-turbo-chat/pulls with the files you've add/changed so far.
+  * It should contain the new JSOn file and a few screenshots. These can help with investigation.
+  * Link PR to issue and viceversa.
+  * If the change is trivial to fix this error you've found, please propose a change and add to the PR.
+  * Otherwise, just add your ideas in the PR text and just let the JSON speak, a human will follow up.
+
+Thanks for your help!

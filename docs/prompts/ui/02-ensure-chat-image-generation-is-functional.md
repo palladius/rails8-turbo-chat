@@ -2,11 +2,13 @@
 
 * Call `date +%Y%m%d-%H%M%S` to get YYYYMMDD-HHMMSS, you'll need it later.
 
-## Create a chat
+**IMPORTANT** Note this is a non-interactive chat. Do what you can, do NOT ask questions since nobody will answer. You're on your own.
+
+## [DEV] Create a chat
 
 We want to test App functionality via MCP Playwright.
 
-* Navigate to http://localhost:8080/chats/
+* Navigate to http://localhost:8080/chats/ - allow for a 10sec timeout then exit with error
 * Select the latest chat. either it has an image or not.
 * **Step 1. If there is an image** (optional)
   * take a screenshot of the image
@@ -31,6 +33,13 @@ We want to test App functionality via MCP Playwright.
   * observe if autorefresh happens, if not reload.
   * Take a screenshot of the image: "screenshot-chat-$(ID)-image-step-3.png".
   * observe a NEW, DIFFERENT image. If its the same, log error that regeneration doesnt work.
+
+## Image properties
+
+* An image should be a cartoon, not a photo or realistic - add WARNING if so.
+* The image should contain a ruby gem on the bottom right and a yellow heart emoji on the bottom left. While allowing
+  some flexibility, if you don't find the ruby on bottom right you should throw an ERROR, since it's the
+  image "signature". Throw a WARNING for the heart emoji if something is wrong there.
 
 ## Write your findings
 
@@ -67,7 +76,7 @@ please write it down.
 
 
 
-## Now repeat everything in prod
+## [PROD] Now repeat everything in prod
 
 Now repeat everything so far, but use:
 
@@ -75,3 +84,15 @@ Now repeat everything so far, but use:
 * write files with PROD instead of DEV:
   * write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-prod-OK.json`
   * write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-prod-ERR.json`
+
+## FINAL Actions
+
+* If everything is right, no problem.
+* If you found an error, please file a `gh` issue with https://github.com/palladius/rails8-turbo-chat/ . Bug should contain/start with "[02-chat-image-generation]".
+* If you found an error, please also file a PR to https://github.com/palladius/rails8-turbo-chat/pulls with the files you've add/changed so far.
+  * It should contain the new JSOn file and a few screenshots. These can help with investigation.
+  * Link PR to issue and viceversa.
+  * If the change is trivial to fix this error you've found, please propose a change and add to the PR.
+  * Otherwise, just add your ideas in the PR text and just let the JSON speak, a human will follow up.
+
+Thanks for your help!

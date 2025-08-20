@@ -1,0 +1,10 @@
+{
+  "ret": 1,
+  "chat_id": null,
+  "error_topic": "functionality",
+  "detailed_error": "The application is not running on localhost:8080. Connection was refused.",
+  "repro": [
+    "Ensure the application is running locally.",
+    "Try to navigate to http://localhost:8080/chats/"
+  ]
+}

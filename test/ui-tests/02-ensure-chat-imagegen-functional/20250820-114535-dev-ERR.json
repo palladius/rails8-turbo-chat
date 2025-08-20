@@ -1,0 +1,11 @@
+{
+  "ret": 1,
+  "chat_id": null,
+  "error_topic": "Environment",
+  "detailed_error": "The application is not running on localhost:8080. Connection was refused.",
+  "repro": [
+    "Run the test without starting the development server.",
+    "The test will fail to connect to the application."
+  ],
+  "log": "1. `date +%Y%m%d-%H%M%S` -> `20250820-114535`\n2. `mkdir -p test/ui-tests/02-ensure-chat-imagegen-functional && touch test/ui-tests/02-ensure-chat-imagegen-functional/.keep`\n3. `browser_navigate` to `http://localhost:8080/chats/` -> failed\n4. `curl http://localhost:8080/chats/` -> failed"
+}
