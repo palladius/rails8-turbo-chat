@@ -171,7 +171,6 @@ gcloud --project "$CLOUDRUN_PROJECT_ID" \
       --set-env-vars="GIT_LAST_COMMENT=$GIT_LAST_COMMENT" \
       --set-env-vars="GCS_BUCKET=$GCS_BUCKET" \
       --set-env-vars=ENABLE_GCP='true' \
-      --set-env-vars=ENABLE_GCP='true' \
       --set-env-vars=NO_COLOR='true' \
       --set-env-vars=APP_NAME="$APP_NAME" \
       --allow-unauthenticated

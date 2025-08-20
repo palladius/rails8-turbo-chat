@@ -1,0 +1,14 @@
+
+
+list:
+    just -l
+
+# ex1: Call Multi agent system, wow
+example1:
+    ruby 01-multi-agents-system.rb
+
+example2:
+    ruby 02-async-exec-demo.rb
+
+example3:
+    ruby 03-supervisor-pattern.rb
