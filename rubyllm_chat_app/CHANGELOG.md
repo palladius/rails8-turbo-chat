@@ -1,3 +1,7 @@
+## v0.5.2 - on 20250820
+
+*   feat(ui): Add emojis to "Edit Chat", "Delete Chat", and "Generate Image" buttons.
+
 ## v0.5.1 - on 20250820
 
 *   fix(docker): Pin the Docker base image to a specific digest to prevent build failures from upstream changes.
