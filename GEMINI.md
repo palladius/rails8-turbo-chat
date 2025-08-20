@@ -91,4 +91,16 @@ I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use `rbenv
 
 ## TODOs
 
-Read `TODOs.md` in more details
+* Read `TODOs.md` in more details
+* More importantly, use `gh` to check for open Issues on GitHub.
+
+## UI / UX
+
+UI Programming is hard. Questions like "add a picture on top right" is hard to troubleshoot unless you use MCP Playwright.
+Use it for questions like:
+* "Check on http://localhost:8080/chats/25 tthat the chat contains a picture and its visualized on top right"
+
+If you navigate to a login page, you can find user/pass in these convenient ENV variables in `.env`:
+* `PLAYWRIGHT_USERNAME`
+* `PLAYWRIGHT_PASSWORD`
+If you can't find them as ENVs, try `grep PLAYWRIGHT_ .env`.
