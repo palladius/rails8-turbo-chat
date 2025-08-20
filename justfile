@@ -56,5 +56,4 @@ llm-check:
 
 
 test-ui:
-    cat docs/prompts/ui/01-ensure-chat-is-functional.md  | gemini --yolo --prompt
-    cat docs/prompts/ui/02-ensure-chat-image-generation-is-functional.md  | gemini --yolo --prompt
+    ./run_ui_tests.sh
