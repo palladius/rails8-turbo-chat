@@ -76,8 +76,7 @@ generate-image-for-chat:
     echo "Generation script finished."
 
 test-builds:
-    cat 'docs/prompts/ui/03-ensure-dev-prod-versions-aligned.md' | \
-        gemini --yolo --prompt
+    cat 'docs/prompts/ui/03-ensure-dev-prod-versions-aligned.md' | gemini --yolo --prompt
 
 ## Copied from apps-portfolio - note project id is written here -> UGLY
 # List latest 10 CB builds, possible the first might still be running
@@ -88,3 +87,7 @@ cloud-build-list:
 cloud-build-show-log build_id:
     @echo "Showing log for build ID: {{build_id}}. Use --stream to follow the log indefinitely (you can do it, but I want Gemini NOT to do it)."
     gcloud builds log {{build_id}} --project=palladius-genai
+
+cloud-run-dev-logs:
+    @echo "☁️  Fetching logs for Cloud Run dev environment..."
+    gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=rails8-turbo-chat-dev" --project='palladius-genai' --limit=100 --format="value(timestamp, severity, textPayload)"

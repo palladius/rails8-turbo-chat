@@ -1,3 +1,8 @@
+## v0.5.7 - on 20250820
+
+*   fix(gcs): Correctly configure GCS environment variables in the deployment script.
+*   fix(gcs): Use `PROJECT_ID` instead of `GCS_PROJECT` in `storage.yml`.
+
 ## v0.5.5 - on 20250820
 
 *   fix(ci): Temporarily disable passing the git commit message to Cloud Run to prevent build failures.
@@ -95,7 +100,7 @@
 
 * reverting the ALLOWED_ORIGINS part
 
-Error: ERROR: (gcloud.beta.run.deploy) argument --set-env-vars: Bad syntax for dict arg: [2a00:79e0:2846:6:7dec:ea52:c63a:50f9]. Please see `gcloud topic flags-file` or `gcloud topic escaping` for information on providing list or dictionary flag values with special characters.
+Error: ERROR: (gcloud.beta.run.deploy) argument --set-env-vars: Bad syntax for dict arg: [2a00:79e0:2846:6:7dec:ea52:c6a:50f9]. Please see `gcloud topic flags-file` or `gcloud topic escaping` for information on providing list or dictionary flag values with special characters.
 
 * and now MCP finally works ! Yay! https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/mcp/sse
 
@@ -254,6 +259,6 @@ feat: Add application header
 2025-05-11 v0.1.3 added chat edit
 2025-05-11 v0.1.2 For some reason i do NOT understand it works. I was playing with https://rubyllm.com/guides/rails > Persisting Instructions and I created a chat record with instructions. After this, also Chat object started working. Weird.
 2025-05-11 v0.1.1 Added Carmine fix to Gemfile with empty msg from Gemini.
-2025-04-22 v0.1.0 Had gemini bug.
+2025-.env.dist04-22 v0.1.0 Had gemini bug.
 2025-04-19 v????? Initial stesure.
 ```

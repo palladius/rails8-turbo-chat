@@ -9,10 +9,11 @@
 #  reality:        europe-west1-docker.pkg.dev/palladius-genai/gemini-chat/gemini-chat
 
 # copiato da gemini-chat il 18mar25
-RICC_CBPUSH_SCRIPT_VER="1.3"
+RICC_CBPUSH_SCRIPT_VER="1.4"
 RICC_CBPUSH_LAST_BUILT="2025-03-18"
 
-export DEPLOY_VERSION='2.0.10'
+export DEPLOY_VERSION='2.0.11'
+# 20aug25  2.0.11      added GCS_BUCKET and GCS_CREDENTIALS_JSON
 # 16jun25  2.0.10      added GCLOUD_REGION and OCCASIONAL_MESSAGE
 # 19mar25  2.0.9       added GEMINI_API_KEY - (b) anche GIT_LADST_COMMIT
 # 18mar25  2.0.8       refactored everything..
@@ -64,7 +65,8 @@ export ENABLE_GCP='false'
 export MY_REGIONAL_SUBNET="projects/$PROJECT_ID/regions/$GCLOUD_REGION/subnetworks/default"
 
 # Change AppName if deployed from Carlessian computer
-# if hostname | egrep 'ricc-macbookpro|derek|penguin' ; then
+# if hostname | egrep 'ricc-macbookpro|derek|penguin' ;
+#   then
 #   #echo 'I believe this code wont work given how BASH vars suck '
 #   export APP_NAME_TO_DEPLOY="$APP_NAME-manhouse"
 # fi
@@ -84,7 +86,7 @@ case "$DOLL1" in
     export APP_TO_DEPLOY="${APP_NAME_TO_DEPLOY}-manhouse"
     export RAILS_ENV=development
     ;;
-  *) # else
+  *)
     _usage
     ;;
 esac
@@ -130,6 +132,7 @@ echo "---- /DEBUG ----"
 set -x
 
 
+
 echo 'WARNING: For this to work you need to 1. upload your ENVRC to Secret MAnager 2. make the SA able to access SM and 3. call it properly.'
 
 #########
@@ -166,9 +169,12 @@ gcloud --project "$CLOUDRUN_PROJECT_ID" \
       --set-env-vars="RUBY_YJIT_ENABLE=true" \
       --set-env-vars="GEMINI_API_KEY=$GEMINI_API_KEY" \
       --set-env-vars="GIT_LAST_COMMENT=$GIT_LAST_COMMENT" \
+      --set-env-vars="GCS_BUCKET=$GCS_BUCKET" \
+      --set-env-vars="GCS_CREDENTIALS_JSON=$GCS_CREDENTIALS_JSON" \
       --set-env-vars=ENABLE_GCP='true' \
       --set-env-vars=APP_NAME="$APP_NAME" \
       --allow-unauthenticated
+
 
 #       --set-env-vars="DATABASE_URL_PROD=$DATABASE_URL_PROD" \
 #      --network=default \
