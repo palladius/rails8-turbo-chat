@@ -80,6 +80,11 @@ end
 ################################
 # Riccardo START
 ################################
+# 1. Gemini
+#gem 'google-cloud-storage', '~> 1.45', require: 'google/cloud/storage'
+# 2. Public docs: https://guides.rubyonrails.org/active_storage_overview.html#google-cloud-storage-service
+gem "google-cloud-storage", "~> 1.11", require: false
+
 gem "devise", "~> 4.9"
 
 gem 'ruby_llm', '~> 1.6', '>= 1.6.3'

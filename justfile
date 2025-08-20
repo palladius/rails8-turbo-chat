@@ -1,4 +1,3 @@
-
 list:
     just -l
 
@@ -57,3 +56,21 @@ llm-check:
 # [magic] Test UI from main dir (maybe should be from sub dir?)
 test-ui:
     ./run_ui_tests.sh
+
+auth:
+    gcloud auth login
+
+list-assets:
+    #!/bin/bash
+    set -euo pipefail
+    source .env
+    gsutil ls -r gs://$GCS_BUCKET/**
+
+generate-image-for-chat:
+    #!/bin/bash
+    set -euo pipefail
+    source .env
+    echo "Generating image for chat #40..."
+    cd rubyllm_chat_app/
+    DATABASE_URL=$DATABASE_URL_DEV rails runner "script/generate_image_for_chat.rb" 40
+    echo "Generation script finished."
