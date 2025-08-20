@@ -23,7 +23,7 @@ for prompt_file in "$PROMPT_DIR"/*.md; do
         echo "Running test: $test_name"
         echo "Log file: $log_file"
 
-        cat "$prompt_file" | gemini --yolo --prompt > "$log_file" 2>&1
+        cat "$prompt_file" | gemini --yolo --prompt 2>&1 | tee "$log_file"
 
         echo "Finished test: $test_name"
         echo "---------------------------------"

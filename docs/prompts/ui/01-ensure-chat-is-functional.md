@@ -31,7 +31,7 @@ Execute:
 * This should contain a JSON with
   * "ret" (INTEGER): Should be 0
   * "app_version" (STRING): app version
-  * "chat_id" (INTEGER): Chat Id used for the test
+  * "chat_id" (INTEGER): Chat Id used for the test (null if unavailable)
   * "message (STRING): Here you add something about your overall experience, like "everything worked fine".
 
 ### If something went wrong
@@ -43,7 +43,7 @@ please write it down.
 * This should contain a JSON with
   * "ret" (INTEGER): "1"
   * "app_version" (STRING): app version
-  * "chat_id" (INTEGER): Chat Id used for the test
+  * "chat_id" (INTEGER): Chat Id used for the test (null if unavailable)
   * "error_topic" (STRING): This should be where the error was found, could be "latency" "functionality" "UX" ...
   * "detailed_error" (STRING): This should describe where the error was found
   * "repro" (ARRAY): If you believe a human can reproduce this error, please add an array of bullet points which a user could reproduce, something like:

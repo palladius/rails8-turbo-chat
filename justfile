@@ -54,6 +54,6 @@ ruby-check:
 llm-check:
     cd app && echo "RubyLLM.chat.ask 'ciao'" | rails c
 
-
+# [magic] Test UI from main dir (maybe should be from sub dir?)
 test-ui:
     ./run_ui_tests.sh
