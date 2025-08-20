@@ -1,3 +1,8 @@
+## v0.5.8 - on 20250820
+
+*   fix(cloudbuild): Pass GCS_CREDENTIALS_JSON to Cloud Run.
+*   feat(gcs): Add initializer to set GCS_BUCKET from PROJECT_ID.
+
 ## v0.5.7 - on 20250820
 
 *   fix(gcs): Correctly configure GCS environment variables in the deployment script.
