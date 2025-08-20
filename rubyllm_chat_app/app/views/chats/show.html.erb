@@ -36,29 +36,8 @@
       <%# Connect to Turbo Stream for this specific chat's messages %>
       <%= turbo_stream_from [@chat, "messages"] %>
 
-      <div class="flex flex-wrap md:flex-nowrap p-4 border-b border-gray-700 bg-gray-800">
-        <%# Chat Header (Title/Description/Actions) - Takes 66% of the width %>
-        <div class="w-full md:w-2/3 pr-4">
-          <h1 class="text-xl font-semibold text-gray-100"><%= @chat.title %></h1>
-          <% if @chat.description.present? %>
-            <p class="text-sm text-gray-400"><%= @chat.description %></p>
-          <% end %>
-          <p class="text-xs text-gray-500">Model: <%= @chat.model_id %></p>
-          <div class="flex space-x-2 mt-4">
-              <%= link_to "Edit Chat", edit_chat_path(@chat), class: "text-blue-400 hover:text-blue-300 text-sm font-medium" %>
-              <%= button_to "Delete Chat", chat_path(@chat), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this chat?" } }, class: "text-red-400 hover:text-red-300 text-sm font-medium" %>
-              <% unless @chat.generated_image.attached? %>
-                <%= button_to "Generate Image", generate_image_chat_path(@chat), method: :post, class: "text-green-400 hover:text-green-300 text-sm font-medium" %>
-              <% end %>
-          </div>
-        </div>
-
-        <%# Image - Takes 33% of the width %>
-        <% if @chat.generated_image.attached? %>
-          <div class="w-full md:w-1/3 mt-4 md:mt-0">
-            <%= image_tag @chat.generated_image, class: "w-full h-auto rounded-lg" %>
-          </div>
-        <% end %>
+      <div id="<%= dom_id(@chat) %>">
+        <%= render @chat %>
       </div>
 
       <%# Messages Area - Use flex-grow to take available space, overflow-y-auto for scrolling %>

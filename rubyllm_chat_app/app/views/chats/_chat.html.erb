@@ -1,4 +1,27 @@
-<div id="<%= dom_id(chat, "content") %>" style="display: inline;">
-    <%# Render initial content if not streaming, otherwise job appends here %>
-    TODO CHAT <%#= simple_format(chat.content) %>
+<div id="<%= dom_id(chat) %>" class="p-4 border-b border-gray-700 bg-gray-800 flex flex-nowrap">
+  <%# Chat Header (Title/Description/Actions) - Takes 66% of the width %>
+  <div style="width: 67%;" class="pr-4">
+    <h1 class="text-xl font-semibold text-gray-100"><%= chat.title %></h1>
+    <% if chat.description.present? %>
+      <p class="text-sm text-gray-400"><%= chat.description %></p>
+    <% end %>
+    <p class="text-xs text-gray-500">Model: <%= chat.model_id %></p>
+    <div class="flex space-x-2 mt-4">
+        <%= link_to "Edit Chat", edit_chat_path(chat), class: "text-blue-400 hover:text-blue-300 text-sm font-medium" %>
+        <%= button_to "Delete Chat", chat_path(chat), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this chat?" } }, class: "text-red-400 hover:text-red-300 text-sm font-medium" %>
+    </div>
+  </div>
+
+  <%# Image - Takes 33% of the width %>
+  <div style="width: 33%;">
+    <% if chat.generated_image.attached? %>
+      <%= image_tag chat.generated_image, class: "w-full h-auto rounded-lg" %>
+      <div class="flex space-x-2 mt-2">
+        <%= button_to "🗑️ Delete Image", delete_image_chat_path(chat), method: :delete, class: "text-red-400 hover:text-red-300 text-sm font-medium" %>
+        <%= button_to "🔄 Regenerate Image", generate_image_chat_path(chat), method: :post, class: "text-blue-400 hover:text-blue-300 text-sm font-medium" %>
+      </div>
+    <% else %>
+      <%= button_to "Generate Image", generate_image_chat_path(chat), method: :post, class: "text-green-400 hover:text-green-300 text-sm font-medium" %>
+    <% end %>
+  </div>
 </div>

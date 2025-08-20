@@ -1,3 +1,7 @@
+## v0.4.1 - on 20250820
+
+*   fix(ui): Correctly align chat image to be 33% on the right and chat details to be 66% on the left.
+
 ## v0.4.0 - on 20250820
 
 *   feat: Add chat image generation via Gemini.
