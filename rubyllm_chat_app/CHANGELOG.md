@@ -1,3 +1,7 @@
+## v0.5.5 - on 20250820
+
+*   fix(ci): Temporarily disable passing the git commit message to Cloud Run to prevent build failures.
+
 ## v0.5.4 - on 20250820
 
 *   fix(gcs): Conditionally load GCS credentials to support both local and Cloud Run environments.

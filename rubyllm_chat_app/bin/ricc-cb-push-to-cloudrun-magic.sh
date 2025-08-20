@@ -51,7 +51,8 @@ export GCLOUD_REGION="${GCLOUD_REGION:-europe-west10}"
 export GIT_STATE="$(git rev-list -1 HEAD --abbrev-commit)"
 export GIT_COMMIT_SHA="$(git rev-parse HEAD)" # big commit
 export GIT_SHORT_SHA="${GIT_COMMIT_SHA:0:7}" # first 7 chars: Riccardo reproducing what CB does for me.
-export GIT_LAST_COMMENT="$(git log -1 --pretty=%B)"
+#export GIT_LAST_COMMENT_COULD_BE_BROKEN="$(git log -1 --pretty=%B)"
+export GIT_LAST_COMMENT="temporarily-disabled"
 export MY_APP_VERSION="$(cat VERSION)"
 # Can be overridden by $2..
 export APP_VERSION="${2:-$MY_APP_VERSION}"
