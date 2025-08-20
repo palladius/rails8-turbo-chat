@@ -7,6 +7,7 @@ class Chat < ApplicationRecord
   acts_as_chat # Assumes Message and ToolCall model names
 
   # Standard Rails Model Logic
+  has_one_attached :generated_image
   has_many :messages, -> { order(created_at: :asc) }, dependent: :destroy # Ensure messages are ordered
 
   # Riccaredo this WONT work as its in PostgreS vincolo.
@@ -98,6 +99,13 @@ class Chat < ApplicationRecord
     self.all.each do |chat|
       chat.autotitle_if_needed
     end
+  end
+
+  def attach_image(image_path)
+    generated_image.attach(
+      io: File.open(Rails.root.join(image_path)),
+      filename: File.basename(image_path)
+    )
   end
 
   private

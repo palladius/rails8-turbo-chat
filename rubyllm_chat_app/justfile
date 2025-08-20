@@ -112,3 +112,7 @@ mcp-inspector:
 diagrams:
     DATABASE_URL=$DATABASE_URL_DEV bundle exec erd
     mv erd.pdf ../docs/erd.pdf
+
+populate-sample-image CHAT_ID='25':
+    @echo "Populating sample image for chat {{CHAT_ID}}..."
+    @DATABASE_URL=$DATABASE_URL_DEV rails runner "Chat.find({{CHAT_ID}}).attach_image('app/assets/images/sample-image.png')"

@@ -7,4 +7,5 @@ ruby_llm-copy/
 bin/
 rubyllm_chat_app/app/assets/images/favicon_io.zip
 .gemini/
-app/
+# Nota che solo app non va
+app/app/

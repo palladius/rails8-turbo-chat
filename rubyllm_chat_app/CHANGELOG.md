@@ -1,3 +1,9 @@
+## v0.4.0 - on 20250820
+
+*   feat: Add chat image generation via Gemini.
+*   feat: Add a `just` command to populate a sample image for a chat.
+*   refactor: Slim down the `just` command by moving the logic to a `Chat` model method.
+
 ## v0.3.18 - on 20250819
 
 * Switched `ruby_llm` gem from git to a stable version from RubyGems.

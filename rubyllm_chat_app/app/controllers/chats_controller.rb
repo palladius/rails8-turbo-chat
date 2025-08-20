@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   # include ActionView::RecordIdentifier
 
   before_action :set_chats, only: [:index, :show] # Load chats list for sidebar
-  before_action :set_chat, only: [:show, :edit, :update, :destroy] # Load specific chat for actions
+  before_action :set_chat, only: [:show, :edit, :update, :destroy, :generate_image] # Load specific chat for actions
 
   # GET /chats or root_path
   # Displays the list of chats and potentially the first/last active chat
@@ -80,6 +80,14 @@ class ChatsController < ApplicationController
     # @chat is set by before_action
     @chat.destroy
     redirect_to chats_url, status: :see_other, notice: "🗑️ Chat session deleted."
+  end
+
+  def generate_image
+    # @chat is set by before_action
+    # In a real app, you'd enqueue a background job here
+    # For simplicity, we'll call the service directly
+    GenerateChatImageJob.perform_later(@chat)
+    redirect_to @chat, notice: "🖼️ Image generation started. It will appear shortly."
   end
 
   private

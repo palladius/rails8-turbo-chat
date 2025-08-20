@@ -1,0 +1,23 @@
+{
+  "items": [
+    [],
+    [
+      {
+        "connectionType": "SSE",
+        "name": "SSE-1748357636862",
+        "version": "1.0",
+        "url": "http://localhost:8080/mcp/sse",
+        "oauth": ""
+      }
+    ],
+    [
+      {
+        "connectionType": "SSE",
+        "name": "SSE-1748357673984",
+        "version": "1.0",
+        "url": "http://localhost:8080/mcp/",
+        "oauth": ""
+      }
+    ]
+  ]
+}

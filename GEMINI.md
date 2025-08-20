@@ -78,6 +78,7 @@ Code is under git: use it!
   * 2. docker container compiles (`just docker-build`).
 * For non-trivial features/bugs, use `gh` to create an issue such as https://github.com/palladius/rails8-turbo-chat/issues/4.
   * Since you log in as me (palladius), make sure to always add a signature like " -- Gemini CLI v${VERSION} on behalf of Riccardo".
+* If asked about a feature or issue, use `gh` to retrieve them, not curl. Eg, https://github.com/palladius/rails8-turbo-chat/issues/5
 
 ## Ruby
 
