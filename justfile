@@ -77,4 +77,14 @@ generate-image-for-chat:
 
 test-builds:
     cat 'docs/prompts/ui/03-ensure-dev-prod-versions-aligned.md' | \
-        time gemini --yolo --prompt
+        gemini --yolo --prompt
+
+## Copied from apps-portfolio - note project id is written here -> UGLY
+# List latest 10 CB builds, possible the first might still be running
+cloud-build-list:
+    gcloud builds list --project=palladius-genai --limit=10
+
+# Show the log of a specific Cloud Build, eg 7c82188e-485a-4735-a70d-fb303fbfe5a0
+cloud-build-show-log build_id:
+    @echo "Showing log for build ID: {{build_id}}. Use --stream to follow the log indefinitely (you can do it, but I want Gemini NOT to do it)."
+    gcloud builds log {{build_id}} --project=palladius-genai
