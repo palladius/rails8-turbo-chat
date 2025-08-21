@@ -1,3 +1,7 @@
+## v0.5.13 - on 20250821
+
+*   feat(ui): Make the entire chat card clickable.
+
 ## v0.5.12 - on 20250820
 
 *   feat(ui): Add chat cards view at root path.
