@@ -1,0 +1,15 @@
+
+{
+  "ret": 1,
+  "chat_id": null,
+  "app_version": "0.5.12",
+  "error_topic": "Tooling",
+  "detailed_error": "The browser is already in use, and I am unable to proceed with the UI test. The error message is: 'Browser is already in use for /usr/local/google/home/ricc/.cache/ms-playwright/mcp-chrome-96bd499, use --isolated to run multiple instances of the same browser'",
+  "repro": [
+    "Try to run a UI test using the browser tools.",
+    "Observe that the browser is already in use."
+  ],
+  "log": "The user asked me to run a UI test. I tried to navigate to the specified URL, but the browser was already in use. I tried to close the browser and navigate again, but the error persisted. This is the error for the PROD environment.",
+  "md5_image_before": null,
+  "md5_image_after": null
+}
