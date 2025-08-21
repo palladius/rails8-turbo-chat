@@ -1,6 +1,9 @@
 <div class="container mx-auto px-4">
   <h1 class="text-2xl font-bold text-center my-8">Chat Cards</h1>
   <div class="text-center mb-8">
+    <%= form_with(model: Chat.new, url: chats_path, method: :post, class: "inline-block") do |f| %>
+      <%= f.submit "✨ Start New Chat", class: "bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded" %>
+    <% end %>
     <%= link_to "Go to Chats", chats_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
     <% if params[:show_all] %>
       <%= link_to "Show Only Chats with Images", root_path, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
