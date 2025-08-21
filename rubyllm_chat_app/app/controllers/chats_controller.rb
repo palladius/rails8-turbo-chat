@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   # include ActionView::RecordIdentifier
 
   before_action :set_chats, only: [:index, :show] # Load chats list for sidebar
-  before_action :set_chat, only: [:show, :edit, :update, :destroy, :generate_image, :delete_image] # Load specific chat for actions
+  before_action :set_chat, only: [:show, :edit, :update, :destroy, :generate_image, :delete_image, :regenerate_title, :generate_description, :im_feeling_lucky] # Load specific chat for actions
 
   # GET /chats or root_path
   # Displays the list of chats and potentially the first/last active chat
@@ -93,6 +93,21 @@ class ChatsController < ApplicationController
   def delete_image
     @chat.generated_image.purge
     redirect_to @chat, notice: "🗑️ Image deleted."
+  end
+
+  def regenerate_title
+    @chat.autotitle_if_needed
+    redirect_to @chat, notice: "🎨 Title regenerated!"
+  end
+
+  def generate_description
+    @chat.generate_description
+    redirect_to @chat, notice: "📝 Description generated!"
+  end
+
+  def im_feeling_lucky
+    ImFeelingLuckyJob.perform_later(@chat)
+    redirect_to @chat, notice: "✨ I'm feeling lucky! Updates are on the way."
   end
 
   private

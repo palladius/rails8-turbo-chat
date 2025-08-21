@@ -43,6 +43,10 @@ class Chat < ApplicationRecord
     title.start_with?(DEFAULT_TITLE_PREFIX)
   end
 
+  def too_short?
+    messages.count < 2
+  end
+
 
   # Generates a title for the chat using an LLM if the current title is a default one
   # and the chat has more than 3 messages.
@@ -93,6 +97,45 @@ class Chat < ApplicationRecord
   def self.autotitle_if_needed
     self.all.each do |chat|
       chat.autotitle_if_needed
+    end
+  end
+
+  def generate_description
+    return if ugly_title? || messages.count < 2
+
+    Rails.logger.info "Attempting to generate description for chat #{id}..."
+
+    current_chat_history = self.fancy_chat_messages
+
+    description_generation_prompt = <<~PROMPT.strip
+      Based on our conversation so far (the preceding messages), please suggest a concise and descriptive description for this chat.
+      The title of the chat is: "#{title}".
+      The description should fit in nicely after the title and not repeat it.
+      The description should be a single sentence, ideally 25-30 words long.
+      Output ONLY the description itself.
+      Try to use emojis in the description and a cheerful style.
+      Do not include any prefixes like "Description:", quotation marks, or any other explanatory text.
+    PROMPT
+
+    begin
+      description_chat = RubyLLM.chat
+      response = description_chat.ask(description_generation_prompt + "\n\n" + current_chat_history)
+      suggested_description = response.content&.strip
+
+      if suggested_description.present? && suggested_description.length > 10 && suggested_description.length <= 250 # Basic validation
+        cleaned_description = suggested_description.gsub(/^Description:\s*/i, '').gsub(/^["']+|["']+$/, '').strip
+
+        if cleaned_description.present?
+          self.update(description: cleaned_description)
+          Rails.logger.info "Chat #{self.id} successfully generated description: '#{cleaned_description}'"
+        else
+          Rails.logger.info "Chat #{self.id} description generation: new description is blank or invalid after cleaning. Original: '#{suggested_description}', Cleaned: '#{cleaned_description}'"
+        end
+      else
+        Rails.logger.warn "Chat #{self.id} description generation: LLM returned empty, too short, or too long description. Raw response: '#{suggested_description}'"
+      end
+    rescue StandardError => e
+      Rails.logger.error "Chat #{self.id} description generation failed due to LLM error: #{e.class.name} - #{e.message}"
     end
   end
 

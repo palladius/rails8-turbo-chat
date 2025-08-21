@@ -1,3 +1,12 @@
+## v0.6.0 - on 20250821
+
+🔵 ✨ Added "Regenerate Title" button for chats with default titles.
+🔵 ✨ Added "Generate Description" and "Regenerate Description" buttons.
+🔵 ✨ Added "I'm feeling lucky" button to generate image, title, and description in one click.
+🔵 🎨 Improved the UI of chat action buttons to be smaller and curvy.
+🔵 ✨ Made chat images clickable to view the full-size version.
+🔵 🐛 Buttons for generative actions are now hidden for chats with less than 2 messages.
+
 ## v0.5.13 - on 20250821
 
 *   feat(ui): Make the entire chat card clickable.

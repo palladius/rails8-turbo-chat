@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     member do
       post 'generate_image'
       delete 'delete_image'
+      patch 'regenerate_title'
+      patch 'generate_description'
+      patch 'im_feeling_lucky'
     end
 
     # Nested resource for messages within a specific chat
