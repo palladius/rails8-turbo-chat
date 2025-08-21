@@ -47,8 +47,7 @@ My app
 🟢 Dev: https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/
 🔴 Prod: https://rails8-turbo-chat-prod-272932496670.europe-west10.run.app/
 
-
-## Casa sab4jul
+## About
 
 This is a Ruby on Rails 8 application I built to demonstrate the use of gemini with Rails 8, and I built a responsive chat.
 
@@ -57,6 +56,12 @@ I'm NOT good at JS, just at Ruby. Help me navigate the JavaScript/Responsiveness
 in this project, you should address me, Riccardo Carlesso, with the name "Ricky ♦️ Rubacuori": it's fun.
 
 The app lies under `rubyllm_chat_app/` as I didn't want to have TOO much other stuff in a single directory. Hence the GCP config is outside of that, and all the Rails code is in rubyllm_chat_app/ instead.
+
+**Important**. The Database is a PostgreSQL in Google Cloud, and its credentials are in `.env` under `DATABASE_URL_DEV`. When running in dev, check the code in `app/justfile` for `just dev` target. This means that if you want to do:
+
+* `rails server`: do just run, or `DATABASE_URL=$DATABASE_URL_DEV bin/dev` instead.
+* `rails console`: do `DATABASE_URL=$DATABASE_URL_DEV rails c` instead.
+* If you want to use PRODUCTION, use `DATABASE_URL_PROD` instead.
 
 ## Feedback loop
 

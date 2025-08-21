@@ -76,7 +76,9 @@ please write it down.
   * "repro" (ARRAY): If you believe a human can reproduce this error, please add an array of bullet points which a user could reproduce, something like:
     [ "Navigate to URL..", "click button ...", "observe the page lags indefinitely", "and the image doesnt appear as intended"]
   * "log" (STRING): Add a log of all the stdout conversation you -as Gemini CLI - have had with user.
-
+  * "md5_image_before" (STRING): an MD5 sum of the image before deletion/regeneration.
+  * "md5_image_after" (STRING): an MD5 sum of the image after deletion/regeneration. This is needed to check the delete/create and "Regenerate" test.
+    * Note: if more than 2 are created, use "md5_image_1", "md5_image_2", .. instead.
 
 
 ## [PROD] Now repeat everything in prod
