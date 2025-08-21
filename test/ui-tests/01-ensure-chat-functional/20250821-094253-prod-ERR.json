@@ -1,0 +1,8 @@
+{
+  "ret": 1,
+  "app_version": "0.5.12",
+  "chat_id": null,
+  "error_topic": "Functionality",
+  "detailed_error": "Could not run the UI test because the browser is already in use. The tool returned the error: 'Browser is already in use for /usr/local/google/home/ricc/.cache/ms-playwright/mcp-chrome-96bd499, use --isolated to run multiple instances of the same browser'",
+  "repro": null
+}
