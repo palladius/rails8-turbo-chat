@@ -7,8 +7,8 @@ set -euo pipefail
 
 PROMPT_DIR="docs/prompts/ui"
 BASE_LOG_DIR="rubyllm_chat_app/test/ui-tests"
-TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-PID=$$
+TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
+PID="$$"
 
 echo "Starting UI tests..."
 

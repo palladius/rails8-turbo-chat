@@ -97,3 +97,6 @@ cloud-build-show-log build_id:
 cloud-run-dev-logs:
     @echo "☁️  Fetching logs for Cloud Run dev environment..."
     gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=rails8-turbo-chat-dev" --project='palladius-genai' --limit=100 --format="value(timestamp, severity, textPayload)"
+
+test:
+    echo TODO not now Riccardo. We need to figure out a fungible PostgreSQL DB in test, maybe in localhost, maybe in test?

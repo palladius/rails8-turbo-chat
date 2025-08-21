@@ -1,0 +1,9 @@
+{
+  "ret": 1,
+  "chat_id": null,
+  "app_version": "0.7.2",
+  "error_topic": "MCP Communication",
+  "detailed_error": "I am unable to figure out how to send a JSON-RPC request to the MCP SSE endpoint. I have tried various methods, but none of them have been successful. I need more information on the expected request format for the SSE endpoint.",
+  "repro": null,
+  "log": "I have tried to use curl to send POST requests to /mcp/ and /mcp/message, but got 'Endpoint not found'. I have also tried to use curl with -N to connect to the /mcp/sse endpoint, but I could not figure out how to send the JSON-RPC payload. I have searched for documentation and examples, but I could not find a clear answer."
+}
