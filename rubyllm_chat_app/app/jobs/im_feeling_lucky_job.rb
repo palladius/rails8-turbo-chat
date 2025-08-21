@@ -2,6 +2,10 @@ class ImFeelingLuckyJob < ApplicationJob
   queue_as :default
 
   def perform(chat)
+    # Broadcast the notice to the chat
+    chat.broadcast_prepend_to [chat, "messages"],
+                              partial: "chats/im_feeling_lucky_notice",
+                              target: "messages"
     # Ensure chat has enough messages
     return unless chat.messages.count >= 2
 

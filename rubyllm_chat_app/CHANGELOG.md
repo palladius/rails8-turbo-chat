@@ -1,3 +1,8 @@
+## v0.7.0 - on 20250821
+
+🔵 ✨ Automatically trigger "I'm feeling lucky" experience when a chat becomes long enough.
+🔵 ✨ Display a notice to the user when the "I'm feeling lucky" job is running.
+
 ## v0.6.0 - on 20250821
 
 🔵 ✨ Added "Regenerate Title" button for chats with default titles.

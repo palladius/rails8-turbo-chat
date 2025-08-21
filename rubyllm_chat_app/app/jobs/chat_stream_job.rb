@@ -74,6 +74,9 @@ class ChatStreamJob < ApplicationJob
     # e.g., to render markdown properly after streaming is complete.
     # assistant_message&.broadcast_replace_to([chat, "messages"], target: dom_id(assistant_message), partial: "messages/message", locals: { message: assistant_message })
 
+    # Trigger the "I'm feeling lucky" job if the chat is no longer too short
+    ImFeelingLuckyJob.perform_later(chat) if chat.messages.count == 2
+
   rescue => e
       Rails.logger.error "🔥 FAILED ChatStreamJob for Chat ##{chat_id}: #{e.message}"
       # Potentially update the UI to show an error message
