@@ -21,7 +21,7 @@ rails-c:
 rails-c-prod:
     DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails c
 
-prod-setup:
+prod-safe-setup:
     # DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails db:setup
     DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails db:migrate
     ./bin/rails assets:precompile

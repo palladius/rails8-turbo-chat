@@ -59,18 +59,11 @@ class Chat < ApplicationRecord
     title_generation_prompt = <<~PROMPT.strip
       Based on our conversation so far (the preceding messages), please suggest a concise and descriptive title for this chat.
       The title should be brief, ideally 5-7 words long.
-      Output ONLY the title itself. Do not include any prefixes like "Title:", quotation marks, or any other explanatory text.
+      Output ONLY the title itself.
+      Do not include any prefixes like "Title:", quotation marks, or any other explanatory text.
     PROMPT
 
-
-
-    # Append the title generation request as a new "user" message
-    #messages_for_llm = current_chat_history + [{ role: "user", content: title_generation_prompt }]
-
     begin
-      #llm_client = self.to_llm # Get the LLM client configured for this chat's model
-      #response = llm_client.chat(messages: messages_for_llm)
-
       titling_chat = RubyLLM.chat
       response = titling_chat.ask(title_generation_prompt + "\n\n" + current_chat_history)
       # DEBUG

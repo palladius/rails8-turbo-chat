@@ -2,10 +2,11 @@
 
 * Call `date +%Y%m%d-%H%M%S` to get YYYYMMDD-HHMMSS, you'll need it later.
 * call `cat VERSION` or `cat app/VERSION` to get latest app version.
+* call `echo $$` to know your PID.
 
 **IMPORTANT** Note this is a non-interactive chat. Do what you can, do NOT ask questions since nobody will answer. You're on your own.
 
-## [DEV] Create a chat
+## [LOCAL_DEV] Create a chat
 
 We want to test App functionality via MCP Playwright.
 
@@ -53,7 +54,7 @@ Execute:
 
 ### If everything is correct
 
-* write a `test/ui-tests/02-ensure-chat-imagegen-functional/OK-${YYYYMMDD-HHMMSS}-dev-OK.json`
+* write a `test/ui-tests/02-ensure-chat-imagegen-functional/OK-${YYYYMMDD-HHMMSS}-local-localdev-OK.json`
 * This should contain a JSON with
   * "ret" (INTEGER): Should be 0
   * "chat_id" (INTEGER): Chat Id used for the test (null if unavailable)
@@ -66,7 +67,7 @@ Execute:
 If something went wrong with your experience, could be latency, or an image poorly positioned, or some debug text wrongly set on screen, ..
 please write it down.
 
-* write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-dev-ERR.json`
+* write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-localdev-ERR.json`
 * This should contain a JSON with
   * "ret" (INTEGER): "1"
   * "chat_id" (INTEGER): Chat Id used for the test (null if unavailable)
@@ -81,23 +82,42 @@ please write it down.
     * Note: if more than 2 are created, use "md5_image_1", "md5_image_2", .. instead.
 
 
-## [PROD] Now repeat everything in prod
+## [crun-dev] Now repeat everything in dev on Cloud Run
 
 Now repeat everything so far, but use:
 
 * This url instead of localhost: https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/
-* write files with PROD instead of DEV:
-  * write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-prod-OK.json`
-  * write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-prod-ERR.json`
+* For filenames, use "crundev" instead of "localdev":
+  * write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-crundev-OK.json` if ok, otherwise
+  * write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-crundev-ERR.json`
+
+## [crun-prod] Now repeat everything in prod in Cloud run
+
+Now repeat everything so far, but use:
+
+* This url instead of localhost: https://rails8-turbo-chat-prod-272932496670.europe-west10.run.app/
+* For filenames, use "crunprod" instead of "localdev":
+  * write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-crunprod-OK.json` if ok, otherwise
+  * write a `test/ui-tests/02-ensure-chat-imagegen-functional/${YYYYMMDD-HHMMSS}-crunprod-ERR.json`
 
 ## FINAL Actions
 
 * If everything is right, no problem.
 * If you found an error, please file a `gh` issue with https://github.com/palladius/rails8-turbo-chat/ . Bug should contain/start with "[02-chat-image-generation]".
 * If you found an error, please also file a PR to https://github.com/palladius/rails8-turbo-chat/pulls with the files you've add/changed so far.
+  * please try NOT to create a local branch. Why? This script could hang and I would end up with
   * It should contain the new JSOn file and a few screenshots. These can help with investigation.
   * Link PR to issue and viceversa.
   * If the change is trivial to fix this error you've found, please propose a change and add to the PR.
   * Otherwise, just add your ideas in the PR text and just let the JSON speak, a human will follow up.
+
+## Cleanup ("finally")
+
+This cleanup should have a Java `finally` behaviour: should be executed even if you get stuck in either point.
+
+Remember to (even if you get stuck):
+1. Close the MCP Playwright browser if you have opened it.
+2. move back to main branch if you opened another. Make sure to NOT lose those changes, worst case scenario add a "docs/finally-help-$YOUR_PID.md"
+  with things you want a human to do, or create a `gh` issue with it. could be something like "Sorry i couldnt commit change XYZ or file A and B, do cmd1 and cmd2 tro restore them".
 
 Thanks for your help!
