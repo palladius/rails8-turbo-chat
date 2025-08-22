@@ -1,0 +1,64 @@
+############################################################################################################
+# This is a Carlessian Blueprint created by Gemini CLI thanks to ~/.gemini/ccm/blueprint.toml
+############################################################################################################
+apiVersion: apiextensions.k8s.io/v1
+kind: CarlessianBlueprint
+blueprint_version: 1.0.1
+metadata:
+    app_name: "Rails 8 Turbo Chat"
+    app_version: 0.7.1
+    codeFolder: 'rubyllm_chat_app/'
+    last_updated: "20250822-105248"
+    emoji: 🤖
+    description: |
+        A responsive Rails 8 chat application using the `ruby_llm` gem to integrate with Google's Gemini API.
+        The application supports real-time chat with Turbo Streams and is designed for deployment on Google Cloud Platform.
+    code:
+        owner: "Riccardo Carlesso <palladiusbonton@gmail.com>"
+        type: "web_app"
+        language: "ruby"
+        framework: "rails"
+        is_monorepo: True # multi-folder monorepo containing the main Rails app and related scripts.
+    git:
+        url: "https://github.com/palladius/rails8-turbo-chat.git"
+        main_branch: "main"
+        last_commit_hash: "2f519cd1023a74595c454ada0482dbe82441642f"
+        last_commit_date: "2025-08-22T09:45:56+02:00"
+        provider: github
+        main_contributors:
+            - "Riccardo Carlesso <palladiusbonton@gmail.com>"
+            - "Riccardo Carlesso <ricc+chezmoi@google.com>"
+    gcp:
+        host: "Google Cloud Platform"
+    tags: [ "gcp", "ai", "gemini_api", "rails", "ruby", "chat", "cloud-run" ]
+    secure: False # Secrets are managed via environment variables, but no advanced security features are evident.
+    documentation: "good" # The README and GEMINI.md files provide good context and instructions.
+    build: "docker"
+    iac:
+        folder: "iac/"
+        type: "shell"
+        description: "A shell script (`gcs_setup.sh`) is used to provision and configure a Google Cloud Storage bucket for Active Storage."
+    required_env:
+        PROJECT_ID: "Your Cloud Project ID, to deploy to cloud run"
+        REGION: "Your Cloud Region, to deploy to cloud run"
+        RAILS_MASTER_KEY: "Rails master key for credentials encryption."
+        GEMINI_API_KEY: "Needed to invoke Gemini APIs"
+        GCS_BUCKET: "Google Cloud Storage bucket name for Active Storage."
+        DATABASE_URL_DEV: "PostgreSQL connection string for the development database."
+        DATABASE_URL_PROD: "PostgreSQL connection string for the production database."
+        PLAYWRIGHT_USERNAME: "Username for UI testing with Playwright."
+        PLAYWRIGHT_PASSWORD: "Password for UI testing with Playwright."
+    annotations:
+        prodUrl: "https://rails8-turbo-chat-prod-272932496670.europe-west10.run.app/"
+        devUrl: "https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/"
+        localAppUrl: "http://localhost:8080/"
+    recommendations:
+        user_todos: |
+            - CUJ01 Test MCP images. Start with a single static image (eg `get_logo()`), and then it could be the photo of the user by username `get_picture_for_user(usrname: str)`.
+            - CUJ02 Test MCP auth.Try authenticate with MCP authentication. Let's see if its compatible with Devise auth (user/pass). If yes, good. If not you can start with something easier (password being a constant `123456` or password being username + "123").
+            - CUJ03 Reshape `GEMINI.md`, seems like it was merged between two different branches on 14jul and now its a bit bloated. Lets check if there's duplication, and maybe we can remove some stuff and move it to some `CODING.md`.
+        ai_recommendations: |
+            1. **Add a test database setup**: The `just test` command is a TODO. A dedicated test database (e.g., a local PostgreSQL instance) should be configured to enable unit and integration testing.
+            2. **IaC for database provisioning**: The database is expected to exist. Consider adding Terraform or another IaC tool to provision the Cloud SQL instances.
+            3. **Consolidate `justfile`s**: There is a `justfile` in the root and another in `rubyllm_chat_app/`. These could be merged or better organized to avoid confusion.
+            4. **Refactor `cloudbuild.yaml`**: The `cloudbuild.yaml` has some hardcoded values and could be made more modular and reusable.
