@@ -2,6 +2,10 @@
 
 *   fix: Correctly define `publicize_chat_path` route (issue #37).
 
+## v0.8.7 - on 20250823
+
+* introduces  `publicize_chat_path` but forgets the route => **BROKEN**.
+
 ## v0.8.6 - on 20250823
 
 *   fix: Add `null: false` constraint to `public` column in chats migration (issue #37).
