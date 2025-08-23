@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       patch 'regenerate_title'
       patch 'generate_description'
       patch 'im_feeling_lucky'
+      patch 'publicize'
     end
 
     # Nested resource for messages within a specific chat
