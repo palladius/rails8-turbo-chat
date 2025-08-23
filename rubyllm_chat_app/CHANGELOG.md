@@ -1,3 +1,7 @@
+## v0.7.2 - on 20250823
+
+*   feat: Add a visual warning for configuration errors (issue #36)
+
 ## v0.7.1 - on 20250821
 
 🔵 ✨ Added a "Start New Chat" button to the homepage for easier access.

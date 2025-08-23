@@ -13,6 +13,17 @@
 <body class="bg-gray-900 text-gray-100 font-sans bg-gradient-to-br from-blue-900 to-purple-900 flex flex-col">
   <%= render 'layouts/header' %>
 
+  <% if Rails.configuration.x.config_errors.any? %>
+    <div class="bg-red-500 bg-opacity-75 border border-red-700 text-white px-4 py-3 rounded relative mb-4" role="alert">
+      <strong>⚠️ Configuration Errors:</strong>
+      <ul>
+        <% Rails.configuration.x.config_errors.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <main class="container mx-auto mt-4 px-4 flex-grow">
     <%# Flash Messages - Tailored for Tailwind %>
     <% if notice %>
