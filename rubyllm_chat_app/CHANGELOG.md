@@ -1,3 +1,7 @@
+## v0.8.5 - on 20250823
+
+*   feat: Homepage UI improvements (split login/signup, remove show all for unauthenticated) (issue #37).
+
 ## v0.8.4 - on 20250823
 
 *   fix: Allow unauthenticated access to homepage (ChatCardsController#index) (issue #37).
