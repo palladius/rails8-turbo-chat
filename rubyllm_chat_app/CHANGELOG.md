@@ -1,3 +1,7 @@
+## v0.7.4 - on 20250823
+
+*   feat: Add `public` attribute to Chat model and display public chats in CARDS view (issue #37).
+
 ## v0.7.3 - on 20250823
 
 *   feat: Add checks for `GCLOUD_REGION` and `GEMINI_API_KEY` in config errors.
