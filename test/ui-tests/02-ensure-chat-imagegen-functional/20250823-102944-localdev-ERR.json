@@ -1,0 +1,15 @@
+{
+  "ret": 1,
+  "chat_id": null,
+  "app_version": "0.7.163370",
+  "error_topic": "UI Test",
+  "detailed_error": "Unable to perform UI test due to issues with the available tools. I have tried to use curl and web_fetch, but I am unable to login and interact with the page.",
+  "repro": [
+    "Start the application locally.",
+    "Try to login using curl or any other tool.",
+    "Observe that the login fails or it is not possible to interact with the page after login."
+  ],
+  "log": "",
+  "md5_image_before": null,
+  "md5_image_after": null
+}
