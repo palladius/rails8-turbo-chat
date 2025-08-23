@@ -1,3 +1,7 @@
+## v0.8.2 - on 20250823
+
+*   feat: Prepend eyes emoji to public chat titles in individual chat view (`_chat.html.erb`) (issue #37).
+
 ## v0.8.0 - on 20250823
 
 *   feat: Complete implementation of `public` attribute for Chat model, including UI and homepage display (issue #37).
