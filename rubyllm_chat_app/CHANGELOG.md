@@ -1,3 +1,7 @@
+## v0.8.4 - on 20250823
+
+*   fix: Allow unauthenticated access to homepage (ChatCardsController#index) (issue #37).
+
 ## v0.8.3 - on 20250823
 
 *   feat: Add "Log In / Sign Up" button to homepage for logged-out users (issue #37).
