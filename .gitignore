@@ -12,3 +12,5 @@ app/app/
 gcs_credentials.json
 private
 .cache/
+ui-tests/
+cookies.txt
