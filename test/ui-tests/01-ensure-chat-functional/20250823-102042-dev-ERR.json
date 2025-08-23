@@ -1,0 +1,11 @@
+{
+  "ret": 1,
+  "app_version": "0.7.1",
+  "chat_id": null,
+  "error_topic": "functionality",
+  "detailed_error": "The dev server is not running on http://localhost:8080/chats/",
+  "repro": [
+    "Run the UI test for the dev environment.",
+    "The test fails because the dev server is not running."
+  ]
+}
