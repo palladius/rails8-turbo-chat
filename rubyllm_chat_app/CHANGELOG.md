@@ -1,3 +1,8 @@
+## v0.8.0 - on 20250823
+
+*   feat: Complete implementation of `public` attribute for Chat model, including UI and homepage display (issue #37).
+*   feat: Display public chats with eyes emoji and "Public" button in CARDS view (issue #37).
+
 ## v0.7.4 - on 20250823
 
 *   feat: Add `public` attribute to Chat model and display public chats in CARDS view (issue #37).

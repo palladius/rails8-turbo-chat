@@ -19,12 +19,22 @@
             <% if chat.generated_image.attached? %>
               <%= image_tag chat.generated_image, class: "w-full" %>
               <div class="absolute top-0 left-0 w-full px-6 py-4 bg-gradient-to-b from-black to-transparent">
-                <div class="font-bold text-xl mb-2 text-white"><%= chat.title %></div>
+                <div class="font-bold text-xl mb-2 text-white"><%= chat.public ? "👀 " : "" %><%= chat.title %></div>
               </div>
+              <% if chat.public %>
+                <div class="absolute bottom-0 right-0 px-2 py-1 bg-black bg-opacity-50 text-white text-xs rounded-tl-lg">
+                  Public
+                </div>
+              <% end %>
             <% else %>
               <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2"><%= chat.title %></div>
+                <div class="font-bold text-xl mb-2"><%= chat.public ? "👀 " : "" %><%= chat.title %></div>
               </div>
+              <% if chat.public %>
+                <div class="absolute bottom-0 right-0 px-2 py-1 bg-black bg-opacity-50 text-white text-xs rounded-tl-lg">
+                  Public
+                </div>
+              <% end %>
             <% end %>
           </div>
         <% end %>
