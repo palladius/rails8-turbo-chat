@@ -1,3 +1,7 @@
+## v0.7.3 - on 20250823
+
+*   feat: Add checks for `GCLOUD_REGION` and `GEMINI_API_KEY` in config errors.
+
 ## v0.7.2 - on 20250823
 
 *   feat: Add a visual warning for configuration errors (issue #36)
