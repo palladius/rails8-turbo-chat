@@ -1,7 +1,18 @@
 <div id="<%= dom_id(chat) %>" class="p-4 border-b border-gray-700 bg-gray-800 flex flex-nowrap">
   <%# Chat Header (Title/Description/Actions) - Takes 66% of the width %>
   <div style="width: 67%;" class="pr-4">
-    <h1 class="text-xl font-semibold text-gray-100"><%= chat.title %></h1>
+    <h1 class="text-xl font-semibold text-gray-100">
+      <% if chat.public %>
+        👀 <%= chat.title %>
+      <% else %>
+        <%= chat.title %>
+      <% end %>
+      <% if chat.public %>
+        <span class="inline-block ml-2 px-2 py-1 bg-black bg-opacity-50 text-white text-xs rounded-full">
+          Public
+        </span>
+      <% end %>
+    </h1>
     <% if chat.description.present? %>
       <p class="text-sm text-gray-400"><%= chat.description %></p>
     <% end %>

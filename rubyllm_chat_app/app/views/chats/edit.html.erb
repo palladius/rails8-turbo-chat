@@ -24,6 +24,11 @@
       <%= form.text_area :description, rows: 4, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
 
+    <div class="mb-4 flex items-center">
+      <%= form.check_box :public, class: "mr-2 leading-tight" %>
+      <%= form.label :public, "Make Public", class: "text-gray-700 text-sm font-bold" %>
+    </div>
+
     <div class="mb-6">
       <%= form.label :model_id, "Language Model", class: "block text-gray-700 text-sm font-bold mb-2" %>
       <%# Fetch available models. You might want to cache this list or make it more robust. %>

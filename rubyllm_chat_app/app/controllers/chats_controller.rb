@@ -114,12 +114,20 @@ class ChatsController < ApplicationController
 
   # Load the current user's chats for the sidebar list
   def set_chats
-    @chats = current_user.chats.order(updated_at: :desc)
+    if current_user
+      @chats = current_user.chats.or(Chat.where(public: true)).order(updated_at: :desc)
+    else
+      @chats = Chat.where(public: true).order(updated_at: :desc)
+    end
   end
 
-  # Find the specific chat belonging to the current user
+  # Find the specific chat belonging to the current user or a public chat
   def set_chat
-    @chat = current_user.chats.find_by(id: params[:id])
+    if current_user
+      @chat = current_user.chats.find_by(id: params[:id]) || Chat.where(public: true).find_by(id: params[:id])
+    else
+      @chat = Chat.where(public: true).find_by(id: params[:id])
+    end
     unless @chat
        redirect_to chats_path, alert: "🚫 Chat not found or you don't have access."
     end
@@ -127,6 +135,6 @@ class ChatsController < ApplicationController
 
   # Strong parameters for creating/updating chats (if needed later)
   def chat_params
-    params.require(:chat).permit(:title, :description, :model_id)
+    params.require(:chat).permit(:title, :description, :model_id, :public)
   end
 end
