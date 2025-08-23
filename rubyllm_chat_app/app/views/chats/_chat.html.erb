@@ -32,6 +32,9 @@
             <% end %>
           <% end %>
           <%= button_to "✨ Lucky", im_feeling_lucky_chat_path(chat), method: :patch, class: "bg-purple-500 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
+          <% unless chat.public %>
+            <%= button_to "Publicize 👀", publicize_chat_path(chat), method: :patch, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
+          <% end %>
         <% end %>
     </div>
   </div>
