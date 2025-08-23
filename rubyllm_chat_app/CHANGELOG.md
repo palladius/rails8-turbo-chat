@@ -1,3 +1,7 @@
+## v0.8.3 - on 20250823
+
+*   feat: Add "Log In / Sign Up" button to homepage for logged-out users (issue #37).
+
 ## v0.8.2 - on 20250823
 
 *   feat: Prepend eyes emoji to public chat titles in individual chat view (`_chat.html.erb`) (issue #37).
