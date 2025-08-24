@@ -1,3 +1,7 @@
+## v0.8.11 - on 20250824
+
+*   feat(ui): Improved mobile chat experience by hiding the left pane on smaller screens.
+
 ## v0.8.10 - on 20250823
 
 *   fix: Correctly define `publicize_chat_path` route (issue #37).

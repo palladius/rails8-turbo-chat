@@ -18,3 +18,28 @@
 .chat-sidebar-container.sidebar-open .w-full.md\:w-3\/4 {
   display: none;
 }
+
+/* Mobile-first styles */
+@media (max-width: 767px) {
+  .chat-sidebar-container .chat-sidebar {
+    display: none;
+  }
+
+  .chat-sidebar-container.sidebar-open .chat-sidebar {
+    display: block;
+    width: 100%;
+  }
+
+  .chat-sidebar-container.sidebar-open .chat-content {
+    display: none;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .chat-sidebar-container .chat-sidebar {
+    display: block;
+    width: 25%;
+  }
+}
+
