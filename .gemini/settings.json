@@ -3,10 +3,8 @@
         "enabled": true
     },
     "mcpServers": {
-        "playwright": { "command": "npx", "args": ["@playwright/mcp@latest"] },
-        "rails-chat-sse": {
-            "type": "sse",
-            "url": "https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/mcp/sse"
-        }
+        "playwright": { "command": "npx", "args": ["@playwright/mcp@latest"] }
+        ,"rails-chat-sse": { "type": "sse", "url": "https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/mcp/sse" }
+        //, "sequential-thinking": { "command": "npx", "args": [ "-y", "@modelcontextprotocol/server-sequential-thinking" ] }
     }
 }
