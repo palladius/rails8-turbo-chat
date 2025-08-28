@@ -100,3 +100,8 @@ cloud-run-dev-logs:
 
 test:
     echo TODO not now Riccardo. We need to figure out a fungible PostgreSQL DB in test, maybe in localhost, maybe in test?
+
+
+# New Gemini feature from 28aug25 - auto edit!
+gemini:
+    gemini -c --approval-mode auto_edit
