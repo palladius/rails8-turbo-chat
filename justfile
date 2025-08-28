@@ -98,6 +98,10 @@ cloud-run-dev-logs:
     @echo "☁️  Fetching logs for Cloud Run dev environment..."
     gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=rails8-turbo-chat-dev" --project='palladius-genai' --limit=100 --format="value(timestamp, severity, textPayload)"
 
+cloud-run-prod-logs:
+    @echo "☁️  Fetching logs for Cloud Run prod environment..."
+    gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=rails8-turbo-chat-prod" --project='palladius-genai' --limit=100 --format="value(timestamp, severity, textPayload)"
+
 test:
     echo TODO not now Riccardo. We need to figure out a fungible PostgreSQL DB in test, maybe in localhost, maybe in test?
 
@@ -105,3 +109,7 @@ test:
 # New Gemini feature from 28aug25 - auto edit!
 gemini:
     gemini -c --approval-mode auto_edit
+
+# Shows git logs in timestamped way
+git-logs-timestamped:
+    git log --pretty=format:'%h %ad | %s%d [%an]' --date=iso -n 10
