@@ -1,5 +1,7 @@
 Self: https://github.com/palladius/rails8-turbo-chat
 
+Try it yourself on Cloud Run: https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app
+
 # Rails8 turbo Chat
 
 A responsive Rails chat with  `ruby_llm` Carmine's gem. With all bells and whistles to make it work on Google cloud. Just bring your own gemini API KEY!
