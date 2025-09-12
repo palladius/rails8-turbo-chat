@@ -1,21 +1,13 @@
 
 set dotenv-load := true
 
+# Disable this if the file doesn't exist. This works for Riccardo, sorry!
+import '~/git/gic/justfile.gemini_common'
 
 list:
     just -l
     @echo "🌱 PROJECT_ID: ${PROJECT_ID}"
     @echo "🌱 GCS_BUCKET: ${GCS_BUCKET}"
-
-doit:
-    ./sbrodola3.sh 1>t.out 2>t.err
-
-redo:
-    rm -rf rubyllm_chat_app/
-    just doit
-
-# clone-carmine:
-#     git clone https://github.com/crmne/ruby_llm ruby_llm-copy/
 
 
 # CB_SUBSTITUTIONS=_RAILS_MASTER_KEY="YOUR_RAILS_MASTER_KEY_HERE",_GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"
