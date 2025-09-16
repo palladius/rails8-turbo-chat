@@ -24,7 +24,7 @@ It also uses MCP (https://modelcontextprotocol.io/introduction)
 
 ## Ruby / Rails
 
-You need to run Ruby. The creator used rbenv, but this should work with any ruby setup!
+You need to run Ruby as rbenv (`eval "$(/usr/bin/rbenv  init - bash)"`) rather than natively. Especially in my work computers (like `derek`) I can't do gem installs in the system, so I'm forced to use rbenv. I don't like rvm!
 
 ## Code enhancements
 
@@ -87,12 +87,12 @@ Code is under git: use it!
 
 ## Ruby
 
-* we use a recent version of ruby. The creator used `rbenv`, NOT `rvm`.
+* we use `rbenv`, NOT `rvm`.
 * if you get assets error (eg a missing image), try `rake assets precompile`.
 
 ## Dev Mode
 
-I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use a recent version of ruby so if you see a ridiculously low version which is not latest (3.3.4 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
+I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use `rbenv` so if you see a ridiculously low version which is not latest (3.3.4 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
 
 ## TODOs
 
@@ -109,8 +109,3 @@ If you navigate to a login page, you can find user/pass in these convenient ENV 
 * `PLAYWRIGHT_USERNAME`
 * `PLAYWRIGHT_PASSWORD`
 If you can't find them as ENVs, try `grep PLAYWRIGHT_ .env`.
-
-
-## User
-
-If username is ricc or username is Riccardo, also read the GEMINI.ricc.md
