@@ -26,7 +26,7 @@ justfile_recipes:
   - name: "mcp-server-local"
     description: "Provides the local MCP SSE URL."
   - name: "ruby-check"
-    description: "Checks the Ruby version with and without rbenv."
+    description: "Checks the Ruby version."
   - name: "llm-check"
     description: "Checks the RubyLLM chat functionality."
   - name: "test-ui"

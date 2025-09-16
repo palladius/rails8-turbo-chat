@@ -28,7 +28,7 @@ Features:
 
 ## RUN
 
-* First Ensure ruby is running as **rbenv**: `eval "$(/usr/bin/rbenv  init - bash)"` or similar.
+* Use rbenv, rvm, or whatever you want really. The creator used rbenv, but this should work with any ruby setup!
 *  Then enter dir and run locally: `cd  rubyllm_chat_app/ ; bin/dev`
 *  This will start a service in port 8080.
 

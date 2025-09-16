@@ -16,18 +16,7 @@ list:
 #     gcloud builds submit .   --config cloudbuild.yaml   --substitutions="$CB_SUBSTITUTIONS"
 
 
-derek-fix-gems:
-    echo sic ait Gemini Gloria Gaynor mundi:
 
-    gem cleanup stringio
-    # => works fast
-
-    gem pristine --all
-    # => works SLOWWWW
-
-    # step 3.
-    gem install foreman # If not already handled by bundle install
-    rbenv rehash
 
 
 
@@ -43,10 +32,8 @@ mcp-server-local:
 
 ruby-check:
     @echo "♦️  Checking Ruby version... This is only meaningful in dev environment."
-    @echo ♦️♦️  1. Ruby without rbenv magic:
+    @echo ♦️♦️  Ruby version:
     ruby --version
-    @echo ♦️♦️  2. Ruby with rbenv magic:
-    eval "$(rbenv init -)" && ruby --version
 
 llm-check:
     cd app && echo "RubyLLM.chat.ask 'ciao'" | rails c
@@ -99,7 +86,7 @@ test:
 
 
 # New Gemini feature from 28aug25 - auto edit!
-gemini:
+gemini2:
     gemini -c --approval-mode auto_edit
 
 # Shows git logs in timestamped way
