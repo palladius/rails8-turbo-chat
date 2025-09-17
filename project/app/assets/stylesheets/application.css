@@ -1,0 +1,41 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+/* Custom styles for dark theme typography */
+.prose strong {
+  color: #fde047; /* Tailwind yellow-300 */
+}
+
+/* Adjust link color in prose for dark theme */
+.prose a {
+  color: #93c5fd; /* Tailwind blue-300 */
+}
+
+/* Adjust inline code color in prose for dark theme */
+.prose code {
+  color: #fff; /* White text */
+  background-color: #450a0a; /* Tailwind red-950 for background */
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+}
+
+/* Adjust code block color in prose for dark theme */
+.prose pre code {
+  color: #fff; /* White text */
+  background-color: #1f2937; /* Tailwind gray-800 for background */
+  padding: 1em;
+  border-radius: 0.375rem;
+}
+
+/* Adjust h2 color in prose for dark theme */
+.prose h2 {
+  color: #e5e7eb; /* Tailwind gray-200 */
+}

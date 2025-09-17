@@ -1,0 +1,70 @@
+<%# Main container using Flexbox for two columns %>
+<div class="flex h-[calc(100vh-150px)] border border-gray-700 rounded-lg bg-gray-800 shadow-md overflow-hidden chat-sidebar-container" data-controller="chat-sidebar">
+
+  <%# Left Pane: Chat List Sidebar %>
+  <div id="chats-list" class="chat-sidebar w-full md:w-1/4 border-r border-gray-700 overflow-y-auto p-4 bg-gray-800" data-chat-sidebar-target="sidebar">
+    <h2 class="text-lg font-semibold mb-4 text-gray-200">My Chats 💬</h2>
+
+    <%# Button/Form to create a new chat %>
+    <%= form_with(model: Chat.new, url: chats_path, method: :post, class: "mb-4") do |f| %>
+      <%# You could add fields for title/description/model here if desired %>
+      <%# Example: f.text_field :title, placeholder: "Optional Title", class: "..." %>
+      <%= f.submit "✨ Start New Chat", class: "w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+    <% end %>
+
+
+    <%# List of existing chats - Render the partial for each chat %>
+    <div id="user-chats"> <%# A target for potential Turbo Stream updates to the list %>
+      <% if @chats.any? %>
+        <% @chats.each do |chat_item| %>
+          <%= render partial: "chats/chat_link", locals: { chat_item: chat_item, current_chat: @chat } %>
+        <% end %>
+      <% else %>
+        <p class="text-gray-400 italic">No chats yet. Start a new one!</p>
+      <% end %>
+    </div>
+  </div>
+
+  <%# Right Pane: Chat Window %>
+  <div class="chat-content w-full md:w-3/4 flex flex-col">
+    <% if @chat %>
+      <%# Mobile button to show chat list %>
+      <div class="md:hidden p-2 bg-gray-800 border-b border-gray-700">
+        <button id="toggle-chats-list" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded cursor-pointer" data-action="click->chat-sidebar#toggle">Change Chat</button>
+      </div>
+
+      <%# Connect to Turbo Stream for this specific chat's messages %>
+      <%= turbo_stream_from [@chat, "messages"] %>
+
+      <div id="<%= dom_id(@chat) %>">
+        <%= render @chat %>
+      </div>
+
+      <%# Messages Area - Use flex-grow to take available space, overflow-y-auto for scrolling %>
+      <div id="messages" class="flex-grow overflow-y-auto p-4 space-y-4 bg-transparent" data-controller="scroll">
+        <%# Render existing messages using the message partial %>
+        <%= render @messages %>
+        <%# New messages will be appended here by Turbo Streams %>
+      </div>
+
+      <%# Input Area Form %>
+      <div class="p-4 border-t border-gray-700 bg-gray-800">
+        <%= form_with(model: [@chat, Message.new], url: chat_messages_path(@chat), method: :post, class: "flex items-center space-x-2") do |f| %>
+          <%= f.text_area :content,
+                placeholder: "Ask anything...",
+                class: "flex-grow border border-gray-700 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none text-gray-100 placeholder-gray-400",
+                rows: 2,
+                data: { controller: 'textarea' } %> <%# Optional: Stimulus for auto-resizing %>
+          <%= f.submit "Send 🚀", class: "bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+        <% end %>
+      </div>
+
+    <% else %>
+      <%# Placeholder when no chat is selected %>
+      <div class="flex-grow flex items-center justify-center p-4 text-gray-400">
+        <p>Select a chat from the left or start a new one! 🎉</p>
+      </div>
+    <% end %>
+  </div>
+
+</div>
