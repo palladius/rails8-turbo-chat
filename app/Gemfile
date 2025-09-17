@@ -1,11 +1,11 @@
 source "https://rubygems.org"
 
-# riccardo: fixing ruby to 3.3.4 in .ruby-version
+# riccardo: fixing ruby to 3.4.5 in .ruby-version
 # but should be 3.4.3 (latest stable)
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.0.2"
+gem "rails", "~> 8.0"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
@@ -70,9 +70,12 @@ group :development do
   gem "foreman" # Add this line
   # Gems for rubyllm_scripts
   gem 'async'
-  gem 'pry', '~> 0.15.0'
+  gem 'pry'
+  gem 'pry-rails'
   gem 'rainbow'
   gem "fast-mcp", "~> 1.4"
+
+  gem 'rails-erd'
 end
 
 group :test do
@@ -96,20 +99,5 @@ gem 'ruby_llm', '~> 1.6', '>= 1.6.3'
 gem "dotenv-rails", "~> 3.1"
 #gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git", ref: '2bdc4229643888da053c76dfe9ef837b8e3a91f7'
 
-# Official
-gem 'pry', '~> 0.15.0'
-# from GH issue - a guy was using this too.
-gem 'pry-rails'
-# Sihhested by rails
 gem "kramdown"
 gem "kramdown-parser-gfm" # For GitHub Flavored Markdown support
-gem 'rainbow'
-# MCP
-gem "fast-mcp", "~> 1.4"
-# Generate ER diagrams from models
-#gem 'erd', group: :development
-gem 'rails-erd', group: :development
-# => bundle exec erd
-################################
-# /Riccardo END
-################################
