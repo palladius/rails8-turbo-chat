@@ -1,15 +1,15 @@
 <div class="container mx-auto px-4">
   <h1 class="text-2xl font-bold text-center my-8">Chat Cards</h1>
-  <div class="text-center mb-8">
+  <div class="flex flex-col gap-4 mb-8">
     <% if current_user %>
-      <%= form_with(model: Chat.new, url: chats_path, method: :post, class: "inline-block") do |f| %>
+      <%= form_with(model: Chat.new, url: chats_path, method: :post, class: "contents") do |f| %>
         <%= f.submit "✨ Start New Chat", class: "bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded" %>
       <% end %>
-      <%= link_to "Go to Chats", chats_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      <%= link_to "Go to Chats", chats_path, class: "text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
       <% if params[:show_all] %>
-        <%= link_to "Show Only Chats with Images", root_path, class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
+        <%= link_to "Show Only Chats with Images", root_path, class: "text-center bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
       <% else %>
-        <%= link_to "Show ALL chats", root_path(show_all: true), class: "bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
+        <%= link_to "Show ALL chats", root_path(show_all: true), class: "text-center bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
       <% end %>
     <% else %>
       <%= link_to "🔑 Log In", new_user_session_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>

@@ -1,20 +1,28 @@
 <header class="py-3 px-4 sm:px-6 lg:px-8 border-b border-gray-700 bg-gray-800">
-  <div class="container mx-auto flex justify-between items-center">
+  <div class="flex flex-wrap container mx-auto justify-between items-center">
     <h1 class="text-xl font-semibold text-gray-100">
       <%= link_to root_path, class: "text-gray-100 hover:underline" do %>
-        💨 Rails 8 Turbo Chat <span role="img" aria-label="speech bubble"> <%#= APP_VERSION %> 💬 (<%= Rails.env.development? ? 'dev' : (Rails.env.production? ? 'prod' : Rails.env) %>)</span>
+        💨 Rails 8 Turbo Chat
+        <span role="img" aria-label="speech bubble">
+          <%# = APP_VERSION %>
+          💬 (
+          <%= Rails.env.development? ? 'dev' : (Rails.env.production? ? 'prod' : Rails.env) %>
+          )
+        </span>
       <% end %>
     </h1>
-    <div class="flex items-center space-x-4">
+    <div class="w-full flex items-center justify-between space-x-4 py-2">
       <%= link_to "🏠", root_path, class: "text-blue-400 hover:underline text-sm" %>
       <%= link_to "About", about_path, class: "text-blue-400 hover:underline text-sm" %>
       <%= link_to "⚙️Config", config_path, class: "text-blue-400 hover:underline text-sm" %>
       <%= link_to "🔌MCP", '/mcp/sse', class: "text-blue-400 hover:underline text-sm" %>
 
       <% if user_signed_in? %>
-        <span class="text-gray-400">👋 <strong class="font-bold"><%= current_user.name_or_email.titleize %> <% if current_user.has_valid_gemini_key? %>🔑<% end %></strong></span>
         <%= link_to "Edit Profile", edit_user_registration_path, class: "text-blue-400 hover:underline text-sm" %>
-        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm" %>
+        <%= button_to destroy_user_session_path, method: :delete, class: "bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm" do %>
+          <span class="hidden md:block">Sign out</span>
+          <i class="ph ph-sign-out"></i>
+        <% end %>
       <% else %>
         <%= link_to "✨ Sign Up", new_user_registration_path, class: "text-blue-400 hover:underline text-sm" %>
         <%= link_to "🔑 Sign In", new_user_session_path, class: "text-blue-400 hover:underline text-sm" %>

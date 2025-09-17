@@ -23,6 +23,10 @@ class Message < ApplicationRecord
     role == 'system'
   end
 
+  def user?
+    role == 'user'
+  end
+
   def to_s
     self.inspect
   end
