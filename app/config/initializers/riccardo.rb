@@ -1,7 +1,6 @@
 # all business logic goes here
 APP_NAME = 'Rails8 Gemini2.0 rubyllm Responsive App v2'
 APP_VERSION = File.read('VERSION').chomp
-APP_EMOJI = '🥨🍻'
 SHORT_APP_NAME = 'rails8-turbo-chat'
 GITHUB_REPO = 'https://github.com/palladius/rails8-turbo-chat'
 
@@ -27,15 +26,14 @@ def print_env_variable(key, value=:auto_detect, limit: nil, emoji: '🌱')
   max_size = 30
   spacing = " " * (max_size - key.size) rescue ' '
   if value == :auto_detect
-    value = ENV.fetch(key, "❌ ENV[#{key}] not given")
+    value = ENV.fetch(key, "❌ ENV[#{key}] missing")
   end
   printable_value = (limit ?  (value[0..limit] + ".. [L=#{value.to_s.length}]") : value) rescue "print_env_variableErr: #{$!}"
-  puts("#{APP_EMOJI} #{emoji} #{Rainbow(key).white}:#{spacing}#{Rainbow(printable_value).yellow }")
+  puts("#{emoji} #{Rainbow(key).white}:#{spacing}#{Rainbow(printable_value).yellow }")
 end
 
-puts(APP_EMOJI * 40)
-puts(APP_EMOJI + " 💾 [config/init/riccardo.rb]")
-puts("#{APP_EMOJI} 👋 Welcome to #{Rainbow(APP_NAME).cyan} v#{Rainbow(APP_VERSION).blue}")
+puts("👋 Welcome to #{Rainbow(APP_NAME).cyan} v#{Rainbow(APP_VERSION).blue}")
+puts("")
 print_env_variable('CONFIG_AUTORENAME_TITLES', CONFIG_AUTORENAME_TITLES)
 print_env_variable('DEBUG', DEBUG)
 print_env_variable('RAILS_MASTER_KEY', RAILS_MASTER_KEY, limit: 5)
@@ -48,7 +46,7 @@ print_env_variable('GCS_CREDENTIALS_JSON', limit: 10)
 print_env_variable('CLOUD_RUN_ENDPOINTS[:dev]', CLOUD_RUN_ENDPOINTS[:dev] )
 print_env_variable('CLOUD_RUN_ENDPOINTS[:prod]', CLOUD_RUN_ENDPOINTS[:prod] )
 
-puts(APP_EMOJI + " 💾 [cloudbuild relevant configs]")
+puts("💾 [cloudbuild relevant configs]")
 print_env_variable('PROJECT_ID')
 print_env_variable('OBJC_DISABLE_INITIALIZE_FORK_SAFETY')
 print_env_variable('RAILS_ENV')
@@ -61,7 +59,6 @@ print_env_variable('GIT_LAST_COMMENT')
 print_env_variable('PORT')
 
 #print_env_variable('CLOUD_REGION')
-puts(APP_EMOJI * 40)
 
 
 # Copiato da gemini-chat
