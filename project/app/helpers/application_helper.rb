@@ -2,7 +2,6 @@ module ApplicationHelper
   def app_metadata
     {
       APP_NAME: APP_NAME, # 'RubyLLM Chat App',
-      APP_EMOJI: APP_EMOJI,
       SHORT_APP_NAME: SHORT_APP_NAME,
       DEBUG: DEBUG,
       GIT_LAST_COMMENT: GIT_LAST_COMMENT,
