@@ -10,19 +10,18 @@ db-destroy:
 
 # runs in dev, using ENV variable for DB.
 run:
-    echo Make sure you set up DATABASE_URL_DEV in .env...
-    DATABASE_URL=$DATABASE_URL_DEV bin/dev
+    bin/dev
 
 dev: run
 
 rails-c:
-    DATABASE_URL=$DATABASE_URL_DEV rails c
+    bundle exec rails c
 rails-c-prod:
-    DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails c
+    DATABASE_URL=$DATABASE_URL RAILS_ENV=production bundle exec rails c
 
 prod-safe-setup:
     # DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails db:setup
-    DATABASE_URL=$DATABASE_URL_PROD RAILS_ENV=production rails db:migrate
+    DATABASE_URL=$DATABASE_URL RAILS_ENV=production bundle exec rails db:migrate
     ./bin/rails assets:precompile
 
 dev-with-assets-precompile:
@@ -109,14 +108,14 @@ mcp-inspector:
 
 
 diagrams:
-    DATABASE_URL=$DATABASE_URL_DEV bundle exec erd
+    bundle exec erd
     mv erd.pdf ../docs/erd.pdf
 
 populate-sample-image CHAT_ID='25':
     @echo "Populating sample image for chat {{CHAT_ID}}..."
-    @DATABASE_URL=$DATABASE_URL_DEV rails runner "Chat.find({{CHAT_ID}}).attach_image('app/assets/images/sample-image.png')"
+    bundle exec rails runner "Chat.find({{CHAT_ID}}).attach_image('app/assets/images/sample-image.png')"
 
 generate-chat-image CHAT_ID:
     @echo "Enqueuing image generation for chat {{CHAT_ID}}..."
-    @DATABASE_URL=$DATABASE_URL_DEV rails runner "GenerateChatImageJob.perform_later(Chat.find({{CHAT_ID}}))"
+    bundle exec  rails runner "GenerateChatImageJob.perform_later(Chat.find({{CHAT_ID}}))"
 
