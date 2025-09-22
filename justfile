@@ -92,3 +92,7 @@ gemini2:
 # Shows git logs in timestamped way
 git-logs-timestamped:
     git log --pretty=format:'%h %ad | %s%d [%an]' --date=iso -n 10
+
+# Clones Chris fork
+rails8-turbo-chat-chris:
+    git clone https://github.com/a-chris/rails8-turbo-chat rails8-turbo-chat-chris
