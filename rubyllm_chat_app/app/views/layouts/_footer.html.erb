@@ -22,6 +22,6 @@
   </div>
 </footer>
 
-<% if Rails.env.development? && request.local? %>
+<% if Rails.env.development? && request.local? && ENV["WEB_CONSOLE"] == "1" %>
   <%= console %>
 <% end %>
