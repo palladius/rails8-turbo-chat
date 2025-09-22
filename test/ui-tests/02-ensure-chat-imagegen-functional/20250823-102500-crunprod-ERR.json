@@ -1,0 +1,11 @@
+{
+  "ret": 1,
+  "chat_id": null,
+  "app_version": "0.7.1",
+  "error_topic": "testing_environment",
+  "detailed_error": "Unable to perform UI test on Cloud Run Prod environment. The available tools do not support login and session management. A tool like Playwright is required to run these tests.",
+  "repro": [
+    "Provide a tool that can interact with web pages, handle logins, and execute javascript."
+  ],
+  "log": "web_fetch failed to log in."
+}
