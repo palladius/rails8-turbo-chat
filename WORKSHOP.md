@@ -6,8 +6,8 @@ An Italian version is available [here](WORKSHOP-it.md).
 
 ## Prerequisites
 
-* Have GMail account
-* [optional] Have github account
+* Have GMail account. This is needed to reclaim GCP credits, and to allow Gemini LLM to be used!
+* [optional] Have github account. This is actua
 
 ## Install
 
@@ -16,8 +16,8 @@ An Italian version is available [here](WORKSHOP-it.md).
 2. `cd rails8-turbo-chat/`
 3. `cp .env.dist .env`: you'll need it later.
 4. `cd rubyllm_chat_app/` - o quel che dice christian, tipo workshop/
-
-
+5. TODO(Chris): some initial set up needed?
+------
 
 ## Step 1. Instant gratification
 
@@ -30,6 +30,7 @@ TODO(Christian): `rails s` and DB set up.
 
 **Note**. This should work with everything except the images and chat, so maybe we should use some sort of DB generation (`rake db:seed` ?) to generate a fake chat. This will be a good way to show the app working without having to set up the API key - yet: baby steps.
 
+------
 
 ## Step 2. Get Gemini API Key and start creating images.
 
@@ -59,6 +60,8 @@ Now that you've done the boring part, ready to generate your first images?
   * TODO riccc: screesnthot before
   * TODO riccc: screesnthot afetr
 
+------
+
 ## Step 3. Test existing MCP
 
 <!--
@@ -74,13 +77,17 @@ Here we Show we have existing MCP already pre-built
 5. If it works, click on **Tools**
 6. Click List Tootls.
 7. You should see this: ![List of tools on MCP](docs/workshop/image1.png)
+8. Click on one tool to execute, for instance `Chat List`. Enjoy an output like this! Note the MCP Server is calling ActiveRecord here!
 
+![Tool calling - chatlist](docs/workshop/image2.png)
 
 
 ### Optional - test the same on vscode
 
 1. Add https://localhost:8080/mcp/sse to your vscode, for instance under `.vscode/settings.json`.
-2. Ask to copilot
+2. Ask Copilot or Claude or your fav client sth like "Retrieve a list of chats: Any chat containing italian food?"
+
+------
 
 ## Step 4. Add your own MCP
 
@@ -93,13 +100,16 @@ We should add something to app/tools/
 * 1. add a migration which adds a nickname or a `modenese_nickname` to the USer class
 * 2. run migration and patch the DB
 * 3. Test it locally with `rails console`.
-* 4. ONce it works, reload the MCP and ask
+* 4. Once it works, reload the MCP and ask
+
+------
 
 
 ## Step 5. Install Gemini CLI and add this.
 
-* Install Gemini CLI with npm:
-  * `npm ..`
+* Install [Gemini CLI](https://github.com/google-gemini/gemini-cli) with npm:
+  * `npm install -g @google/gemini-cli`
+  * See homepage for [alternative installations](https://github.com/google-gemini/gemini-cli?tab=readme-ov-file#-installation).
 * Use `gemini mcp` to add our MCP dynamically:
   * `gemini mcp add --transport sse local-rails8-turbo-chat-sse https://localhost:8000/mcp/sse`
   * This will configure gemini to have this MCP available
