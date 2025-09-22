@@ -57,17 +57,17 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV["DATABASE_URL_PROD"] %>
   primary: &primary_production
     <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL_PROD"] %>
   cache:
     <<: *primary_production
     database: rubyllm_chat_app_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    url: <%= ENV["DATABASE_URL"] %>
+    url: <%= ENV["DATABASE_URL_PROD"] %>
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production

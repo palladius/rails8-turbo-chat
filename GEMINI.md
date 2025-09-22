@@ -59,8 +59,8 @@ The app lies under `rubyllm_chat_app/` as I didn't want to have TOO much other s
 
 **Important**. The Database is a PostgreSQL in Google Cloud, and its credentials are in `.env` under `DATABASE_URL_DEV`. When running in dev, check the code in `app/justfile` for `just dev` target. This means that if you want to do:
 
-* `rails server`: do just run, or `DATABASE_URL=$DATABASE_URL_DEV bin/dev` instead.
-* `rails console`: do `DATABASE_URL=$DATABASE_URL_DEV rails c` instead.
+* `rails server`: do just run, or `bin/dev` instead.
+* `rails console`: do `rails c` instead.
 * If you want to use PRODUCTION, use `DATABASE_URL_PROD` instead.
 
 ## Feedback loop
@@ -92,7 +92,7 @@ Code is under git: use it!
 
 ## Dev Mode
 
-I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use a recent version of ruby so if you see a ridiculously low version which is not latest (3.3.4 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
+I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use a recent version of ruby so if you see a ridiculously low version which is not latest (3.4.5 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
 
 ## TODOs
 

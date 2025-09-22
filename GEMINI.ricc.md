@@ -92,7 +92,7 @@ Code is under git: use it!
 
 ## Dev Mode
 
-I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use `rbenv` so if you see a ridiculously low version which is not latest (3.3.4 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
+I run this in local Linux ('derek') /Mac ('ricc-macbookpro3'). Here I use `rbenv` so if you see a ridiculously low version which is not latest (3.4.5 IIRC), probably you need to execute commands with `eval "$(rbenv init -)"` before anything else, to point ruby binary to the right version. Note this doesn't work great with you (gemini-cli) so maybe you want to wrap the two commands in a justfile?
 
 ## TODOs
 
