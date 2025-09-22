@@ -26,7 +26,6 @@ module ApplicationHelper
 
       occasional_message: ENV.fetch('OCCASIONAL_MESSAGE', '😕 Sorry, ENV[OCCASIONAL_MESSAGE] not set.'),
       GCS_BUCKET: ENV['GCS_BUCKET'],
-
     }
   end
 
