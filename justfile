@@ -20,6 +20,21 @@ list:
 
 
 
+derek-fix-gems:
+    echo sic ait Gemini Gloria Gaynor mundi:
+
+    gem cleanup stringio
+    # => works fast
+
+    gem pristine --all
+    # => works SLOWWWW
+
+    # step 3.
+    gem install foreman # If not already handled by bundle install
+    # rbenv rehash
+
+
+
 dev:
     cd app && just dev
 
@@ -92,3 +107,14 @@ gemini2:
 # Shows git logs in timestamped way
 git-logs-timestamped:
     git log --pretty=format:'%h %ad | %s%d [%an]' --date=iso -n 10
+
+# Clones Chris fork
+rails8-turbo-chat-chris:
+    git clone https://github.com/a-chris/rails8-turbo-chat rails8-turbo-chat-chris
+
+
+translate-workshop-to-italian:
+    echo '🇮🇹 Getting Gemini to translate WORKSHOP.md to Italian...'
+    gemini -c --approval-mode auto_edit -p 'Take whats written in WORKSHOP.md, translate it to Italian and add a few emojis, and finally copy the new content to the file "WORKSHOP-it.md"'
+    git add WORKSHOP-it.md
+    git diff
