@@ -38,13 +38,8 @@ print_env_variable('CONFIG_AUTORENAME_TITLES', CONFIG_AUTORENAME_TITLES)
 print_env_variable('DEBUG', DEBUG)
 print_env_variable('RAILS_MASTER_KEY', RAILS_MASTER_KEY, limit: 5)
 print_env_variable('GIT_LAST_COMMENT', GIT_LAST_COMMENT)
-#print_env_variable('CLOUD_REGION')
-print_env_variable('RAILS_MASTER_KEY', limit: 4)
 print_env_variable('GEMINI_API_KEY', limit: 4)
 print_env_variable('GCS_CREDENTIALS_JSON', limit: 10)
-#print_env_variable('CLOUD_RUN_ENDPOINTS', CLOUD_RUN_ENDPOINTS )
-print_env_variable('CLOUD_RUN_ENDPOINTS[:dev]', CLOUD_RUN_ENDPOINTS[:dev] )
-print_env_variable('CLOUD_RUN_ENDPOINTS[:prod]', CLOUD_RUN_ENDPOINTS[:prod] )
 
 puts("💾 [cloudbuild relevant configs]")
 print_env_variable('PROJECT_ID')
@@ -55,8 +50,9 @@ print_env_variable('APP_NAME')
 print_env_variable('GCLOUD_REGION')
 print_env_variable('GIT_LAST_COMMENT')
 print_env_variable('PORT')
-
-#print_env_variable('CLOUD_REGION')
+#print_env_variable('CLOUD_RUN_ENDPOINTS', CLOUD_RUN_ENDPOINTS )
+print_env_variable('CLOUD_RUN_ENDPOINTS[:dev]', CLOUD_RUN_ENDPOINTS[:dev] )
+print_env_variable('CLOUD_RUN_ENDPOINTS[:prod]', CLOUD_RUN_ENDPOINTS[:prod] )
 
 
 # Copiato da gemini-chat
@@ -77,13 +73,6 @@ module RubyllmChatApp
   class Application < Rails::Application
 
     #  Rails.application.config.hosts ...
-    config.hosts << /.*\-272932496670.europe-west10.run.app/
-    config.hosts << "#{SHORT_APP_NAME}-272932496670.europe-west10.run.app"
-    config.hosts << "#{SHORT_APP_NAME}-272932496670.europe-west10.run.app"
-    # TODO(ricc): cleanup
-    config.hosts << "rails8-turbo-chat-dev-272932496670.europe-west10.run.app"
-    config.hosts << "rails8-turbo-chat-prod-272932496670.europe-west10.run.app"
-
     config.hosts << CLOUD_RUN_ENDPOINTS[:dev]
     config.hosts << CLOUD_RUN_ENDPOINTS[:prod]
     config.hosts << CLOUD_RUN_ENDPOINT_FROM_ENV unless CLOUD_RUN_ENDPOINT_FROM_ENV.nil?
