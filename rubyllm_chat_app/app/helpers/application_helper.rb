@@ -2,7 +2,6 @@ module ApplicationHelper
   def app_metadata
     {
       APP_NAME: APP_NAME, # 'RubyLLM Chat App',
-      APP_EMOJI: APP_EMOJI,
       SHORT_APP_NAME: SHORT_APP_NAME,
       DEBUG: DEBUG,
       GIT_LAST_COMMENT: GIT_LAST_COMMENT,
@@ -27,7 +26,6 @@ module ApplicationHelper
 
       occasional_message: ENV.fetch('OCCASIONAL_MESSAGE', '😕 Sorry, ENV[OCCASIONAL_MESSAGE] not set.'),
       GCS_BUCKET: ENV['GCS_BUCKET'],
-
     }
   end
 

@@ -71,8 +71,8 @@ generate-image-for-chat:
     set -euo pipefail
     source .env
     echo "Generating image for chat #40..."
-    cd rubyllm_chat_app/
-    DATABASE_URL=$DATABASE_URL_DEV rails runner "script/generate_image_for_chat.rb" 40
+    cd project/
+    bundle exec rails runner "script/generate_image_for_chat.rb" 40
     echo "Generation script finished."
 
 test-builds:

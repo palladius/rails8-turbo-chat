@@ -8,6 +8,12 @@
   <%= action_cable_meta_tag %> <%# Required for Turbo Streams over Action Cable %>
   <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+  <%# ICONS %>
+  <%= stylesheet_link_tag "https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css", "data-turbo-track": "reload" %>
+
   <%= javascript_importmap_tags %>
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans bg-gradient-to-br from-blue-900 to-purple-900 flex flex-col">

@@ -4,7 +4,6 @@
 .ondir.was.here.touch
 ruby_llm-copy/
 .git-privatize
-bin/
 rubyllm_chat_app/app/assets/images/favicon_io.zip
 .gemini/
 # Nota che solo app non va
@@ -14,3 +13,7 @@ private
 .cache/
 ui-tests/
 cookies.txt
+
+# Ignore the default SQLite database.
+*.sqlite3
+*.sqlite3-*
