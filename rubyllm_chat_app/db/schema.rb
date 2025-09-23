@@ -40,24 +40,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_23_090123) do
   end
 
   create_table "chats", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "model_id"
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "public", default: false
+    t.boolean "public", default: false, null: false
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
-    t.bigint "chat_id", null: false
+    t.integer "chat_id", null: false
     t.string "role"
     t.text "content"
     t.string "model_id"
     t.integer "input_tokens"
     t.integer "output_tokens"
-    t.bigint "tool_call_id"
+    t.integer "tool_call_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chat_id"], name: "index_messages_on_chat_id"
@@ -65,7 +65,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_23_090123) do
   end
 
   create_table "tool_calls", force: :cascade do |t|
-    t.bigint "message_id", null: false
+    t.integer "message_id", null: false
     t.string "tool_call_id", null: false
     t.string "name", null: false
     t.json "arguments", default: {}

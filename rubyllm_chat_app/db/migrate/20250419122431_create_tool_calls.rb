@@ -8,7 +8,7 @@ class CreateToolCalls < ActiveRecord::Migration[8.0]
       t.references :message, null: false, foreign_key: true # Assistant message making the call
       t.string :tool_call_id, null: false, index: { unique: true } # Provider's ID for the call
       t.string :name, null: false
-      t.jsonb :arguments, default: {} # Use jsonb for PostgreSQL
+      t.json :arguments, default: {} # Use jsonb for PostgreSQL
 
       t.timestamps
     end

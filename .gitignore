@@ -13,6 +13,7 @@ private
 .cache/
 ui-tests/
 cookies.txt
+.idea/
 
 # Ignore the default SQLite database.
 *.sqlite3
