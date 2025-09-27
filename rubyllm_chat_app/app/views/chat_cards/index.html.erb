@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4">
   <h1 class="text-2xl font-bold text-center my-8">Chat Cards</h1>
-  <div class="flex flex-col gap-4 mb-8">
+  <div class="flex flex-col justify-center items-center gap-4 mb-8">
     <% if current_user %>
       <%= form_with(model: Chat.new, url: chats_path, method: :post, class: "contents") do |f| %>
         <%= f.submit "✨ Start New Chat", class: "bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded" %>
@@ -12,8 +12,8 @@
         <%= link_to "Show ALL chats", root_path(show_all: true), class: "text-center bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" %>
       <% end %>
     <% else %>
-      <%= link_to "🔑 Log In", new_user_session_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-      <%= link_to "✨ Sign Up", new_user_registration_path, class: "bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded ml-2" %>
+      <%= link_to "🔑 Log In", new_user_session_path, class: "w-52 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      <%= link_to "✨ Sign Up", new_user_registration_path, class: "w-52 bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded" %>
     <% end %>
   </div>
   <div class="flex justify-center">
