@@ -79,8 +79,9 @@ Find sample answers in `docs/workshop/` :)
 In this step, you install the app and get it to run
 
 1. `cd rubyllm_chat_app/` - o quel che dice christian, tipo workshop/ TODO(Christian)
-1. TODO(Chris): some initial set up needed?
-1. [ricc] `rails db:migrate` # to migrate the DB
+2. Install ruby and bundler
+3. Run bundle install
+4. Run rails db:setup
 1. [ricc] `rails server` to run the server in port 8080
 1. Navigate your browser to http://localhost:8080/ . You should see a page like below:
 ![new app empty page](image.png)
