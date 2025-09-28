@@ -1,4 +1,4 @@
-## Workshop Idea 🇮🇹
+## Rails + MCP + Gemini Workshop
 
 <!-- This is the master doc v1.0.1.
 Use `just translate-workshop-to-italian` to translate to IT
@@ -6,15 +6,26 @@ Use `just translate-workshop-to-italian` to translate to IT
 CHANGELOG
 28sep25 v1.0.1 [ricc] Moved to docs/workshop/ . Added GC dep, and some nice screenshots.
 27sep25 v1.0.0 [ricc] ...
-
 -->
 
-An Italian version is available [here](WORKSHOP-it.md).
+🇮🇹 An Italian version is available [here](WORKSHOP-it.md) 🇮🇹
+
+**TL;DR** In this workshop we will:
+
+1. Download Gemini CLI
+2. Download the app, and start asking Gemini some questions.
+3. Run the vanilla app, without any magic. Some functionality won't be available yet.
+4. Get GCP Credits, fetch a [key emoji] GEMINI API KEY, and put it in `.env`
+5. Restart the app, and test the magic. Now the Chat works, and creates fancy images!
+6. Now let's start playing with MCP, and configure Gemini CLI to connect to your Rails app MCP! Now you can talk to your app in natural language!
+7. Create your own MCP function, and test it from Gemini CLI!
+
+**Note**. The workshop is disseminated with 🧙‍♂️ quests 🧙‍♂️. If you solve the quest in a physical workshop, tell your mentors! If yo're fast, you might receive a present.
 
 ## Prerequisites
 
 * Have GMail account. This is needed to reclaim GCP credits, and to allow Gemini LLM to be used!
-* [optional] Have github account. This is needed only if you want to fork the repo, for advanced users.
+* [optional] Have GitHub account. This is needed only if you want to fork the repo, for advanced users.
 * [optional] Install `just`. Without it, just look at recipes in `justfile`.
 
 ## Install/Download the code
@@ -109,7 +120,7 @@ TODO(Christian): `rails s` and DB set up.
 
 ------
 
-## Step 2. Get Gemini API Key and start creating images.
+## Step 2. Get Gemini API Key and start creating images!
 
 ### 2a. Reclaim GCP credits..
 
@@ -138,8 +149,18 @@ Now that you've done the boring part, ready to generate your first images?
 * Create a new chat.
 * Ask a question...
   * Observe the magic: an image is generated and a synopsis of the chat is also generated
-  * TODO riccc: screesnthot before
-  * TODO riccc: screesnthot after
+  * TODO ricc: screesnthot before
+  * TODO ricc: screesnthot after
+
+### 2c change image generation
+
+
+🧙‍♂️ **Quest** 🧙‍♂️ Did you notice all images come out with a yellow heart and a ruby? Looks like there might be an easter egg in the code./
+
+* Find the part of the code where it adds these 2 'filigrains' to the image
+* Change it to something local to your geography, eg (for Modena, to include the face of Pavarotti).
+* Test the new generation (possibly reloading the app)
+* Show to a proctor to get your prize.
 
 ------
 

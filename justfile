@@ -2,7 +2,8 @@
 set dotenv-load := true
 
 # Disable this if the file doesn't exist. This works for Riccardo, sorry!
-import '~/git/gic/justfile.gemini_common'
+#import '~/git/gic/justfile.gemini_common'
+import 'justfile.workshop'
 
 list:
     just -l
@@ -111,19 +112,3 @@ git-logs-timestamped:
 # Clones Chris fork
 rails8-turbo-chat-chris:
     git clone https://github.com/a-chris/rails8-turbo-chat rails8-turbo-chat-chris
-
-
-#  Workshop: explain codebase  in JSON
-translate-workshop-to-italian:
-    echo '🇮🇹 Getting Gemini to translate WORKSHOP.md to Italian...'
-    gemini -c --approval-mode auto_edit -p 'Take whats written in docs/workshops/WORKSHOP.md, translate it to Italian and add a few emojis, and finally copy the new content to the file "WORKSHOP-it.md"'
-    git add docs/workshops/WORKSHOP-it.md
-    git diff
-
-
-# Workshop: explain codebase  in JSON
-ws-explain-codebase:
-    gemini -p "Explain the architecture of this codebase" --output-format json | tee codebase-nature.json
-# Workshop: explain recent changes in MD
-ws-recent-changes:
-    gemini -p --approval-mode yolo "Give me a summary of all of the changes that went in yesterday, in markdown mode" | tee git-summary.md
