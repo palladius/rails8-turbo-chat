@@ -1,0 +1,65 @@
+# Development-specific Docker Compose configuration
+# Mounts local files for live synchronization
+# Uses SQLite as configured in the application's development environment
+
+services:
+  web:
+    image: docker.io/library/ruby:3.4.5-slim
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mount the entire application directory for live file synchronization
+      - .:/rails
+      # Mount tmp directory to persist temporary files
+      - ./tmp:/rails/tmp
+      # Mount logs directory to persist logs
+      - ./log:/rails/log
+      # Mount storage directory for Active Storage
+      - ./storage:/rails/storage
+      # Mount the SQLite database file to persist data
+      - ./db:/rails/db
+    environment:
+      - RAILS_ENV=development
+      - REDIS_URL=redis://redis:6379/0
+      - WEB_CONSOLE=1
+      - PORT=3000
+      - APP_NAME=mimmo
+      - GCLOUD_REGION=europe-west1
+      # Set environment variables from .env file if available
+      - GCS_BUCKET=${GCS_BUCKET:-fill-me}
+      - GCS_CREDENTIALS_JSON=${GCS_CREDENTIALS_JSON:-fill-me}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-fill-me}
+    working_dir: /rails
+    command: >
+     sh -c "
+        # Install build tools needed for native gems
+        apt-get update && apt-get install -y build-essential libyaml-dev libffi-dev &&
+        # Install any missing gems
+        bundle config set without 'production' &&
+        bundle check || bundle install &&
+        # Install foreman if not present
+        gem install foreman &&
+        # Wait for any necessary services to be ready
+        sleep 2 &&
+        # Create the database if it doesn't exist
+        ./bin/rails db:create 2>/dev/null || true &&
+        # Run migrations
+        ./bin/rails db:migrate &&
+        # Precompile assets if needed
+        ./bin/rails assets:precompile 2>/dev/null || true &&
+        # Start the application using bin/dev (which uses foreman), with process override to bind to 0.0.0
+        PORT=3000 foreman start -f Procfile.dev_docker
+      "
+    stdin_open: true
+    tty: true
+    # Enable file synchronization for development
+    # This ensures changes in the host are reflected in the container
+    security_opt:
+      - "no-new-privileges:true"
+
+volumes:
+  redis_data:
+
+networks:
+  default:
+    driver: bridge
