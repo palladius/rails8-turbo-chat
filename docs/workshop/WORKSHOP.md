@@ -232,7 +232,7 @@ Now you can interact with Gemini CLI (or Copilot, Claude, ..) and start interact
 
 Ok, time to code something yourself!
 
-TODO(Chris): any ideas what we can add here?
+TODO(Chris/Emiliano): any ideas what we can add here?
 We should add something to app/tools/
 
 * Ricc idea: maybe we could:

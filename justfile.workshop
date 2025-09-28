@@ -20,3 +20,8 @@ ws-explain-codebase:
 [group('workshop')]
 ws-recent-changes:
     gemini -p --approval-mode yolo "Give me a summary of all of the changes that went in yesterday, in markdown mode" | tee git-summary.md
+
+
+[group('workshop')]
+workshop-eval:
+    gemini -c --approval-mode auto_edit -p 'Take whats written in docs/workshops/WORKSHOP.md, make sure to fix typos and check for errors and write your findings in docs/workshops/WORKSHOP-ANALYSIS.md. Also count the TODOs and summarize them in the same output file.'
