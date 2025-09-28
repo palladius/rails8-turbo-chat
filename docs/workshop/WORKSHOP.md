@@ -253,7 +253,7 @@ Now:
 
 ------
 
-## Step 6. [optional] Try `docker compose`
+## Step 6. [optional] Try `docker compose` WIP
 
 Try this:
 

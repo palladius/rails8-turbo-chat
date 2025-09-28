@@ -49,15 +49,19 @@
 
       <%# Input Area Form %>
       <div class="p-4 border-t border-gray-700 bg-gray-800">
-        <%= form_with(model: [@chat, Message.new], url: chat_messages_path(@chat), method: :post, class: "flex items-center space-x-2") do |f| %>
-          <%= f.text_area :content,
-                placeholder: "Ask anything...",
-                class: "flex-grow border border-gray-700 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none text-gray-100 placeholder-gray-400",
-                rows: 2,
-                data: { controller: 'textarea' } %> <%# Optional: Stimulus for auto-resizing %>
-          <%= f.submit "Send 🚀", class: "bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+        <% if @chat.user_id == current_user.id %>
+          <%= form_with(model: [@chat, Message.new], url: chat_messages_path(@chat), method: :post, class: "flex items-center space-x-2") do |f| %>
+            <%= f.text_area :content,
+                  placeholder: "Ask anything...",
+                  class: "flex-grow border border-gray-700 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none text-gray-100 placeholder-gray-400",
+                  rows: 2,
+                  data: { controller: 'textarea' } %> <%# Optional: Stimulus for auto-resizing %>
+            <%= f.submit "Send 🚀", class: "bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+          <% end %>
+        <% else %>
+          <p class="text-gray-400 italic text-center">😕 You don't own this chat, so you cannot interact with it.</p>
         <% end %>
-      </div>
+    </div>
 
     <% else %>
       <%# Placeholder when no chat is selected %>

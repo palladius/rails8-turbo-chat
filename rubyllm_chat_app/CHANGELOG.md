@@ -1,3 +1,7 @@
+## v0.8.13 - on 20250928
+
+*   feat(view): Removing message textarea for public chats you don't own.
+*
 ## v0.8.12 - on 20250928
 
 *   feat(ui): Add a warning if `GEMINI_API_KEY` is not set.
