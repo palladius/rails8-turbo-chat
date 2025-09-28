@@ -78,7 +78,7 @@ test-chat-creation-ask2:
 
 # lets just test that Gemini works..
 test-gemini:
-    echo 'chat = RubyLLM.chat ; chat.ask "Are you an LLM? Who built you? Whats your cutoff time?"' | rails c
+    echo 'chat = RubyLLM.chat ; chat.ask "Are you an LLM? Who built you? Whats your cutoff time? What are nice things to eat and see in Modena?"' | bundle exec rails c
 
 # Autorenames chats with Gemini..
 chat-autorename:

@@ -107,9 +107,13 @@ TODO(Christian): `rails s` and DB set up.
 Now that you've done the boring part, ready to generate your first images?
 
 
+* First thing, check that Gemini works within the app. The easiest way is to call
+  * `just test-gemini`
 * restart the app.
 * Ensure the Gemini API Key works
   * Maybe ensure that a missing API Key throws a visible warning on top?
+  * If you can see the error, it means you did something wrong. If the error has disappeared, you're good!
+![gemini api key missing](image-3.png)
 * Create a new chat.
 * Ask a question...
   * Observe the magic: an image is generated and a synopsis of the chat is also generated
