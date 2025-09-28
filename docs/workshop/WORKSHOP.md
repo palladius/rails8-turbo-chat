@@ -26,7 +26,7 @@ CHANGELOG
 
 * Have GMail account. This is needed to reclaim GCP credits, and to allow Gemini LLM to be used!
 * [optional] Have GitHub account. This is needed only if you want to fork the repo, for advanced users.
-* [optional] Install `just`. Without it, just look at recipes in `justfile`.
+* [optional] Install [just](https://github.com/casey/just). Without it, just look at recipes in `justfile`.
 
 ## Install/Download the code
 
@@ -139,18 +139,17 @@ TODO(Christian): `rails s` and DB set up.
 Now that you've done the boring part, ready to generate your first images?
 
 
-* First thing, check that Gemini works within the app. The easiest way is to call
-  * `just test-gemini`
+* First thing, check that Gemini works within the app. The easiest way is to call `just test-gemini`
 * restart the app.
 * Ensure the Gemini API Key works
   * Maybe ensure that a missing API Key throws a visible warning on top?
   * If you can see the error, it means you did something wrong. If the error has disappeared, you're good!
-![gemini api key missing](image-3.png)
+![gemini api key missing](missing-gemini-api-key.png)
 * Create a new chat.
 * Ask a question...
   * Observe the magic: an image is generated and a synopsis of the chat is also generated
-  * TODO ricc: screesnthot before
-  * TODO ricc: screesnthot after
+  * TODO ricc: screesnhot before
+  * TODO ricc: screesnhot after
 
 ### 2c change image generation
 
