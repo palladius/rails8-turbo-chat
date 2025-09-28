@@ -1,0 +1,6 @@
+web: bin/rails server -b 0.0.0.0
+css: CHOKIDAR_USEPOLLING=true bin/rails tailwindcss:watch
+
+# CSS might have a problem of no disc on device.
+# This fixes it on my Linux: https://github.com/google/cadvisor/issues/1581#issuecomment-367616070
+# => sudo sysctl fs.inotify.max_user_watches=1048576

@@ -113,10 +113,11 @@ rails8-turbo-chat-chris:
     git clone https://github.com/a-chris/rails8-turbo-chat rails8-turbo-chat-chris
 
 
+#  Workshop: explain codebase  in JSON
 translate-workshop-to-italian:
     echo '🇮🇹 Getting Gemini to translate WORKSHOP.md to Italian...'
-    gemini -c --approval-mode auto_edit -p 'Take whats written in WORKSHOP.md, translate it to Italian and add a few emojis, and finally copy the new content to the file "WORKSHOP-it.md"'
-    git add WORKSHOP-it.md
+    gemini -c --approval-mode auto_edit -p 'Take whats written in docs/workshops/WORKSHOP.md, translate it to Italian and add a few emojis, and finally copy the new content to the file "WORKSHOP-it.md"'
+    git add docs/workshops/WORKSHOP-it.md
     git diff
 
 

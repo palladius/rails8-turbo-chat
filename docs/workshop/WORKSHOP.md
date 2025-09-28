@@ -1,6 +1,13 @@
 ## Workshop Idea 🇮🇹
 
-<!-- This is the master doc. Use `just translate-workshop-to-italian` to translate to IT -->
+<!-- This is the master doc v1.0.1.
+Use `just translate-workshop-to-italian` to translate to IT
+
+CHANGELOG
+28sep25 v1.0.1 [ricc] Moved to docs/workshop/ . Added GC dep, and some nice screenshots.
+27sep25 v1.0.0 [ricc] ...
+
+-->
 
 An Italian version is available [here](WORKSHOP-it.md).
 
@@ -8,6 +15,7 @@ An Italian version is available [here](WORKSHOP-it.md).
 
 * Have GMail account. This is needed to reclaim GCP credits, and to allow Gemini LLM to be used!
 * [optional] Have github account. This is needed only if you want to fork the repo, for advanced users.
+* [optional] Install `just`. Without it, just look at recipes in `justfile`.
 
 ## Install/Download the code
 
