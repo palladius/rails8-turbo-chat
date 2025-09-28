@@ -18,3 +18,5 @@ cookies.txt
 # Ignore the default SQLite database.
 *.sqlite3
 *.sqlite3-*
+codebase-nature.json
+git-summary.md

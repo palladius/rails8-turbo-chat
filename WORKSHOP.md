@@ -15,8 +15,6 @@ An Italian version is available [here](WORKSHOP-it.md).
 1. `git clone https://github.com:palladius/rails8-turbo-chat/`
 2. `cd rails8-turbo-chat/`
 3. `cp .env.dist .env`: you'll need it later.
-4. `cd rubyllm_chat_app/` - o quel che dice christian, tipo workshop/ TODO(Christian)
-5. TODO(Chris): some initial set up needed?
 
 ------
 
@@ -42,6 +40,25 @@ More install options [here].(https://github.com/google-gemini/gemini-cli)
 
 To **start** Gemini CLI, just type this: `gemini` and follow the Google authentication flow.
 
+Let's now use Gemini CLI for some instant gratification:
+
+1. **What is the app about?**
+   1. `gemini -p "Explain the architecture of this codebase. Tell me about the Rails models and how they interact with each other"`
+2. **What recent changes happened to the repo?**. This is a powerful prompt to just catch up with your colleagues changes (or a recap from a change you did last night!)
+
+```bash
+gemini
+Give me a summary of all of the changes that went in today/yesterday, in markdown mode.
+If no changes in past 2 days, take the last 3 commits instead.
+Take a look at git diff and see what changes have been introduced and why. One bullet point per commit hash, please.
+Dump this output in `git-summary.md`
+```
+
+3. **What is the coding style of Riccardo or Christian?**. You can ask also human-like questions!
+
+
+------
+
 ## Step 1. Instant gratification
 
 <!-- **Why**. This step is about getting the user happy and engaged with as little effort as possible.
@@ -49,7 +66,23 @@ To **start** Gemini CLI, just type this: `gemini` and follow the Google authenti
 
 In this step, you install the app and get it to run
 
+1. `cd rubyllm_chat_app/` - o quel che dice christian, tipo workshop/ TODO(Christian)
+1. TODO(Chris): some initial set up needed?
+1. [ricc] `rails db:migrate` # to migrate the DB
+1. [ricc] `rails server` to run the server in port 8080
+1. Navigate your browser to http://localhost:8080/ . You should see a page like below:
+![new app empty page](image.png)
+1. Click "Sign up" and add:
+   1. Your **Email**, **Name**, **Password** and repeat it in **Password Confirmation**
+   2. Leave the *Gemini API Key* empty (its not needed now).
+![sign up page](image-1.png)
+1. You;'re done! Time to create your first chat
+![sign up succesful](image-2.png)
+1. Click "Start New Chat".
+   1. oh oh - this is broken! We need a Gemini API Key.
+
 TODO(Christian): `rails s` and DB set up.
+
 
 **Note**. This should work with everything except the images and chat, so maybe we should use some sort of DB generation (`rake db:seed` ?) to generate a fake chat. This will be a good way to show the app working without having to set up the API key - yet: baby steps.
 

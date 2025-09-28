@@ -36,7 +36,7 @@ derek-fix-gems:
 
 
 dev:
-    cd app && just dev
+    cd rubyllm_chat_app/ && just dev
 
 # tests the forbidden origin MCP error oneliner.
 test-mcp-remote:
@@ -118,3 +118,11 @@ translate-workshop-to-italian:
     gemini -c --approval-mode auto_edit -p 'Take whats written in WORKSHOP.md, translate it to Italian and add a few emojis, and finally copy the new content to the file "WORKSHOP-it.md"'
     git add WORKSHOP-it.md
     git diff
+
+
+# Workshop: explain codebase  in JSON
+ws-explain-codebase:
+    gemini -p "Explain the architecture of this codebase" --output-format json | tee codebase-nature.json
+# Workshop: explain recent changes in MD
+ws-recent-changes:
+    gemini -p --approval-mode yolo "Give me a summary of all of the changes that went in yesterday, in markdown mode" | tee git-summary.md
