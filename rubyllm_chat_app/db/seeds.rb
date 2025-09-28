@@ -11,21 +11,18 @@
 raise "Missing Gemini API key, I can't do anything." if ENV["GEMINI_API_KEY"].blank?
 
 u = User.create email: "fake-person@example.com", password: "not-This-vai-tranquillo", name: "Fake Person"
-u.save
 
 # WWhen everything else fails
-u ||= User.first
+u = User.first unless u.persisted?
 
-raise "Missing User, I can't do anything." if u.blank?
+raise "Missing User, I can't do anything." unless u&.persisted?
 
 c = Chat.create user_id: u.id, title: "What is rake db:seed?", public: true, description: "A fake chat to demonstrate the app created by rake db:seed"
-c.save
 
 m = Message.create chat: c, role: "user", content: "Why would I use rake db:seed? Give me a few examples explaining it with furry animals"
-m.save
 
-c.ask "Why would I use rake db:seed? Give me a few examples explaining it with furry animals"
+#c.ask "Why would I use rake db:seed? Give me a few examples explaining it with furry animals"
 
-ChatStreamJob.perform_later(c.id, "Why would I use ActiveJob?")
+#ChatStreamJob.perform_now(c.id, "Why would I use ActiveJob?")
 
-GenerateChatImageJob.perform_later(c)
+GenerateChatImageJob.perform_now(c)
