@@ -20,6 +20,9 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 
+cloud-dev:
+  url: <%= ENV["DATABASE_URL"] %>
+
 development:
   url: <%= ENV["DATABASE_URL"] %>
   primary: &primary_production

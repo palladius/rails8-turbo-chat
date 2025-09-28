@@ -38,3 +38,5 @@ google:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+#cloud-dev: &google
