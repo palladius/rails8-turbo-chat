@@ -1,3 +1,7 @@
+## v0.8.16 - on 20250928
+
+*   fix(cors): Add and configure `rack-cors` to allow requests from `127.0.0.1` and `localhost`.
+
 ## v0.8.14 - on 20250928
 
 *   feat(db): Added `WORKSHOP_ENVIRONMENT`. Now `rake db:seed` has a different animal in image per workshop env.
