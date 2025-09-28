@@ -1,0 +1,64 @@
+{
+  "response": "I've given a detailed overview of the architecture. Do you have any specific areas you'd like me to elaborate on? For example, we could dive deeper into the data models, the AI integration, or the deployment setup.",
+  "stats": {
+    "models": {
+      "gemini-2.5-pro": {
+        "api": {
+          "totalRequests": 4,
+          "totalErrors": 0,
+          "totalLatencyMs": 26347
+        },
+        "tokens": {
+          "prompt": 69822,
+          "candidates": 1151,
+          "total": 71837,
+          "cached": 40125,
+          "thoughts": 864,
+          "tool": 0
+        }
+      }
+    },
+    "tools": {
+      "totalCalls": 3,
+      "totalSuccess": 3,
+      "totalFail": 0,
+      "totalDurationMs": 54,
+      "totalDecisions": {
+        "accept": 0,
+        "reject": 0,
+        "modify": 0,
+        "auto_accept": 3
+      },
+      "byName": {
+        "list_directory": {
+          "count": 2,
+          "success": 2,
+          "fail": 0,
+          "durationMs": 34,
+          "decisions": {
+            "accept": 0,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 2
+          }
+        },
+        "read_many_files": {
+          "count": 1,
+          "success": 1,
+          "fail": 0,
+          "durationMs": 20,
+          "decisions": {
+            "accept": 0,
+            "reject": 0,
+            "modify": 0,
+            "auto_accept": 1
+          }
+        }
+      }
+    },
+    "files": {
+      "totalLinesAdded": 0,
+      "totalLinesRemoved": 0
+    }
+  }
+}

@@ -29,6 +29,16 @@
       </ul>
     </div>
   <% end %>
+  <% if Rails.configuration.x.config_warnings.any? %>
+    <div class="bg-yellow-500 bg-opacity-75 border border-yellow-700 text-white px-4 py-3 rounded relative mb-4" role="alert">
+      <strong>⚠️ Configuration Warnings:</strong>
+      <ul>
+        <% Rails.configuration.x.config_warnings.each do |warning| %>
+          <li>🟡 <%= warning %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <main class="container mx-auto mt-4 px-4 flex-grow">
     <%# Flash Messages - Tailored for Tailwind %>

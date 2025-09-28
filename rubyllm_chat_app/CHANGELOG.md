@@ -1,3 +1,8 @@
+## v0.8.12 - on 20250928
+
+*   feat(ui): Add a warning if `GEMINI_API_KEY` is not set.
+*   fix(helper): `display_secret_env_variable` now correctly handles non-JSON values, showing only the first 5 characters.
+
 ## v0.8.11 - on 20250824
 
 *   feat(ui): Improved mobile chat experience by hiding the left pane on smaller screens.
