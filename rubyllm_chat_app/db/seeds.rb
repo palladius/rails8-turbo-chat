@@ -12,7 +12,16 @@ raise "Missing Gemini API key, I can't do anything." if ENV["GEMINI_API_KEY"].bl
 
 u = User.create email: "fake-person@example.com", password: "not-This-vai-tranquillo", name: "Fake Person"
 
-# WWhen everything else fails
+if ENV["PLAYWRIGHT_USERNAME"].present? && ENV["PLAYWRIGHT_PASSWORD"].present?
+  PLAYWRIGHT_USERNAME = ENV["PLAYWRIGHT_USERNAME"]
+  PLAYWRIGHT_PASSWORD = ENV["PLAYWRIGHT_PASSWORD"]
+  playwright_user = User.find_or_create_by(email: PLAYWRIGHT_USERNAME) do |user|
+    user.password = PLAYWRIGHT_PASSWORD
+    user.name = "Playwright User for testing"
+  end
+end
+
+# When everything else fails
 u = User.first unless u.persisted?
 
 raise "Missing User, I can't do anything." unless u&.persisted?

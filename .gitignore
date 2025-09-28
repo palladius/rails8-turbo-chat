@@ -20,3 +20,6 @@ cookies.txt
 *.sqlite3-*
 .env.riccardo
 .env.vanilla
+.gemini2
+bin/cloud-scheduler-local-test.sh
+bin/tmp-generate-image.sh

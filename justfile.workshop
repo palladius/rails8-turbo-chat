@@ -25,3 +25,9 @@ ws-recent-changes:
 [group('workshop')]
 workshop-eval:
     gemini -c --approval-mode auto_edit -p 'Take whats written in docs/workshops/WORKSHOP.md, make sure to fix typos and check for errors and write your findings in docs/workshops/WORKSHOP-ANALYSIS.md. Also count the TODOs and summarize them in the same output file.'
+
+
+[group('workshop')]
+workshop-test-mcp:
+    gemini -y -p 'Use MCP to show me the ListUsers. Return response in JSON under docs/workshop/users-dump.json'
+    # --output-format json | tee users-dump2.json
