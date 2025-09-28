@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   # https://stackoverflow.com/questions/40979186/using-dom-idobj-within-controller-to-set-variable
   include ActionView::RecordIdentifier
 
-  before_action :set_chat
+  before_action :set_chat, :check_gemini_key
 
   # POST /chats/:chat_id/messages
   def create
@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
       # Respond with Turbo Stream to show an error, or just ignore?
       respond_to do |format|
         format.turbo_stream {
-          render turbo_stream: turbo_stream.append("messages", html: "<div class='text-red-500 p-2'>Message content cannot be blank!</div>")
+          render turbo_stream: turbo_stream.append("messages", inline: "<div class='text-red-500 p-2'>Message content cannot be blank!</div>")
         }
         format.html { redirect_to @chat, alert: "Message content cannot be blank!" }
       end
@@ -45,6 +45,18 @@ class MessagesController < ApplicationController
   end
 
   private
+
+  def check_gemini_key
+    if ENV['GEMINI_API_KEY'].blank?
+      respond_to do |format|
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.append("messages", inline: "<div class='text-red-500 p-2'>GEMINI_API_KEY is not set!</div>")
+        }
+        format.html { redirect_to @chat, alert: "GEMINI_API_KEY is not set" }
+      end
+      return
+    end
+  end
 
   def set_chat
     # Messages are nested under chats, so :chat_id should be present
