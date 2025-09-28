@@ -23,12 +23,12 @@ services:
       - REDIS_URL=redis://redis:6379/0
       - WEB_CONSOLE=1
       - PORT=3000
-      - APP_NAME=mimmo
+      - APP_NAME="Rails 8 Turbo Chat from DockerCompose"
       - GCLOUD_REGION=europe-west1
       # Set environment variables from .env file if available
-      - GCS_BUCKET=${GCS_BUCKET:-fill-me}
-      - GCS_CREDENTIALS_JSON=${GCS_CREDENTIALS_JSON:-fill-me}
-      - GEMINI_API_KEY=${GEMINI_API_KEY:-fill-me}
+      - GCS_BUCKET=${GCS_BUCKET:-}
+      - GCS_CREDENTIALS_JSON=${GCS_CREDENTIALS_JSON:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
     working_dir: /rails
     command: >
      sh -c "
@@ -49,7 +49,7 @@ services:
         ./bin/rails db:seeds &&
         # Precompile assets if needed
         ./bin/rails assets:precompile 2>/dev/null || true &&
-        # Start the application using bin/dev (which uses foreman), with process override to bind to 0.0.0
+        # Start the application using bin/dev (which uses foreman), with process override to bind to 0.0.0.0
         PORT=3000 foreman start -f Procfile.dev_docker
       "
     stdin_open: true
