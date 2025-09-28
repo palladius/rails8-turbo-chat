@@ -46,3 +46,15 @@ Currently the Gemini part doesnt work for bug with Gemini. Links:
 pry(main)> RubyLLM.models.map{|x| x.name}.select{|x| x =~ /Gemini/i}.select{|x| x =~ /image/i}
 => ["Gemini 2.0 Flash Preview Image Generation"]
 ```
+
+## Enviropnments
+
+As of 0.8.15, we have a fourth env which is dev for GCP called `cloud-dev`. So the config is like this:
+
+normal use:
+* `development`: sqlite3, local storage
+* `cloud-dev`: sqlite3, GCS
+* `production`: proper PostgreS, GCS
+
+`docker-compose`:
+* ENv=`development`, fake docker local PostgreSQL.
