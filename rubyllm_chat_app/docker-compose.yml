@@ -2,11 +2,14 @@
 # Mounts local files for live synchronization
 # Uses SQLite as configured in the application's development environment
 
+# TODO(Emiliano): move to PostgreSQL to test with Cloud Run
+# TODO(ricc): test with CRun
+
 services:
   web:
     image: docker.io/library/ruby:3.4.5-slim
     ports:
-      - "3000:3000"
+      - "8080:8080"
     volumes:
       # Mount the entire application directory for live file synchronization
       - .:/rails
@@ -23,7 +26,7 @@ services:
       # Eliminato vai tra, mi dicono
       #- REDIS_URL=redis://redis:6379/0
       - WEB_CONSOLE=1
-      - PORT=3000
+      - PORT=8080
       - APP_NAME="Rails 8 Turbo Chat from DockerCompose"
       - GCLOUD_REGION=europe-west1
       # Set environment variables from .env file if available
@@ -51,7 +54,7 @@ services:
         # Precompile assets if needed
         ./bin/rails assets:precompile 2>/dev/null || true &&
         # Start the application using bin/dev (which uses foreman), with process override to bind to 0.0.0.0
-        PORT=3000 foreman start -f Procfile.dev_docker
+        PORT=8080 foreman start -f Procfile.dev_docker
       "
     stdin_open: true
     tty: true
