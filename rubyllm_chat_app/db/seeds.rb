@@ -36,8 +36,8 @@ else
 end
 
 # Create a chat where there's a different animal per env.
-c = Chat.create user_id: u.id, title: "What is rake db:seed?", public: true, description: "
-  A forest full of furry animals and in front a huge big blue #{WORKSHOP_ENVIRONMENT}
+c = Chat.create user_id: u.id, title: "[#{WORKSHOP_ENVIRONMENT}] What is rake db:seed?", public: true, description: "
+  A forest full of furry animals and in front a huge big blue #{animal}
 "
 
 m = Message.create chat: c, role: "user", content: "Why would I use rake db:seed? Give me a few examples explaining it with furry animals"
