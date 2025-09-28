@@ -15,12 +15,12 @@ CHANGELOG
 1. Download Gemini CLI
 2. Download the app, and start asking Gemini some questions.
 3. Run the vanilla app, without any magic. Some functionality won't be available yet.
-4. Get GCP Credits, fetch a [key emoji] GEMINI API KEY, and put it in `.env`
+4. Get GCP Credits, fetch a 🔑 GEMINI API KEY, and put it in `.env`
 5. Restart the app, and test the magic. Now the Chat works, and creates fancy images!
 6. Now let's start playing with MCP, and configure Gemini CLI to connect to your Rails app MCP! Now you can talk to your app in natural language!
 7. Create your own MCP function, and test it from Gemini CLI!
 
-**Note**. The workshop is disseminated with 🧙‍♂️ quests 🧙‍♂️. If you solve the quest in a physical workshop, tell your mentors! If you're fast, you might receive a present.
+**Note**. The workshop is interspersed with 🧙‍♂️ quests 🧙‍♂️. If you solve the quest in a physical workshop, tell your mentors! If you're fast, you might receive a present.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ CHANGELOG
 ## Install/Download the code
 
 
-1. `git clone https://github.com:palladius/rails8-turbo-chat/`
+1. `git clone https://github.com/palladius/rails8-turbo-chat.git`
 2. `cd rails8-turbo-chat/`
 3. `cp .env.dist .env`: you'll need it later.
 
@@ -39,7 +39,7 @@ CHANGELOG
 
 ## Step 0. Install Gemini CLI (and get intel on the app)
 
-<!-- **Why**. It's probably easiuer if users can leverage Gemini CLI from square 1. They can ask
+<!-- **Why**. It's probably easier if users can leverage Gemini CLI from square 1. They can ask
 1. What the app does
 2. What was the last commit about, and so on.
 -->
@@ -55,7 +55,7 @@ npm install -g @google/gemini-cli
 brew install gemini-cli
 ```
 
-More install options [here].(https://github.com/google-gemini/gemini-cli)
+More install options [here](https://github.com/google-gemini/gemini-cli).
 
 To **start** Gemini CLI, just type this: `gemini` and follow the Google authentication flow.
 
@@ -63,7 +63,7 @@ Let's now use Gemini CLI for some instant gratification:
 
 1. **What is the app about?**
    1. `gemini -p "Explain the architecture of this codebase. Tell me about the Rails models and how they interact with each other"`
-2. **What recent changes happened to the repo?**. This is a powerful prompt to just catch up with your colleagues changes (or a recap from a change you did last night!)
+2. **What recent changes happened to the repo?** This is a powerful prompt to just catch up with your colleagues changes (or a recap from a change you did last night!)
 
 ```bash
 $ gemini
@@ -106,9 +106,9 @@ In this step, you install the app and get it to run
 ![new app empty page](image.png)
 1. Click "Sign up" and add:
    1. Your **Email**, **Name**, **Password** and repeat it in **Password Confirmation**
-   2. Leave the *Gemini API Key* empty (its not needed now).
+   2. Leave the *Gemini API Key* empty (it's not needed now).
 ![sign up page](image-1.png)
-1. You;'re done! Time to create your first chat
+1. You're done! Time to create your first chat
 ![sign up succesful](image-2.png)
 1. Click "Start New Chat".
    1. oh oh - this is broken! We need a Gemini API Key.
@@ -154,9 +154,9 @@ Now that you've done the boring part, ready to generate your first images?
 ### 2c change image generation
 
 
-🧙‍♂️ **Quest** 🧙‍♂️ Did you notice all images come out with a yellow heart and a ruby? Looks like there might be an easter egg in the code./
+🧙‍♂️ **Quest** 🧙‍♂️ Did you notice all images come out with a yellow heart and a ruby? Looks like there might be an easter egg in the code.
 
-* Find the part of the code where it adds these 2 'filigrains' to the image
+* Find the part of the code where it adds these 2 'filigrees' (or 'watermarks') to the image
 * Change it to something local to your geography, eg (for Modena, to include the face of Pavarotti).
 * Test the new generation (possibly reloading the app)
 * Show to a proctor to get your prize.
@@ -169,14 +169,14 @@ Now that you've done the boring part, ready to generate your first images?
 Here we Show we have existing MCP already pre-built
 -->
 
-1. Lets troubleshoot with `npx @modelcontextprotocol/inspector`
-2. Click on the link from CLI (note the MCP_PROXY_AUTH_TOKEN!), sth like: `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=blahblahblah`
+1. Let's troubleshoot with `npx @modelcontextprotocol/inspector`
+2. Click on the link from CLI (note the MCP_PROXY_AUTH_TOKEN!), something like: `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=blahblahblah`
 3. Set up:
    1. Transport type: **SSE**
-   2. URL: `https://localhost:8080/mcp/sse` - TODO(Christian), mi confermi usiamo 8080? o 3000?
+   2. URL: `http://localhost:8080/mcp/sse` - TODO(Christian), mi confermi usiamo 8080? o 3000?
 4. Click **connect**.
 5. If it works, click on **Tools**
-6. Click List Tootls.
+6. Click List Tools.
 7. You should see this: ![List of tools on MCP](image1.png)
 8. Click on one tool to execute, for instance `Chat List`. Enjoy an output like this! Note the MCP Server is calling ActiveRecord here!
 
@@ -191,7 +191,7 @@ If you have `vscode`, IntelliJ, Claude Code, you can now test MCP. Please check 
 
 
 * Use `gemini mcp` to add our MCP dynamically:
-  * `gemini mcp add --transport sse local-rails8-turbo-chat-sse https://localhost:8000/mcp/sse`
+  * `gemini mcp add --transport sse local-rails8-turbo-chat-sse http://localhost:8080/mcp/sse`
   * This will configure gemini to have this MCP available.
 * **ReStart** `gemini` (double CTRL-C). MCP are loaded at startup, so don't forget!
 * Type `/mcp` to ensure this is done correctly. You should see something like this:
@@ -199,7 +199,7 @@ If you have `vscode`, IntelliJ, Claude Code, you can now test MCP. Please check 
 ![Testing /mcp ](image.png)
 
 
-If you're using other tools (vscode, copilot, Claud Code), check the documentation for adding them.
+If you're using other tools (vscode, copilot, Claude Code), check the documentation for adding them.
 Usually you need to add a JSON like this:
 
 ```json
@@ -246,7 +246,7 @@ We should add something to app/tools/
 
 ## Step 5. Install Gemini CLI and add this.
 
-* Ask "What are my users?" (if it doesnt work: "Use MCP to retrieve my users").
+* Ask "What are my users?" (if it doesn't work: "Use MCP to retrieve my users").
 * Ask "Use MCP to Autorename all chats".
   * This should magically update chat titles for all wrongly named chats.
 `
@@ -254,13 +254,12 @@ We should add something to app/tools/
 ## Step 6. [optional] Persist images on GCS
 
 <!--
-This is a game changer, since a push to the cloud will persist images across computers and across local vs remote. But its hard to setup.
+This is a game changer, since a push to the cloud will persist images across computers and across local vs remote. But it's hard to setup.
 -->
 
 TODO(Emiliano)
 
 ## Step 6. [optional] Build and launch to Cloud Run
 
-<!-- once GCS is configured, and mayeb Emiliano can help, the rest is a breeze, at least for Riccardo -->
-
+<!-- once GCS is configured, and maybe Emiliano can help, the rest is a breeze, at least for Riccardo -->                                                                              │
 TODO(ricc)
