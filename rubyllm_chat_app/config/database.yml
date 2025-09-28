@@ -21,7 +21,6 @@ default: &default
 
 
 development:
-  <<: *default
   url: <%= ENV["DATABASE_URL"] %>
   primary: &primary_production
     <<: *default
