@@ -104,3 +104,5 @@ gem "dotenv-rails", "~> 3.1"
 
 gem "kramdown"
 gem "kramdown-parser-gfm" # For GitHub Flavored Markdown support
+
+gem "rack-cors"
