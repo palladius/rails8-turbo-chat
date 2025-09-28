@@ -20,7 +20,7 @@ CHANGELOG
 6. Now let's start playing with MCP, and configure Gemini CLI to connect to your Rails app MCP! Now you can talk to your app in natural language!
 7. Create your own MCP function, and test it from Gemini CLI!
 
-**Note**. The workshop is disseminated with 🧙‍♂️ quests 🧙‍♂️. If you solve the quest in a physical workshop, tell your mentors! If yo're fast, you might receive a present.
+**Note**. The workshop is disseminated with 🧙‍♂️ quests 🧙‍♂️. If you solve the quest in a physical workshop, tell your mentors! If you're fast, you might receive a present.
 
 ## Prerequisites
 
@@ -99,8 +99,8 @@ In this step, you install the app and get it to run
 
 1. `cd rubyllm_chat_app/` - o quel che dice christian, tipo workshop/ TODO(Christian)
 2. Install ruby and bundler
-3. Run bundle install
-4. Run rails db:setup
+3. Run `bundle install`
+4. Run `rails db:setup`
 1. [ricc] `rails server` to run the server in port 8080
 1. Navigate your browser to http://localhost:8080/ . You should see a page like below:
 ![new app empty page](image.png)
@@ -177,16 +177,54 @@ Here we Show we have existing MCP already pre-built
 4. Click **connect**.
 5. If it works, click on **Tools**
 6. Click List Tootls.
-7. You should see this: ![List of tools on MCP](docs/workshop/image1.png)
+7. You should see this: ![List of tools on MCP](image1.png)
 8. Click on one tool to execute, for instance `Chat List`. Enjoy an output like this! Note the MCP Server is calling ActiveRecord here!
 
-![Tool calling - chatlist](docs/workshop/image2.png)
+![Tool calling - chatlist](image2.png)
 
 
-### Optional - test the same on vscode
+### 3.A - test the same on your IDE
 
-1. Add https://localhost:8080/mcp/sse to your vscode, for instance under `.vscode/settings.json`.
-2. Ask Copilot or Claude or your fav client sth like "Retrieve a list of chats: Any chat containing italian food?"
+If you have `vscode`, IntelliJ, Claude Code, you can now test MCP. Please check your agent configuration on how to add the MCP.
+
+#### Add local MCP to Gemini CLI
+
+
+* Use `gemini mcp` to add our MCP dynamically:
+  * `gemini mcp add --transport sse local-rails8-turbo-chat-sse https://localhost:8000/mcp/sse`
+  * This will configure gemini to have this MCP available.
+* **ReStart** `gemini` (double CTRL-C). MCP are loaded at startup, so don't forget!
+* Type `/mcp` to ensure this is done correctly. You should see something like this:
+
+![Testing /mcp ](image.png)
+
+
+If you're using other tools (vscode, copilot, Claud Code), check the documentation for adding them.
+Usually you need to add a JSON like this:
+
+```json
+{
+  // ..Other options here..
+  "mcpServers": {
+    // ..Other MCP servers here..
+    "rails-chat-sse-localhost": {
+      "type": "sse",
+      "url": "http://localhost:8080/mcp/sse"
+    }
+  }
+}
+```
+
+To your local file (eg `.vscode/settings.json` for Visual Studio code).
+
+Now you can interact with Gemini CLI (or Copilot, Claude, ..) and start interacting with your application with questions like:
+
+*  `Retrieve a list of chats: Any chat containing italian food?`
+*  `Add a user created "test-workshop@example.com" and password "PincoPallinoJoe" and name "Test for Workshop"`
+![MCP requests to call create user](image-1.png)
+![user created correctly](image-3.png)
+   *  `Now list users` (which should also surface the new user)
+![List also surfaces the last user](image-2.png)
 
 ------
 
@@ -208,13 +246,6 @@ We should add something to app/tools/
 
 ## Step 5. Install Gemini CLI and add this.
 
-* Install [Gemini CLI](https://github.com/google-gemini/gemini-cli) with npm:
-  * `npm install -g @google/gemini-cli`
-  * See homepage for [alternative installations](https://github.com/google-gemini/gemini-cli?tab=readme-ov-file#-installation).
-* Use `gemini mcp` to add our MCP dynamically:
-  * `gemini mcp add --transport sse local-rails8-turbo-chat-sse https://localhost:8000/mcp/sse`
-  * This will configure gemini to have this MCP available
-* Start Gemini
 * Ask "What are my users?" (if it doesnt work: "Use MCP to retrieve my users").
 * Ask "Use MCP to Autorename all chats".
   * This should magically update chat titles for all wrongly named chats.
