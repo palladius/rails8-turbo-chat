@@ -2,13 +2,13 @@ Rails.configuration.x.config_errors = []
 Rails.configuration.x.config_warnings = []
 
 # Check for GCS_CREDENTIALS_JSON
-begin
-  JSON.parse(ENV.fetch("GCS_CREDENTIALS_JSON"))
-rescue KeyError
-  Rails.configuration.x.config_warnings << "ENV[GCS_CREDENTIALS_JSON] environment variable not set. Upload to GCS might fail"
-rescue JSON::ParserError
-  Rails.configuration.x.config_warnings << "ENV[GCS_CREDENTIALS_JSON] is not a valid JSON. Upload to GCS might fail"
-end
+# begin
+#  JSON.parse(ENV.fetch("GCS_CREDENTIALS_JSON"))
+# rescue KeyError
+#  Rails.configuration.x.config_warnings << "ENV[GCS_CREDENTIALS_JSON] environment variable not set. Upload to GCS might fail"
+# rescue JSON::ParserError
+#  Rails.configuration.x.config_warnings << "ENV[GCS_CREDENTIALS_JSON] is not a valid JSON. Upload to GCS might fail"
+# end
 
 # Check for GCLOUD_REGION
 if ENV["GCLOUD_REGION"].blank?
