@@ -61,6 +61,9 @@ group :development, :test do
 
 end
 
+gem "rack-cors"
+gem "fast-mcp", "~> 1.4"
+
 group :development do
   # Use sqlite as the database for Active Record
   gem "sqlite3"
@@ -73,7 +76,6 @@ group :development do
   gem 'pry'
   gem 'pry-rails'
   gem 'rainbow'
-  gem "fast-mcp", "~> 1.4"
 
   gem 'rails-erd'
 end
@@ -104,5 +106,3 @@ gem "dotenv-rails", "~> 3.1"
 
 gem "kramdown"
 gem "kramdown-parser-gfm" # For GitHub Flavored Markdown support
-
-gem "rack-cors"
