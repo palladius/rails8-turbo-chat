@@ -61,7 +61,9 @@ services:
         # Wait for any necessary services to be ready
         sleep 2 &&
         # Create the database if it doesn't exist
-        ./bin/rails db:setup 2>/dev/null || true &&
+        ./bin/rails db:create 2>/dev/null || true &&
+        ./bin/rails db:migrate 2>/dev/null || true &&
+        ./bin/rails db:seed 2>/dev/null || true &&
         ./bin/rails assets:precompile 2>/dev/null || true &&
         # Start the application using bin/dev (which uses foreman), with process override to bind to 0.0.0.0
         PORT=8080 foreman start -f Procfile.dev_docker
