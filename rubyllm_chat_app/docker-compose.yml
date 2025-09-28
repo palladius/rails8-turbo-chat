@@ -59,9 +59,6 @@ services:
     security_opt:
       - "no-new-privileges:true"
 
-volumes:
-  redis_data:
-
 networks:
   default:
     driver: bridge
