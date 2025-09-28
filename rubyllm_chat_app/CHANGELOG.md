@@ -1,3 +1,7 @@
+## v0.8.17 - on 20250928
+
+*   fix(view): Prevent crash on `/config` page when `DATABASE_URL` is not set.
+
 ## v0.8.16 - on 20250928
 
 *   fix(cors): Add and configure `rack-cors` to allow requests from `127.0.0.1` and `localhost`.

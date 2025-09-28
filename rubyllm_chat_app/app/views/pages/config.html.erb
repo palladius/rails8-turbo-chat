@@ -10,7 +10,6 @@
     <%= display_env_variable("GIT_COMMIT_HASH", GIT_COMMIT_HASH) %>
 
 
-
     <p> ENV variables: </p>
 
     <%= display_env_variable("PROJECT_ID", ENV["PROJECT_ID"]) %>
@@ -19,7 +18,7 @@
     <%= display_env_variable("PORT", ENV["PORT"]) %>
     <%= display_env_variable("CLOUD_RUN_ENDPOINT_DEV", ENV["CLOUD_RUN_ENDPOINT_DEV"]) %>
     <%= display_env_variable("CLOUD_RUN_ENDPOINT_PROD", ENV["CLOUD_RUN_ENDPOINT_PROD"]) %>
-    <%= display_env_variable("DATABASE_URL", obfuscate_database_url(ENV["DATABASE_URL"])) %>
+    <%= display_env_variable("DATABASE_URL", obfuscate_database_url(ENV["DATABASE_URL"])) if ENV["DATABASE_URL"] %>
     <%= display_env_variable("GCS_BUCKET", ENV["GCS_BUCKET"]) %>
     <%= display_secret_env_variable("GEMINI_API_KEY", ENV["GEMINI_API_KEY"], json: false) %>
     <%= display_secret_env_variable("GCS_CREDENTIALS_JSON", ENV["GCS_CREDENTIALS_JSON"], json: true) %>
