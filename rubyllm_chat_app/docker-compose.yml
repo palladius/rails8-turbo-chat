@@ -20,7 +20,8 @@ services:
       - ./db:/rails/db
     environment:
       - RAILS_ENV=development
-      - REDIS_URL=redis://redis:6379/0
+      # Eliminato vai tra, mi dicono
+      #- REDIS_URL=redis://redis:6379/0
       - WEB_CONSOLE=1
       - PORT=3000
       - APP_NAME="Rails 8 Turbo Chat from DockerCompose"
