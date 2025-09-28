@@ -1,0 +1,1 @@
+* `1d5e88d`: This commit adds a new section to the `WORKSHOP.md` file, detailing how to install and use the Gemini CLI. It includes instructions for installation via `npx`, `npm`, and `brew`, and is presented as a new 'Step 0' in the workshop.
