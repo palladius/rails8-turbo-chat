@@ -85,3 +85,7 @@ git-logs-timestamped:
 # Clones Chris fork
 rails8-turbo-chat-chris:
     git clone https://github.com/a-chris/rails8-turbo-chat rails8-turbo-chat-chris
+
+
+docker-compose:
+    cd rubyllm_chat_app/ && docker-compose up

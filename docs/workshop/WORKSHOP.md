@@ -225,31 +225,42 @@ Now you can interact with Gemini CLI (or Copilot, Claude, ..) and start interact
 ![user created correctly](image-3.png)
    *  `Now list users` (which should also surface the new user)
 ![List also surfaces the last user](image-2.png)
+* Ask `Use MCP to Autorename all chats`. This should magically update chat titles for all wrongly named chats.
 
 ------
 
 ## Step 4. Add your own MCP
 
-Ok, time to code something yourself!
+**Ideas**. Ok, time to code something yourself! You can be creative, or get some of these ideas:
 
-TODO(Chris/Emiliano): any ideas what we can add here?
-We should add something to app/tools/
+* `what_time_is_it`: Add a "What date / time is it".  function.
+* `where_am_ai`: Call an external API to fetch local weather or closest city.
+* *ActiveRecord magic*: Some ActiveRecord magic to count relationships and give a statistics (how many users have created how many chats).
+* TODO(Emiliano): any ideas what we can add here?
 
-* Ricc idea: maybe we could:
-* 1. add a migration which adds a nickname or a `modenese_nickname` to the USer class
-* 2. run migration and patch the DB
-* 3. Test it locally with `rails console`.
-* 4. Once it works, reload the MCP and ask
+**Execution**.
+
+You have an idea of what to code? Great!
+
+Now:
+1. Add your function to `app/tools/`.
+2. Remember to subclass from `ActionTool::Base`. More details in https://github.com/yjacquin/fast-mcp
+3. Once it works, load the `rails c` and test that the code works as intended first.
+3. Then, reload the `rails s`; this ensures your app has the new function!
+4. Now time to test it with your MCP Tools! First use Gemini CLI (reload this too) via `/mcp` to check the new feature has appeared.
+5. Test the function by asking a natural language question that matches the function description (eg "What time is it / Where am I / ...").
+
 
 ------
 
+## Step 6. [optional] Try `docker compose`
 
-## Step 5. Install Gemini CLI and add this.
+Try this:
 
-* Ask "What are my users?" (if it doesn't work: "Use MCP to retrieve my users").
-* Ask "Use MCP to Autorename all chats".
-  * This should magically update chat titles for all wrongly named chats.
-`
+```bash
+cd rubyllm_chat_app/
+docker-compose up
+```
 
 ## Step 6. [optional] Persist images on GCS
 
