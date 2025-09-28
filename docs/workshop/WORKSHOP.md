@@ -97,7 +97,7 @@ Find sample answers in `docs/workshop/` :)
 
 In this step, you install the app and get it to run
 
-1. `cd rubyllm_chat_app/` - o quel che dice christian, tipo workshop/ TODO(Christian)
+1. `cd rubyllm_chat_app/`
 2. Install ruby and bundler
 3. Run `bundle install`
 4. Run `rails db:setup`

@@ -31,7 +31,7 @@ A responsive Rails chat application with `ruby_llm` integration. This applicatio
 
 ### Environment Variables
 
-The application requires several environment variables to function properly. Copy `.env.example` to `.env` and configure the following:
+The application requires several environment variables to function properly. Copy `.env.dist` to `.env` and configure the following:
 
 - `GEMINI_API_KEY` - Your Google Gemini API key
 - `PROJECT_ID` - Your Google Cloud project ID
@@ -56,9 +56,9 @@ bundle install
 bin/rails db:prepare
 ```
 
-4. Create a `.env` file based on `.env.example` and add your API keys:
+4. Create a `.env` file based on `.env.dist` and add your API keys:
 ```bash
-cp .env.example .env
+cp .env.dist .env
 # Edit .env to add your GEMINI_API_KEY and other required variables
 ```
 
