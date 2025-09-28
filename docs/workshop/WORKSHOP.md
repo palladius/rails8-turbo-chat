@@ -260,6 +260,7 @@ Try this:
 ```bash
 cd rubyllm_chat_app/
 docker-compose up
+docker compose run web todo
 ```
 
 ## Step 6. [optional] Persist images on GCS
@@ -274,3 +275,5 @@ TODO(Emiliano)
 
 <!-- once GCS is configured, and maybe Emiliano can help, the rest is a breeze, at least for Riccardo -->                                                                              │
 TODO(ricc)
+
+

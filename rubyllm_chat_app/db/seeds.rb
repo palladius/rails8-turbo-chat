@@ -17,7 +17,28 @@ u = User.first unless u.persisted?
 
 raise "Missing User, I can't do anything." unless u&.persisted?
 
-c = Chat.create user_id: u.id, title: "What is rake db:seed?", public: true, description: "A fake chat to demonstrate the app created by rake db:seed"
+
+WORKSHOP_ENVIRONMENT = ENV["WORKSHOP_ENVIRONMENT"] || "unknown"
+
+animal = case WORKSHOP_ENVIRONMENT
+when "cloud_run" # not covered anywhere, yet, but nice to have
+  "fox"
+when "dot_env"
+  "carnivorous plant"
+when "cloud_build"
+  "cat"
+when "docker_compose"
+  "dog"
+when "unknown"
+  "puffin"
+else
+  "hamster"
+end
+
+# Create a chat where there's a different animal per env.
+c = Chat.create user_id: u.id, title: "What is rake db:seed?", public: true, description: "
+  A forest full of furry animals and in front a huge big blue #{WORKSHOP_ENVIRONMENT}
+"
 
 m = Message.create chat: c, role: "user", content: "Why would I use rake db:seed? Give me a few examples explaining it with furry animals"
 

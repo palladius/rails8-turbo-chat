@@ -38,6 +38,7 @@ substitutions:
   _GCLOUD_REGION: europe-west10 # for Cloud Run. Cambiato da eu-west1
   _PROJECT_ID: palladius-genai
   _APP_NAME: rails8-turbo-chat
+  _WORKSHOP_ENVIRONMENT: 'cloud_build'
   _GCS_BUCKET: ''
   #_DATABASE_URL_DEV: 'sqlite3:storage/development.sqlite3'
   #_DATABASE_URL_PROD: 'sqlite3:storage/production.sqlite3'
@@ -123,6 +124,7 @@ steps:
   # dev only for now
   - 'CLOUD_RUN_ENDPOINT=$_CLOUD_RUN_ENDPOINT'
   - 'OCCASIONAL_MESSAGE="Ciao DEV from Cloud Build"'
+  - 'WORKSHOP_ENVIRONMENT=$_WORKSHOP_ENVIRONMENT'
   # got from derek ifconfig!
   #- 'ALLOWED_ORIGINS=2a00:79e0:2846:6:8068:8006:f319:4a7,2a00:79e0:2846:6:7dec:ea52:c63a:50f9,2a00:79e0:2846:6:f6b4:dcc:ead9:441f'
 

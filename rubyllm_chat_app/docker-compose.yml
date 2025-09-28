@@ -33,6 +33,7 @@ services:
       - GCS_BUCKET=${GCS_BUCKET:-}
       - GCS_CREDENTIALS_JSON=${GCS_CREDENTIALS_JSON:-}
       - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - WORKSHOP_ENVIRONMENT='docker_compose'
     working_dir: /rails
     command: >
      sh -c "
