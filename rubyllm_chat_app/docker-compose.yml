@@ -45,6 +45,8 @@ services:
         ./bin/rails db:create 2>/dev/null || true &&
         # Run migrations
         ./bin/rails db:migrate &&
+        # Seed the db
+        ./bin/rails db:seeds &&
         # Precompile assets if needed
         ./bin/rails assets:precompile 2>/dev/null || true &&
         # Start the application using bin/dev (which uses foreman), with process override to bind to 0.0.0
