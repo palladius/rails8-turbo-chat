@@ -7,17 +7,40 @@ An Italian version is available [here](WORKSHOP-it.md).
 ## Prerequisites
 
 * Have GMail account. This is needed to reclaim GCP credits, and to allow Gemini LLM to be used!
-* [optional] Have github account. This is actua
+* [optional] Have github account. This is needed only if you want to fork the repo, for advanced users.
 
-## Install
+## Install/Download the code
 
 
 1. `git clone https://github.com:palladius/rails8-turbo-chat/`
 2. `cd rails8-turbo-chat/`
 3. `cp .env.dist .env`: you'll need it later.
-4. `cd rubyllm_chat_app/` - o quel che dice christian, tipo workshop/
+4. `cd rubyllm_chat_app/` - o quel che dice christian, tipo workshop/ TODO(Christian)
 5. TODO(Chris): some initial set up needed?
+
 ------
+
+## Step 0. Install Gemini CLI (and get intel on the app)
+
+<!-- **Why**. It's probably easiuer if users can leverage Gemini CLI from square 1. They can ask
+1. What the app does
+2. What was the last commit about, and so on.
+-->
+
+To **install** Gemini CLI, use either of the following commands:
+
+```bash
+# Using npx (no installation required)
+npx https://github.com/google-gemini/gemini-cli
+# Install globally with `npm`
+npm install -g @google/gemini-cli
+# Install globally with Homebrew (macOS/Linux)
+brew install gemini-cli
+```
+
+More install options [here].(https://github.com/google-gemini/gemini-cli)
+
+To **start** Gemini CLI, just type this: `gemini` and follow the Google authentication flow.
 
 ## Step 1. Instant gratification
 
@@ -58,7 +81,7 @@ Now that you've done the boring part, ready to generate your first images?
 * Ask a question...
   * Observe the magic: an image is generated and a synopsis of the chat is also generated
   * TODO riccc: screesnthot before
-  * TODO riccc: screesnthot afetr
+  * TODO riccc: screesnthot after
 
 ------
 
