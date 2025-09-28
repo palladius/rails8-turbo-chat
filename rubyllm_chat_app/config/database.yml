@@ -24,7 +24,7 @@ cloud-dev:
   url: <%= ENV["DATABASE_URL"] %>
 
 development:
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV.fetch "DATABASE_URL", "sqlite3://#{File.expand_path("../db/development.sqlite3", __dir__)}" %>
   primary: &primary_production
     <<: *default
     url: <%= ENV["DATABASE_URL"] %>
