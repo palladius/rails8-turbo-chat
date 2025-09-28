@@ -11,9 +11,13 @@
         "@playwright/mcp@latest"
       ]
     },
-    "rails-chat-sse": {
+    // "rails-chat-sse-riccardo-cloud-run": {
+    //   "type": "sse",
+    //   "url": "https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/mcp/sse"
+    // },
+    "rails-chat-sse-localhost": {
       "type": "sse",
-      "url": "https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/mcp/sse"
+      "url": "http://localhost:8080/mcp/sse"
     }
   }
 }
