@@ -6,6 +6,19 @@
 # TODO(ricc): test with CRun
 
 services:
+  db:
+    image: postgres:latest
+    volumes:
+      - db:/var/lib/postgresql@latest/data:rw
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+
   web:
     image: docker.io/library/ruby:3.4.5-slim
     ports:
@@ -28,6 +41,7 @@ services:
       - WEB_CONSOLE=1
       - PORT=8080
       - APP_NAME="Rails 8 Turbo Chat from DockerCompose"
+      - DATABASE_URL=postgres://postgres:password@db:5432/rubyllm_chat_app_development
       - GCLOUD_REGION=europe-west1
       # Set environment variables from .env file if available
       - GCS_BUCKET=${GCS_BUCKET:-}
@@ -58,6 +72,11 @@ services:
     # This ensures changes in the host are reflected in the container
     security_opt:
       - "no-new-privileges:true"
+    depends_on:
+      - db
+
+volumes:
+  db:
 
 networks:
   default:
