@@ -20,3 +20,5 @@ cookies.txt
 *.sqlite3-*
 codebase-nature.json
 git-summary.md
+.env.riccardo
+.env.vanilla
