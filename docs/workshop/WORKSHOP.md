@@ -27,8 +27,9 @@ CHANGELOG
 
 ## 0. Prerequisites
 
-* Have GMail account. This is needed to reclaim GCP credits, and to allow Gemini LLM to be used!
-* [optional] Have GitHub account. This is needed only if you want to fork the repo, for advanced users.
+* Have **GMail** account. This is needed to reclaim GCP credits, and to allow Gemini LLM to be used!
+* `ruby` installed locally. We recommend a version manager like `rbenv`, `rvm`, `asdf` or whatever works for you.
+* [optional] A **GitHub** account. This is needed only if you want to fork the repo, for advanced users.
 * [optional] Install [just](https://github.com/casey/just). Without it, just look at recipes in `justfile`.
 
 ### Install/Download the code

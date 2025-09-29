@@ -5,10 +5,9 @@
 #  Workshop: explain codebase  in JSON
 [group('workshop')]
 translate-workshop-to-italian:
-    echo '🇮🇹 Getting Gemini to translate WORKSHOP.md to Italian...'
-    #gemini -c --approval-mode auto_edit -p 'Take whats written in docs/workshops/WORKSHOP.md, translate it to Italian and add a few emojis, and finally copy the new content to the file "WORKSHOP-it.md"'
-    gemini -c --approval-mode auto_edit -p '/workshop:translate-to Italian'
-    git add docs/workshops/WORKSHOP-it.md
+    echo '🇮🇹 Getting Gemini to translate WORKSHOP.md to Italian... and disabling MCP for startup speed'
+    gemini -c --approval-mode auto_edit  --allowed-mcp-server-names '' -p '/workshop:translate-to Italian'
+    git add docs/workshop/WORKSHOP-it.md
     git diff
 
 
@@ -25,7 +24,7 @@ ws-recent-changes:
 
 [group('workshop')]
 workshop-eval:
-    gemini -c --approval-mode auto_edit -p 'Take whats written in docs/workshops/WORKSHOP.md, make sure to fix typos and check for errors and write your findings in docs/workshops/WORKSHOP-ANALYSIS.md. Also count the TODOs and summarize them in the same output file.'
+    gemini -c --approval-mode auto_edit -p 'Take whats written in docs/workshop/WORKSHOP.md, make sure to fix typos and check for errors and write your findings in docs/workshops/WORKSHOP-ANALYSIS.md. Also count the TODOs and summarize them in the same output file.'
 
 
 [group('workshop')]
