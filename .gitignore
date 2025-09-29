@@ -25,3 +25,4 @@ bin/cloud-scheduler-local-test.sh
 bin/tmp-generate-image.sh
 *.cast
 g
+rubyllm_chat_app/bin/ricc-only-bin-dev-pgdev.sh

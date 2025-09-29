@@ -75,7 +75,7 @@ $ gemini
 Give me a summary of all of the changes that went in today/yesterday, in markdown mode.
 If no changes in past 2 days, take the last 3 commits instead.
 Take a look at git diff and see what changes have been introduced and why. One bullet point per commit hash, please.
-Dump this output in `git-summary.md`
+Dump this output in `out/git-summary.md`
 ```
 
 3. **What is the coding style of Riccardo or Christian?**. You can ask also human-like questions!
