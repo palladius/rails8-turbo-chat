@@ -6,12 +6,13 @@ You're requested to translate a tech doc in another language, while leaving comp
 
 ## Data
 
-* Source Document (English): `docs/workshops/WORKSHOP.md`
+* Work Folder: `docs/workshop/`. This is where the source and output documents are.
+* Source Document (English): `WORKSHOP.md`
 * Target language: `Italian`
-* Errors Document (English): `docs/workshops/WORKSHOP-ANALYSIS.md`
-* Output document: `docs/workshops/WORKSHOP-XX.md`, where XX is the language. Eg,
-  * Italian: `docs/workshops/WORKSHOP-it.md`
-  * French: `docs/workshops/WORKSHOP-fr.md`
+* Errors Document (English): `WORKSHOP-ANALYSIS.md`
+* Output document: `WORKSHOP-$XX.md`, where XX is the language. Eg,
+  * Italian: `WORKSHOP-it.md`
+  * French: `WORKSHOP-fr.md`
   * .. and so on.
 
 ## Job
@@ -32,4 +33,3 @@ You're requested to translate a tech doc in another language, while leaving comp
   * Use checkboxes so we can tick them as they're processed/done.
 
 """
-
