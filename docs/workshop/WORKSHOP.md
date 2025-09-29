@@ -1,11 +1,11 @@
 ## Rails + MCP + Gemini Workshop
 
-<!-- This is the master doc v1.0.1.
+<!-- This is the master doc.
 Use `just translate-workshop-to-italian` to translate to IT
 
 CHANGELOG
-29sep25 v1.0.2 [ricc] Renumbered headings to start from 0.
-28sep29 v1.0.1 [ricc] Better translation, moving git clone AFTER gemini-cli
+29sep25 v1.0.3 [ricc] Renumbered headings to start from 0.
+28sep29 v1.0.2 [ricc] Better translation, moving git clone AFTER gemini-cli
 28sep25 v1.0.1 [ricc] Moved to docs/workshop/ . Added GC dep, and some nice screenshots.
 27sep25 v1.0.0 [ricc] ...
 -->
@@ -23,6 +23,7 @@ CHANGELOG
 7. Create your own MCP function, and test it from Gemini CLI!
 
 **Note**. The workshop is interspersed with 🧙‍♂️ quests 🧙‍♂️. If you solve the quest in a physical workshop, tell your mentors! If you're fast, you might receive a present.
+**Note**. This workshop has been created for **Devfest Modena**. You might be missing information if you're not a participant to this workshop.
 
 ## 0. Prerequisites
 
@@ -142,11 +143,11 @@ TODO(Christian): `rails s` and DB set up.
 * retrieve credits by clicking here: https://trygcp.dev/e/devfest-maudna-25 logging in with your *personal* Google account.
 * Follow the link to get `5$` in credits. They will suffice for the workshop.
 * Go to https://aistudio.google.com/apikey and generate a GEMINI API KEY. Note it locally in your `.env`, under `GEMINI_API_KEY`
+* If you're confused, check these [step-by-step slides](https://docs.google.com/presentation/d/1mY0BwcZERAqilVh4BaQfuX-RyayXrC4N2Pno4tzWcig/edit?) the team has created for you.
 
 ### 3b. .. and use Gemini FTW!
 
 Now that you've done the boring part, ready to generate your first images?
-
 
 * First thing, check that Gemini works within the app. The easiest way is to call `just test-gemini`
 * restart the app.
@@ -262,7 +263,15 @@ Now:
 
 ------
 
-## 6. [optional] Try `docker compose` WIP
+
+## 6. [optional] Persist images on GCS TODO(Emiliano)
+
+<!--
+This is a game changer, since a push to the cloud will persist images across computers and across local vs remote. But it's hard to setup.
+-->
+
+
+## 7. [optional] Try `docker compose` WIP TODO(Emiliano)
 
 Try this:
 
@@ -272,11 +281,6 @@ docker-compose up
 docker compose run web todo
 ```
 
-## 7. [optional] Persist images on GCS
-
-<!--
-This is a game changer, since a push to the cloud will persist images across computers and across local vs remote. But it's hard to setup.
--->
 
 TODO(Emiliano)
 
