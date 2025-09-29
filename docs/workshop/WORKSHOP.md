@@ -60,7 +60,7 @@ More install options [here](https://github.com/google-gemini/gemini-cli).
 
 To **start** Gemini CLI:
 
-1. `cd` in the Rails app folder 📂 you downloaded before.
+1. Cgange dir in the Rails app folder 📂 you downloaded before: `cd path/to/`
 2. Just type this: `gemini` and follow the Google authentication flow.
 
 Let's now use Gemini CLI for some instant gratification:
@@ -78,6 +78,8 @@ Take a look at git diff and see what changes have been introduced and why. One b
 Dump this output in `out/git-summary.md`
 ```
 
+![3 differetn devs styles](image-4.png)
+
 3. **What is the coding style of Riccardo or Christian?**. You can ask also human-like questions!
 
 ```bash
@@ -89,7 +91,7 @@ Check the latest 3 commits from:
 Take a look at the code in git diff and provide two info per person:
 1. What coding style they have
 2. What kind of code they tend to edit (frontend, backend, GCP, Docs, ..)
-Dump this output in `people-style-summary.md`
+Dump this output in `out/people-style-summary.md`
 ```
 
 Find sample answers in `docs/workshop/` :)
