@@ -100,8 +100,8 @@ In this step, you install the app and get it to run
 1. `cd rubyllm_chat_app/`
 2. Install ruby and bundler
 3. Run `bundle install`
-4. Run `rails db:setup`
-1. [ricc] `rails server` to run the server in port 8080
+4. Run `bundle exec rails db:setup`
+1. [ricc] `bundle exec rails server` to run the server in port 8080
 1. Navigate your browser to http://localhost:8080/ . You should see a page like below:
 ![new app empty page](image.png)
 1. Click "Sign up" and add:
