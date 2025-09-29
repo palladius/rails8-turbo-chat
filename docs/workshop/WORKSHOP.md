@@ -278,15 +278,15 @@ Try this:
 ```bash
 cd rubyllm_chat_app/
 docker-compose up
-docker compose run web todo
+docker compose run web todo # TODO(Emiliano) some command like rake db:seed or some different test
 ```
 
 
 TODO(Emiliano)
 
-## 8. [optional] Build and launch to Cloud Run
+## 8. [optional] Build and launch to Cloud Run via `docker compose alpha`
 
 <!-- once GCS is configured, and maybe Emiliano can help, the rest is a breeze, at least for Riccardo -->                                                                              │
-TODO(ricc)
+TODO(ricc/Emiliano)
 
 
