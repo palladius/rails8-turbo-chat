@@ -23,3 +23,5 @@ cookies.txt
 .gemini2
 bin/cloud-scheduler-local-test.sh
 bin/tmp-generate-image.sh
+*.cast
+g

@@ -4,6 +4,7 @@
 Use `just translate-workshop-to-italian` to translate to IT
 
 CHANGELOG
+28sep29 v1.0.1 [ricc] Better translation, moving git clone AFTER gemini-cli
 28sep25 v1.0.1 [ricc] Moved to docs/workshop/ . Added GC dep, and some nice screenshots.
 27sep25 v1.0.0 [ricc] ...
 -->
@@ -30,10 +31,10 @@ CHANGELOG
 
 ## Install/Download the code
 
-
 1. `git clone https://github.com/palladius/rails8-turbo-chat.git`
-2. `cd rails8-turbo-chat/`
-3. `cp .env.dist .env`: you'll need it later.
+2. `cp .env.dist .env`: you'll need it later.
+
+Remember the 📂 FOLDER you're in, you'll need to launch `gemini` from this exact folder.
 
 ------
 
@@ -57,7 +58,10 @@ brew install gemini-cli
 
 More install options [here](https://github.com/google-gemini/gemini-cli).
 
-To **start** Gemini CLI, just type this: `gemini` and follow the Google authentication flow.
+To **start** Gemini CLI:
+
+1. `cd` in the Rails app folder 📂 you downloaded before.
+2. Just type this: `gemini` and follow the Google authentication flow.
 
 Let's now use Gemini CLI for some instant gratification:
 
@@ -67,6 +71,7 @@ Let's now use Gemini CLI for some instant gratification:
 
 ```bash
 $ gemini
+## Copy these 4 lines and paste them onto Gemini CLI!
 Give me a summary of all of the changes that went in today/yesterday, in markdown mode.
 If no changes in past 2 days, take the last 3 commits instead.
 Take a look at git diff and see what changes have been introduced and why. One bullet point per commit hash, please.
