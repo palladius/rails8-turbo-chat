@@ -108,7 +108,7 @@ In this step, you install the app and get it to run
    1. Your **Email**, **Name**, **Password** and repeat it in **Password Confirmation**
    2. Leave the *Gemini API Key* empty (it's not needed now).
 ![sign up page](image-1.png)
-1. You're done! Time to create your first chat
+1. You're done! Timewe can  to create your first chat
 ![sign up succesful](image-2.png)
 1. Click "Start New Chat".
    1. oh oh - this is broken! We need a Gemini API Key.
