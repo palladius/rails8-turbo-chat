@@ -23,13 +23,13 @@ CHANGELOG
 
 **Note**. The workshop is interspersed with 🧙‍♂️ quests 🧙‍♂️. If you solve the quest in a physical workshop, tell your mentors! If you're fast, you might receive a present.
 
-## Prerequisites
+## 1. Prerequisites
 
 * Have GMail account. This is needed to reclaim GCP credits, and to allow Gemini LLM to be used!
 * [optional] Have GitHub account. This is needed only if you want to fork the repo, for advanced users.
 * [optional] Install [just](https://github.com/casey/just). Without it, just look at recipes in `justfile`.
 
-## Install/Download the code
+## 2. Install/Download the code
 
 1. `git clone https://github.com/palladius/rails8-turbo-chat.git`
 2. `cp .env.dist .env`: you'll need it later.
@@ -38,7 +38,7 @@ Remember the 📂 FOLDER you're in, you'll need to launch `gemini` from this exa
 
 ------
 
-## Step 0. Install Gemini CLI (and get intel on the app)
+## 3. Install Gemini CLI (and get intel on the app)
 
 <!-- **Why**. It's probably easier if users can leverage Gemini CLI from square 1. They can ask
 1. What the app does
@@ -60,7 +60,7 @@ More install options [here](https://github.com/google-gemini/gemini-cli).
 
 To **start** Gemini CLI:
 
-1. Cgange dir in the Rails app folder 📂 you downloaded before: `cd path/to/`
+1. Cgange dir in the Rails app folder 📂 you downloaded before: `cd path/to/rails8-turbo-chat/`
 2. Just type this: `gemini` and follow the Google authentication flow.
 
 Let's now use Gemini CLI for some instant gratification:
@@ -94,10 +94,11 @@ Take a look at the code in git diff and provide two info per person:
 Dump this output in `out/people-style-summary.md`
 ```
 
-Find sample answers in `docs/workshop/` :)
+Find sample answers in `docs/workshop/examples/` :)
+
 ------
 
-## Step 1. Instant gratification
+## 4. Instant gratification
 
 <!-- **Why**. This step is about getting the user happy and engaged with as little effort as possible.
 -->
@@ -127,9 +128,9 @@ TODO(Christian): `rails s` and DB set up.
 
 ------
 
-## Step 2. Get Gemini API Key and start creating images!
+## 5. Get Gemini API Key and start creating images!
 
-### 2a. Reclaim GCP credits..
+### 5a. Reclaim GCP credits..
 
 
 <!-- **Why**. In this step the user will do two things:
@@ -141,7 +142,7 @@ TODO(Christian): `rails s` and DB set up.
 * Follow the link to get `5$` in credits. They will suffice for the workshop.
 * Go to https://aistudio.google.com/apikey and generate a GEMINI API KEY. Note it locally in your `.env`, under `GEMINI_API_KEY`
 
-### 2b. .. and use Gemini FTW!
+### 5b. .. and use Gemini FTW!
 
 Now that you've done the boring part, ready to generate your first images?
 
@@ -158,7 +159,7 @@ Now that you've done the boring part, ready to generate your first images?
   * TODO ricc: screesnhot before
   * TODO ricc: screesnhot after
 
-### 2c change image generation
+### 5c change image generation
 
 
 🧙‍♂️ **Quest** 🧙‍♂️ Did you notice all images come out with a yellow heart and a ruby? Looks like there might be an easter egg in the code.
@@ -170,7 +171,7 @@ Now that you've done the boring part, ready to generate your first images?
 
 ------
 
-## Step 3. Test existing MCP
+## 6. Test existing MCP
 
 <!--
 Here we Show we have existing MCP already pre-built
@@ -190,7 +191,7 @@ Here we Show we have existing MCP already pre-built
 ![Tool calling - chatlist](image2.png)
 
 
-### 3.A - test the same on your IDE
+### 6.A - test the same on your IDE
 
 If you have `vscode`, IntelliJ, Claude Code, you can now test MCP. Please check your agent configuration on how to add the MCP.
 
@@ -236,7 +237,7 @@ Now you can interact with Gemini CLI (or Copilot, Claude, ..) and start interact
 
 ------
 
-## Step 4. Add your own MCP
+## 7. Add your own MCP
 
 **Ideas**. Ok, time to code something yourself! You can be creative, or get some of these ideas:
 
@@ -260,7 +261,7 @@ Now:
 
 ------
 
-## Step 6. [optional] Try `docker compose` WIP
+## 8. [optional] Try `docker compose` WIP
 
 Try this:
 
@@ -270,7 +271,7 @@ docker-compose up
 docker compose run web todo
 ```
 
-## Step 6. [optional] Persist images on GCS
+## 9. [optional] Persist images on GCS
 
 <!--
 This is a game changer, since a push to the cloud will persist images across computers and across local vs remote. But it's hard to setup.
@@ -278,7 +279,7 @@ This is a game changer, since a push to the cloud will persist images across com
 
 TODO(Emiliano)
 
-## Step 6. [optional] Build and launch to Cloud Run
+## 10. [optional] Build and launch to Cloud Run
 
 <!-- once GCS is configured, and maybe Emiliano can help, the rest is a breeze, at least for Riccardo -->                                                                              │
 TODO(ricc)

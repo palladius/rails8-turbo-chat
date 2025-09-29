@@ -4,6 +4,8 @@ The Rails 8 app is under `rubyllm_chat_app/` (sometimes symlinked by `app/`)
 
 It also uses exposes a MCP server (https://modelcontextprotocol.io/introduction).
 
+There's also a student workshop we're running in Devfest Modena in Sep 2025 under `docs/workshop/WORKSHOP.md`.
+
 ## Dos and DON'Ts
 
 * Do NOT touch `.env`. It's a private file created by me and it's NOT under git. Read it, but do NOT edit it!
