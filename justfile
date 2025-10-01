@@ -89,3 +89,13 @@ rails8-turbo-chat-chris:
 
 docker-compose:
     cd rubyllm_chat_app/ && docker-compose up
+
+# Creates normal, 4x, and 8x speed GIFs from docs/chat-capture.mp4
+gif-magic:
+    @echo "Creating normal speed GIF..."
+    @ffmpeg -i docs/chat-capture.mp4 -y docs/chat-capture.gif
+    @echo "Creating 4x speed GIF..."
+    @ffmpeg -i docs/chat-capture.mp4 -vf "setpts=0.25*PTS" -y docs/chat-capture-4x.gif
+    @echo "Creating 8x speed GIF..."
+    @ffmpeg -i docs/chat-capture.mp4 -vf "setpts=0.125*PTS" -y docs/chat-capture-8x.gif
+    @echo "GIFs created in docs/ directory!"
