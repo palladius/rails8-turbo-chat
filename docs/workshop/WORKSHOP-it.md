@@ -1,41 +1,42 @@
-## Rails + MCP + Gemini Workshop
+## Rails + MCP + Gemini Workshop v1.0.4
 
 <!-- This is the master doc.
 Use `just translate-workshop-to-italian` to translate to IT
 
 CHANGELOG
+01oct25 v1.0.4 [ricc] Surfaced version in H1 title, and removed TODOs from the end, rephrased as quests.
 29sep25 v1.0.3 [ricc] Renumbered headings to start from 0.
 28sep29 v1.0.2 [ricc] Better translation, moving git clone AFTER gemini-cli
 28sep25 v1.0.1 [ricc] Moved to docs/workshop/ . Added GC dep, and some nice screenshots.
 27sep25 v1.0.0 [ricc] ...
 -->
 
-🇬🇧 La versione inglese è disponibile [qui](WORKSHOP.md) 🇬🇧
+Nota: Una versione inglese è disponibile [qui](WORKSHOP.md)
 
 **TL;DR** In questo workshop:
 
-1. Scaricheremo la Gemini CLI
-2. Scaricheremo l'app e inizieremo a fare qualche domanda a Gemini.
+1. Scaricheremo Gemini CLI
+2. Scaricheremo l'app e inizieremo a fare domande a Gemini.
 3. Eseguiremo l'app vanilla, senza alcuna magia. Alcune funzionalità non saranno ancora disponibili.
 4. Otterremo crediti GCP, recupereremo una 🔑 GEMINI API KEY e la inseriremo in `.env`
 5. Riavvieremo l'app e testeremo la magia. Ora la chat funziona e crea immagini fantastiche!
-6. Ora iniziamo a giocare con MCP e configuriamo la Gemini CLI per connettersi all'MCP della tua app Rails! Ora puoi parlare con la tua app in linguaggio naturale!
-7. Creeremo la tua funzione MCP e la testeremo dalla Gemini CLI!
+6. Ora iniziamo a giocare con MCP e configuriamo Gemini CLI per connettersi all'MCP della tua app Rails! Ora puoi parlare con la tua app in linguaggio naturale!
+7. Creeremo la nostra funzione MCP e la testeremo da Gemini CLI!
 
 **Nota**. Il workshop è intervallato da 🧙‍♂️ missioni 🧙‍♂️. Se risolvi la missione in un workshop fisico, dillo ai tuoi mentori! Se sei veloce, potresti ricevere un regalo.
 **Nota**. Questo workshop è stato creato per il **Devfest Modena**. Potrebbero mancare informazioni se non sei un partecipante a questo workshop.
 
 ## 0. Prerequisiti
 
-* Avere un account **GMail**. Questo è necessario per richiedere i crediti GCP e per consentire l'utilizzo di Gemini LLM!
+* Avere un account **GMail**. Questo è necessario per richiedere i crediti GCP e per consentire l'uso di Gemini LLM!
 * `ruby` installato localmente. Raccomandiamo un gestore di versioni come `rbenv`, `rvm`, `asdf` o qualsiasi cosa funzioni per te.
-* [opzionale] Un account **GitHub**. Questo è necessario solo se si desidera effettuare un fork del repository, per utenti avanzati.
-* [opzionale] Installare [just](https://github.com/casey/just). Senza di esso, basta guardare le ricette in `justfile`.
+* [opzionale] Un account **GitHub**. Questo è necessario solo se si desidera creare un fork del repository, per utenti avanzati.
+* [opzionale] Installa [just](https://github.com/casey/just). Senza di esso, basta guardare le ricette in `justfile`.
 
 ### Installa/Scarica il codice
 
 1. `git clone https://github.com/palladius/rails8-turbo-chat.git`
-2. `cp .env.dist .env`: ti servirà più tardi.
+2. `cp .env.dist .env`: ne avrai bisogno più tardi.
 
 Ricorda la 📂 CARTELLA in cui ti trovi, dovrai avviare `gemini` da questa esatta cartella.
 
@@ -68,13 +69,13 @@ Per **avviare** Gemini CLI:
 
 Usiamo ora Gemini CLI per una gratificazione immediata:
 
-1. **Di cosa tratta l'app?**
+1. **Di cosa parla l'app?**
    1. `gemini -p "Spiega l'architettura di questa codebase. Parlami dei modelli Rails e di come interagiscono tra loro"`
 2. **Quali modifiche recenti sono state apportate al repository?** Questo è un prompt potente per aggiornarsi sulle modifiche dei colleghi (o un riepilogo di una modifica che hai fatto ieri sera!)
 
 ```bash
 $ gemini
-## Copia queste 4 righe e incollale nella Gemini CLI!
+## Copia queste 4 righe e incollale in Gemini CLI!
 Dammi un riassunto di tutte le modifiche apportate oggi/ieri, in modalità markdown.
 Se non ci sono modifiche negli ultimi 2 giorni, prendi invece gli ultimi 3 commit.
 Dai un'occhiata a git diff e vedi quali modifiche sono state introdotte e perché. Un punto elenco per hash di commit, per favore.
@@ -117,17 +118,17 @@ In questo passaggio, installerai l'app e la farai funzionare
 ![nuova pagina vuota dell'app](image.png)
 1. Fai clic su "Sign up" e aggiungi:
    1. La tua **Email**, **Nome**, **Password** e ripetila in **Conferma password**
-   2. Lascia vuota la *Chiave API Gemini* (non è necessaria ora).
+   2. Lascia vuota la *chiave API di Gemini* (non è necessaria ora).
 ![pagina di registrazione](image-1.png)
 1. Hai finito! È ora di creare la tua prima chat
 ![registrazione riuscita](image-2.png)
 1. Fai clic su "Start New Chat".
-   1. oh oh - questo è rotto! Abbiamo bisogno di una chiave API Gemini.
+   1. oh oh - questo è rotto! Abbiamo bisogno di una chiave API di Gemini.
 
 TODO(Christian): `rails s` e configurazione del DB.
 
 
-**Nota**. Questo dovrebbe funzionare con tutto tranne le immagini e la chat, quindi forse dovremmo usare una sorta di generazione di DB (`rake db:seed`?) per generare una chat finta. Questo sarà un buon modo per mostrare l'app funzionante senza dover ancora configurare la chiave API: piccoli passi.
+**Nota**. Questo dovrebbe funzionare con tutto tranne le immagini e la chat, quindi forse dovremmo usare una sorta di generazione del DB (`rake db:seed` ?) per generare una chat finta. Questo sarà un buon modo per mostrare l'app funzionante senza dover ancora configurare la chiave API: piccoli passi.
 
 ------
 
@@ -141,7 +142,7 @@ TODO(Christian): `rails s` e configurazione del DB.
     2. Use those credits
 -->
 
-* recupera i crediti cliccando qui: https://trygcp.dev/e/devfest-maudna-25 accedendo con il tuo account Google *personale*.
+* recupera i crediti facendo clic qui: https://trygcp.dev/e/devfest-maudna-25 accedendo con il tuo account Google *personale*.
 * Segui il link per ottenere `5$` di crediti. Saranno sufficienti per il workshop.
 * Vai su https://aistudio.google.com/apikey e genera una GEMINI API KEY. Annotala localmente nel tuo `.env`, sotto `GEMINI_API_KEY`
 * Se sei confuso, controlla queste [diapositive passo-passo](https://docs.google.com/presentation/d/1mY0BwcZERAqilVh4BaQfuX-RyayXrC4N2Pno4tzWcig/edit?) che il team ha creato per te.
@@ -154,7 +155,7 @@ Ora che hai fatto la parte noiosa, pronto a generare le tue prime immagini?
 * riavvia l'app.
 * Assicurati che la chiave API di Gemini funzioni
   * Forse assicurati che una chiave API mancante generi un avviso visibile in alto?
-  * Se riesci a vedere l'errore, significa che hai sbagliato qualcosa. Se l'errore è scomparso, sei a posto!
+  * Se riesci a vedere l'errore, significa che hai fatto qualcosa di sbagliato. Se l'errore è scomparso, sei a posto!
 ![chiave api gemini mancante](missing-gemini-api-key.png)
 * Crea una nuova chat.
 * Fai una domanda...
@@ -185,13 +186,13 @@ Here we Show we have existing MCP already pre-built
 3. Imposta:
    1. Tipo di trasporto: **SSE**
    2. URL: `http://localhost:8080/mcp/sse` - TODO(Christian), mi confermi usiamo 8080? o 3000?
-4. Fai clic su **connetti**.
-5. Se funziona, fai clic su **Strumenti**
-6. Fai clic su Elenca strumenti.
+4. Fai clic su **connect**.
+5. Se funziona, fai clic su **Tools**
+6. Fai clic su List Tools.
 7. Dovresti vedere questo: ![Elenco degli strumenti su MCP](image1.png)
-8. Fai clic su uno strumento per eseguirlo, ad esempio `Elenco chat`. Goditi un output come questo! Nota che il server MCP sta chiamando ActiveRecord qui!
+8. Fai clic su uno strumento per eseguirlo, ad esempio `Chat List`. Goditi un output come questo! Nota che il server MCP sta chiamando ActiveRecord qui!
 
-![Chiamata strumento - elenco chat](image2.png)
+![Chiamata strumento - chatlist](image2.png)
 
 
 ### 4.A - prova lo stesso sul tuo IDE
@@ -205,9 +206,9 @@ Se hai `vscode`, IntelliJ, Claude Code, ora puoi testare MCP. Controlla la confi
   * `gemini mcp add --transport sse local-rails8-turbo-chat-sse http://localhost:8080/mcp/sse`
   * Questo configurerà gemini per avere questo MCP disponibile.
 * **Riavvia** `gemini` (doppio CTRL-C). Gli MCP vengono caricati all'avvio, quindi non dimenticare!
-* Digita `/mcp` per assicurarti che ciò sia stato fatto correttamente. Dovresti vedere qualcosa di simile:
+* Digita `/mcp` per assicurarti che sia stato fatto correttamente. Dovresti vedere qualcosa del genere:
 
-![Test /mcp](image.png)
+![Test /mcp ](image.png)
 
 
 Se stai usando altri strumenti (vscode, copilot, Claude Code), controlla la documentazione per aggiungerli.
@@ -251,7 +252,7 @@ Ora puoi interagire con Gemini CLI (o Copilot, Claude, ..) e iniziare a interagi
 
 **Esecuzione**.
 
-Hai un'idea di cosa programmare? Fantastico!
+Hai un'idea di cosa programmare? Grande!
 
 Ora:
 1. Aggiungi la tua funzione a `app/tools/`.
@@ -265,16 +266,21 @@ Ora:
 ------
 
 
-## 6. [opzionale] Rendi persistenti le immagini su GCS TODO(Emiliano)
+## 6. [opzionale] Rendi persistenti le immagini su GCS 🧙‍♂️
 
+OMG, sei arrivato qui più velocemente di quanto potessimo documentarlo! È ora di una sfida!
+
+🧙‍♂️ Impara a rendere persistenti le tue immagini su Google Cloud Storage. La documentazione ufficiale di Active Storage + GCS è [qui](https://guides.rubyonrails.org/active_storage_overview.html#google-cloud-storage-service).
 <!--
 This is a game changer, since a push to the cloud will persist images across computers and across local vs remote. But it's hard to setup.
 -->
 
 
-## 7. [opzionale] Prova `docker compose` WIP TODO(Emiliano)
+## 7. [opzionale] Prova `docker compose`
 
-Prova questo:
+🧙‍♂️ Sapevi che Cloud Run ora supporta docker-compose in alpha? 🧙‍♂️
+
+Prova prima questo localmente:
 
 ```bash
 cd rubyllm_chat_app/
@@ -282,10 +288,21 @@ docker-compose up
 docker compose run web todo # TODO(Emiliano) some command like rake db:seed or some different test
 ```
 
+una volta che riesci a farlo funzionare, prova questo nel Cloud
 
-TODO(Emiliano)
+🧙‍♂️ Sapevi che Cloud Run ora supporta docker-compose in alpha? 🧙‍♂️
 
-## 8. [opzionale] Compila e avvia su Cloud Run tramite `docker compose alpha`
 
-<!-- once GCS is configured, and maybe Emiliano can help, the rest is a breeze, at least for Riccardo -->                                                                              │
+<!-- TODO(Emiliano): complete this -->
+
+
+## 8. [opzionale] Crea e avvia su Cloud Run tramite `docker compose alpha`
+
+<!-- once GCS is configured, and maybe Emiliano can help, the rest is a breeze, at least for Riccardo
 TODO(ricc/Emiliano)
+
+-->
+
+🧙‍♂️ Configura Cloud Build e invia a Cloud Run. 🧙‍♂️
+
+Suggerimento: un `cloudbuild.yaml` funzionante si trova nella cartella di base e funziona per l'autore. Devi solo modificare e cambiare alcune cose. Qualcosa con cui Gemini CLI può aiutarti!
