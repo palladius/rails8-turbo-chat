@@ -1,9 +1,10 @@
-## Rails + MCP + Gemini Workshop v1.0.4b
+## Rails + MCP + Gemini Workshop v1.1.0
 
 <!-- This is the master doc.
 Use `just translate-workshop-to-italian` to translate to IT
 
 CHANGELOG
+01oct25 v1.1.0 [ricc] Changed a few images / retook screenshots, commented out some TODOs.
 01oct25 v1.0.4 [ricc] Added 2 slide decks
 01oct25 v1.0.4 [ricc] Surfaced version in H1 title, and removed TODOs from the end, rephrased as quests.
 29sep25 v1.0.3 [ricc] Renumbered headings to start from 0.
@@ -128,7 +129,7 @@ In this step, you install the app and get it to run
    1. Your **Email**, **Name**, **Password** and repeat it in **Password Confirmation**
    2. Leave the *Gemini API Key* empty (it's not needed now).
 ![sign up page](image-1.png)
-1. You're done! Timewe can  to create your first chat
+1. You're done! Now we can  to create your first chat
 ![sign up succesful](image-2.png)
 1. Click "Start New Chat".
    1. oh oh - this is broken! We need a Gemini API Key.
@@ -200,14 +201,14 @@ Now that you've done the boring part, ready to generate your first images?
 
 ------
 
-## 4. Test existing MCP
+## 4. Test existing MCP with MCP Inspector
 
 <!--
 Here we Show we have existing MCP already pre-built
 -->
 
-1. Let's troubleshoot with `npx @modelcontextprotocol/inspector`
-2. Click on the link from CLI (note the MCP_PROXY_AUTH_TOKEN!), something like: `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=blahblahblah`
+1. Let's troubleshoot with `npx @modelcontextprotocol/inspector` (the best MCP client debugging tool to the author's knowledge - file issue if you think he's wrong).
+2. Click on the link from CLI (note the `MCP_PROXY_AUTH_TOKEN`!), something like: `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=mys3cr3tt0k3n`
 3. Set up:
    1. Transport type: **SSE**
    2. URL: `http://localhost:8080/mcp/sse`
@@ -233,7 +234,7 @@ If you have `vscode`, IntelliJ, Claude Code, you can now test MCP. Please check 
 * **ReStart** `gemini` (double CTRL-C). MCP are loaded at startup, so don't forget!
 * Type `/mcp` to ensure this is done correctly. You should see something like this:
 
-![Testing /mcp ](image.png)
+![Testing /mcp ](slash-mcp-just-rails-sse.png)
 
 
 If you're using other tools (vscode, copilot, Claude Code), check the documentation for adding them.
@@ -258,10 +259,10 @@ Now you can interact with Gemini CLI (or Copilot, Claude, ..) and start interact
 
 *  `Retrieve a list of chats: Any chat containing italian food?`
 *  `Add a user created "test-workshop@example.com" and password "PincoPallinoJoe" and name "Test for Workshop"`
-![MCP requests to call create user](image-1.png)
-![user created correctly](image-3.png)
+![MCP requests to call create user](mcp-create-user-permission.png)
+![user created correctly](mcp-create-user.png)
    *  `Now list users` (which should also surface the new user)
-![List also surfaces the last user](image-2.png)
+![List also surfaces the last user](mcp-example2-list-users.png)
 * Ask `Use MCP to Autorename all chats`. This should magically update chat titles for all wrongly named chats.
 
 ------
@@ -273,7 +274,11 @@ Now you can interact with Gemini CLI (or Copilot, Claude, ..) and start interact
 * `what_time_is_it`: Add a "What date / time is it".  function.
 * `where_am_ai`: Call an external API to fetch local weather or closest city.
 * *ActiveRecord magic*: Some ActiveRecord magic to count relationships and give a statistics (how many users have created how many chats).
+  * Maybe something which plays well with ActiveStorage too? Maybe somethign which helps troubleshooting and fixing [this issue](https://github.com/palladius/rails8-turbo-chat/issues/24)?
+
+<!--
 * TODO(Emiliano): any ideas what we can add here?
+ -->
 
 **Execution**.
 
@@ -283,9 +288,9 @@ Now:
 1. Add your function to `app/tools/`.
 2. Remember to subclass from `ActionTool::Base`. More details in https://github.com/yjacquin/fast-mcp
 3. Once it works, load the `rails c` and test that the code works as intended first.
-3. Then, reload the `rails s`; this ensures your app has the new function!
-4. Now time to test it with your MCP Tools! First use Gemini CLI (reload this too) via `/mcp` to check the new feature has appeared.
-5. Test the function by asking a natural language question that matches the function description (eg "What time is it / Where am I / ...").
+4. Then, reload the `rails s`; this ensures your app has the new function!
+5. Now time to test it with your MCP Tools! First use Gemini CLI (reload this too) via `/mcp` to check the new feature has appeared.
+6. Test the function by asking a natural language question that matches the function description (eg "What time is it / Where am I / ...").
 
 
 ------
