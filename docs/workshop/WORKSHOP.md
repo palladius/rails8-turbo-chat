@@ -29,8 +29,8 @@ CHANGELOG
 
 Workshop material:
 
-* 🟧 [**Workshop Slides**](https://docs.google.com/presentation/d/1W4hFU1eckLYMsdI20VyqcL-G1l11vxeeYsgBqfTMpMw/edit?slide=id.g387c805a455_1_446#slide=id.g387c805a455_1_446)
-* 🟧 [Credits Redemption slides](https://docs.google.com/presentation/d/1mY0BwcZERAqilVh4BaQfuX-RyayXrC4N2Pno4tzWcig/edit?slide=id.g337964b5ba0_1_193#slide=id.g337964b5ba0_1_193):
+* 🟧 [**Workshop Slides**](https://docs.google.com/presentation/d/1W4hFU1eckLYMsdI20VyqcL-G1l11vxeeYsgBqfTMpMw/edit?slide=id.g387c805a455_1_446#slide=id.g387c805a455_1_446). A different medium to follow this workshop. Note this page is more precise and detailed, while the slides offer a synoptic high-level view.
+* 🟧 [**Credits Redemption slides**](https://docs.google.com/presentation/d/1mY0BwcZERAqilVh4BaQfuX-RyayXrC4N2Pno4tzWcig/edit?slide=id.g337964b5ba0_1_193#slide=id.g337964b5ba0_1_193): here you find links to get GCP credits. You'll need them for step 3.
 
 ## 0. Prerequisites
 
