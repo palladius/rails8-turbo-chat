@@ -2,11 +2,7 @@ Self: https://github.com/palladius/rails8-turbo-chat
 
 Try it yourself on Cloud Run: https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app
 
-> [!NOTE]
-> A workshop is available here:
-> * 🇬🇧 [EN](docs/workshop/WORKSHOP.md)
-> * 🇮🇹 [IT](docs/workshop/WORKSHOP-it.md)
-> * 🇩🇪 [DE](docs/workshop/WORKSHOP-de.md)
+A workshop is available here: 🇬🇧 [WORKSHOP.md](docs/workshop/WORKSHOP.md). Also available in 🇮🇹 [IT](docs/workshop/WORKSHOP-it.md) and  🇩🇪 [DE](docs/workshop/WORKSHOP-de.md) thanks to `just workshop-translate-to-XX`.
 
 # Rails8 turbo Chat
 
@@ -38,7 +34,12 @@ Features:
 *  Then enter dir and run locally: `cd  rubyllm_chat_app/ ; bin/dev`
 *  This will start a service in port 8080.
 
-# BUGS
+## Sample execution
+
+![Sample execution GIF created with gemini cli](docs/chat-capture-4x.gif)
+
+<!--
+# OLD BUGS
 
 ## BU001 An error occurred: Validation failed: Content can't be blank
 
@@ -46,9 +47,11 @@ Currently the Gemini part doesnt work for bug with Gemini. Links:
 * https://github.com/crmne/ruby_llm/issues/118
 * https://github.com/crmne/ruby_llm/pull/125
 
+-->
+
 # TODOs
 
-*   [ ] Add docker-compose to Cloud Run 🐳☁️
+*   [ ] Add docker-compose to Cloud Run 🐳☁️. See more in the workshop docs..
 
 ## Additional info
 
