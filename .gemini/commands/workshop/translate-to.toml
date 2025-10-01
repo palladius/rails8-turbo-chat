@@ -23,7 +23,9 @@ You're requested to translate a tech doc in another language, while leaving comp
 
 ## Caveats
 
-* **Smart translation**. The document starts with something like "🇮🇹 An Italian version is available [here](WORKSHOP-it.md) 🇮🇹". Translate it with a back link to the English version and some English flag of your choice.
+* **Smart translation**. The document starts with something like
+   "🇮🇹 An Italian version is available [here](WORKSHOP-it.md) 🇮🇹".
+   Translate it reversing the semantics, so it reads "🇬🇧 An English version is available [here](WORKSHOP.md) 🇬🇧".
 
 
 ## Original doc errors

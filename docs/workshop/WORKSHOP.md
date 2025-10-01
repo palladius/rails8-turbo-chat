@@ -1,4 +1,4 @@
-## Rails + MCP + Gemini Workshop v1.0.4
+## Rails + MCP + Gemini Workshop v1.0.4a
 
 <!-- This is the master doc.
 Use `just translate-workshop-to-italian` to translate to IT
@@ -11,7 +11,7 @@ CHANGELOG
 27sep25 v1.0.0 [ricc] ...
 -->
 
-🇮🇹 An Italian version is available [here](WORKSHOP-it.md) 🇮🇹
+🇮🇹 An Italian version is available [here](WORKSHOP-it.md) 🇮🇹  (and a German [here](WORKSHOP-de.md) 🇩🇪 )
 
 **TL;DR** In this workshop we will:
 
@@ -280,7 +280,7 @@ This is a game changer, since a push to the cloud will persist images across com
 
 🧙‍♂️  Did you know Cloud run now supports docker-compose in alpha? 🧙‍♂️
 
-Try this first locally:
+First, try this first locally:
 
 ```bash
 cd rubyllm_chat_app/
@@ -288,9 +288,13 @@ docker-compose up
 docker compose run web todo # TODO(Emiliano) some command like rake db:seed or some different test
 ```
 
-once you get it to work, try this in the Cloud
+Second, once you get it to work, try this in the Cloud:
 
-🧙‍♂️  Did you know Cloud run now supports docker-compose in alpha? 🧙‍♂️
+```bash
+gcloud alpha run compose --help
+```
+
+🧙‍♂️ Let us know if you make it! 🧙‍♂️
 
 
 <!-- TODO(Emiliano): complete this -->
