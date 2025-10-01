@@ -1,9 +1,10 @@
-## Rails + MCP + Gemini Workshop
+## Rails + MCP + Gemini Workshop v1.0.4
 
 <!-- This is the master doc.
 Use `just translate-workshop-to-italian` to translate to IT
 
 CHANGELOG
+01oct25 v1.0.4 [ricc] Surfaced version in H1 title, and removed TODOs from the end, rephrased as quests.
 29sep25 v1.0.3 [ricc] Renumbered headings to start from 0.
 28sep29 v1.0.2 [ricc] Better translation, moving git clone AFTER gemini-cli
 28sep25 v1.0.1 [ricc] Moved to docs/workshop/ . Added GC dep, and some nice screenshots.
@@ -265,16 +266,21 @@ Now:
 ------
 
 
-## 6. [optional] Persist images on GCS TODO(Emiliano)
+## 6. [optional] Persist images on GCS 🧙‍♂️
 
+OMG, you got here faster than we could document it! Time for a challenge!
+
+🧙‍♂️ Learn to persist your image on Google Cloud Storage. Official Active Storage + GCS docs are [here](https://guides.rubyonrails.org/active_storage_overview.html#google-cloud-storage-service).
 <!--
 This is a game changer, since a push to the cloud will persist images across computers and across local vs remote. But it's hard to setup.
 -->
 
 
-## 7. [optional] Try `docker compose` WIP TODO(Emiliano)
+## 7. [optional] Try `docker compose`
 
-Try this:
+🧙‍♂️  Did you know Cloud run now supports docker-compose in alpha? 🧙‍♂️
+
+Try this first locally:
 
 ```bash
 cd rubyllm_chat_app/
@@ -282,12 +288,23 @@ docker-compose up
 docker compose run web todo # TODO(Emiliano) some command like rake db:seed or some different test
 ```
 
+once you get it to work, try this in the Cloud
 
-TODO(Emiliano)
+🧙‍♂️  Did you know Cloud run now supports docker-compose in alpha? 🧙‍♂️
+
+
+<!-- TODO(Emiliano): complete this -->
+
 
 ## 8. [optional] Build and launch to Cloud Run via `docker compose alpha`
 
-<!-- once GCS is configured, and maybe Emiliano can help, the rest is a breeze, at least for Riccardo -->                                                                              │
+<!-- once GCS is configured, and maybe Emiliano can help, the rest is a breeze, at least for Riccardo
 TODO(ricc/Emiliano)
+
+-->                                                                              │
+
+🧙‍♂️  Configure cloud Build and push to Cloud run.  🧙‍♂️
+
+Tip: a working `cloudbuild.yaml` is in the base folder and works for the author. You just need to tweak and change a few things. Something Gemini CLI can help you with!
 
 
