@@ -4,6 +4,7 @@
 Use `just translate-workshop-to-italian` to translate to IT
 
 CHANGELOG
+01oct25 v1.0.4 [ricc] Added 2 slide decks
 01oct25 v1.0.4 [ricc] Surfaced version in H1 title, and removed TODOs from the end, rephrased as quests.
 29sep25 v1.0.3 [ricc] Renumbered headings to start from 0.
 28sep29 v1.0.2 [ricc] Better translation, moving git clone AFTER gemini-cli
@@ -15,16 +16,21 @@ CHANGELOG
 
 **TL;DR** In this workshop we will:
 
-1. Download Gemini CLI
-2. Download the app, and start asking Gemini some questions.
+1. Install Gemini CLI
+2. Download this repo, and start asking Gemini some questions.
 3. Run the vanilla app, without any magic. Some functionality won't be available yet.
-4. Get GCP Credits, fetch a 🔑 GEMINI API KEY, and put it in `.env`
-5. Restart the app, and test the magic. Now the Chat works, and creates fancy images!
+4. Get GCP Credits, fetch a 🔑 `GEMINI API KEY`, and put it in `.env`.
+5. Restart the app, and test the LLM magic. Now the Chat responds in real-time, and creates fancy images!
 6. Now let's start playing with MCP, and configure Gemini CLI to connect to your Rails app MCP! Now you can talk to your app in natural language!
 7. Create your own MCP function, and test it from Gemini CLI!
 
 **Note**. The workshop is interspersed with 🧙‍♂️ quests 🧙‍♂️. If you solve the quest in a physical workshop, tell your mentors! If you're fast, you might receive a present.
 **Note**. This workshop has been created for **Devfest Modena**. You might be missing information if you're not a participant to this workshop.
+
+Workshop material:
+
+* 🟧 [**Workshop Slides**](https://docs.google.com/presentation/d/1W4hFU1eckLYMsdI20VyqcL-G1l11vxeeYsgBqfTMpMw/edit?slide=id.g387c805a455_1_446#slide=id.g387c805a455_1_446)
+* 🟧 [Credits Redemption slides](https://docs.google.com/presentation/d/1mY0BwcZERAqilVh4BaQfuX-RyayXrC4N2Pno4tzWcig/edit?slide=id.g337964b5ba0_1_193#slide=id.g337964b5ba0_1_193):
 
 ## 0. Prerequisites
 
