@@ -1,4 +1,4 @@
-## Rails + MCP + Gemini Workshop v1.0.4a
+## Rails + MCP + Gemini Workshop v1.0.4b
 
 <!-- This is the master doc.
 Use `just translate-workshop-to-italian` to translate to IT
@@ -131,10 +131,27 @@ In this step, you install the app and get it to run
 1. Click "Start New Chat".
    1. oh oh - this is broken! We need a Gemini API Key.
 
+<!--
 TODO(Christian): `rails s` and DB set up.
-
+-->
 
 **Note**. This should work with everything except the images and chat, so maybe we should use some sort of DB generation (`rake db:seed` ?) to generate a fake chat. This will be a good way to show the app working without having to set up the API key - yet: baby steps.
+
+
+### 2B. Ask Gemini CLI about the DB
+
+```
+Now find the dev sqlite file and show me the tables.
+Show me all the schema and create a DATABASE_INFO.md which contains:
+1. The schema you've found.
+2. A Mermaid graph of all the tables and how they interconnect (foreign keys) in visual way.
+Embed all in the markdown file. Color in red the tables matching the models in app/models/ and
+in GRAY everything else.
+```
+
+See a possible answer under `examples/DATABASE_INFO.md`
+
+![a piece of the resulting analysis..](image-5.png)
 
 ------
 
@@ -305,6 +322,9 @@ gcloud alpha run compose --help
 
 <!-- TODO(Emiliano): complete this -->
 
+Tip: Riccardo created a working version here: https://github.com/palladius/rails8-composer-sample/blob/main/README.md follow the symlink bread crumbles to the solution.
+
+Tip: Alpha User Guide document is [here](https://docs.google.com/document/d/1UJrkn6wnzoHTQjenERhKfvOWPUahBydaWUNF-84B4c8/view?resourcekey=0-qixytbA9n5irnaH3QDyL6g&tab=t.0#heading=h.74iuc6663cso).
 
 ## 8. [optional] Build and launch to Cloud Run via `docker compose alpha`
 
