@@ -79,6 +79,7 @@ Let's now use Gemini CLI for some instant gratification:
    1. `gemini -p "Explain the architecture of this codebase. Tell me about the Rails models and how they interact with each other"`
 2. **What recent changes happened to the repo?** This is a powerful prompt to just catch up with your colleagues changes (or a recap from a change you did last night!)
 
+<!--
 ```bash
 $ gemini
 ## Copy these 4 lines and paste them onto Gemini CLI!
@@ -87,8 +88,8 @@ If no changes in past 2 days, take the last 3 commits instead.
 Take a look at git diff and see what changes have been introduced and why. One bullet point per commit hash, please.
 Dump this output in `out/git-summary.md`
 ```
-
-![3 differetn devs styles](image-4.png)
+-->
+![last changes](image-4.png)
 
 3. **What is the coding style of Riccardo or Christian?**. You can ask also human-like questions!
 
@@ -121,8 +122,9 @@ In this step, you install the app and get it to run
 4. Run `bundle exec rails db:setup`
 1. [ricc] `bundle exec rails server` to run the server in port 8080
 1. Navigate your browser to http://localhost:8080/ . You should see a page like below:
-![new app empty page](image.png)
-1. Click "Sign up" and add:
+![new app empty page](missing-gemini-api-key.png)
+1. Click on "Sign up"
+2. Click "Sign up" and add:
    1. Your **Email**, **Name**, **Password** and repeat it in **Password Confirmation**
    2. Leave the *Gemini API Key* empty (it's not needed now).
 ![sign up page](image-1.png)
@@ -208,7 +210,7 @@ Here we Show we have existing MCP already pre-built
 2. Click on the link from CLI (note the MCP_PROXY_AUTH_TOKEN!), something like: `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=blahblahblah`
 3. Set up:
    1. Transport type: **SSE**
-   2. URL: `http://localhost:8080/mcp/sse` - TODO(Christian), mi confermi usiamo 8080? o 3000?
+   2. URL: `http://localhost:8080/mcp/sse`
 4. Click **connect**.
 5. If it works, click on **Tools**
 6. Click List Tools.
