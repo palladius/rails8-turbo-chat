@@ -83,7 +83,6 @@ Let's now use Gemini CLI for some instant gratification:
    2. Ignore MCP errors.
 2. **What recent changes happened to the repo?** This is a powerful prompt to just catch up with your colleagues changes (or a recap from a change you did last night!)
 
-<!--
 ```bash
 $ gemini
 ## Copy these 4 lines and paste them onto Gemini CLI!
@@ -92,10 +91,12 @@ If no changes in past 2 days, take the last 3 commits instead.
 Take a look at git diff and see what changes have been introduced and why. One bullet point per commit hash, please.
 Dump this output in `out/git-summary.md`
 ```
--->
-![last changes](image-4.png)
+![last changes](gemini-prompt2.png)
 
-3. **What is the coding style of Riccardo or Christian?**. You can ask also human-like questions!
+3. **What is the coding style of Riccardo or Christian? Check git logs and aggregate by committer**. You can ask also human-like questions, of course!
+   This would take a human likely 4-5 hours to crunch the data.
+
+<!--
 
 ```bash
 $ gemini
@@ -108,6 +109,8 @@ Take a look at the code in git diff and provide two info per person:
 2. What kind of code they tend to edit (frontend, backend, GCP, Docs, ..)
 Dump this output in `out/people-style-summary.md`
 ```
+
+-->
 
 Find sample answers in `docs/workshop/examples/` :)
 
