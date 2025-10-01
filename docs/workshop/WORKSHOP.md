@@ -1,9 +1,10 @@
-## Rails + MCP + Gemini Workshop v1.1.0
+## Rails + MCP + Gemini Workshop v1.1.1
 
 <!-- This is the master doc.
 Use `just translate-workshop-to-italian` to translate to IT
 
 CHANGELOG
+01oct25 v1.1.1 [ricc] Finalized ALL chapters. Seems good now.
 01oct25 v1.1.0 [ricc] Changed a few images / retook screenshots, commented out some TODOs.
 01oct25 v1.0.4 [ricc] Added 2 slide decks
 01oct25 v1.0.4 [ricc] Surfaced version in H1 title, and removed TODOs from the end, rephrased as quests.
@@ -127,12 +128,17 @@ In this step, you install the app and get it to run
 1. Click on "Sign up"
 2. Click "Sign up" and add:
    1. Your **Email**, **Name**, **Password** and repeat it in **Password Confirmation**
-   2. Leave the *Gemini API Key* empty (it's not needed now).
-![sign up page](image-1.png)
+![sign up page](app-signup.png)
+
 1. You're done! Now we can  to create your first chat
-![sign up succesful](image-2.png)
-1. Click "Start New Chat".
+
+![sign up done - now home page](app-loggedin-success.png)
+
+
+2. Click "Start New Chat".
    1. oh oh - this is broken! We need a Gemini API Key.
+
+![new chat example](app-chat-example.png)
 
 <!--
 TODO(Christian): `rails s` and DB set up.
@@ -155,6 +161,9 @@ in GRAY everything else.
 See a possible answer under `examples/DATABASE_INFO.md`
 
 ![a piece of the resulting analysis..](image-5.png)
+
+* Now it's **your** turn! You can ask ANY question to Gemini CLI - you can get more details on those tables and compare results from the bare DB view with the ORM queries (like `echo Chat.last | rails console`)
+
 
 ------
 
@@ -186,8 +195,10 @@ Now that you've done the boring part, ready to generate your first images?
 * Create a new chat.
 * Ask a question...
   * Observe the magic: an image is generated and a synopsis of the chat is also generated
-  * TODO ricc: screesnhot before
-  * TODO ricc: screesnhot after
+  * **Before** (note I didn't screenshot in time and title/description had already changed..)
+![chat before screenshot creation](chat-message-before.png)
+  * ... and **after** 5 seconds!
+![chat after screenshot creation](chat-message-after.png)
 
 ### 3c change image generation
 
@@ -232,7 +243,7 @@ If you have `vscode`, IntelliJ, Claude Code, you can now test MCP. Please check 
   * `gemini mcp add --transport sse local-rails8-turbo-chat-sse http://localhost:8080/mcp/sse`
   * This will configure gemini to have this MCP available.
 * **ReStart** `gemini` (double CTRL-C). MCP are loaded at startup, so don't forget!
-* Type `/mcp` to ensure this is done correctly. You should see something like this:
+* Type `/mcp` to ensure this is done correctly. You should see something like this (note the green button beside the MCP server name):
 
 ![Testing /mcp ](slash-mcp-just-rails-sse.png)
 
@@ -284,8 +295,10 @@ Now you can interact with Gemini CLI (or Copilot, Claude, ..) and start interact
 
 You have an idea of what to code? Great!
 
+![app tools folder](tools-folder.png)
+
 Now:
-1. Add your function to `app/tools/`.
+1. Add your function to `app/tools/` ([folder](https://github.com/palladius/rails8-turbo-chat/tree/main/rubyllm_chat_app/app/tools)).
 2. Remember to subclass from `ActionTool::Base`. More details in https://github.com/yjacquin/fast-mcp
 3. Once it works, load the `rails c` and test that the code works as intended first.
 4. Then, reload the `rails s`; this ensures your app has the new function!
@@ -336,12 +349,14 @@ Tip: Alpha User Guide document is [here](https://docs.google.com/document/d/1UJr
 ## 8. [optional] Build and launch to Cloud Run via `docker compose alpha`
 
 <!-- once GCS is configured, and maybe Emiliano can help, the rest is a breeze, at least for Riccardo
-TODO(ricc/Emiliano)
-
--->                                                                              │
+TODO(ricc/Emiliano) -->
 
 🧙‍♂️  Configure cloud Build and push to Cloud run.  🧙‍♂️
 
-Tip: a working `cloudbuild.yaml` is in the base folder and works for the author. You just need to tweak and change a few things. Something Gemini CLI can help you with!
+The idea is to build a working CI/CD pipeline so every subsequent commit/push to YOUR repo.
 
+1. Fork this repo to https://github.com/YOUR_USER_NAME/rails8-turbo-chat/
+2. Adapt `cloudbuild.yaml` with your own project id and parameters.
+3. Set up ServiceAccount for it. Check `iac/` for goodies and prebaked code!
 
+Tip: a working `cloudbuild.yaml` is in the base folder and works for the author. Same with `iac/` for all GCP setup! You just need to tweak and change a few things. Something Gemini CLI can help you with!
