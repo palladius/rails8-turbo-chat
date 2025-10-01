@@ -5,22 +5,22 @@
     }
   },
   "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "@playwright/mcp@latest"
-      ]
-    },
+    // "playwright": {
+    //   "command": "npx",
+    //   "args": [
+    //     "@playwright/mcp@latest"
+    //   ]
+    // },
     // "rails-chat-sse-riccardo-cloud-run": {
     //   "type": "sse",
     //   "url": "https://rails8-turbo-chat-dev-272932496670.europe-west10.run.app/mcp/sse"
     // },
 
 
-    "chrome-devtools": {
-      "command": "npx",
-      "args": ["chrome-devtools-mcp@latest"]
-    },
+    // "chrome-devtools": {
+    //   "command": "npx",
+    //   "args": ["chrome-devtools-mcp@latest"]
+    // },
 
 
     "rails-chat-sse-localhost": {

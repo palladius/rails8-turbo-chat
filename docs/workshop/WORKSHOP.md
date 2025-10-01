@@ -1,9 +1,10 @@
-## Rails + MCP + Gemini Workshop v1.1.1
+## Rails + MCP + Gemini Workshop v1.1.2
 
 <!-- This is the master doc.
 Use `just translate-workshop-to-italian` to translate to IT
 
 CHANGELOG
+01oct25 v1.1.2 [ricc] [Mac] fixed typos.
 01oct25 v1.1.1 [ricc] Finalized ALL chapters. Seems good now.
 01oct25 v1.1.0 [ricc] Changed a few images / retook screenshots, commented out some TODOs.
 01oct25 v1.0.4 [ricc] Added 2 slide decks
@@ -72,13 +73,14 @@ More install options [here](https://github.com/google-gemini/gemini-cli).
 
 To **start** Gemini CLI:
 
-1. Cgange dir in the Rails app folder 📂 you downloaded before: `cd path/to/rails8-turbo-chat/`
+1. Change dir in the Rails app folder 📂 you downloaded before: `cd path/to/rails8-turbo-chat/`
 2. Just type this: `gemini` and follow the Google authentication flow.
 
 Let's now use Gemini CLI for some instant gratification:
 
 1. **What is the app about?**
    1. `gemini -p "Explain the architecture of this codebase. Tell me about the Rails models and how they interact with each other"`
+   2. Ignore MCP errors.
 2. **What recent changes happened to the repo?** This is a powerful prompt to just catch up with your colleagues changes (or a recap from a change you did last night!)
 
 <!--

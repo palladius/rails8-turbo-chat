@@ -13,10 +13,6 @@ gemini_cli:
 justfile_recipes:
   - name: "list"
     description: "Lists available recipes and shows PROJECT_ID and GCS_BUCKET."
-  - name: "doit"
-    description: "Runs the sbrodola3.sh script."
-  - name: "redo"
-    description: "Removes the rubyllm_chat_app/ directory and runs 'doit'."
   - name: "derek-fix-gems"
     description: "Fixes gem issues with cleanup and pristine."
   - name: "dev"
