@@ -128,8 +128,9 @@ In this step, you install the app and get it to run
 3. Run `bundle install`
 4. Run `./bin/rails db:setup`
 5. Run `./bin/rails assets:precompile`
-1. [ricc] `bundle exec rails server` to run the server in port 3000
-1. Navigate your browser to http://localhost:3000/ . You should see a page like below:
+6. Set the environment variable 'PORT' to 8080
+1. [ricc] `bundle exec rails server` to run the server in port 8080
+1. Navigate your browser to http://localhost:8080/ . You should see a page like below:
 ![new app empty page](missing-gemini-api-key.png)
 1. Click on "Sign up"
 2. Click "Sign up" and add:
@@ -228,7 +229,7 @@ Here we Show we have existing MCP already pre-built
 2. Click on the link from CLI (note the `MCP_PROXY_AUTH_TOKEN`!), something like: `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=mys3cr3tt0k3n`
 3. Set up:
    1. Transport type: **SSE**
-   2. URL: `http://localhost:3000/mcp/sse`
+   2. URL: `http://localhost:8080/mcp/sse`
 4. Click **connect**.
 5. If it works, click on **Tools**
 6. Click List Tools.
@@ -246,7 +247,7 @@ If you have `vscode`, IntelliJ, Claude Code, you can now test MCP. Please check 
 
 
 * Use `gemini mcp` to add our MCP dynamically:
-  * `gemini mcp add --transport sse local-rails8-turbo-chat-sse http://localhost:3000/mcp/sse`
+  * `gemini mcp add --transport sse local-rails8-turbo-chat-sse http://localhost:8080/mcp/sse`
   * This will configure gemini to have this MCP available.
 * **ReStart** `gemini` (double CTRL-C). MCP are loaded at startup, so don't forget!
 * Type `/mcp` to ensure this is done correctly. You should see something like this (note the green button beside the MCP server name):
@@ -264,7 +265,7 @@ Usually you need to add a JSON like this:
     // ..Other MCP servers here..
     "rails-chat-sse-localhost": {
       "type": "sse",
-      "url": "http://localhost:3000/mcp/sse"
+      "url": "http://localhost:8080/mcp/sse"
     }
   }
 }
