@@ -24,20 +24,23 @@ cloud-dev:
   url: <%= ENV["DATABASE_URL"] %>
 
 development:
-  url: <%= ENV.fetch "DATABASE_URL", "sqlite3://#{File.expand_path("../db/development.sqlite3", __dir__)}" %>
-  primary: &primary_production
+  <<: *default
+  adapter: <%= ENV["DATABASE_URL"] ? "postgresql" : "sqlite3" %>
+  url: <%= ENV.fetch("DATABASE_URL") { "sqlite3:#{Rails.root.join('db/development.sqlite3')}" } %>
+  primary:
     <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
+    adapter: <%= ENV["DATABASE_URL"] ? "postgresql" : "sqlite3" %>
+    url: <%= ENV.fetch("DATABASE_URL") { "sqlite3:#{Rails.root.join('db/development.sqlite3')}" } %>
   cache:
-    <<: *primary_production
+    <<: *default
     database: rubyllm_chat_app_development_cache
     migrations_paths: db/cache_migrate
   queue:
-    <<: *primary_production
-    url: <%= ENV["DATABASE_URL"] %>
+    <<: *default
+    url: <%= ENV.fetch("DATABASE_URL") { "sqlite3:#{Rails.root.join('db/development.sqlite3')}" } %>
     migrations_paths: db/queue_migrate
   cable:
-    <<: *primary_production
+    <<: *default
     database: rubyllm_chat_app_development_cable
     migrations_paths: db/cable_migrate
 
