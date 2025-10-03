@@ -232,6 +232,9 @@ GEM
       multi_json (~> 1.11)
       os (>= 0.9, < 2.0)
       signet (>= 0.16, < 2.a)
+    http-2 (1.1.1)
+    httpx (1.6.2)
+      http-2 (>= 1.0.0)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.2.2)
@@ -574,6 +577,7 @@ DEPENDENCIES
   fast-mcp (~> 1.4)
   foreman
   google-cloud-storage (~> 1.11)
+  httpx
   importmap-rails
   jbuilder
   kamal

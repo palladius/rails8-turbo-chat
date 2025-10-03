@@ -64,6 +64,8 @@ end
 gem "rack-cors"
 gem "fast-mcp", "~> 1.4"
 
+gem "httpx"
+
 group :development do
   # Use sqlite as the database for Active Record
   gem "sqlite3"
