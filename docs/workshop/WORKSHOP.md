@@ -40,6 +40,7 @@ Workshop material:
 
 * Have **GMail** account. This is needed to reclaim GCP credits, and to allow Gemini LLM to be used!
 * `ruby` installed locally. We recommend a version manager like `rbenv`, `rvm`, `asdf` or whatever works for you.
+* [optional] A `docker-compose.yml` file is available if you are experiencing any issues with ruby
 * [optional] A **GitHub** account. This is needed only if you want to fork the repo, for advanced users.
 * [optional] Install [just](https://github.com/casey/just). Without it, just look at recipes in `justfile`.
 
@@ -129,13 +130,12 @@ In this step, you install the app and get it to run
 3. Run `bundle install`
 4. Run `./bin/rails db:setup`
 5. Run `./bin/rails assets:precompile`
-6. Set the environment variable 'PORT' to 8080
+6. Run `export PORT=8080` to set the environment variable 'PORT' to 8080
 1. [ricc] `bundle exec rails server` to run the server in port 8080
 1. Navigate your browser to http://localhost:8080/ . You should see a page like below:
 ![new app empty page](missing-gemini-api-key.png)
 1. Click on "Sign up"
-2. Click "Sign up" and add:
-   1. Your **Email**, **Name**, **Password** and repeat it in **Password Confirmation**
+2. Fill your **Email**, **Name**, **Password** and repeat it in **Password Confirmation**
 ![sign up page](app-signup.png)
 
 1. You're done! Now we can  to create your first chat
@@ -147,13 +147,6 @@ In this step, you install the app and get it to run
    1. oh oh - this is broken! We need a Gemini API Key.
 
 ![new chat example](app-chat-example.png)
-
-<!--
-TODO(Christian): `rails s` and DB set up.
--->
-
-**Note**. This should work with everything except the images and chat, so maybe we should use some sort of DB generation (`rake db:seed` ?) to generate a fake chat. This will be a good way to show the app working without having to set up the API key - yet: baby steps.
-
 
 ### 2B. Ask Gemini CLI about the DB
 
@@ -185,9 +178,14 @@ See a possible answer under `examples/DATABASE_INFO.md`
     2. Use those credits
 -->
 
-* retrieve credits by clicking here: https://trygcp.dev/e/devfest-maudna-25 logging in with your *personal* Google account.
+* Retrieve credits by going to https://trygcp.dev/e/devfest-maudna-25 logging in with your *personal* Google account.
 * Follow the link to get `5$` in credits. They will suffice for the workshop.
-* Go to https://aistudio.google.com/apikey and generate a GEMINI API KEY. Note it locally in your `.env`, under `GEMINI_API_KEY`
+* Go to https://aistudio.google.com/apikey and generate a GEMINI API KEY by creating a new project called `rails8-turbo-chat`
+* Note it locally in your `.env`, under `GEMINI_API_KEY`
+* Visit https://console.cloud.google.com navigate to Billing > Linked Account and select the only available account which should be `Google Cloud Platform Trial Billing Account`
+![setup billing account](setup_billing_account.png)
+
+
 * If you're confused, check these [step-by-step slides](https://docs.google.com/presentation/d/1mY0BwcZERAqilVh4BaQfuX-RyayXrC4N2Pno4tzWcig/edit?) the team has created for you.
 
 ### 3b. .. and use Gemini FTW!
@@ -195,10 +193,8 @@ See a possible answer under `examples/DATABASE_INFO.md`
 Now that you've done the boring part, ready to generate your first images?
 
 * First thing, check that Gemini works within the app. The easiest way is to call `just test-gemini`
-* restart the app.
-* Ensure the Gemini API Key works
-  * Maybe ensure that a missing API Key throws a visible warning on top?
-  * If you can see the error, it means you did something wrong. If the error has disappeared, you're good!
+* Restart the app.
+* Ensure the Gemini API Key works. If you can see the error, it means you did something wrong. If the error has disappeared, you're good!
 ![gemini api key missing](missing-gemini-api-key.png)
 * Create a new chat.
 * Ask a question...

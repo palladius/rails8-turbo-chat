@@ -53,8 +53,6 @@ Here is a list of typos and grammatical errors found in the document, with sugge
 
 There are a total of **8** TODO items in the document.
 
-1.  **TODO(Christian):** Clarify the directory to `cd` into (`rubyllm_chat_app/` or `workshop/`).
-2.  **TODO(Christian):** Provide instructions for `rails s` and database setup.
 3.  **TODO ricc:** Add a "before" screenshot for the image generation step.
 4.  **TODO ricc:** Add an "after" screenshot for the image generation step.
 5.  **TODO(Christian):** Confirm the port used by the application (`8080` or `3000`).
