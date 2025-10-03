@@ -1,0 +1,4 @@
+- [ ] In section 7, the command `docker compose run web todo` is a placeholder and not a real command. The comment says `TODO(Emiliano) some command like rake db:seed or some different test`.
+- [ ] In section 7, the link to the `docker-compose` example `https://github.com/palladius/rails8-composer-sample/blob/main/README.md` should be verified to ensure it is the intended resource.
+- [ ] In section 8, the instruction to "Fork this repo" and adapt `cloudbuild.yaml` is quite advanced for a workshop and might require more detailed steps for participants.
+- [X] In section 5, the tool name `where_am_ai` seems to be a typo for `where_am_i`.

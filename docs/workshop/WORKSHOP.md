@@ -1,9 +1,10 @@
-## Rails + MCP + Gemini Workshop v1.1.2
+## Rails + MCP + Gemini Workshop v1.1.3
 
 <!-- This is the master doc.
 Use `just translate-workshop-to-italian` to translate to IT
 
 CHANGELOG
+02oct25 v1.1.3 [ricc] [Mac] Last changes after Emliano 8080->3000->8080
 01oct25 v1.1.2 [ricc] [Mac] fixed typos.
 01oct25 v1.1.1 [ricc] Finalized ALL chapters. Seems good now.
 01oct25 v1.1.0 [ricc] Changed a few images / retook screenshots, commented out some TODOs.
@@ -290,7 +291,7 @@ Now you can interact with Gemini CLI (or Copilot, Claude, ..) and start interact
 **Ideas**. Ok, time to code something yourself! You can be creative, or get some of these ideas:
 
 * `what_time_is_it`: Add a "What date / time is it".  function.
-* `where_am_ai`: Call an external API to fetch local weather or closest city.
+* `where_am_i`: Call an external API to fetch local weather or closest city.
 * *ActiveRecord magic*: Some ActiveRecord magic to count relationships and give a statistics (how many users have created how many chats).
   * Maybe something which plays well with ActiveStorage too? Maybe somethign which helps troubleshooting and fixing [this issue](https://github.com/palladius/rails8-turbo-chat/issues/24)?
 
@@ -335,7 +336,8 @@ First, try this first locally:
 ```bash
 cd rubyllm_chat_app/
 docker-compose up
-docker compose run web todo # TODO(Emiliano) some command like rake db:seed or some different test
+# TODO(Emiliano) some command like rake db:seed or some different test
+#docker compose run web some-docker-compose-init-command
 ```
 
 Second, once you get it to work, try this in the Cloud:
