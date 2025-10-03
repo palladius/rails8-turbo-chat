@@ -8,9 +8,9 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-raise "Missing Gemini API key, I can't do anything." if ENV["GEMINI_API_KEY"].blank?
+# raise "Missing Gemini API key, I can't do anything." if ENV["GEMINI_API_KEY"].blank?
 
-u = User.create email: "fake-person@example.com", password: "not-This-vai-tranquillo", name: "Fake Person"
+u = User.create(email: "demo@example.com", password: "demodemo", name: "Demo User")
 
 if ENV["PLAYWRIGHT_USERNAME"].present? && ENV["PLAYWRIGHT_PASSWORD"].present?
   PLAYWRIGHT_USERNAME = ENV["PLAYWRIGHT_USERNAME"]
@@ -51,8 +51,8 @@ c = Chat.create user_id: u.id, title: "[#{WORKSHOP_ENVIRONMENT}] What is rake db
 
 m = Message.create chat: c, role: "user", content: "Why would I use rake db:seed? Give me a few examples explaining it with furry animals"
 
-#c.ask "Why would I use rake db:seed? Give me a few examples explaining it with furry animals"
+# c.ask "Why would I use rake db:seed? Give me a few examples explaining it with furry animals"
 
-#ChatStreamJob.perform_now(c.id, "Why would I use ActiveJob?")
+# ChatStreamJob.perform_now(c.id, "Why would I use ActiveJob?")
 
-GenerateChatImageJob.perform_now(c)
+GenerateChatImageJob.perform_now(c) if ENV["GEMINI_API_KEY"].present?
