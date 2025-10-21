@@ -29,10 +29,18 @@ def print_env_variable(key, value=:auto_detect, limit: nil, emoji: '🌱')
     value = ENV.fetch(key, "❌ ENV[#{key}] missing")
   end
   printable_value = (limit ?  (value[0..limit] + ".. [L=#{value.to_s.length}]") : value) rescue "print_env_variableErr: #{$!}"
-  puts("#{emoji} #{Rainbow(key).white}:#{spacing}#{Rainbow(printable_value).yellow }")
+    if defined?(Rainbow)
+    puts("#{emoji} #{Rainbow(key).white}:#{spacing}#{Rainbow(printable_value).yellow }")
+  else
+    puts("#{emoji} #{key}:#{spacing}#{printable_value}")
+  end
 end
 
-puts("👋 Welcome to #{Rainbow(APP_NAME).cyan} v#{Rainbow(APP_VERSION).blue}")
+if defined?(Rainbow)
+  puts("👋 Welcome to #{Rainbow(APP_NAME).cyan} v#{Rainbow(APP_VERSION).blue}")
+else
+  puts("👋 Welcome to #{APP_NAME} v#{APP_VERSION}")
+end
 puts("")
 print_env_variable('CONFIG_AUTORENAME_TITLES', CONFIG_AUTORENAME_TITLES)
 print_env_variable('DEBUG', DEBUG)
