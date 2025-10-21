@@ -1,3 +1,7 @@
+## v0.8.19 - on 20251021
+
+*   fix(controller): Add `allow_other_host: true` to `redirect_to` in `ChatsController#delete_image` to prevent unsafe redirect errors.
+
 ## v0.8.17 - on 20250928
 
 *   fix(view): Prevent crash on `/config` page when `DATABASE_URL` is not set.

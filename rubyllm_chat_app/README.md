@@ -193,6 +193,11 @@ This project is licensed under the MIT License.
 
 Created by Riccardo Carlesso - [LinkedIn](https://www.linkedin.com/in/riccardocarlesso/)
 
+Contributors:
+
+* Emiliano della Casa
+* Christian
+
 ## Links
 
 - 🐙 [GitHub Repository](https://github.com/palladius/rails8-turbo-chat)

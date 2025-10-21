@@ -67,7 +67,7 @@ print_env_variable('CLOUD_RUN_ENDPOINTS[:prod]', CLOUD_RUN_ENDPOINTS[:prod] )
 RailsEnvCircle = Rails.env == "development" ? '🟡' : '🟢'
 
 AppUrlDev  = "https://#{SHORT_APP_NAME}-dev-x42ijqglgq-ew.a.run.app/"
-AppUrlProd = "https://#{SHORT_APP_NAME}-prod-x42ijqglgq-ew.a.run.app/"
+AppUrlProd = "https://#{SHORT_APP_NAME}-prod-x42ijqglgq-ew.a..run.app/"
 
 
 #####################

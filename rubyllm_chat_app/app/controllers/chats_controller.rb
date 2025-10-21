@@ -93,7 +93,7 @@ class ChatsController < ApplicationController
 
   def delete_image
     @chat.generated_image.purge
-    redirect_to @chat, notice: "🗑️ Image deleted."
+    redirect_to @chat, notice: "🗑️ Image deleted.", allow_other_host: true
   end
 
   def regenerate_title
