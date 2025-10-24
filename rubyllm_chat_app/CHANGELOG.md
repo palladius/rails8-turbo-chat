@@ -1,3 +1,9 @@
+## v0.8.20 - on 20251024
+
+*   fix(cloudbuild): Set `_GCS_BUCKET` in `cloudbuild.yaml` to fix image generation in PROD.
+*   fix(dev): Update `development.rb` to use GCS if `GCS_BUCKET` is present, enabling image persistence on Cloud Run Dev.
+*   fix(dev): Remove forced `localhost` in `action_controller.default_url_options` in `development.rb` to fix redirects on Cloud Run Dev.
+
 ## v0.8.19 - on 20251021
 
 *   fix(controller): Add `allow_other_host: true` to `redirect_to` in `ChatsController#delete_image` to prevent unsafe redirect errors.

@@ -39,7 +39,7 @@ substitutions:
   _PROJECT_ID: palladius-genai
   _APP_NAME: rails8-turbo-chat
   _WORKSHOP_ENVIRONMENT: 'cloud_build'
-  _GCS_BUCKET: ''
+  _GCS_BUCKET: 'palladius-genai-rails8turbochat-assets'
   #_DATABASE_URL_DEV: 'sqlite3:storage/development.sqlite3'
   #_DATABASE_URL_PROD: 'sqlite3:storage/production.sqlite3'
   _SKAFFOLD_DEFAULT_REPO: 'europe-west10-docker.pkg.dev/palladius-genai/berliner-docker-repo'
