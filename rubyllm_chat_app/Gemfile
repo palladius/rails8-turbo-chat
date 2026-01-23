@@ -9,7 +9,7 @@ gem "rails", "~> 8.0"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
+gem "puma"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
@@ -102,7 +102,7 @@ gem "google-cloud-storage", "~> 1.11", require: false
 
 gem "devise", "~> 4.9"
 
-gem 'ruby_llm', '~> 1.6', '>= 1.6.3'
+gem 'ruby_llm'
 gem "dotenv-rails", "~> 3.1"
 #gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git", ref: '2bdc4229643888da053c76dfe9ef837b8e3a91f7'
 
