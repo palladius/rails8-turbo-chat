@@ -27,9 +27,10 @@ class Chat < ApplicationRecord
   # broadcasts_to ->(chat) { [chat.user, "chats"] } # Broadcast to the user's chat stream
   # Let's simplify for now and handle updates via controller Turbo responses maybe
 
-  # Broadcast message creations/updates within *this* chat to the chat channel
-  # This is used by the chat view to append new messages.
-  broadcasts_to ->(chat) { [chat, "messages"] }, inserts_by: :append, target: "messages"
+  # Broadcast updates to the chat (like title changes) to the chat channel
+  # so the header updates live. We don't broadcast creates to avoid duplicating the header.
+  after_update_commit -> { broadcast_replace_later_to([self, "messages"]) }
+  after_destroy_commit -> { broadcast_remove_to([self, "messages"]) }
 
 
   def self.available_models

@@ -1,3 +1,7 @@
+## v0.8.22 - on 20260713
+
+* fix(chats): 🐛 Fix duplicate new chat tab appearing after creation due to incorrect ActionCable `broadcasts_to` with `inserts_by: :append`. Only broadcast chat title updates to the header using `after_update_commit`.
+
 ## v0.8.21 - on 20260713
 
 *   ui(tailwind): 💅 Fix broken Tailwind CSS paths in `application.tailwind.css` to properly render utility classes.
