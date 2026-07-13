@@ -5,6 +5,8 @@ ricc-app:
   maturity: functional
   app_name: rails8-turbo-chat
   lang: ruby
+  # version file: VERSION
+  version: 0.8.20
   app_description: A responsive Rails chat application using ruby_llm and Turbo, designed
     to work on Google Cloud with Gemini API.
   code_url: git@github.com:palladius/rails8-turbo-chat.git
