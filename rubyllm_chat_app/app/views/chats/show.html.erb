@@ -1,15 +1,15 @@
 <%# Main container using Flexbox for two columns %>
-<div class="flex h-[calc(100vh-150px)] border border-gray-700 rounded-lg bg-gray-800 shadow-md overflow-hidden chat-sidebar-container" data-controller="chat-sidebar">
+<div class="flex h-[calc(100vh-150px)] border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl shadow-2xl overflow-hidden chat-sidebar-container" data-controller="chat-sidebar">
 
   <%# Left Pane: Chat List Sidebar %>
-  <div id="chats-list" class="chat-sidebar w-full md:w-1/4 border-r border-gray-700 overflow-y-auto p-4 bg-gray-800" data-chat-sidebar-target="sidebar">
+  <div id="chats-list" class="chat-sidebar w-full md:w-1/4 border-r border-white/10 overflow-y-auto p-4 bg-transparent" data-chat-sidebar-target="sidebar">
     <h2 class="text-lg font-semibold mb-4 text-gray-200">My Chats 💬</h2>
 
     <%# Button/Form to create a new chat %>
     <%= form_with(model: Chat.new, url: chats_path, method: :post, class: "mb-4") do |f| %>
       <%# You could add fields for title/description/model here if desired %>
       <%# Example: f.text_field :title, placeholder: "Optional Title", class: "..." %>
-      <%= f.submit "✨ Start New Chat", class: "w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+      <%= f.submit "✨ Start New Chat", class: "w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-[1.02] text-white font-bold py-2 px-4 rounded-xl shadow-lg shadow-purple-500/30 cursor-pointer" %>
     <% end %>
 
 
@@ -29,8 +29,8 @@
   <div class="chat-content w-full md:w-3/4 flex flex-col">
     <% if @chat %>
       <%# Mobile button to show chat list %>
-      <div class="md:hidden p-2 bg-gray-800 border-b border-gray-700">
-        <button id="toggle-chats-list" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded cursor-pointer" data-action="click->chat-sidebar#toggle">Change Chat</button>
+      <div class="md:hidden p-2 bg-transparent border-b border-white/10">
+        <button id="toggle-chats-list" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-[1.02] text-white font-bold py-2 px-4 rounded-xl shadow-lg cursor-pointer" data-action="click->chat-sidebar#toggle">Change Chat</button>
       </div>
 
       <%# Connect to Turbo Stream for this specific chat's messages %>
@@ -48,15 +48,15 @@
       </div>
 
       <%# Input Area Form %>
-      <div class="p-4 border-t border-gray-700 bg-gray-800">
+      <div class="p-4 border-t border-white/10 bg-transparent">
         <% if @chat.user_id == current_user.id %>
           <%= form_with(model: [@chat, Message.new], url: chat_messages_path(@chat), method: :post, class: "flex items-center space-x-2") do |f| %>
             <%= f.text_area :content,
                   placeholder: "Ask anything...",
-                  class: "flex-grow border border-gray-700 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none text-gray-100 placeholder-gray-400",
+                  class: "flex-grow border border-white/10 bg-black/20 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none text-gray-100 placeholder-gray-400 backdrop-blur-sm",
                   rows: 2,
                   data: { controller: 'textarea' } %> <%# Optional: Stimulus for auto-resizing %>
-            <%= f.submit "Send 🚀", class: "bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+            <%= f.submit "Send 🚀", class: "bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-teal-500/30 text-white font-bold py-2 px-4 rounded-xl cursor-pointer" %>
           <% end %>
         <% else %>
           <p class="text-gray-400 italic text-center">😕 You don't own this chat, so you cannot interact with it.</p>

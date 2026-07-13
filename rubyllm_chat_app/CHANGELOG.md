@@ -1,3 +1,9 @@
+## v0.8.21 - on 20260713
+
+*   ui(tailwind): 💅 Fix broken Tailwind CSS paths in `application.tailwind.css` to properly render utility classes.
+*   ui(views): 🎨 Refine UI with glassmorphism, updated gradients, and cleaner chat interface.
+*   fix(tests): 🛠️ Fix unique constraint error in `users.yml` fixtures to restore passing test suite.
+
 ## v0.8.20 - on 20251024
 
 *   fix(cloudbuild): Set `_GCS_BUCKET` in `cloudbuild.yaml` to fix image generation in PROD.
