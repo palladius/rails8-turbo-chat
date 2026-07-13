@@ -1,0 +1,16 @@
+{
+  "ret": 1,
+  "chat_id": 7,
+  "app_version": "0.7.1",
+  "error_topic": "functionality",
+  "detailed_error": "Image generation on prod environment seems to be broken. After clicking 'Generate Image', the image is not displayed correctly.",
+  "repro": [
+    "Navigate to https://rails8-turbo-chat-prod-272932496670.europe-west10.run.app/",
+    "Log in with playwright credentials",
+    "Go to chats",
+    "Select the latest chat",
+    "Click on 'Generate Image'",
+    "Observe the broken image"
+  ],
+  "log": "..."
+}

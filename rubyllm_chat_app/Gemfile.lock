@@ -589,7 +589,7 @@ DEPENDENCIES
   propshaft
   pry
   pry-rails
-  puma (>= 5.0)
+  puma
   rack-cors
   rails (~> 8.0)
   rails-erd

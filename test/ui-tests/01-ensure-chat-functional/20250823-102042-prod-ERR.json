@@ -1,0 +1,11 @@
+{
+  "ret": 1,
+  "app_version": "0.7.1",
+  "chat_id": null,
+  "error_topic": "functionality",
+  "detailed_error": "Unable to perform UI test. The web_fetch tool is not capable of browser automation, and I do not have access to the MCP Playwright tools.",
+  "repro": [
+    "Run the UI test for the prod environment.",
+    "The test fails because the tool is not capable of browser automation."
+  ]
+}

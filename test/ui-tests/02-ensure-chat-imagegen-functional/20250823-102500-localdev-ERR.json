@@ -1,0 +1,12 @@
+{
+  "ret": 1,
+  "chat_id": null,
+  "app_version": "0.7.1",
+  "error_topic": "functionality",
+  "detailed_error": "Local server not running at http://localhost:8080/chats/",
+  "repro": [
+    "Run `just dev` to start the local server",
+    "Run the test again"
+  ],
+  "log": "curl: (7) Failed to connect to localhost port 8080 after 0 ms: Couldn't connect to server"
+}
