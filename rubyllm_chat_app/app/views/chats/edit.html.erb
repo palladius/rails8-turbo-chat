@@ -32,7 +32,7 @@
     <div class="mb-6">
       <%= form.label :model_id, "Language Model", class: "block text-gray-200 text-sm font-bold mb-2" %>
       <%# Fetch available models. You might want to cache this list or make it more robust. %>
-      <% available_models = RubyLLM.models.chat_models.select { |m| m.provider.to_s.include?('gemini') }.map { |m| [m.id, m.id] }.uniq.sort %>
+      <% available_models = Chat.available_models %>
       <%= form.select :model_id, options_for_select(available_models, @chat.model_id), {}, class: "shadow appearance-none bg-black/20 border border-white/10 rounded-xl w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 [&>option]:bg-gray-800" %>
       <p class="text-xs text-gray-400 mt-1">Current default: <%= DEFAULT_LLM_MODEL %></p>
     </div>

@@ -102,7 +102,7 @@ gem "google-cloud-storage", "~> 1.11", require: false
 
 gem "devise", "~> 4.9"
 
-gem 'ruby_llm'
+gem 'ruby_llm', '~> 1.16.0'
 gem "dotenv-rails", "~> 3.1"
 #gem "ruby_llm", git: "https://github.com/crmne/ruby_llm.git", ref: '2bdc4229643888da053c76dfe9ef837b8e3a91f7'
 
