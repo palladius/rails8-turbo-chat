@@ -1,3 +1,7 @@
+## v0.8.22 - on 20260713
+
+*   fix(ui): 🐛 Fix image refresh race condition after generation by adding an onerror retry handler.
+
 ## v0.8.21 - on 20260713
 
 *   ui(tailwind): 💅 Fix broken Tailwind CSS paths in `application.tailwind.css` to properly render utility classes.
