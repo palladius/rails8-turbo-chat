@@ -1,3 +1,8 @@
+## v0.8.21 - on 20260713
+
+*   fix(bug): Fix leftover `Rainbow` gem usage in `GenerateChatImageJob` to resolve prod crashes 🌈.
+*   test: Fix auto-generated controller tests for `pages` and `chat_cards` and add missing user fixture emails 🐛.
+
 ## v0.8.20 - on 20251024
 
 *   fix(cloudbuild): Set `_GCS_BUCKET` in `cloudbuild.yaml` to fix image generation in PROD.

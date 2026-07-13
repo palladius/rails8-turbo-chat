@@ -24,7 +24,8 @@ class GenerateChatImageJob < ApplicationJob
     response = RubyLLM.chat.ask(image_prompt_prompt)
     image_prompt = response.content.strip
 
-    Rails.logger.info "🎨 " + Rainbow("Image Prompt:").cyan + " #{image_prompt}"
+    prefix = defined?(Rainbow) ? Rainbow("Image Prompt:").cyan : "Image Prompt:"
+    Rails.logger.info "🎨 #{prefix} #{image_prompt}"
 
     # 3. Use an image model to generate the image
     image = RubyLLM.paint(image_prompt, model: "imagen-3.0-generate-002")
