@@ -1,3 +1,8 @@
+## v0.8.22 - on 20260713
+
+*   fix(ui): 🐛 Fix Enter key not submitting message in chat form (fixes #27).
+*   fix(ui): 🐛 Fix chat form not clearing and focusing after message submission (fixes #27).
+
 ## v0.8.21 - on 20260713
 
 *   ui(tailwind): 💅 Fix broken Tailwind CSS paths in `application.tailwind.css` to properly render utility classes.

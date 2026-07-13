@@ -4,11 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
     this.autogrow()
-    this.element.addEventListener('keydown', this.handleKeydown.bind(this))
   }
 
   disconnect() {
-    this.element.removeEventListener('keydown', this.handleKeydown.bind(this))
   }
 
   autogrow() {
@@ -17,9 +15,15 @@ export default class extends Controller {
   }
 
   handleKeydown(event) {
+    console.log("Keydown event triggered: ", event.key, "Shift:", event.shiftKey)
     if (event.key === 'Enter' && !event.shiftKey) { // Use !event.shiftKey for Enter without Shift
       event.preventDefault()
-      this.element.form.requestSubmit()
+      const submitButton = this.element.form.querySelector('input[type="submit"], button[type="submit"]')
+      if (submitButton) {
+        submitButton.click()
+      } else {
+        this.element.form.requestSubmit()
+      }
     } else if (event.key === 'Enter' && event.shiftKey) { // Use event.shiftKey for Shift + Enter
       // Allow default behavior (newline)
     }
