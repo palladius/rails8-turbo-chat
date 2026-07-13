@@ -1,3 +1,7 @@
+## v0.8.22 - on 20260713
+
+*   fix(bug): 🐛 Fix duplicate chats in index view when multiple generated images are present using `.distinct` scope.
+
 ## v0.8.21 - on 20260713
 
 *   ui(tailwind): 💅 Fix broken Tailwind CSS paths in `application.tailwind.css` to properly render utility classes.

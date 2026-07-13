@@ -10,7 +10,7 @@ class Chat < ApplicationRecord
   has_one_attached :generated_image # , prefix: 'chats/generated_images' # not implemented see https://github.com/rails/rails/issues/32790
   has_many :messages, -> { order(created_at: :asc) }, dependent: :destroy # Ensure messages are ordered
 
-  scope :with_attached_generated_image, -> { joins(:generated_image_attachment) }
+  scope :with_attached_generated_image, -> { joins(:generated_image_attachment).distinct }
 
   # Riccaredo this WONT work as its in PostgreS vincolo.
   #belongs_to :user, optional: true # Example
