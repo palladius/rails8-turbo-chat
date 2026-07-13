@@ -1,12 +1,9 @@
+require 'rainbow'
+
 class GenerateChatImageJob < ApplicationJob
   queue_as :default
 
   def perform(chat)
-    if chat.generated_image.attached?
-      Rails.logger.warn "📸 Chat #{chat.id} already has a generated image. Skipping."
-      return
-    end
-
     # 1. Generate a prompt for the image generation model
     image_prompt_prompt = <<~PROMPT
       Based on the following chat conversation, please generate a concise, descriptive prompt for an image generation LLM model such as Google Imagen, or Midjourney.
