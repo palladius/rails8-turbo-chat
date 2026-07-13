@@ -70,8 +70,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   #id: 1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
   id:  'step1 docker build' ##1. Docker Build - to CB_LATEST # might be error prone vs the one create from computer
-  args: ['build', '-t', "${_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/rails8-turbo-chat:latest", '.']
-  dir: rubyllm_chat_app/
+  args: ['build', '-t', "${_REGION}-docker.pkg.dev/${PROJECT_ID}/berliner-docker-repo/rails8-turbo-chat:latest", '-f', 'rubyllm_chat_app/Dockerfile', '.']
   env:
   - 'PROJECT_ID=$PROJECT_ID'
   - 'RAILS_MASTER_KEY=$_RAILS_MASTER_KEY'
