@@ -32,6 +32,12 @@ class Chat < ApplicationRecord
   broadcasts_to ->(chat) { [chat, "messages"] }, inserts_by: :append, target: "messages"
 
 
+  def self.available_models
+    RubyLLM.models.chat_models.map { |m| m.id.to_s }
+           .reject { |id| id.include?('1.5') || id.include?('2.0') }
+           .map { |id| [id, id] }.uniq.sort
+  end
+
   def short_model_id = model_id.sub(/\Agemini-/, '')
   #end
 

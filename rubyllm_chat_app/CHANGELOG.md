@@ -1,3 +1,11 @@
+## v0.8.21 - on 20260713
+
+*   feat(models): 🚀 Update `ruby_llm` to `~> 1.16.0` to support Gemini 3.1 and 3.5.
+*   refactor(models): 🧹 Clean up `config/initializers/ruby_llm.rb` by removing hardcoded model lists.
+*   refactor(mvc): 🏗️ Move model filtering logic into `Chat.available_models` to follow MVC patterns.
+*   feat(ui): ✨ Filter model dropdown to only include `gemini-flash-latest` and Gemini models >= 2.5 (exclude 1.5 and 2.0).
+*   config(dev): 🌟 Set default development model to `gemini-flash-latest`.
+
 ## v0.8.20 - on 20251024
 
 *   fix(cloudbuild): Set `_GCS_BUCKET` in `cloudbuild.yaml` to fix image generation in PROD.

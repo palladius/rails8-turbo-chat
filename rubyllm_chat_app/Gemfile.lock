@@ -453,15 +453,17 @@ GEM
     ruby-graphviz (1.2.5)
       rexml
     ruby-progressbar (1.13.0)
-    ruby_llm (1.8.0)
+    ruby_llm (1.16.0)
       base64
       event_stream_parser (~> 1)
       faraday (>= 1.10.0)
       faraday-multipart (>= 1)
       faraday-net_http (>= 1)
       faraday-retry (>= 1)
-      marcel (~> 1.0)
+      marcel (~> 1)
+      ruby_llm-schema (~> 0)
       zeitwerk (~> 2)
+    ruby_llm-schema (0.4.0)
     rubyzip (3.1.0)
     securerandom (0.4.1)
     selenium-webdriver (4.35.0)
@@ -593,7 +595,7 @@ DEPENDENCIES
   rails-erd
   rainbow
   rubocop-rails-omakase
-  ruby_llm (~> 1.6, >= 1.6.3)
+  ruby_llm (~> 1.16.0)
   selenium-webdriver
   solid_cable
   solid_cache
