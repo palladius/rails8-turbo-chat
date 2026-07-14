@@ -26,7 +26,7 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development"
 
 # Riccardo - so wants the Cloud :)
-ENV PORT 8080
+ENV PORT=8080
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
