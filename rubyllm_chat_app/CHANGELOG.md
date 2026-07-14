@@ -1,3 +1,8 @@
+## v0.8.23 - on 20260713
+
+*   fix(bug): Fix leftover `Rainbow` gem usage in `GenerateChatImageJob` to resolve prod crashes 🌈.
+*   test: Fix auto-generated controller tests for `pages` and `chat_cards` and add missing user fixture emails 🐛.
+
 ## v0.8.22 - on 20260713
 
 *   fix(storage): 🔒 Ensure GCS bucket is non-public by setting `public: false` in `storage.yml`.
