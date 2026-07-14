@@ -1,3 +1,9 @@
+@import "tailwindcss";
+
+@source "../../views";
+@source "../../helpers";
+@source "../../javascript";
+
 
 /* Add custom styles or Tailwind @apply directives here */
 #messages {

@@ -1,9 +1,9 @@
 <div class="container mx-auto px-4 py-8">
   <h1 class="text-2xl font-semibold mb-6">Edit Chat: <%= @chat.title %></h1>
 
-  <%= form_with(model: @chat, local: true, class: "space-y-6 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4") do |form| %>
+  <%= form_with(model: @chat, local: true, class: "space-y-6 bg-white/5 backdrop-blur-md border border-white/10 shadow-xl rounded-2xl px-8 pt-6 pb-8 mb-4") do |form| %>
     <% if @chat.errors.any? %>
-      <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <div id="error_explanation" class="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded relative" role="alert">
         <strong class="font-bold">Holy smokes!</strong>
         <span class="block sm:inline"><%= pluralize(@chat.errors.count, "error") %> prohibited this chat from being saved:</span>
         <ul class="mt-3 list-disc list-inside text-sm">
@@ -15,31 +15,31 @@
     <% end %>
 
     <div class="mb-4">
-      <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.text_field :title, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= form.label :title, class: "block text-gray-200 text-sm font-bold mb-2" %>
+      <%= form.text_field :title, class: "shadow appearance-none bg-black/20 border border-white/10 rounded-xl w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500" %>
     </div>
 
     <div class="mb-4">
-      <%= form.label :description, class: "block text-gray-700 text-sm font-bold mb-2" %>
-      <%= form.text_area :description, rows: 4, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= form.label :description, class: "block text-gray-200 text-sm font-bold mb-2" %>
+      <%= form.text_area :description, rows: 4, class: "shadow appearance-none bg-black/20 border border-white/10 rounded-xl w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500" %>
     </div>
 
     <div class="mb-4 flex items-center">
-      <%= form.check_box :public, class: "mr-2 leading-tight" %>
-      <%= form.label :public, "Make Public", class: "text-gray-700 text-sm font-bold" %>
+      <%= form.check_box :public, class: "mr-2 leading-tight bg-black/20 border-white/10 rounded focus:ring-purple-500" %>
+      <%= form.label :public, "Make Public", class: "text-gray-200 text-sm font-bold" %>
     </div>
 
     <div class="mb-6">
-      <%= form.label :model_id, "Language Model", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.label :model_id, "Language Model", class: "block text-gray-200 text-sm font-bold mb-2" %>
       <%# Fetch available models. You might want to cache this list or make it more robust. %>
-      <% available_models = RubyLLM.models.chat_models.select { |m| m.provider.to_s.include?('gemini') }.map { |m| [m.id, m.id] }.uniq.sort %>
-      <%= form.select :model_id, options_for_select(available_models, @chat.model_id), {}, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-      <p class="text-xs text-gray-500 mt-1">Current default: <%= DEFAULT_LLM_MODEL %></p>
+      <% available_models = Chat.available_models %>
+      <%= form.select :model_id, options_for_select(available_models, @chat.model_id), {}, class: "shadow appearance-none bg-black/20 border border-white/10 rounded-xl w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500 [&>option]:bg-gray-800" %>
+      <p class="text-xs text-gray-400 mt-1">Current default: <%= DEFAULT_LLM_MODEL %></p>
     </div>
 
     <div class="flex items-center justify-between">
-      <%= form.submit "Update Chat", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" %>
-      <%= link_to "Cancel", chat_path(@chat), class: "inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" %>
+      <%= form.submit "Update Chat", class: "bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/30 text-white font-bold py-2 px-4 rounded-xl focus:outline-none cursor-pointer" %>
+      <%= link_to "Cancel", chat_path(@chat), class: "inline-block align-baseline font-bold text-sm text-blue-400 hover:text-blue-300" %>
     </div>
   <% end %>
 
