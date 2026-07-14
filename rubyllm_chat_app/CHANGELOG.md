@@ -6,6 +6,7 @@
 ## v0.8.22 - on 20260713
 
 *   fix(storage): 🔒 Ensure GCS bucket is non-public by setting `public: false` in `storage.yml`.
+*   fix(config): 🛠️ Parse and re-dump `GCS_CREDENTIALS_JSON` in `storage.yml` to ensure single-line rendering of multiline JSON strings, fixing issue #46.
 
 ## v0.8.21 - on 20260713
 
