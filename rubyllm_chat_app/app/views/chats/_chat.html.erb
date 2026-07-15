@@ -3,9 +3,9 @@
   <div style="width: 67%;" class="pr-4">
     <h1 class="text-xl font-semibold text-gray-100">
       <% if chat.public %>
-        👀 <%= chat.title %>
+        👀 <%= chat.language_emoji %> <%= chat.title %>
       <% else %>
-        <%= chat.title %>
+        <%= chat.language_emoji %> <%= chat.title %>
       <% end %>
       <% if chat.public %>
         <span class="inline-block ml-2 px-2 py-1 bg-black bg-opacity-50 text-white text-xs rounded-full">
