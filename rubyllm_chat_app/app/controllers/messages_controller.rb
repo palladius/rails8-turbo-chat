@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
       # format.html { redirect_to @chat } # Redirect back to the chat view
       # We can just render an empty stream response or head :ok as the form submission
       # will be followed by Turbo Stream updates broadcast from the model/job.
-      format.turbo_stream { head :ok } # Acknowledge receipt, streams will update UI
+      format.turbo_stream { render turbo_stream: turbo_stream.action(:reset_form, "message-form-#{@chat.id}") } # Acknowledge receipt, streams will update UI
       format.html { redirect_to @chat } # Fallback for non-turbo
     end
 
