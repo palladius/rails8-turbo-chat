@@ -1,0 +1,7 @@
+[
+  {
+    "id": "missing_context",
+    "description": "The issue requests creating Google Docs, slide decks, and fixing an unspecified bug ('first chat unresponsive') without providing templates, content, or reproduction steps. These tasks require human intervention to provide the missing context.",
+    "proposed_resolution": "The issue author should provide links to templates, specify where documents should be created, and provide clear reproduction steps/error logs for the bug."
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "id": "app_not_running",
+    "description": "The local rails application is not running on port 8080 (Zammad is answering instead), and the agent is instructed not to start long-running servers manually.",
+    "proposed_resolution": "The human operator must start the application using `just dev` or `bin/dev` before the agent can execute UI tests."
+  },
+  {
+    "id": "missing_playwright",
+    "description": "The agent that previously attempted to run the UI tests failed because it fell back to curl and web_fetch instead of using Playwright.",
+    "proposed_resolution": "Ensure the UI test agent has the necessary browser tools (such as Playwright MCP or `browser_subagent`) to login and interact with the page."
+  }
+]
