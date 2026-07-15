@@ -112,6 +112,27 @@ If you navigate to a login page, you can find user/pass in these convenient ENV 
 * `PLAYWRIGHT_PASSWORD`
 If you can't find them as ENVs, try `grep PLAYWRIGHT_ .env`.
 
+### Playwright Login Test
+
+There is a standalone Playwright script at `rubyllm_chat_app/test/playwright_login_test.js` that you can use to authenticate as a test user. It works on both macOS and Linux (headless Chromium), no MCP config needed.
+
+**Setup** (one-time):
+```bash
+cd rubyllm_chat_app && npm install playwright && npx playwright install chromium
+```
+
+**Usage against localhost** (use deterministic port `48000 + GHI#` when in a worktree):
+```bash
+node test/playwright_login_test.js --port 8080 --user "$PLAYWRIGHT_USERNAME" --pass "$PLAYWRIGHT_PASSWORD"
+```
+
+**Usage against Cloud Run**:
+```bash
+node test/playwright_login_test.js --url https://rails8-turbo-chat-2026-ohznl4txyq-ew.a.run.app/ --user "$PLAYWRIGHT_USERNAME" --pass "$PLAYWRIGHT_PASSWORD"
+```
+
+The script navigates, fills the Devise login form, clicks submit, and saves a full-page screenshot to `/tmp/playwright_hello_<port>.png`. Adapt the script for your specific GHI needs (e.g., navigate to a chat page, verify an image renders, etc.).
+
 
 ## User
 
