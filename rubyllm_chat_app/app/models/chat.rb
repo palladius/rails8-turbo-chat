@@ -27,9 +27,8 @@ class Chat < ApplicationRecord
   # broadcasts_to ->(chat) { [chat.user, "chats"] } # Broadcast to the user's chat stream
   # Let's simplify for now and handle updates via controller Turbo responses maybe
 
-  # Broadcast message creations/updates within *this* chat to the chat channel
-  # This is used by the chat view to append new messages.
-  broadcasts_to ->(chat) { [chat, "messages"] }, inserts_by: :append, target: "messages"
+  # Broadcast updates to the chat itself (e.g. title changes)
+  after_update_commit -> { broadcast_replace_later_to [self, "messages"] }
 
 
   def self.available_models
@@ -87,6 +86,7 @@ class Chat < ApplicationRecord
         if cleaned_title.present? && cleaned_title != self.title
           self.update(title: cleaned_title)
           Rails.logger.info "Chat #{self.id} successfully auto-titled to: '#{cleaned_title}'"
+          self.autodetect_language
         else
           Rails.logger.info "Chat #{self.id} auto-titling: new title is blank, same as old, or invalid after cleaning. Original: '#{suggested_title}', Cleaned: '#{cleaned_title}'"
         end
@@ -142,6 +142,52 @@ class Chat < ApplicationRecord
       end
     rescue StandardError => e
       Rails.logger.error "Chat #{self.id} description generation failed due to LLM error: #{e.class.name} - #{e.message}"
+    end
+  end
+
+  def autodetect_language
+    return if messages.count < 2
+
+    language_detection_prompt = <<~PROMPT.strip
+      Based on our conversation so far (the preceding messages), please detect the language being used.
+      Output ONLY a two-letter ISO 639-1 language code (e.g., 'en', 'it', 'de', 'es', 'pt', 'fr').
+      Do not include any other text, quotes, or explanations.
+    PROMPT
+
+    begin
+      lang_chat = RubyLLM.chat
+      response = lang_chat.ask(language_detection_prompt + "\n\n" + fancy_chat_messages)
+      detected_language = response.content&.strip&.downcase
+
+      if detected_language.present? && detected_language.length == 2
+        self.update(language: detected_language)
+        Rails.logger.info "Chat #{self.id} detected language: '#{detected_language}'"
+      else
+        Rails.logger.info "Chat #{self.id} language detection failed: LLM returned '#{detected_language}'"
+      end
+    rescue StandardError => e
+      Rails.logger.error "Chat #{self.id} language detection failed due to LLM error: #{e.class.name} - #{e.message}"
+    end
+  end
+
+  def language_emoji
+    case language.to_s.downcase
+    when 'en' then '🇬🇧'
+    when 'it' then '🇮🇹'
+    when 'de' then '🇩🇪'
+    when 'es' then '🇪🇸'
+    when 'pt' then '🇵🇹'
+    when 'fr' then '🇫🇷'
+    when 'ja' then '🇯🇵'
+    when 'zh' then '🇨🇳'
+    when 'ru' then '🇷🇺'
+    when 'nl' then '🇳🇱'
+    when 'tr' then '🇹🇷'
+    when 'ko' then '🇰🇷'
+    when 'hi' then '🇮🇳'
+    when 'pl' then '🇵🇱'
+    when 'ar' then '🇸🇦'
+    else '🏳️'
     end
   end
 
