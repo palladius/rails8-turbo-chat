@@ -46,7 +46,7 @@ class ChatsController < ApplicationController
       #   @chat.with_instructions(params[:chat][:system_prompt])
       # end
       # TODO(Emiliano): fix. should NOT need the allow_other_host: true
-      redirect_to @chat, notice: "✨ Chat session created!", allow_other_host: true
+      redirect_to @chat, status: :see_other, notice: "✨ Chat session created!", allow_other_host: true
     else
       # If save fails, re-render index/show with errors
       set_chats # Reload chats for the sidebar
