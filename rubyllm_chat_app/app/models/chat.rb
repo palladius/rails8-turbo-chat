@@ -53,6 +53,37 @@ class Chat < ApplicationRecord
     messages.count < 2
   end
 
+  def parsed_tags
+    tags.to_s.split(/[\s,]+/).map { |t| t.delete('#') }.reject(&:blank?)
+  end
+
+  def autotag_if_needed
+    return if tags.present? || messages.count < 2
+
+    Rails.logger.info "Attempting to auto-tag chat #{id}..."
+    current_chat_history = self.fancy_chat_messages
+
+    tag_generation_prompt = <<~PROMPT.strip
+      Based on our conversation so far, please suggest 3-5 relevant tags for this chat.
+      Output ONLY a comma-separated list of tags (e.g. ruby, rails, webdev).
+      Do not include any prefixes, hashtags, quotation marks, or explanatory text.
+    PROMPT
+
+    begin
+      tagging_chat = RubyLLM.chat
+      response = tagging_chat.ask(tag_generation_prompt + "\n\n" + current_chat_history)
+      suggested_tags = response.content&.strip
+
+      if suggested_tags.present?
+        cleaned_tags = suggested_tags.gsub(/^Tags:\s*/i, '').gsub(/^["']+|["']+$/, '').strip
+        self.update(tags: cleaned_tags)
+        Rails.logger.info "Chat #{self.id} successfully auto-tagged: '#{cleaned_tags}'"
+      end
+    rescue StandardError => e
+      Rails.logger.error "Chat #{self.id} auto-tagging failed due to LLM error: #{e.class.name} - #{e.message}"
+    end
+  end
+
 
   # Generates a title for the chat using an LLM if the current title is a default one
   # and the chat has more than 3 messages.
