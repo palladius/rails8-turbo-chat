@@ -29,7 +29,7 @@ class Chat < ApplicationRecord
 
   # Broadcast message creations/updates within *this* chat to the chat channel
   # This is used by the chat view to append new messages.
-  broadcasts_to ->(chat) { [chat, "messages"] }, inserts_by: :append, target: "messages"
+  broadcasts_to ->(chat) { [chat, "messages"] }
 
 
   def self.available_models
