@@ -106,6 +106,11 @@ class ChatsController < ApplicationController
     redirect_to @chat, notice: "📝 Description generated!"
   end
 
+  def autotag
+    @chat.autotag_if_needed
+    redirect_to @chat, notice: "🏷️ Tags generated!"
+  end
+
   def im_feeling_lucky
     ImFeelingLuckyJob.perform_later(@chat)
     redirect_to @chat, notice: "✨ I'm feeling lucky! Updates are on the way."
@@ -120,11 +125,17 @@ class ChatsController < ApplicationController
 
   # Load the current user's chats for the sidebar list
   def set_chats
-    if current_user
-      @chats = current_user.chats.or(Chat.where(public: true)).order(updated_at: :desc)
+    base_scope = if current_user
+      current_user.chats.or(Chat.where(public: true))
     else
-      @chats = Chat.where(public: true).order(updated_at: :desc)
+      Chat.where(public: true)
     end
+    
+    if params[:tag].present?
+      base_scope = base_scope.where("tags LIKE ?", "%#{params[:tag]}%")
+    end
+    
+    @chats = base_scope.order(updated_at: :desc)
   end
 
   # Find the specific chat belonging to the current user or a public chat
@@ -141,6 +152,6 @@ class ChatsController < ApplicationController
 
   # Strong parameters for creating/updating chats (if needed later)
   def chat_params
-    params.require(:chat).permit(:title, :description, :model_id, :public)
+    params.require(:chat).permit(:title, :description, :model_id, :public, :tags)
   end
 end

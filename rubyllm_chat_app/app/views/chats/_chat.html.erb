@@ -16,7 +16,14 @@
     <% if chat.description.present? %>
       <p class="text-sm text-gray-400"><%= chat.description %></p>
     <% end %>
-    <p class="text-xs text-gray-500">Model: <%= chat.model_id %></p>
+    <% if chat.parsed_tags.any? %>
+      <div class="mt-2 flex flex-wrap gap-1">
+        <% chat.parsed_tags.each do |tag| %>
+          <%= link_to "##{tag}", chats_path(tag: tag), class: "inline-block bg-purple-900 text-purple-200 hover:bg-purple-700 text-xs px-2 py-1 rounded-full" %>
+        <% end %>
+      </div>
+    <% end %>
+    <p class="text-xs text-gray-500 mt-2">Model: <%= chat.model_id %></p>
     <div class="flex flex-wrap gap-2 mt-4">
         <%= link_to "📝 Edit", edit_chat_path(chat), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
         <%= button_to "🗑️ Delete", chat_path(chat), method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete this chat?" } }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
@@ -30,6 +37,9 @@
             <% else %>
               <%= button_to "🔄 Desc", generate_description_chat_path(chat), method: :patch, class: "bg-teal-500 hover:bg-teal-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
             <% end %>
+          <% end %>
+          <% if chat.parsed_tags.empty? %>
+            <%= button_to "🏷️ Tags", autotag_chat_path(chat), method: :patch, class: "bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
           <% end %>
           <%= button_to "✨ Lucky", im_feeling_lucky_chat_path(chat), method: :patch, class: "bg-purple-500 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
           <% unless chat.public %>

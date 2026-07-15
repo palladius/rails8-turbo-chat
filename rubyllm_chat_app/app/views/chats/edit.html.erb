@@ -24,6 +24,12 @@
       <%= form.text_area :description, rows: 4, class: "shadow appearance-none bg-black/20 border border-white/10 rounded-xl w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500" %>
     </div>
 
+    <div class="mb-4">
+      <%= form.label :tags, class: "block text-gray-200 text-sm font-bold mb-2" %>
+      <%= form.text_field :tags, placeholder: "e.g. ruby, rails, gemini", class: "shadow appearance-none bg-black/20 border border-white/10 rounded-xl w-full py-2 px-3 text-gray-200 leading-tight focus:outline-none focus:ring-2 focus:ring-purple-500" %>
+      <p class="text-xs text-gray-400 mt-1">Comma or space separated tags</p>
+    </div>
+
     <div class="mb-4 flex items-center">
       <%= form.check_box :public, class: "mr-2 leading-tight bg-black/20 border-white/10 rounded focus:ring-purple-500" %>
       <%= form.label :public, "Make Public", class: "text-gray-200 text-sm font-bold" %>

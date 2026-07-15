@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       delete 'delete_image'
       patch 'regenerate_title'
       patch 'generate_description'
+      patch 'autotag'
       patch 'im_feeling_lucky'
       patch 'publicize'
     end
