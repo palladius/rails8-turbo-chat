@@ -1,3 +1,7 @@
+## v0.8.24 - on 20260715
+
+*   feat(ui): Add 'File a bug' link to the footer 🐛 (fixes #72).
+
 ## v0.8.23 - on 20260713
 
 *   fix(bug): Fix leftover `Rainbow` gem usage in `GenerateChatImageJob` to resolve prod crashes 🌈.
