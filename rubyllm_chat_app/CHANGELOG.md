@@ -1,3 +1,8 @@
+## v0.8.24 - on 20260715
+
+*   fix(bug): Fix missing `status: :see_other` on chat creation redirect, which caused the app to hang when generating new chats 🐛 (fixes #44).
+*   test: Add system tests for chat creation turbo streams 🧪.
+
 ## v0.8.23 - on 20260713
 
 *   fix(bug): Fix leftover `Rainbow` gem usage in `GenerateChatImageJob` to resolve prod crashes 🌈.
