@@ -1,0 +1,11 @@
+one:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
+  title: MyString
+  public: false
+  upvotes: 0
+
+two:
+  user_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
+  title: MyString2
+  public: true
+  upvotes: 0
