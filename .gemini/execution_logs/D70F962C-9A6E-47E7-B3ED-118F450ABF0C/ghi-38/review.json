@@ -1,0 +1,16 @@
+{
+  "review_start_ts": "2026-07-15T10:28:00Z",
+  "review_end_ts": "2026-07-15T10:30:00Z",
+  "issue_number": "38",
+  "pr_url": "https://github.com/palladius/rails8-turbo-chat/pull/75",
+  "outcome": "hitl_required",
+  "commit_hash": "",
+  "code_quality_score": "90",
+  "files_changed": "1",
+  "lines_added": "10",
+  "lines_removed": "0",
+  "tests_added": "0",
+  "tests_passing": "true",
+  "breaking_change_detected": "false",
+  "reviewer_notes": "Code looks good and tests pass, but user rules require explicit approval before pushing to main. Please review and merge manually."
+}
