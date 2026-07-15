@@ -87,6 +87,10 @@ class ChatsController < ApplicationController
     # @chat is set by before_action
     # In a real app, you'd enqueue a background job here
     # For simplicity, we'll call the service directly
+    if @chat.generated_image.attached?
+      @chat.generated_image.purge
+      sleep 0.5
+    end
     GenerateChatImageJob.perform_later(@chat)
     redirect_to @chat, notice: "🖼️ Image generation started. It will appear shortly."
   end

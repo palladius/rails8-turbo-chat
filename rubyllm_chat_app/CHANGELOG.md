@@ -1,3 +1,7 @@
+## v0.8.24 - on 20260715
+
+*   fix(bug): Make "regenerate image" button idempotent by purging existing image first 🖼️.
+
 ## v0.8.23 - on 20260713
 
 *   fix(bug): Fix leftover `Rainbow` gem usage in `GenerateChatImageJob` to resolve prod crashes 🌈.
