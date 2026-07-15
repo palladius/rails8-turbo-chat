@@ -1,15 +1,20 @@
 #!/usr/bin/env node
-// Playwright Hello World — a template for subagents doing UI verification.
-// Usage: node playwright_hello.js --port 48025 --user admin --pass secret123
-//        node playwright_hello.js --url https://my-app.run.app --user admin --pass secret123
+// Playwright Login Test for Rails 8 Turbo Chat (Devise authentication)
 //
-// This script:
-// 1. Navigates to http://localhost:<port> or the given --url
-// 2. Checks the page loads (HTTP 200)
-// 3. Optionally logs in if --user and --pass are provided
+// Usage:
+//   node test/playwright_login_test.js --port 8080 --user "$PLAYWRIGHT_USERNAME" --pass "$PLAYWRIGHT_PASSWORD"
+//   node test/playwright_login_test.js --url https://rails8-turbo-chat-2026-ohznl4txyq-ew.a.run.app/ --user "$PLAYWRIGHT_USERNAME" --pass "$PLAYWRIGHT_PASSWORD"
 //
-// Subagents: copy this file into your worktree and adapt it for your specific GHI.
-// Install deps first: npm install playwright
+// Setup (one-time):
+//   cd rubyllm_chat_app && npm install playwright && npx playwright install chromium
+//
+// What this does:
+// 1. Navigates to the app root (redirects to /users/sign_in if not logged in)
+// 2. Fills the Devise login form (email + password)
+// 3. Submits and verifies login succeeded (redirected away from /sign_in)
+// 4. Saves a screenshot to /tmp/playwright_hello_<port>.png
+//
+// For fan-out subagents: use deterministic port 48000 + ISSUE_NUMBER
 
 const { chromium } = require('playwright');
 
@@ -26,47 +31,60 @@ const PASSWORD = getArg('pass');
 const BASE_URL = getArg('url') || `http://localhost:${PORT}`;
 
 (async () => {
-  console.log(`[Playwright] Launching browser for ${BASE_URL}...`);
+  console.log(`[Playwright] Launching headless Chromium for ${BASE_URL}...`);
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext();
   const page = await context.newPage();
 
   try {
-    // Step 1: Navigate to the app
+    // Step 1: Navigate to the app (Devise will redirect to /users/sign_in)
     console.log(`[Playwright] Navigating to ${BASE_URL}...`);
     const response = await page.goto(BASE_URL, { waitUntil: 'domcontentloaded', timeout: 15000 });
     const status = response ? response.status() : 'unknown';
     console.log(`[Playwright] Page loaded with status: ${status}`);
 
     if (status !== 200) {
-      console.error(`[Playwright] FAIL: Expected 200, got ${status}`);
+      console.error(`[Playwright] FAIL: Expected HTTP 200, got ${status}`);
       process.exit(1);
     }
 
-    // Step 2: Log in if credentials provided
+    // Step 2: Log in via Devise form
     if (USERNAME && PASSWORD) {
-      console.log(`[Playwright] Attempting login as "${USERNAME}"...`);
+      console.log(`[Playwright] Attempting Devise login as "${USERNAME}"...`);
 
-      // Try common login selectors — adapt these for your app!
-      const usernameField = await page.$('input[name="username"], input[name="email"], input[name="user"], input[type="email"], #username, #email');
-      const passwordField = await page.$('input[name="password"], input[type="password"], #password');
-      const submitButton = await page.$('button[type="submit"], input[type="submit"], button:has-text("Log in"), button:has-text("Sign in")');
+      // Devise uses user[email] and user[password] field names
+      const emailField = await page.$('input[name="user[email]"], input#user_email, input[type="email"]');
+      const passwordField = await page.$('input[name="user[password]"], input#user_password, input[type="password"]');
 
-      if (usernameField && passwordField) {
-        await usernameField.fill(USERNAME);
+      if (emailField && passwordField) {
+        await emailField.fill(USERNAME);
         await passwordField.fill(PASSWORD);
+
+        // Devise submit button — works with any locale (Accedi, Sign in, Log in, etc.)
+        const submitButton = await page.$('input[type="submit"], button[type="submit"]');
         if (submitButton) {
           await submitButton.click();
-          await page.waitForLoadState('domcontentloaded');
-          console.log(`[Playwright] Login submitted. Current URL: ${page.url()}`);
         } else {
-          console.log('[Playwright] WARN: Found fields but no submit button. Pressing Enter...');
+          console.log('[Playwright] No submit button found, pressing Enter...');
           await passwordField.press('Enter');
-          await page.waitForLoadState('domcontentloaded');
+        }
+
+        await page.waitForLoadState('domcontentloaded');
+        const postLoginUrl = page.url();
+        console.log(`[Playwright] Post-login URL: ${postLoginUrl}`);
+
+        // Check if login succeeded: we should NOT be on /sign_in anymore
+        if (postLoginUrl.includes('/sign_in')) {
+          console.error('[Playwright] WARN: Still on sign_in page. Login may have failed (bad credentials or user not seeded).');
+        } else {
+          console.log('[Playwright] Login successful!');
         }
       } else {
-        console.log('[Playwright] WARN: Could not find login fields on this page. Skipping login.');
+        // Not on login page — might already be logged in
+        console.log('[Playwright] No Devise login form found. Page might not require auth or user is already logged in.');
       }
+    } else {
+      console.log('[Playwright] No credentials provided, skipping login.');
     }
 
     // Step 3: Take a screenshot as proof
@@ -74,13 +92,20 @@ const BASE_URL = getArg('url') || `http://localhost:${PORT}`;
     await page.screenshot({ path: screenshotPath, fullPage: true });
     console.log(`[Playwright] Screenshot saved to ${screenshotPath}`);
 
-    // Step 4: Print page title
+    // Step 4: Report page state
     const title = await page.title();
+    const url = page.url();
+    console.log(`[Playwright] Final URL: ${url}`);
     console.log(`[Playwright] Page title: "${title}"`);
-    console.log('[Playwright] SUCCESS: Hello world test passed!');
+    console.log('[Playwright] SUCCESS: Test completed!');
 
   } catch (err) {
     console.error(`[Playwright] ERROR: ${err.message}`);
+    // Still try to screenshot on error for debugging
+    try {
+      await page.screenshot({ path: `/tmp/playwright_error_${PORT}.png`, fullPage: true });
+      console.log(`[Playwright] Error screenshot saved to /tmp/playwright_error_${PORT}.png`);
+    } catch (_) {}
     process.exit(1);
   } finally {
     await browser.close();
