@@ -99,3 +99,7 @@ gif-magic:
     @echo "Creating 8x speed GIF..."
     @ffmpeg -i docs/chat-capture.mp4 -vf "setpts=0.125*PTS" -y docs/chat-capture-8x.gif
     @echo "GIFs created in docs/ directory!"
+
+# GHI Fan-Out Bonanza dashboard
+show-fanout-execution UUID:
+	@bash ~/git/gemini-cli-palladius-public-goodies/skills/ghi-fan-out-coding/scripts/dashboard.sh {{UUID}}
