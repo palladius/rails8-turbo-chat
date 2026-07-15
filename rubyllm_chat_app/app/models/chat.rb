@@ -22,6 +22,7 @@ class Chat < ApplicationRecord
   # Set a default title if none provided before validation
   before_validation :set_default_title, on: :create
   before_validation :set_gemini_model, on: :create
+  before_validation :set_default_language, on: :create
 
   # Turbo Stream Broadcasting for the chat list (when a chat is created/deleted)
   # broadcasts_to ->(chat) { [chat.user, "chats"] } # Broadcast to the user's chat stream
@@ -51,6 +52,50 @@ class Chat < ApplicationRecord
 
   def too_short?
     messages.count < 2
+  end
+
+  def flag_emoji
+    return "🏳️" if language.blank?
+    case language.downcase
+    when 'en' then '🇬🇧'
+    when 'it' then '🇮🇹'
+    when 'fr' then '🇫🇷'
+    when 'de' then '🇩🇪'
+    when 'es' then '🇪🇸'
+    when 'pt' then '🇵🇹'
+    when 'nl' then '🇳🇱'
+    when 'ja' then '🇯🇵'
+    when 'zh' then '🇨🇳'
+    when 'ko' then '🇰🇷'
+    when 'ru' then '🇷🇺'
+    else '🏳️'
+    end
+  end
+
+  def autodetect_language_if_needed
+    return unless messages.count >= 2
+    return unless language == 'en' || language.blank?
+
+    Rails.logger.info "Attempting to auto-detect language for chat #{id}..."
+    current_chat_history = self.fancy_chat_messages
+
+    lang_generation_prompt = <<~PROMPT.strip
+      Based on our conversation so far, detect the language.
+      Output ONLY a 2-letter lowercase language code (e.g. en, it, fr, es). Do not add any punctuation.
+    PROMPT
+
+    begin
+      titling_chat = RubyLLM.chat
+      response = titling_chat.ask(lang_generation_prompt + "\n\n" + current_chat_history)
+      suggested_lang = response.content&.strip&.downcase
+      
+      if suggested_lang.present? && suggested_lang.length == 2
+        self.update(language: suggested_lang)
+        Rails.logger.info "Chat #{self.id} successfully auto-detected language to: '#{suggested_lang}'"
+      end
+    rescue StandardError => e
+      Rails.logger.error "Chat #{self.id} language detection failed: #{e.class.name} - #{e.message}"
+    end
   end
 
 
@@ -87,6 +132,7 @@ class Chat < ApplicationRecord
         if cleaned_title.present? && cleaned_title != self.title
           self.update(title: cleaned_title)
           Rails.logger.info "Chat #{self.id} successfully auto-titled to: '#{cleaned_title}'"
+          autodetect_language_if_needed
         else
           Rails.logger.info "Chat #{self.id} auto-titling: new title is blank, same as old, or invalid after cleaning. Original: '#{suggested_title}', Cleaned: '#{cleaned_title}'"
         end
@@ -161,6 +207,10 @@ class Chat < ApplicationRecord
 
   def set_gemini_model
     self.model_id ||= DEFAULT_LLM_MODEL
+  end
+
+  def set_default_language
+    self.language ||= 'en'
   end
 
   # Convenience method to get the system prompt, if any
