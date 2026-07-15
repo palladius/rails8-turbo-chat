@@ -1,3 +1,7 @@
+## v0.8.24 - on 20260715
+
+*   feat(ui): 📱 Fix mobile chat layout. Left sidebar is now hidden by default on mobile screens and toggleable via the "Change Chat" button. Added a close button inside the sidebar to return to the active chat.
+
 ## v0.8.23 - on 20260713
 
 *   fix(bug): Fix leftover `Rainbow` gem usage in `GenerateChatImageJob` to resolve prod crashes 🌈.
