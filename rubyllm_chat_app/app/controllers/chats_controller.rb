@@ -46,7 +46,7 @@ class ChatsController < ApplicationController
       #   @chat.with_instructions(params[:chat][:system_prompt])
       # end
       # TODO(Emiliano): fix. should NOT need the allow_other_host: true
-      redirect_to @chat, notice: "✨ Chat session created!", allow_other_host: true
+      redirect_to @chat, notice: "✨ Chat session created!", allow_other_host: true, status: :see_other
     else
       # If save fails, re-render index/show with errors
       set_chats # Reload chats for the sidebar
@@ -70,7 +70,7 @@ class ChatsController < ApplicationController
   def update
     # @chat is set by before_action
     if @chat.update(chat_params)
-      redirect_to @chat, notice: "✏️ Chat was successfully updated."
+      redirect_to @chat, notice: "✏️ Chat was successfully updated.", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -92,32 +92,32 @@ class ChatsController < ApplicationController
     # In a real app, you'd enqueue a background job here
     # For simplicity, we'll call the service directly
     GenerateChatImageJob.perform_later(@chat)
-    redirect_to @chat, notice: "🖼️ Image generation started. It will appear shortly."
+    redirect_to @chat, notice: "🖼️ Image generation started. It will appear shortly.", status: :see_other
   end
 
   def delete_image
     @chat.generated_image.purge
-    redirect_to @chat, notice: "🗑️ Image deleted.", allow_other_host: true
+    redirect_to @chat, notice: "🗑️ Image deleted.", allow_other_host: true, status: :see_other
   end
 
   def regenerate_title
     @chat.autotitle_if_needed
-    redirect_to @chat, notice: "🎨 Title regenerated!"
+    redirect_to @chat, notice: "🎨 Title regenerated!", status: :see_other
   end
 
   def generate_description
     @chat.generate_description
-    redirect_to @chat, notice: "📝 Description generated!"
+    redirect_to @chat, notice: "📝 Description generated!", status: :see_other
   end
 
   def im_feeling_lucky
     ImFeelingLuckyJob.perform_later(@chat)
-    redirect_to @chat, notice: "✨ I'm feeling lucky! Updates are on the way."
+    redirect_to @chat, notice: "✨ I'm feeling lucky! Updates are on the way.", status: :see_other
   end
 
   def publicize
     @chat.update(public: true)
-    redirect_to @chat, notice: "👀 Chat is now public!"
+    redirect_to @chat, notice: "👀 Chat is now public!", status: :see_other
   end
 
   private
