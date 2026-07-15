@@ -85,6 +85,10 @@ class ChatsController < ApplicationController
 
   def generate_image
     # @chat is set by before_action
+    if @chat.generated_image.attached?
+      @chat.generated_image.purge
+      sleep 1 # Wait for Active Storage deletion
+    end
     # In a real app, you'd enqueue a background job here
     # For simplicity, we'll call the service directly
     GenerateChatImageJob.perform_later(@chat)

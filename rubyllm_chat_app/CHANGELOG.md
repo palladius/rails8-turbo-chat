@@ -1,3 +1,6 @@
+## [0.8.24] - 2026-07-15
+🔵 🖼️ Fixed regenerate image button by purging old image and sleeping 1s explicitly.
+
 ## v0.8.23 - on 20260713
 
 *   fix(bug): Fix leftover `Rainbow` gem usage in `GenerateChatImageJob` to resolve prod crashes 🌈.
