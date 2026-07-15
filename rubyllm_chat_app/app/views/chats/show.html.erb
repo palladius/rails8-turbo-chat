@@ -46,7 +46,7 @@
       </div>
 
       <%# Messages Area - Use flex-grow to take available space, overflow-y-auto for scrolling %>
-      <div id="messages" class="flex-grow overflow-y-auto p-4 space-y-4 bg-transparent" data-controller="scroll">
+      <div id="messages" class="flex-grow flex flex-col overflow-y-auto p-4 space-y-4 bg-transparent" data-controller="scroll">
         <%# Render existing messages using the message partial %>
         <%= render @messages %>
         <%# New messages will be appended here by Turbo Streams %>

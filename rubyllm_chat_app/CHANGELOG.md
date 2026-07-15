@@ -1,8 +1,12 @@
-## v0.8.24 - on 20260715
+## [0.8.24] - 2026-07-15
 
-*   feat(ui): 📱 Fix mobile chat layout. Left sidebar is now hidden by default on mobile screens and toggleable via the "Change Chat" button. Added a close button inside the sidebar to return to the active chat.
+* Fix bug #44: Add `status: :see_other` to Turbo Stream redirects in `ChatsController` 🐛
 
 ## v0.8.23 - on 20260713
+
+## [0.8.24] - 2026-07-15
+
+* 🐛 Add "File a bug" link to the application footer (#72)
 
 *   fix(bug): Fix leftover `Rainbow` gem usage in `GenerateChatImageJob` to resolve prod crashes 🌈.
 *   test: Fix auto-generated controller tests for `pages` and `chat_cards` and add missing user fixture emails 🐛.

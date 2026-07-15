@@ -3,9 +3,9 @@
   <div style="width: 67%;" class="pr-4">
     <h1 class="text-xl font-semibold text-gray-100">
       <% if chat.public %>
-        👀 <%= chat.title %>
+        👀 <%= chat.language_emoji %> <%= chat.title %>
       <% else %>
-        <%= chat.title %>
+        <%= chat.language_emoji %> <%= chat.title %>
       <% end %>
       <% if chat.public %>
         <span class="inline-block ml-2 px-2 py-1 bg-black bg-opacity-50 text-white text-xs rounded-full">
@@ -43,7 +43,7 @@
   <div style="width: 33%;">
     <% if chat.generated_image.attached? %>
       <%= link_to url_for(chat.generated_image), target: "_blank" do %>
-        <%= image_tag chat.generated_image, class: "w-full h-auto rounded-lg" %>
+        <%= image_tag chat.generated_image, class: "w-full h-auto rounded-lg", onerror: "let retries = parseInt(this.dataset.retries || 0); if (retries < 5) { this.dataset.retries = retries + 1; setTimeout(() => { let url = new URL(this.src); url.searchParams.set('t', Date.now()); this.src = url.toString(); }, 2000); }" %>
       <% end %>
       <div class="flex space-x-2 mt-2">
         <%= button_to "🗑️ Delete", delete_image_chat_path(chat), method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
