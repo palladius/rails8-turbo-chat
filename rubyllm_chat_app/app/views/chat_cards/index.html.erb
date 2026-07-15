@@ -20,7 +20,7 @@
         <%= link_to chat do %>
           <div class="relative max-w-sm rounded overflow-hidden shadow-lg">
             <% if chat.generated_image.attached? %>
-              <%= image_tag chat.generated_image, class: "w-full" %>
+              <%= image_tag chat.generated_image, class: "w-full", onerror: "let retries = parseInt(this.dataset.retries || 0); if (retries < 5) { this.dataset.retries = retries + 1; setTimeout(() => { let url = new URL(this.src); url.searchParams.set('t', Date.now()); this.src = url.toString(); }, 2000); }" %>
               <div class="absolute top-0 left-0 w-full px-6 py-4 bg-gradient-to-b from-black to-transparent">
                 <div class="font-bold text-xl mb-2 text-white"><%= chat.public ? "👀 " : "" %><%= chat.language_emoji %> <%= chat.title %></div>
               </div>
