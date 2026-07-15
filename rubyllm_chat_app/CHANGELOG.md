@@ -1,3 +1,9 @@
+## v0.8.24 - on 20260715
+
+*   feat(chat): Add `language` field to `Chat` model with default 'en'. 🌍
+*   feat(ui): Display appropriate country flag emoji next to chat titles based on detected language. 🏳️
+*   feat(llm): Autodetect chat language during chat autotitling process. 🤖
+
 ## v0.8.23 - on 20260713
 
 *   fix(bug): Fix leftover `Rainbow` gem usage in `GenerateChatImageJob` to resolve prod crashes 🌈.
