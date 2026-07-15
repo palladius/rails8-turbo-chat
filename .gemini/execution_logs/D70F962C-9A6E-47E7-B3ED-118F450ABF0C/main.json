@@ -1,0 +1,15 @@
+{
+  "fanout_start_time": "2026-07-15T10:22:44Z",
+  "custom_prompt": "",
+  "github_repo": "git@github.com:palladius/rails8-turbo-chat.git",
+  "username": "ricc",
+  "hostname": "ricc-mac.roam.internal",
+  "harness": "antigravity",
+  "skill_version": "1.5.1",
+  "skill_commit": "b7801e4d25a90505833a5c0c3949b5a0463e5b89",
+  "hitl_threshold": "80",
+  "review_start_time": "2026-07-15T10:27:44Z",
+  "review_end_time": "2026-07-15T10:29:03Z",
+  "fanout_end_time": "2026-07-15T10:29:53Z",
+  "retrospective_ghi": "https://github.com/palladius/rails8-turbo-chat/issues/77"
+}

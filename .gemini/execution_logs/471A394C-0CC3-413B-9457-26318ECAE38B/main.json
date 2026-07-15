@@ -1,0 +1,11 @@
+{
+  "fanout_start_time": "2026-07-15T10:53:20Z",
+  "custom_prompt": "Harness: antigravity, HITL threshold: 80",
+  "github_repo": "git@github.com:palladius/rails8-turbo-chat.git",
+  "username": "ricc",
+  "hostname": "ricc-mac.roam.internal",
+  "harness": "antigravity",
+  "skill_version": "1.5.4",
+  "skill_commit": "bac8f955cce3c78ada9b336fda8a7ad187c24c0b",
+  "hitl_threshold": "80"
+}

@@ -1,0 +1,5 @@
+{
+  "state": "NOOP_BAD",
+  "explanation": "Blocked on missing GCS_CREDENTIALS_JSON secret to be provided by a human.",
+  "ghi_tags_added": ["fanout-couldnt-complete"]
+}
