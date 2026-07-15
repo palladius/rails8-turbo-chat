@@ -1,3 +1,7 @@
+## [0.8.24] - 2026-07-15
+
+* Fix bug #44: Add `status: :see_other` to Turbo Stream redirects in `ChatsController` 🐛
+
 ## v0.8.23 - on 20260713
 
 ## [0.8.24] - 2026-07-15
