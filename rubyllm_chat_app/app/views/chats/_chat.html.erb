@@ -35,6 +35,7 @@
           <% unless chat.public %>
             <%= button_to "Publicize 👀", publicize_chat_path(chat), method: :patch, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
           <% end %>
+          <%= button_to "👍 Upvote (#{chat.upvotes})", upvote_chat_path(chat), method: :patch, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-full text-xs" %>
         <% end %>
     </div>
   </div>

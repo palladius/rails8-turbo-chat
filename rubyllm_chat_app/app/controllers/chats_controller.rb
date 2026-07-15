@@ -4,7 +4,7 @@ class ChatsController < ApplicationController
   # include ActionView::RecordIdentifier
 
   before_action :set_chats, only: [:index, :show] # Load chats list for sidebar
-  before_action :set_chat, only: [:show, :edit, :update, :destroy, :generate_image, :delete_image, :regenerate_title, :generate_description, :im_feeling_lucky, :publicize] # Load specific chat for actions
+  before_action :set_chat, only: [:show, :edit, :update, :destroy, :generate_image, :delete_image, :regenerate_title, :generate_description, :im_feeling_lucky, :publicize, :upvote] # Load specific chat for actions
 
   # GET /chats or root_path
   # Displays the list of chats and potentially the first/last active chat
@@ -114,6 +114,13 @@ class ChatsController < ApplicationController
   def publicize
     @chat.update(public: true)
     redirect_to @chat, notice: "👀 Chat is now public!"
+  end
+
+  def upvote
+    @chat.increment!(:upvotes)
+    # Redirect back to previous page if possible (usually index or show)
+    fallback_location = request.referer || @chat
+    redirect_to fallback_location, notice: "👍 Chat upvoted!"
   end
 
   private
