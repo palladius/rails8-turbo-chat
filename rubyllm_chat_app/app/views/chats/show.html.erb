@@ -1,8 +1,8 @@
 <%# Main container using Flexbox for two columns %>
-<div class="flex h-[calc(100vh-150px)] border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl shadow-2xl overflow-hidden chat-sidebar-container" data-controller="chat-sidebar">
+<div class="flex h-[calc(100vh-150px)] border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl shadow-2xl overflow-hidden chat-sidebar-container group" data-controller="chat-sidebar">
 
   <%# Left Pane: Chat List Sidebar %>
-  <div id="chats-list" class="chat-sidebar w-full md:w-1/4 border-r border-white/10 overflow-y-auto p-4 bg-transparent" data-chat-sidebar-target="sidebar">
+  <div id="chats-list" class="chat-sidebar hidden md:flex flex-col group-[.sidebar-open]:flex md:group-[.sidebar-open]:flex w-full md:w-1/4 border-r border-white/10 overflow-y-auto p-4 bg-transparent" data-chat-sidebar-target="sidebar">
     <h2 class="text-lg font-semibold mb-4 text-gray-200">My Chats 💬</h2>
 
     <%# Button/Form to create a new chat %>
@@ -26,7 +26,7 @@
   </div>
 
   <%# Right Pane: Chat Window %>
-  <div class="chat-content w-full md:w-3/4 flex flex-col">
+  <div class="chat-content w-full md:w-3/4 flex flex-col group-[.sidebar-open]:hidden md:group-[.sidebar-open]:flex">
     <% if @chat %>
       <%# Mobile button to show chat list %>
       <div class="md:hidden p-2 bg-transparent border-b border-white/10">
