@@ -1,46 +1,38 @@
 <%# Renders a single message, used for both initial load and Turbo Streams %>
 
 <%# Use Turbo Frame for potential targeted updates later, and required by streaming approach %>
-
 <%= turbo_frame_tag message do %>
-  <%# Basic styling based on role %>
+  <%# iPhone-style chat bubbles with Gemini colors %>
   <% role_class = case message.role
                   when "user"
-                    "bg-blue-700 text-blue-100 self-end ml-10 max-w-3xl" # User messages on the right
+                    "bg-gradient-to-tr from-green-500 to-green-400 text-white self-end ml-auto rounded-2xl rounded-br-sm shadow-md border border-white/10" # User on the right (iPhone green)
                   when "assistant"
-                    "bg-gray-700 text-gray-100 self-start mr-10" # Assistant messages on the left
+                    "bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 text-white self-start mr-auto rounded-2xl rounded-bl-sm shadow-md border border-white/10" # Assistant on the left (Gemini colors)
                   when "system"
-                    "bg-gray-700 text-gray-300 text-xs italic mx-auto my-2" # System messages centered/subtle
+                    "bg-black/30 text-gray-300 text-xs italic mx-auto my-2 rounded-2xl border border-white/10" # System centered
                   when "tool"
-                     "bg-yellow-700 text-yellow-100 text-xs italic self-start mr-10" # Tool results distinct
+                    "bg-yellow-700/80 text-yellow-100 text-xs italic self-start mr-auto rounded-2xl rounded-bl-sm shadow-md border border-white/10"
                   else
-                    "bg-gray-700 text-gray-200 self-start mr-10"
+                    "bg-gray-700/80 text-gray-200 self-start mr-auto rounded-2xl rounded-bl-sm shadow-md border border-white/10"
                   end %>
-  <div class="message <%= message.role %> <%= role_class %> rounded-lg p-3 shadow-sm max-w-xl mb-4">
-    <% if message.user? %>
-      <%# Don't show role label for system messages %>
-      <div class="flex items-start <%= message.user? ? 'font-bold' : '' %>">
-        <strong class="text-sm capitalize text-gray-300 mr-2">
-          <%= message.role == 'assistant' ? '🤖' : (message.user? ? '👤' : message.role.capitalize) %>
-        </strong>
-        <div
-          id="<%= dom_id(message, :content) %>"
-          class="prose prose-sm max-w-full break-words <%= message.user? ? 'text-gray-200' : 'text-gray-100' %> text-sm md:text-base"
-        >
-          <%# Render initial content. Streaming will append here. %>
-          <%= markdown_to_html(message.content) %>
-        </div>
+  
+  <div class="message <%= message.role %> <%= role_class %> p-3 md:p-4 max-w-[85%] md:max-w-[75%] mb-2 backdrop-blur-md">
+    <% if message.user? || message.role == 'assistant' %>
+      <div
+        id="<%= dom_id(message, :content) %>"
+        class="prose prose-sm md:prose-base max-w-full break-words text-white"
+      >
+        <%# Render initial content. Streaming will append here. %>
+        <%= markdown_to_html(message.content) %>
       </div>
     <% else %>
       <%# System messages are centered and italic %>
       <div
         id="<%= dom_id(message, :content) %>"
-        class="prose prose-sm max-w-none break-words text-gray-300 text-xs italic mx-auto my-2 text-sm md:text-base"
+        class="prose prose-sm max-w-none break-words text-center"
       >
         <%= markdown_to_html(message.content) %>
       </div>
     <% end %>
   </div>
 <% end %>
-
-<%# Ensure the message partial itself doesn't add extra outer divs if already inside #messages container %>
